@@ -22,6 +22,7 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'capybara'
   gem 'factory_girl_rails', require: false
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 3.1'
