@@ -208,7 +208,6 @@ DEPENDENCIES
   byebug
   capybara
   codeclimate-test-reporter
-  coffee-rails (~> 4.1.0)
   factory_girl_rails
   faker
   jbuilder (~> 2.0)
