@@ -8,6 +8,6 @@ feature 'Landing page' do
   end
 
   scenario 'should have the correct title' do
-    expect(page).to have_title('Joonam | Find your soul mate for free')
+    expect(page).to have_title('Find your soul mate for free | Joonam')
   end
 end
