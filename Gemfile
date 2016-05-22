@@ -26,6 +26,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
+  gem 'guard-rspec', require: false
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
