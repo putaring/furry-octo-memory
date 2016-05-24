@@ -10,7 +10,10 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'yard', group: :doc
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'bootstrap', '~> 4.0.0.alpha3'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
 # Use Unicorn as the app server
 # gem 'unicorn'
 

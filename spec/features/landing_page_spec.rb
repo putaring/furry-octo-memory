@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Landing page' do
-  background { visit '/welcome/index' }
+  background { visit root_path }
 
   scenario 'should display the value proposition' do
     expect(page).to have_content('Find your soul mate for free')
