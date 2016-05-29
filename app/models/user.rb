@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX     = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
-  validates :username, presence: true, length: 3..20
+  validates :username, presence: true, length: 3..30, on: :update
   validates :password, length: { minimum: 8 }
   validates :birthdate, presence: true
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
@@ -22,14 +22,42 @@ class User < ActiveRecord::Base
 
   validate :old_enough?, if: ->(u) { u.birthdate_changed? }
 
+  before_create :assign_random_username
+
+  before_update { username.downcase! }
+
   before_save { email.downcase! }
-  before_save { username.downcase! }
   before_save { country.upcase! }
   before_save { language.downcase! }
 
   private
 
   def old_enough?
-    errors.add(:birthdate, "shows you're underage") unless birthdate <= 18.years.ago
+    errors.add(:birthdate, "shows that you're under 18") unless birthdate <= 18.years.ago
+  end
+
+  def assign_random_username
+    self.username = random_username
+    while User.exists?(username: self.username) do
+      self.username = random_username
+    end
+  end
+
+  def random_username
+    "#{random_prefix}-#{random_noun}-#{SecureRandom.random_number(10000)}"[0...30]
+  end
+
+  def random_noun
+    [
+      Faker::Company.profession, Faker::Commerce.product_name.split.second,
+      Faker::Team.creature, Faker::Commerce.product_name.split.third
+    ].sample.downcase.gsub(/\s+/, "")
+  end
+
+  def random_prefix
+    [
+      Faker::Color.color_name, Faker::Superhero.name.split.first,
+      Faker::Commerce.product_name.split.first
+    ].sample.downcase.gsub(/\s+/, "")
   end
 end

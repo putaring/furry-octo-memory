@@ -9,13 +9,13 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:language) }
     it { should validate_presence_of(:country) }
     it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:username) }
+    it { should validate_presence_of(:username).on(:update) }
 
 
     it { should validate_uniqueness_of(:email).case_insensitive }
     it { should validate_uniqueness_of(:username).case_insensitive }
 
-    it { should validate_length_of(:username).is_at_least(3).is_at_most(20) }
+    it { should validate_length_of(:username).is_at_least(3).is_at_most(30).on(:update) }
     it { should validate_length_of(:password).is_at_least(8) }
     it { should validate_length_of(:language).is_equal_to(2) }
     it { should validate_length_of(:country).is_equal_to(2) }
@@ -29,5 +29,45 @@ RSpec.describe User, type: :model do
     it { should_not allow_value(Faker::Date.between(18.years.ago + 1.day, Date.today)).for(:birthdate) }
 
     it { should have_secure_password }
+  end
+
+  context 'when email is uppercase' do
+    let(:upcase_email)  { Faker::Internet.email.upcase }
+    let(:user)          { create(:user, email: upcase_email) }
+    it 'should downcase email before saving to the database' do
+      expect(user.email).to eq upcase_email.downcase
+    end
+  end
+
+  context 'when username is uppercase' do
+    let(:upcase_username)   { Faker::Internet.user_name.upcase }
+    let(:user)              { create(:user) }
+    it 'should downcase username before saving to the database' do
+      user.update_attributes(username: upcase_username)
+      expect(user.reload.username).to eq upcase_username.downcase
+    end
+  end
+
+  context 'when country code is lowercase' do
+    let(:downcase_country_code)   { Faker::Address.country_code.downcase }
+    let(:user)                    { create(:user, country: downcase_country_code) }
+    it 'should upcase country before saving to the database' do
+      expect(user.country).to eq downcase_country_code.upcase
+    end
+  end
+
+  context 'when language code is uppercase' do
+    let(:upcase_language_code)   { 'ML' }
+    let(:user)                   { create(:user, language: upcase_language_code) }
+    it 'should downcase language code before saving to the database' do
+      expect(user.language).to eq upcase_language_code.downcase
+    end
+  end
+
+  context 'when username is not provided' do
+    let(:user) {  create(:user, username: nil) }
+    it 'should create a username before saving to the database' do
+      expect(user.username).to be_present
+    end
   end
 end
