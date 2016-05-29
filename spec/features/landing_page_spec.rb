@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Landing page' do
+feature 'Static pages' do
   background { visit root_path }
 
   scenario 'should display the value proposition' do
