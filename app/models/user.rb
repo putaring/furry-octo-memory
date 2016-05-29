@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, case_sensitive: false,
     if: ->(u) { u.username_changed? }
 
-  validate  :old_enough?, if: ->(u) { u.birthdate_changed? }
+  validate :old_enough?, if: ->(u) { u.birthdate_changed? }
 
   before_save { email.downcase! }
   before_save { username.downcase! }

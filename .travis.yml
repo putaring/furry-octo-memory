@@ -1,6 +1,5 @@
 cache: bundler
 language: ruby
-rvm: 2.2.3
 script:
 - bin/rails db:migrate RAILS_ENV=test
 - bundle exec rspec
