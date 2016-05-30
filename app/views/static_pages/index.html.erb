@@ -2,13 +2,16 @@
 <section class="jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-8 text-xs-center text-sm-left">
+      <div class="col-xs-12 col-lg-8 text-xs-center text-lg-left">
         <h1>Matchmaking made easy</h2>
           <p class="lead">
-            Joonam is the best new way to find your partner. Signing up takes a minute and is totally free<sup class="text-info">&#9829;</sup>
+            Joonam is the best new way to find your partner. Signing up takes a minute and is totally free<sup class="text-danger">&#9829;</sup>
+          </p>
+          <p>
+            <%= image_tag('watermarked', class: 'img-fluid center-block', id: 'landing-illustration') %>
           </p>
       </div>
-      <div class="col-xs-12 col-md-4 text-xs-center text-sm-left">
+      <div class="col-xs-12 col-lg-4 text-xs-center text-lg-left">
         <p class="hidden-sm-up">
           <%= link_to 'Sign up for free', signup_path, class: 'btn btn-primary-outline' %>
         </p>
