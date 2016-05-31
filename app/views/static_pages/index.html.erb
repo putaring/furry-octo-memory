@@ -11,10 +11,8 @@
             <%= image_tag('watermarked.png', class: 'img-fluid center-block', id: 'landing-illustration') %>
           </p>
       </div>
-      <div class="col-xs-12 col-lg-4 text-xs-center text-lg-left">
-        <p class="hidden-sm-up">
-          <%= link_to 'Sign up for free', signup_path, class: 'btn btn-primary-outline' %>
-        </p>
+      <div class="col-xs-12 col-lg-4">
+        <%= render partial: 'users/signup_form' %>
       </div>
     </div>
   </div>

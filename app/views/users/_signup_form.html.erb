@@ -1,0 +1,34 @@
+<%= form_for(@user) do |f| %>
+  <%= field_set_tag do %>
+  <legend class="text-xs-center">Get started</legend>
+  <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.select :gender, [['Male', 'm'], ['Female', 'f']], {prompt: 'I am…'}, { class: 'form-control form-control-sm c-select', required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :birthdate, 'Birthday' %>
+    <%= f.date_field :birthdate, class: 'form-control form-control-sm', max: 18.years.ago, min: 100.years.ago, required: true %>
+  </div>
+  <div class="form-group">
+    <%= f.label :religion %>
+    <%= f.select :religion,  User.religions.map{ |religion, value| [religion.humanize, value] }, { prompt: '—' }, { class: 'form-control form-control-sm c-select', required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :language, 'Mother tongue' %>
+    <%= f.select :language, LanguageList::COMMON_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: '—' } , { class: 'form-control form-control-sm c-select', required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :country, 'Location' %>
+    <%= f.country_select :country, {prompt: 'I live in…' } , { class: 'form-control form-control-sm c-select', required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, 'Your current email address' %>
+    <%= f.email_field :email , { class: 'form-control form-control-sm', required: true } %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password, 'Create a password' %>
+    <%= f.password_field :email , { class: 'form-control form-control-sm', pattern: ".{8,}", title: 'Must be 8 characters minimum', required: true } %>
+  </div>
+  <button type="submit" class="btn btn-primary btn-block">Create my account</button>
+  <% end %>
+<% end %>

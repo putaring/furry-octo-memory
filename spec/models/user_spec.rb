@@ -21,6 +21,7 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:country).is_equal_to(2) }
 
     it { should validate_inclusion_of(:gender).in_array(%w(m f)) }
+    it { should validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 
     it { should allow_values(Faker::Internet.email).for(:email) }
     it { should allow_value(Faker::Date.between(100.years.ago, 18.years.ago + 1.day)).for(:birthdate) }
@@ -45,14 +46,6 @@ RSpec.describe User, type: :model do
     it 'should downcase username before saving to the database' do
       user.update_attributes(username: upcase_username)
       expect(user.reload.username).to eq upcase_username.downcase
-    end
-  end
-
-  context 'when country code is lowercase' do
-    let(:downcase_country_code)   { Faker::Address.country_code.downcase }
-    let(:user)                    { create(:user, country: downcase_country_code) }
-    it 'should upcase country before saving to the database' do
-      expect(user.country).to eq downcase_country_code.upcase
     end
   end
 

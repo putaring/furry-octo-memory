@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :birthdate, presence: true
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
   validates :religion, presence: true, inclusion: { in: User.religions.keys }
-  validates :country, presence: true, length: { is: 2 }
+  validates :country, presence: true, length: { is: 2 }, inclusion: { in: ISO3166::Data.codes }
   validates :language, presence: true, length: { is: 2 }
 
   validates_uniqueness_of :email, case_sensitive: false,
@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   before_update { username.downcase! }
 
   before_save { email.downcase! }
-  before_save { country.upcase! }
   before_save { language.downcase! }
 
   private
