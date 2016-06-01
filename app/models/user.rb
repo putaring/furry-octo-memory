@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
   validates :religion, presence: true, inclusion: { in: User.religions.keys }
   validates :country, presence: true, length: { is: 2 }, inclusion: { in: ISO3166::Data.codes }
-  validates :language, presence: true, length: { is: 2 }
+  validates :language, presence: true, length: { is: 3 }, inclusion: { in: LanguageList::COMMON_LANGUAGES.map(&:iso_639_3) }
 
   validates_uniqueness_of :email, case_sensitive: false,
     if: ->(u) { u.email_changed? }

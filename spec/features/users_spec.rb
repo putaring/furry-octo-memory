@@ -7,6 +7,6 @@ feature "Users" do
   describe "Sign up page" do
     background { visit signup_path }
     it { should have_title('Signup') }
-    it { should have_content('Get started') }
+    #it { should have_content('Get started') }
   end
 end

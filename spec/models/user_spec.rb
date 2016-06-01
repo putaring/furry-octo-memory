@@ -17,10 +17,11 @@ RSpec.describe User, type: :model do
 
     it { should validate_length_of(:username).is_at_least(3).is_at_most(30).on(:update) }
     it { should validate_length_of(:password).is_at_least(8) }
-    it { should validate_length_of(:language).is_equal_to(2) }
+    it { should validate_length_of(:language).is_equal_to(3) }
     it { should validate_length_of(:country).is_equal_to(2) }
 
     it { should validate_inclusion_of(:gender).in_array(%w(m f)) }
+    it { should validate_inclusion_of(:language).in_array(LanguageList::COMMON_LANGUAGES.map(&:iso_639_3)) }
     it { should validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 
     it { should allow_values(Faker::Internet.email).for(:email) }
@@ -46,14 +47,6 @@ RSpec.describe User, type: :model do
     it 'should downcase username before saving to the database' do
       user.update_attributes(username: upcase_username)
       expect(user.reload.username).to eq upcase_username.downcase
-    end
-  end
-
-  context 'when language code is uppercase' do
-    let(:upcase_language_code)   { 'ML' }
-    let(:user)                   { create(:user, language: upcase_language_code) }
-    it 'should downcase language code before saving to the database' do
-      expect(user.language).to eq upcase_language_code.downcase
     end
   end
 
