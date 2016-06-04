@@ -4,7 +4,7 @@ feature 'Static pages' do
   background { visit root_path }
 
   scenario 'should display the value proposition' do
-    expect(page).to have_content('Roozam makes matchmaking easy')
+    expect(page).to have_content('Roozam is the best free matrimonial website.')
   end
 
   scenario 'should have the correct title' do
