@@ -7,4 +7,8 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+
+  def show_main_nav?
+    !(params[:controller] == "users" && params[:action] == "new")
+  end
 end

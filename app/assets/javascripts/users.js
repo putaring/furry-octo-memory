@@ -1,3 +1,8 @@
+/**
+ * Registration form javascripts
+ */
+
+// field validations
 var validateRegistrationField = function (field) {
   if (field.checkValidity()) {
     $(field).removeClass('form-control-danger').addClass('form-control-success').
@@ -10,7 +15,7 @@ var validateRegistrationField = function (field) {
   }
 };
 
-var $registrationFields =  $('#new_user').find('[name^=user]');
+var $registrationFields =  $('#new_user').find('[name^=user]:not(select[name*=birthdate])');
 
 $registrationFields.on('change focusout', function (e) {
   validateRegistrationField(this);
@@ -25,3 +30,6 @@ $('#new_user').submit(function (e) {
     return false;
   }
 });
+
+// bootstrapify rails date_select
+$('#new_user').find('select[name*=birthdate]').wrap('<div class="col-xs-4">');

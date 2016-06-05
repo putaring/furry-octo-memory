@@ -10,16 +10,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <nav class="navbar navbar-full navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="/">Roozam</a>
-      <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <%= link_to 'Signup', signup_path, class: 'nav-link' %>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<%= render partial: 'shared/main_nav' if show_main_nav? %>
 <%= yield %>
 <%= javascript_include_tag 'application' %>
 </body>

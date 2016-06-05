@@ -48,6 +48,7 @@ GEM
     bootstrap (4.0.0.alpha3)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
+    browser (2.1.0)
     builder (3.2.2)
     byebug (9.0.4)
     capybara (2.7.1)
@@ -252,6 +253,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap (~> 4.0.0.alpha3)
+  browser
   byebug
   capybara
   codeclimate-test-reporter
