@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <%= f.label :religion %>
-    <%= f.select :religion,  User.religions.map{ |religion, value| [religion.humanize, value] }, { prompt: '—' }, { class: 'form-control', required: true } %>
+    <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: '—' }, { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
@@ -41,6 +41,6 @@
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary btn-block">Create your account</button>
+    <button type="submit" class="btn btn-primary btn-block">Create my account</button>
   </div>
 <% end %>

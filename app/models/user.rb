@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   private
 
   def old_enough?
-    errors.add(:birthdate, "shows that you're under 18") unless birthdate <= 18.years.ago
+    minimum_age = gender.eql?('m') ? 21 : 18
+    errors.add(:birthdate, "cannot be less than #{minimum_age} years ago.") unless birthdate <= minimum_age.years.ago
   end
 
   def assign_random_username

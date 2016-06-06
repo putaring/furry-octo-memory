@@ -9,6 +9,6 @@ module ApplicationHelper
   end
 
   def show_main_nav?
-    !(params[:controller] == "users" && params[:action] == "new")
+    !(params[:controller] == "users" && (params[:action].in?(%w(new create))))
   end
 end

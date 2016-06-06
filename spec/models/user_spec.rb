@@ -41,6 +41,13 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context 'when a male is underage' do
+    let(:user) { build(:user, gender: 'm', birthdate: 20.years.ago) }
+    it 'should not be valid' do
+      expect(user).to be_invalid
+    end
+  end
+
   context 'when username is uppercase' do
     let(:upcase_username)   { Faker::Internet.user_name.upcase }
     let(:user)              { create(:user) }

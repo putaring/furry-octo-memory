@@ -32,4 +32,5 @@ $('#new_user').submit(function (e) {
 });
 
 // bootstrapify rails date_select
-$('#new_user').find('select[name*=birthdate]').wrap('<div class="col-xs-4">');
+var $birthdayDropDowns = $('#new_user').find('select[name*=birthdate]');
+$birthdayDropDowns.wrap('<div class="col-xs-4">');
