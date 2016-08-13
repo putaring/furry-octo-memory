@@ -3,9 +3,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
       <p class="text-xs-center m-t-2">
-        <%= link_to root_path do %>
-          ROOZAM
-        <% end %>
+        <%= link_to "ROOZAM", root_path %>
       </p>
       <h1 class="text-xs-center h2">Sign up</h1>
       <p class="text-muted text-xs-center">
@@ -25,7 +23,7 @@
       <%= render partial: 'signup_form' %>
       <hr>
       <p class="text-xs-center">
-        Already have an account? <%= link_to('Log in', signup_path) %>
+        Already have an account? <%= link_to('Log in', login_path) %>
       </p>
     </div>
   </div>
