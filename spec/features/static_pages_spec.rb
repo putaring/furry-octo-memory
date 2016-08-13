@@ -1,13 +1,23 @@
 require 'rails_helper'
 
 feature 'Static pages' do
-  background { visit root_path }
+  describe "Home page" do
+    context "when logged out" do
+      it "should keep display the home page" do
+        visit root_path
+        expect(page).to have_current_path(root_path)
+      end
+    end
 
-  scenario 'should display the value proposition' do
-    expect(page).to have_content('Meet your partner now.')
-  end
-
-  scenario 'should have the correct title' do
-    expect(page).to have_title('Meet your partner now • Roozam')
+    context "when logged_in" do
+      background do
+        visit login_path
+        login(create(:user))
+      end
+      it "should redirect to user home page" do
+        visit root_path
+        expect(page).to have_current_path(me_path)
+      end
+    end
   end
 end
