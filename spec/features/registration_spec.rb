@@ -27,11 +27,6 @@ feature "Registration" do
       scenario "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
-
-      scenario "should be redirected to onboarding process" do
-        click_button submit
-        expect(page).to have_current_path(onboarding_about_path)
-      end
     end
   end
 end

@@ -2,29 +2,26 @@
 <section class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-      <p class="text-xs-center m-t-2">
-        <%= link_to "ROOZAM", root_path %>
-      </p>
-      <h1 class="text-xs-center h2">Sign up</h1>
-      <p class="text-muted text-xs-center">
-        <small>Signing up takes a minute and is totally free.</small>
-      </p>
-      <hr>
-      <% if @user.errors.any? %>
-        <div class="alert alert-danger">
-          The form contains <%= pluralize(@user.errors.count, "error") %>.
-          <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <%= render partial: 'signup_form' %>
-      <hr>
-      <p class="text-xs-center">
-        Already have an account? <%= link_to('Log in', login_path) %>
-      </p>
+      <div class="card card-block m-t-2">
+        <h1 class="text-xs-center h2 brand">Roozam</h1>
+        <p class="text-muted text-xs-center">
+          Signing up takes a minute and is totally free.
+        </p>
+        <% if @user.errors.any? %>
+          <div class="alert alert-danger">
+            The form contains <%= pluralize(@user.errors.count, "error") %>.
+            <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= render partial: 'signup_form' %>
+      </div>
+      <div class="card card-block text-xs-center">
+        Have an account? <%= link_to('Log in', login_path) %>
+      </div>
     </div>
   </div>
 </section>

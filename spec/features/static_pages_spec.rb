@@ -8,6 +8,6 @@ feature 'Static pages' do
   end
 
   scenario 'should have the correct title' do
-    expect(page).to have_title('Roozam | Meet your partner now')
+    expect(page).to have_title('Meet your partner now • Roozam')
   end
 end
