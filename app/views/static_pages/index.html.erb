@@ -1,27 +1,28 @@
 <% provide(:title, 'Meet your partner now') %>
-<section class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-lg-7 text-xs-center">
-        <h1>Meet your partner now.</h1>
-          <p class="lead">
-            Signing up takes a minute and is totally free<sup class="text-danger">&#9829;</sup>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 m-b-2 m-t-1 text-xs-center">
+      <h1 class="brand">Roozam</h1>
+    </div>
+    <div class="col-xs-12 col-lg-7 text-xs-center">
+      <h2>Meet your partner now.</h2>
+        <p class="lead">
+          Signing up takes a minute and is totally free<sup class="text-danger">&#9829;</sup>
+        </p>
+        <div class="m-t-2 m-b-2">
+          <p class="hidden-lg-up">
+            <%= link_to('Sign up for free', signup_path, class: 'btn btn-primary-outline') %>
           </p>
-          <div class="m-t-2 m-b-2">
-            <p class="hidden-lg-up">
-              <%= link_to('Sign up for free', signup_path, class: 'btn btn-primary-outline') %>
-            </p>
-            <p class="hidden-lg-up">
-              or <%= link_to('sign in', signup_path) %>
-            </p>
-          </div>
-          <p>
-            <%= image_tag('watermarked.png', class: 'img-fluid center-block', id: 'landing-illustration') %>
+          <p class="hidden-lg-up">
+            or <%= link_to('sign in', signup_path) %>
           </p>
-      </div>
-      <div class="hidden-md-down col-lg-offset-1 col-lg-4">
-        <%= render partial: 'users/signup_form' %>
-      </div>
+        </div>
+        <p>
+          <%= image_tag('watermarked.png', class: 'img-fluid center-block', id: 'landing-illustration') %>
+        </p>
+    </div>
+    <div class="hidden-md-down col-lg-offset-1 col-lg-4">
+      <%= render partial: 'users/signup_form' %>
     </div>
   </div>
-</section>
+</div>

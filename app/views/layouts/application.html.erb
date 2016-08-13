@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><%= full_title(yield(:title)) %></title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render partial: 'shared/main_nav' if show_main_nav? %>
+<%#= render partial: 'shared/main_nav' if show_main_nav? %>
 <%= yield %>
 <%= javascript_include_tag 'application' %>
 </body>
