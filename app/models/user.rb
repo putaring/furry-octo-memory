@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :username, presence: true, length: 3..30, on: :update
-  validates :password, length: { minimum: 8 }
+  validates :password, length: { minimum: 6 }, allow_nil: true
   validates :birthdate, presence: true
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
   validates :religion, presence: true, inclusion: { in: User.religions.keys }
