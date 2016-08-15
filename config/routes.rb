@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   get     'onboarding/about'
   get     'onboarding/photo'
 
-  resources :users
+  resource :me, controller: :me, only: [:show, :edit, :update]
+
+  resources :users, only: [:show, :create, :new]
 end

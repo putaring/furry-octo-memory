@@ -29,4 +29,25 @@ feature "Registration" do
       end
     end
   end
+
+  describe "Sign up page" do
+    context "when logged in" do
+      background do
+        visit login_path
+        login(create(:user))
+      end
+
+      it "should redirect to user landing page" do
+        visit signup_path
+        expect(page).to have_current_path(me_path)
+      end
+    end
+
+    context "when not logged in" do
+      it "should display the sign up page to the user" do
+        visit signup_path
+        expect(page).to have_current_path(signup_path)
+      end
+    end
+  end
 end

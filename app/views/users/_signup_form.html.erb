@@ -1,7 +1,7 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, html: { class: 'm-t-1' } do |f| %>
   <div class="form-group">
-    <%= f.label :gender, "Gender" %>
-    <%= f.select :gender, [["I'm male", 'm'], ["I'm female", 'f']], {prompt: 'I am…'}, { class: 'form-control', required: true } %>
+    <%= f.label :gender, class: "sr-only" %>
+    <%= f.select :gender, [["I'm male", 'm'], ["I'm female", 'f']], {prompt: 'Gender'}, { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
@@ -16,31 +16,35 @@
     <% end %>
   </div>
   <div class="form-group">
-    <%= f.label :religion %>
-    <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: '—' }, { class: 'form-control', required: true } %>
+    <%= f.label :religion, class: "sr-only" %>
+    <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: 'Religion' }, { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
-    <%= f.label :language, 'Mother tongue' %>
-    <%= f.select :language, LanguageList::COMMON_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: '—' } , { class: 'form-control', required: true } %>
+    <%= f.label :language, 'Mother tongue', class: "sr-only" %>
+    <%= f.select :language, LanguageList::COMMON_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
-    <%= f.label :country, 'Location' %>
-    <%= f.country_select :country, {prompt: 'I live in…' } , { class: 'form-control', required: true } %>
+    <%= f.label :country, 'Location', class: "sr-only" %>
+    <%= f.country_select :country, {prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
-    <%= f.label :email, 'Your current email address' %>
-    <%= f.email_field :email , { class: 'form-control', required: true } %>
+    <%= f.label :email, class: "sr-only" %>
+    <%= f.email_field :email , { class: 'form-control', required: true, placeholder: "Your current email address" } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
-    <%= f.label :password, 'Create a password' %>
-    <%= f.password_field :password , { class: 'form-control', pattern: ".{8,}", placeholder:'Needs to be at least 8 characters', title: 'Password needs to be at least 8 characters', required: true } %>
+    <%= f.label :password, class: "sr-only" %>
+    <%= f.password_field :password , { class: 'form-control', pattern: ".{8,}", placeholder:'Create a password', title: 'Password needs to be at least 8 characters', required: true } %>
     <small class="text-danger"></small>
+    <small class="text-muted d-block">Needs to be atleast 6 characters.</small>
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-primary btn-block">Create my account</button>
+    <p class="text-xs-center text-muted">
+      <small>By signing up, you agree to our Terms & Privacy Policy.</small>
+    </p>
   </div>
 <% end %>
