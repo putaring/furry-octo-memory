@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   delete  '/logout',  to: 'sessions#destroy'
 
   get     'onboarding/about'
+  patch   'onboarding/about', to: 'onboarding#update_about'
   get     'onboarding/photo'
+  patch   'onboarding/photo', to: 'onboarding#update_photo'
 
   resource :me, controller: :me, only: [:show, :edit, :update]
 

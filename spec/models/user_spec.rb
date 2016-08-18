@@ -33,6 +33,13 @@ RSpec.describe User, type: :model do
     it { should have_secure_password }
   end
 
+  context "when a user is created" do
+    it "should create a default profile for the user" do
+      user  = create(:user)
+      expect(user.profile).to be_present
+    end
+  end
+
   context 'when email is uppercase' do
     let(:upcase_email)  { Faker::Internet.email.upcase }
     let(:user)          { create(:user, email: upcase_email) }
