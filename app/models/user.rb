@@ -31,6 +31,23 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save { language.downcase! }
 
+  def country_name
+    ISO3166::Country.find_country_by_alpha2(country).name
+  end
+
+  def male?
+    gender == 'm'
+  end
+
+  def female?
+    gender == 'f'
+  end
+
+  def age
+    now = Time.now
+    now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
+  end
+
   private
 
   def old_enough?

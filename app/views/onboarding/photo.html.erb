@@ -1,0 +1,54 @@
+<% provide(:title, 'Add a photo') %>
+<section class="container-fluid">
+  <div class="row p-a-1">
+    <div class="col-sm-3 col-xs-6">
+      <p>Step 1 of 2</p>
+    </div>
+    <div class="col-sm-6 hidden-xs-down">
+      <p class="lead text-xs-center">
+        <% if current_user.male? %>
+        Want women to notice you? Add a photo.
+        <% else %>
+        Want to be noticed? Add a photo.
+        <% end %>
+      </p>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <%= link_to 'Skip ➔', onboarding_about_path, { class: 'pull-xs-right' } %>
+    </div>
+  </div>
+</section>
+<section class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+      <div class="card card-block">
+        <label class="custom-file" id="photo-upload-file">
+          <input type="file" id="file" class="custom-file-input">
+          <span class="custom-file-control"></span>
+        </label>
+        <small class="text-muted form-text">
+          Most <%= current_user.female? ? 'women': 'men' %> on Roozam have a photo. Adding a profile photo
+          greatly increases your chances of being contacted by <%= current_user.female? ? 'a match' : 'women' %>.
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-4 offset-md-4">
+      <div class="card card-block text-xs-center">
+        <%= image_tag("profile_pictures/#{current_user.male? ? 'male' : 'female'}.jpg", { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
+        <strong class="d-block m-t-2"><%= current_user.username %></strong>
+        <span class="text-muted"><%= "#{current_user.age} • #{current_user.religion.humanize} • #{current_user.country_name}" %></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= content_for(:page_css) do %>
+<style media="screen">
+body {
+  background-color: #fafafa;
+}
+</style>
+<% end %>

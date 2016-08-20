@@ -33,6 +33,38 @@ RSpec.describe User, type: :model do
     it { should have_secure_password }
   end
 
+  describe "#age" do
+    it "should return the age of the user" do
+      expect(create(:user, birthdate: 34.years.ago).age).to eq(34)
+    end
+  end
+
+  describe "#male?" do
+    let(:male)    { create(:user, gender: 'm') }
+    let(:female)  { create(:user, gender: 'f') }
+
+    it "should return true for a male user" do
+      expect(male.male?).to be true
+    end
+
+    it "should return false for a female user" do
+      expect(female.male?).to be false
+    end
+  end
+
+  describe "#female?" do
+    let(:male)    { create(:user, gender: 'm') }
+    let(:female)  { create(:user, gender: 'f') }
+
+    it "should return true for a female user" do
+      expect(female.female?).to be true
+    end
+
+    it "should return false for a male user" do
+      expect(female.male?).to be false
+    end
+  end
+
   context "when a user is created" do
     it "should create a default profile for the user" do
       user  = create(:user)

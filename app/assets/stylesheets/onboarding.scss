@@ -1,0 +1,11 @@
+#photo-upload-file {
+  width: 100%;
+  .custom-file-control:lang(en)::after {
+    content: "Choose photo..."
+  }
+  .custom-file-control::before {
+    background-color: $brand-accent;
+    color: #fff;
+    border-color: $brand-accent;
+  }
+}
