@@ -31,6 +31,9 @@ RSpec.describe User, type: :model do
     it { should_not allow_value(Faker::Date.between(18.years.ago + 1.day, Date.today)).for(:birthdate) }
 
     it { should have_secure_password }
+
+    it { should have_many(:photos) }
+    it { should have_one(:profile) }
   end
 
   describe "#age" do

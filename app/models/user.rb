@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
+  has_many :photos
+
   enum religion: { hindu: 1, muslim: 2, christian: 3,
     sikh: 4, buddhist: 5, jain: 6, no_religion: 100 }
 
