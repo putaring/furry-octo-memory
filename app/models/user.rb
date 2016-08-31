@@ -104,11 +104,11 @@ class User < ActiveRecord::Base
   end
 
   def default_thumbnail(thumbnail_type)
-    image_path = if thumbnail_type == :thumb
-      male? ? "profile_pictures/male.jpg" : "profile_pictures/female.jpg"
-    else
-      male? ? "profile_pictures/male-small.jpg" : "profile_pictures/female-small.jpg"
-    end
+    image_path =  if thumbnail_type == :thumb
+                    male? ? "profile_pictures/male.jpg" : "profile_pictures/female.jpg"
+                  else
+                    male? ? "profile_pictures/male-small.jpg" : "profile_pictures/female-small.jpg"
+                  end
 
     ActionController::Base.helpers.asset_path(image_path)
   end

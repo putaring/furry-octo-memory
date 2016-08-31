@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
     it "should return the top ranked photo of the user" do
       profile_photo = create(:photo)
       user          = profile_photo.user
-      other_photo   = create(:photo, user: user)
+      create(:photo, user: user)
 
       expect(user.profile_photo).to eq(profile_photo)
     end
