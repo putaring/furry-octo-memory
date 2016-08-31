@@ -36,6 +36,37 @@ RSpec.describe User, type: :model do
     it { should have_one(:profile) }
   end
 
+  describe "#display_thumbnail" do
+    it "should display the profile thumbnail if the user has a profile picture" do
+      profile_photo = create(:photo)
+      user          = profile_photo.user
+
+      expect(user.display_thumbnail(:thumb)).to eq(profile_photo.image.url(:thumb))
+      expect(user.display_thumbnail(:small_thumb)).to eq(profile_photo.image.url(:small_thumb))
+    end
+
+    it "should return default url if the user has no photo" do
+      user = create(:user, gender: 'f')
+
+      expect(user.display_thumbnail(:thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.jpg"))
+      expect(user.display_thumbnail(:small_thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female-small.jpg"))
+    end
+  end
+
+  describe "#profile_photo" do
+    it "should return the top ranked photo of the user" do
+      profile_photo = create(:photo)
+      user          = profile_photo.user
+      other_photo   = create(:photo, user: user)
+
+      expect(user.profile_photo).to eq(profile_photo)
+    end
+
+    it "should return nil when the user doesn't have an uploaded photo" do
+      expect(create(:user).profile_photo).to be_nil
+    end
+  end
+
   describe "#age" do
     it "should return the age of the user" do
       expect(create(:user, birthdate: 34.years.ago).age).to eq(34)

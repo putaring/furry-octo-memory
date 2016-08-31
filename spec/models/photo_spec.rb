@@ -21,6 +21,14 @@ RSpec.describe Photo, type: :model do
       expect(photo3.rank).to eq(3)
     end
 
+    describe "#make_profile_photo" do
+      it "sets the rank of the photo to 1" do
+        expect([photo.rank, photo2.rank, photo3.rank]).to eq([1, 2, 3])
+        photo2.make_profile_photo
+        expect([photo2.reload.rank, photo.reload.rank, photo3.reload.rank]).to eq([1, 2, 3])
+      end
+    end
+
     it "auto ranks photos when a rank is updated" do
       expect([photo.rank, photo2.rank, photo3.rank]).to eq([1, 2, 3])
       photo.update_attributes(rank: 2)

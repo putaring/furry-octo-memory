@@ -1,3 +1,5 @@
+<style>body {background-color: #fafafa;}</style>
+
 <% provide(:title, 'Introduce yourself') %>
 <section class="container-fluid">
   <div class="row p-a-1">
@@ -38,25 +40,3 @@
     </div>
   </div>
 </section>
-
-<%= content_for(:page_css) do %>
-<style media="screen">
-body {
-  background-color: #fafafa;
-}
-</style>
-<% end %>
-
-<%= content_for(:page_javascripts) do %>
-<script type="text/javascript">
-  $(function() {
-    var $count      = $('#about-character-count'),
-        $aboutInput = $('#profile_about');
-    $count.text($aboutInput.val().length);
-
-    $aboutInput.keyup(function(e) {
-      $count.text($aboutInput.val().length);
-    });
-  });
-</script>
-<% end %>

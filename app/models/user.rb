@@ -33,8 +33,24 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save { language.downcase! }
 
+  def display_thumbnail(thumbnail_type = :thumb)
+    if profile_photo.present?
+      profile_photo.image.url(thumbnail_type)
+    else
+      default_thumbnail(thumbnail_type)
+    end
+  end
+
+  def profile_photo
+    @_profile_photo ||= photos.first
+  end
+
   def country_name
     ISO3166::Country.find_country_by_alpha2(country).name
+  end
+
+  def country_alpha3
+    ISO3166::Country.find_country_by_alpha2(country).alpha3
   end
 
   def male?
@@ -87,4 +103,13 @@ class User < ActiveRecord::Base
     ].sample.downcase.gsub(/\s+/, "")
   end
 
+  def default_thumbnail(thumbnail_type)
+    image_path = if thumbnail_type == :thumb
+      male? ? "profile_pictures/male.jpg" : "profile_pictures/female.jpg"
+    else
+      male? ? "profile_pictures/male-small.jpg" : "profile_pictures/female-small.jpg"
+    end
+
+    ActionController::Base.helpers.asset_path(image_path)
+  end
 end

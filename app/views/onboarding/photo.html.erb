@@ -1,3 +1,5 @@
+<style>body {background-color: #fafafa;}</style>
+
 <% provide(:title, 'Add a photo') %>
 <section class="container-fluid">
   <div class="row p-a-1">
@@ -6,10 +8,14 @@
     </div>
     <div class="col-sm-6 hidden-xs-down">
       <p class="lead text-xs-center">
-        <% if current_user.male? %>
-        Want women to notice you? Add a photo.
+        <% if current_user.profile_photo.present? %>
+          You look fantastic.
         <% else %>
-        Want to be noticed? Add a photo.
+          <% if current_user.male? %>
+          Want women to notice you? Add a photo.
+          <% else %>
+          Want to be noticed? Add a photo.
+          <% end %>
         <% end %>
       </p>
     </div>
@@ -19,36 +25,42 @@
   </div>
 </section>
 <section class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-6 offset-md-3">
-      <div class="card card-block">
-        <label class="custom-file" id="photo-upload-file">
-          <input type="file" id="file" class="custom-file-input">
-          <span class="custom-file-control"></span>
-        </label>
-        <small class="text-muted form-text">
-          Most <%= current_user.female? ? 'women': 'men' %> on Roozam have a photo. Adding a profile photo
-          greatly increases your chances of being contacted by <%= current_user.female? ? 'a match' : 'women' %>.
-        </small>
+
+  <% if current_user.profile_photo.nil? %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 offset-md-3">
+        <div class="card card-block">
+          <%= render "onboarding/photo_form" %>
+          <small class="text-muted form-text">
+            Most <%= current_user.female? ? 'women': 'men' %> on Roozam have a photo. Adding a profile photo
+            greatly increases your chances of being contacted by <%= current_user.female? ? 'a match' : 'women' %>.
+          </small>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="row">
     <div class="col-xs-12 col-md-4 offset-md-4">
       <div class="card card-block text-xs-center">
-        <%= image_tag("profile_pictures/#{current_user.male? ? 'male' : 'female'}.jpg", { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
-        <strong class="d-block m-t-2"><%= current_user.username %></strong>
-        <span class="text-muted"><%= "#{current_user.age} • #{current_user.religion.humanize} • #{current_user.country_name}" %></span>
+        <%= image_tag(current_user.display_thumbnail(:thumb), { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
+        <strong class="d-block m-t-2" data-toggle="tooltip" data-placement="top" title="We create a username for you when you sign up. You can pick your own later."><%= current_user.username %></strong>
+        <span class="text-muted"><%= "#{current_user.age} • #{current_user.religion.humanize} • #{current_user.country_alpha3}" %></span>
       </div>
     </div>
   </div>
-</section>
 
-<%= content_for(:page_css) do %>
-<style media="screen">
-body {
-  background-color: #fafafa;
-}
-</style>
-<% end %>
+  <% if current_user.profile_photo.present? %>
+    <div class="row">
+      <div class="col-xs-12 col-md-4 offset-md-4">
+        <div class="card card-block">
+          <p class="text-xs-center text-muted">Add another one?</p>
+          <%= render "onboarding/photo_form" %>
+        </div>
+
+        <%= link_to 'Done ➔', onboarding_about_path, { class: 'btn btn-success btn-block' } %>
+        <p class="text-xs-center"><small class="text-muted">You can add more photos later.</small></p>
+      </div>
+    </div>
+  <% end %>
+</section>

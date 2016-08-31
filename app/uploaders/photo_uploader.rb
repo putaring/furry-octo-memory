@@ -13,17 +13,31 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   process convert: 'jpg', if: :convert_to_jpeg?
-  process resize_to_limit: [1500, 1500]
 
   # Create different versions of your uploaded files:
+
+  version :large do
+    process convert: 'jpg', if: :convert_to_jpeg?
+    process resize_to_limit: [1500, 1500]
+  end
+
   version :thumb do
     process convert: 'jpg', if: :convert_to_jpeg?
+    process :crop
     process resize_to_fill: [400,400]
   end
 
   version :small_thumb, from_version: :thumb do
     process convert: 'jpg', if: :convert_to_jpeg?
     process resize_to_fill: [120, 120]
+  end
+
+  def crop
+    if model.image_x.present? && model.image_width.present?
+      manipulate! do |img|
+        img.crop("#{model.image_width}x#{model.image_width}+#{model.image_x}+#{model.image_y}")
+      end
+    end
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

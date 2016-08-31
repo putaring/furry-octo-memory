@@ -26,8 +26,16 @@ feature 'Onboarding' do
           expect(page).to have_content('Most women on Roozam have a photo. Adding a profile photo greatly increases your chances of being contacted by a match.')
         end
       end
+
+      context "when the user has a photo" do
+        let(:photo) { create(:photo) }
+        let(:user)  { photo.user }
+        it "should tell the user that they look great" do
+          expect(page).to have_content('You look fantastic.')
+        end
+      end
     end
-    
+
     context "when user is logged out" do
       it "should redirect the user to the login page" do
         visit onboarding_photo_path

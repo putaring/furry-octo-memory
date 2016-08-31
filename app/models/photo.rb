@@ -1,4 +1,8 @@
 class Photo < ActiveRecord::Base
+  attr_accessor :image_x, :image_y, :image_width
+
+  default_scope { order(:rank) }
+
   belongs_to :user
 
   mount_uploader :image, PhotoUploader
@@ -10,8 +14,12 @@ class Photo < ActiveRecord::Base
 
   before_validation :set_rank, on: :create, if: ->(p) { p.user.present? }
   before_update     :sort_photos, if: ->(p) { p.rank_changed? }
-  before_destroy    :adjust_ranks
+  before_destroy    :adjust_ranks, :remove_photo_files
 
+  def make_profile_photo
+    update_attributes(rank: 1)
+  end
+  
   private
 
   def set_rank
@@ -20,9 +28,13 @@ class Photo < ActiveRecord::Base
 
   def sort_photos
     if rank_was < rank
-      user.photos.where('rank <= ? AND rank > ?', rank, rank_was).where('id != ?', id).each { |photo| photo.update_columns(rank: photo.rank - 1) }
+      user.photos.where('rank <= ? AND rank > ?', rank, rank_was).
+        where('id != ?', id).
+        each { |photo| photo.update_columns(rank: photo.rank - 1) }
     else
-      user.photos.where('rank >= ? AND rank < ?', rank, rank_was).where('id != ?', id).each { |photo| photo.update_columns(rank: photo.rank + 1) }
+      user.photos.where('rank >= ? AND rank < ?', rank, rank_was).
+        where('id != ?', id).
+        each { |photo| photo.update_columns(rank: photo.rank + 1) }
     end
   end
 
@@ -32,6 +44,10 @@ class Photo < ActiveRecord::Base
 
   def valid_rank
     errors.add(:rank, 'cannot exceed photo count') if rank > user.photos.count
+  end
+
+  def remove_photo_files
+    self.remove_image!
   end
 
 end
