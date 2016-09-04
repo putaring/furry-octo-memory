@@ -20,7 +20,9 @@
       </p>
     </div>
     <div class="col-sm-3 col-xs-6">
-      <%= link_to 'Skip ➔', onboarding_about_path, { class: 'pull-xs-right' } %>
+      <% if current_user.profile_photo.nil? %>
+        <%= link_to 'Skip ➔', onboarding_about_path, { class: 'pull-xs-right' } %>
+      <% end %>
     </div>
   </div>
 </section>
@@ -42,6 +44,24 @@
 
   <div class="row">
     <div class="col-xs-12 col-md-4 offset-md-4">
+
+      <% if current_user.errors.any? %>
+        <div class="alert alert-danger">
+          The form contains <%= pluralize(@user.errors.count, "error") %>.
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if flash[:notice].present? %>
+        <div class="alert alert-success">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
       <div class="card card-block text-xs-center">
         <%= image_tag(current_user.display_thumbnail(:thumb), { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
         <strong class="d-block m-t-2" data-toggle="tooltip" data-placement="top" title="We create a username for you when you sign up. You can pick your own later."><%= current_user.username %></strong>
@@ -53,12 +73,47 @@
   <% if current_user.profile_photo.present? %>
     <div class="row">
       <div class="col-xs-12 col-md-4 offset-md-4">
-        <div class="card card-block">
-          <p class="text-xs-center text-muted">Add another one?</p>
-          <%= render "onboarding/photo_form" %>
+
+        <div class="card card-block p-a-1 text-xs-center">
+          <small>Who can see your photos?</small>
+          <div class="dropdown d-inline">
+            <a class="btn btn-link btn-sm dropdown-toggle" href="#" data-toggle="dropdown">
+              <% if current_user.everyone? %>
+                <i class="fa fa-globe"></i> Public
+              <% elsif current_user.members_only? %>
+                <i class="fa fa-user"></i> Members only
+              <% else %>
+                <i class="fa fa-lock"></i> Restricted
+              <% end %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <h6 class="dropdown-header">Photo visibility</h6>
+
+              <%= link_to '/onboarding/photo-visibility/everyone', { class: 'dropdown-item', data: { method: :patch } } do %>
+                <small><i class="fa fa-globe"></i> Public</small>
+              <% end %>
+
+              <%= link_to '/onboarding/photo-visibility/members_only', { class: 'dropdown-item', data: { method: :patch } } do %>
+                <small><i class="fa fa-user"></i> Members only (Recommended)</small>
+              <% end %>
+
+              <%= link_to '/onboarding/photo-visibility/restricted', { class: 'dropdown-item', data: { method: :patch } } do %>
+                <small><i class="fa fa-lock"></i> Restricted</small>
+              <% end %>
+
+            </div>
+          </div>
+          <% if current_user.restricted? %>
+            <small class="text-muted d-block">Only people with permission can see your photos. Most people search for users with visible photos. We recommend making your photos visible to Roozam members to improve your chances of being noticed.</small>
+          <% elsif current_user.members_only? %>
+            <small class="text-muted d-block">Only Roozam members can see your photos. This is our recommended setting.</small>
+          <% else %>
+            <small class="text-muted d-block">Anyone on or off Roozam can see your photos.</small>
+          <% end %>
+
         </div>
 
-        <%= link_to 'Done ➔', onboarding_about_path, { class: 'btn btn-success btn-block' } %>
+        <%= link_to "Take me to the final step ➔", onboarding_about_path, { class: 'btn btn-primary btn-block' } %>
         <p class="text-xs-center"><small class="text-muted">You can add more photos later.</small></p>
       </div>
     </div>

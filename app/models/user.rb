@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   enum religion: { hindu: 1, muslim: 2, christian: 3,
     sikh: 4, buddhist: 5, jain: 6, no_religion: 100 }
 
+  enum photo_visibility: { everyone: 1, members_only: 2, restricted: 3 }
+
   VALID_EMAIL_REGEX     = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
@@ -16,6 +18,7 @@ class User < ActiveRecord::Base
   validates :birthdate, presence: true
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
   validates :religion, presence: true, inclusion: { in: User.religions.keys }
+  validates :photo_visibility, inclusion: { in: User.photo_visibilities.keys }
   validates :country, presence: true, length: { is: 2 }, inclusion: { in: ISO3166::Data.codes }
   validates :language, presence: true, length: { is: 3 }, inclusion: { in: LanguageList::COMMON_LANGUAGES.map(&:iso_639_3) }
 

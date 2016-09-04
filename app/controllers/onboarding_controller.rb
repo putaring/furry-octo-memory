@@ -28,7 +28,15 @@ class OnboardingController < ApplicationController
     else
       render 'photo'
     end
-    
+
+  end
+
+  def update_photo_visibility
+    if current_user.update_attributes(photo_visibility: params[:visibility])
+      redirect_to onboarding_photo_path, notice: "✔ Photo visibility changed to \"#{params[:visibility].humanize}\"."
+    else
+      render 'photo'
+    end
   end
 
   private

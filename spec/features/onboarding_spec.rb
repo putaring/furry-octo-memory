@@ -33,6 +33,23 @@ feature 'Onboarding' do
         it "should tell the user that they look great" do
           expect(page).to have_content('You look fantastic.')
         end
+
+        it "should tell the user that their photo is public if they have a public profile" do
+          within('.dropdown-toggle')  { expect(page).to have_content('Public') }
+        end
+
+        it "should tell the user that their photo is visible only to registered users if they've changes the privacy setting" do
+          user.update_attributes(photo_visibility: 'members_only')
+          visit onboarding_photo_path
+          within('.dropdown-toggle')  { expect(page).to have_content('Members') }
+        end
+
+        it "should tell the user that they're photo us blocked to all users except the ones they trust" do
+          user.update_attributes(photo_visibility: 'restricted')
+          visit onboarding_photo_path
+          within('.dropdown-toggle')  { expect(page).to have_content('Restricted') }
+        end
+
       end
     end
 
