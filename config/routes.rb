@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   get     'onboarding/about'
   patch   'onboarding/about', to: 'onboarding#update_about'
   get     'onboarding/photo'
-  patch   'onboarding/photo', to: 'onboarding#update_photo'
+  post    'onboarding/photo', to: 'onboarding#create_photo'
+  patch   'onboarding/photo-visibility/:visibility', to: 'onboarding#update_photo_visibility'
 
   resource :me, controller: :me, only: [:show, :edit, :update]
 

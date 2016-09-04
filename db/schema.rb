@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160817031552) do
+ActiveRecord::Schema.define(version: 20160903064138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "image",                null: false
+    t.integer  "rank",       limit: 2, null: false
+    t.integer  "user_id",              null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.string   "about",      limit: 1500
@@ -26,20 +36,22 @@ ActiveRecord::Schema.define(version: 20160817031552) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "gender",          limit: 1,  null: false
-    t.date     "birthdate",                  null: false
-    t.integer  "religion",        limit: 2,  null: false
-    t.string   "language",        limit: 3,  null: false
-    t.string   "country",         limit: 2,  null: false
-    t.string   "username",        limit: 30, null: false
-    t.string   "email",           limit: 60, null: false
-    t.string   "password_digest", limit: 60, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "gender",           limit: 1,              null: false
+    t.date     "birthdate",                               null: false
+    t.integer  "religion",         limit: 2,              null: false
+    t.string   "language",         limit: 3,              null: false
+    t.string   "country",          limit: 2,              null: false
+    t.string   "username",         limit: 30,             null: false
+    t.string   "email",            limit: 60,             null: false
+    t.string   "password_digest",  limit: 60,             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "photo_visibility", limit: 2,  default: 1, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "photos", "users"
   add_foreign_key "profiles", "users"
 end

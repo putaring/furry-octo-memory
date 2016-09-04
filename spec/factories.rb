@@ -8,4 +8,9 @@ FactoryGirl.define do
     email         { Faker::Internet.email }
     password      { Faker::Internet.password }
   end
+
+  factory :photo do
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'photos', 'jesus_large.png')) }
+    user
+  end
 end

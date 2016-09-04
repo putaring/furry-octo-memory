@@ -3,8 +3,12 @@ class User < ActiveRecord::Base
 
   has_one :profile
 
+  has_many :photos
+
   enum religion: { hindu: 1, muslim: 2, christian: 3,
     sikh: 4, buddhist: 5, jain: 6, no_religion: 100 }
+
+  enum photo_visibility: { everyone: 1, members_only: 2, restricted: 3 }
 
   VALID_EMAIL_REGEX     = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -14,6 +18,7 @@ class User < ActiveRecord::Base
   validates :birthdate, presence: true
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
   validates :religion, presence: true, inclusion: { in: User.religions.keys }
+  validates :photo_visibility, inclusion: { in: User.photo_visibilities.keys }
   validates :country, presence: true, length: { is: 2 }, inclusion: { in: ISO3166::Data.codes }
   validates :language, presence: true, length: { is: 3 }, inclusion: { in: LanguageList::COMMON_LANGUAGES.map(&:iso_639_3) }
 
@@ -30,6 +35,39 @@ class User < ActiveRecord::Base
 
   before_save { email.downcase! }
   before_save { language.downcase! }
+
+  def display_thumbnail(thumbnail_type = :thumb)
+    if profile_photo.present?
+      profile_photo.image.url(thumbnail_type)
+    else
+      default_thumbnail(thumbnail_type)
+    end
+  end
+
+  def profile_photo
+    @_profile_photo ||= photos.first
+  end
+
+  def country_name
+    ISO3166::Country.find_country_by_alpha2(country).name
+  end
+
+  def country_alpha3
+    ISO3166::Country.find_country_by_alpha2(country).alpha3
+  end
+
+  def male?
+    gender == 'm'
+  end
+
+  def female?
+    gender == 'f'
+  end
+
+  def age
+    now = Time.now
+    now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
+  end
 
   private
 
@@ -68,4 +106,13 @@ class User < ActiveRecord::Base
     ].sample.downcase.gsub(/\s+/, "")
   end
 
+  def default_thumbnail(thumbnail_type)
+    image_path =  if thumbnail_type == :thumb
+                    male? ? "profile_pictures/male.jpg" : "profile_pictures/female.jpg"
+                  else
+                    male? ? "profile_pictures/male-small.jpg" : "profile_pictures/female-small.jpg"
+                  end
+
+    ActionController::Base.helpers.asset_path(image_path)
+  end
 end
