@@ -64,7 +64,7 @@
 
       <div class="card card-block text-xs-center">
         <%= image_tag(current_user.display_thumbnail(:thumb), { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
-        <strong class="d-block m-t-2" data-toggle="tooltip" data-placement="top" title="We create a username for you when you sign up. You can pick your own later."><%= current_user.username %></strong>
+        <strong class="d-block m-t-2" data-toggle="tooltip" data-placement="top" title="We create a username for you when you sign up. You can change it later."><%= current_user.username %></strong>
         <span class="text-muted"><%= "#{current_user.age} • #{current_user.religion.humanize} • #{current_user.country_alpha3}" %></span>
       </div>
     </div>
