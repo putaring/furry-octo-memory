@@ -9,6 +9,14 @@ FactoryGirl.define do
     password      { Faker::Internet.password }
   end
 
+  factory :restricted_user, parent: :user do
+    photo_visibility 'restricted'
+  end
+
+  factory :members_only_user, parent: :user do
+    photo_visibility 'members_only'
+  end
+
   factory :photo do
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'photos', 'jesus_large.png')) }
     user

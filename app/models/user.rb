@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :photos
 
   enum religion: { hindu: 1, muslim: 2, christian: 3,
-    sikh: 4, buddhist: 5, jain: 6, no_religion: 100 }
+    sikh: 4, buddhist: 5, jain: 6, non_religious: 100 }
 
   enum photo_visibility: { everyone: 1, members_only: 2, restricted: 3 }
 
@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save { language.downcase! }
 
+  def display_picture_for(visitor)
+    display_photos_to?(visitor) ? display_thumbnail : default_thumbnail
+  end
+
   def display_thumbnail(thumbnail_type = :thumb)
     if profile_photo.present?
       profile_photo.image.url(thumbnail_type)
@@ -44,16 +48,28 @@ class User < ActiveRecord::Base
     end
   end
 
+  def about
+    @_about ||= profile.about
+  end
+
   def profile_photo
     @_profile_photo ||= photos.first
   end
 
   def country_name
-    ISO3166::Country.find_country_by_alpha2(country).name
+    @_country_name ||= ISO3166::Country.find_country_by_alpha2(country).name
   end
 
   def country_alpha3
-    ISO3166::Country.find_country_by_alpha2(country).alpha3
+    @_country_alpha3 ||= ISO3166::Country.find_country_by_alpha2(country).alpha3
+  end
+
+  def language_expanded
+    @_language_expanded ||= LanguageList::LanguageInfo.find(language).name
+  end
+
+  def gender_expanded
+    male? ? 'man' : 'woman'
   end
 
   def male?
@@ -67,6 +83,15 @@ class User < ActiveRecord::Base
   def age
     now = Time.now
     now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
+  end
+
+  def display_photos_to?(visitor)
+    @_display_photos_to ||= case photo_visibility
+    when 'everyone' then true
+    when 'members_only' then visitor.present?
+    when 'restricted' then visitor.eql?(self)
+    else true
+    end
   end
 
   private
@@ -106,7 +131,7 @@ class User < ActiveRecord::Base
     ].sample.downcase.gsub(/\s+/, "")
   end
 
-  def default_thumbnail(thumbnail_type)
+  def default_thumbnail(thumbnail_type = :thumb)
     image_path =  if thumbnail_type == :thumb
                     male? ? "profile_pictures/male.jpg" : "profile_pictures/female.jpg"
                   else

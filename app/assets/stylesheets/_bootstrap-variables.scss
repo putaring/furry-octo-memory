@@ -106,7 +106,7 @@ $brand-danger:              #F44336;
 //
 // Settings for the `<body>` element.
 
-$body-bg:    #fafafa;
+// $body-bg:    #fff;
 // $body-color: $gray-dark;
 
 
@@ -160,7 +160,7 @@ $container-max-widths: (
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     "Open Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
+// $font-family-sans-serif:     "Open Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
 // $font-family-serif:      Georgia, "Times New Roman", Times, serif;
 // $font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 // $font-family-base:       $font-family-sans-serif;
@@ -194,7 +194,7 @@ $font-family-sans-serif:     "Open Sans","Helvetica Neue", Helvetica, Arial, san
 
 // $headings-margin-bottom: ($spacer / 2);
 // $headings-font-family:   inherit;
-$headings-font-weight:   300;
+// $headings-font-weight:   300;
 // $headings-line-height:   1.1;
 // $headings-color:         inherit;
 
@@ -273,6 +273,10 @@ $border-radius-sm:       .2rem;
 // $btn-primary-color:              #fff;
 // $btn-primary-bg:                 $brand-primary;
 // $btn-primary-border:             $btn-primary-bg;
+
+$btn-accent-color:                  #fff;
+$btn-accent-bg:                     $brand-accent;
+$btn-accent-border:                 $btn-accent-bg;
 
 // $btn-secondary-color:            $gray-dark;
 // $btn-secondary-bg:               #fff;

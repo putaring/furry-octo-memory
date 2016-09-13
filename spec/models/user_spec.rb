@@ -53,6 +53,37 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#display_photos_to?(user)" do
+
+    context "photo visibility is restricted" do
+      let(:user) { create(:restricted_user) }
+      specify { expect(user.display_photos_to?(nil)).to be false }
+      specify { expect(user.display_photos_to?(create(:user))).to be false }
+      specify { expect(user.display_photos_to?(user)).to be true }
+
+      it "should display photos to liked members" do
+        skip
+      end
+    end
+
+    context "photo visibility is members only" do
+      let(:user) { create(:members_only_user) }
+      specify { expect(user.display_photos_to?(nil)).to be false }
+      specify { expect(user.display_photos_to?(create(:user))).to be true }
+    end
+
+    context "photo visibility is public" do
+      let(:user) { create(:user) }
+      specify { expect(user.display_photos_to?(nil)).to be true }
+      specify { expect(user.display_photos_to?(create(:user))).to be true }
+    end
+  end
+
+  describe "#gender_expanded" do
+    specify { expect(create(:user, gender: 'm').gender_expanded).to eq('man') }
+    specify { expect(create(:user, gender: 'f').gender_expanded).to eq('woman')}
+  end
+
   describe "#profile_photo" do
     it "should return the top ranked photo of the user" do
       profile_photo = create(:photo)
