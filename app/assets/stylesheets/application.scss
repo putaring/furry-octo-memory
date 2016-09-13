@@ -3,10 +3,7 @@
 @import "static_pages";
 @import "onboarding";
 @import "users";
-
-.navbar-light {
-  box-shadow: 0 0px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 0px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
+@import "profile";
 
 h1, h2, h3, h4, h5, h6 {
   &.brand {
@@ -17,7 +14,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.card {
-  border-color: #f0f0f0 #ddd #bbb;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.14);
+.btn-accent {
+  @include button-variant($btn-accent-color, $btn-accent-bg, $btn-accent-border);
+}
+
+// Remove all backgrounds
+.btn-outline-accent {
+  @include button-outline-variant($btn-accent-bg);
 }

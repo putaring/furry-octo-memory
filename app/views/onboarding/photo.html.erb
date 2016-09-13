@@ -32,7 +32,7 @@
         <div class="card card-block">
           <%= render "onboarding/photo_form" %>
           <small class="text-muted form-text">
-            Most <%= current_user.female? ? 'women': 'men' %> on Roozam have a photo. Adding a profile photo
+            Most <%= current_user.male? ? 'men' : 'women' %> on Roozam have a photo. Adding a profile photo
             greatly increases your chances of being contacted by <%= current_user.female? ? 'a match' : 'women' %>.
           </small>
         </div>

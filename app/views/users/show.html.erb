@@ -1,2 +1,12 @@
-
-<%= @user.username %>, <%= @user.country %>
+<%= render partial: 'shared/main_nav' %>
+<%= render partial: 'users/profile_banner' %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 push-lg-7">
+      <%= render partial: 'users/profile_details' %>
+    </div>
+    <div class="col-lg-7 pull-lg-5">
+      <%= render partial: 'users/profile_about' %>
+    </div>
+  </div>
+</div>

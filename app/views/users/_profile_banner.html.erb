@@ -1,0 +1,22 @@
+<div class="jumbotron jumbotron-fluid" style="background-color:#fafafa;box-shadow:0 4px 2px -2px rgba(0,0,0,.05)">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="row">
+          <div class="col-md-4 push-md-8">
+            <%= image_tag @user.display_picture_for(current_user), { class: 'img-circle img-fluid m-x-auto', id: 'display-picture' } %>
+          </div>
+          <div class="col-md-8 pull-md-4 text-md-left text-xs-center p-t-1">
+            <h2 class="h3"><%= @user.username %></h1>
+            <p class="lead">
+              <%= "#{@user.age} • #{@user.religion.humanize} • " %><span class="hidden-sm-up"><%= @user.country_alpha3 %></span><span class="hidden-xs-down"><%= @user.country_name %></span>
+            </p>
+            <p>
+              <button type="button" class="btn btn-outline-accent btn-lg">Send interest</button>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

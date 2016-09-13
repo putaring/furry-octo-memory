@@ -53,6 +53,37 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#display_photos_to?(user)" do
+
+    context "photo visibility is restricted" do
+      let(:user) { create(:restricted_user) }
+      specify { expect(user.display_photos_to?(nil)).to be false }
+      specify { expect(user.display_photos_to?(create(:user))).to be false }
+      specify { expect(user.display_photos_to?(user)).to be true }
+
+      it "should display photos to liked members" do
+        skip
+      end
+    end
+
+    context "photo visibility is members only" do
+      let(:user) { create(:members_only_user) }
+      specify { expect(user.display_photos_to?(nil)).to be false }
+      specify { expect(user.display_photos_to?(create(:user))).to be true }
+    end
+
+    context "photo visibility is public" do
+      let(:user) { create(:user) }
+      specify { expect(user.display_photos_to?(nil)).to be true }
+      specify { expect(user.display_photos_to?(create(:user))).to be true }
+    end
+  end
+
+  describe "#gender_expanded" do
+    specify { expect(create(:user, gender: 'm').gender_expanded).to eq('man') }
+    specify { expect(create(:user, gender: 'f').gender_expanded).to eq('woman')}
+  end
+
   describe "#profile_photo" do
     it "should return the top ranked photo of the user" do
       profile_photo = create(:photo)
@@ -131,9 +162,31 @@ RSpec.describe User, type: :model do
   end
 
   context 'when username is not provided' do
-    let(:user) {  create(:user, username: nil) }
+    let(:user) { create(:user, username: nil) }
     it 'should create a username before saving to the database' do
       expect(user.username).to be_present
     end
   end
+
+  context "when a user is being created" do
+    let(:user) { create(:user, gender: 'm', religion: 'christian', birthdate: 21.years.ago, language: 'eng', country: 'US') }
+    specify { expect(user.preferences['religion']).to eq('christian') }
+    specify { expect(user.preferences['languages']).to include('eng') }
+    specify { expect(user.preferences['countries']).to include('US') }
+    specify { expect(user.preferences['min_age']).to eq(18) }
+    specify { expect(user.preferences['max_age']).to eq(21) }
+
+    context "when the user is a woman" do
+      let(:user) { create(:user, gender: 'f', birthdate: 21.years.ago) }
+      specify { expect(user.preferences['min_age']).to eq(21) }
+      specify { expect(user.preferences['max_age']).to eq(26) }
+    end
+
+    context "when the user is a man" do
+      let(:user) { create(:user, gender: 'm', birthdate: 30.years.ago) }
+      specify { expect(user.preferences['min_age']).to eq(25) }
+      specify { expect(user.preferences['max_age']).to eq(30) }
+    end
+  end
+  
 end
