@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   validate :old_enough?, if: ->(u) { u.birthdate_changed? }
 
-  before_create :assign_random_username, :set_default_profile
+  before_create :assign_random_username, :set_default_profile, :set_default_preferences
 
   before_update { username.downcase! }
 
@@ -99,6 +99,16 @@ class User < ActiveRecord::Base
   def old_enough?
     minimum_age = gender.eql?('m') ? 21 : 18
     errors.add(:birthdate, "cannot be less than #{minimum_age} years ago.") unless birthdate <= minimum_age.years.ago
+  end
+
+  def set_default_preferences
+    self.preferences = {
+      min_age: self.male? ? [self.age - 5, 18].max : self.age,
+      max_age: self.male? ? self.age : (self.age + 5),
+      religion: self.religion,
+      countries: [self.country],
+      languages: [self.language]
+    }
   end
 
   def set_default_profile

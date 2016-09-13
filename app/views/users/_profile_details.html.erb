@@ -1,8 +1,9 @@
-<div class="card card-block card-inverse" style="background-color:#333">
+<div class="card card-block card-inverse" style="background-color:#37474F">
   <h3 class="card-title h5">Details</h3>
   <p class="card-text">
-    <%= @user.age %> <span class="text-muted">year old</span> <%= @user.gender_expanded %> <br>
+    <%= @user.age %> <span class="text-muted">year old</span> <%= @user.gender_expanded %><br>
     <%= @user.religion.humanize %> <br>
+    <span class="text-muted">Mother tongue is</span> <%= @user.language_expanded %> <br>
     <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
   </p>
 </div>

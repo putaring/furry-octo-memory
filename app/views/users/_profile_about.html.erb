@@ -1,7 +1,7 @@
 <% if @user.about.present? %>
 <div class="card card-block card-outline-secondary" style="border-color: transparent">
   <h3 class="card-title h5">About me</h3>
-  <%= simple_format(@user.about, class: 'card-text') %>
+  <%= simple_format(@user.about, { class: 'card-text', style: 'color: #5e6573' }) %>
 </div>
 <% else %>
 <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">

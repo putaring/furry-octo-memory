@@ -21,4 +21,12 @@ feature "Profile page" do
       it { should have_content('Lorem ipsum') }
     end
   end
+
+  describe "profile details" do
+    background { visit user_path(user) }
+    it { should have_content('21 year old woman') }
+    it { should have_content('Christian') }
+    it { should have_content('Mother tongue is English') }
+    it { should have_content('Lives in the United States') }
+  end
 end
