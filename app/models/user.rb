@@ -86,7 +86,8 @@ class User < ActiveRecord::Base
   end
 
   def display_photos_to?(visitor)
-    @_display_photos_to ||= case photo_visibility
+    @_display_photos_to ||=
+    case photo_visibility
     when 'everyone' then true
     when 'members_only' then visitor.present?
     when 'restricted' then visitor.eql?(self)
