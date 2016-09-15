@@ -1,2 +1,9 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+$(function() {
+  $('#login-form').on('ajax:error', function () {
+    $('#login-modal-error').show();
+  }).on('ajax:success', function () {
+    window.location.reload(true)
+  }).on('ajax:before', function () {
+    $('#login-modal-error').hide();
+  });
+});
