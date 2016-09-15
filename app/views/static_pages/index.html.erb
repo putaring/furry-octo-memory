@@ -16,7 +16,7 @@
             <%= link_to('Sign up for free', signup_path, class: 'btn btn-outline-primary') %>
           </p>
           <p class="hidden-lg-up">
-            or <%= link_to('sign in', signup_path) %>
+            or <%= link_to('sign in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
           </p>
         </div>
         <p>
@@ -27,7 +27,7 @@
       <%= render partial: 'users/signup_form' %>
       <hr />
       <p class="text-xs-center">
-        Have an account? <%= link_to('Log in', login_path) %>
+        Have an account? <%= link_to('Log in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
       </p>
     </div>
   </div>

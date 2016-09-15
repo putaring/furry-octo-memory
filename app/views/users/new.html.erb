@@ -1,9 +1,8 @@
 <% provide(:title, 'Signup') %>
 <section class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
-      <div class="card card-block m-t-2">
-        <h1 class="text-xs-center h2 brand"><%= link_to "Roozam", root_path %></h1>
+    <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 m-t-2">
+        <h1 class="text-xs-center h2 brand m-b-1"><%= link_to "Roozam", root_path %></h1>
         <% if @user.errors.any? %>
           <div class="alert alert-danger">
             The form contains <%= pluralize(@user.errors.count, "error") %>.
@@ -15,9 +14,9 @@
           </div>
         <% end %>
         <%= render partial: 'signup_form' %>
-      </div>
-      <div class="card card-block text-xs-center">
-        Have an account? <%= link_to('Log in', login_path) %>
+        <hr>
+      <div class="text-xs-center">
+        Have an account? <%= link_to('Log in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
       </div>
     </div>
   </div>

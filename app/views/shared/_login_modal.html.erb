@@ -1,0 +1,21 @@
+<div class="modal fade" id="login-modal" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0;">
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+        <p class="modal-title lead text-xs-center">Log in</p>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" id="login-modal-error" role="alert" style="display:none">
+          Invalid email or password.
+        </div>
+        <%= render partial: 'sessions/login_form', locals: { remote: true } %>
+      </div>
+      <div class="modal-footer text-xs-center">
+          Don't have an account? <%= link_to('Signup', signup_path) %>
+      </div>
+    </div>
+  </div>
+</div>

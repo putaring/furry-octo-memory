@@ -15,7 +15,7 @@ feature "Authentication" do
       end
 
       scenario "should display an error message" do
-        expect(page).to have_content('Invalid email/password combination. Please try again.')
+        expect(page).to have_content('Invalid email or password.')
       end
     end
 

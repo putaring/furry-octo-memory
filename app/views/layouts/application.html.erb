@@ -15,7 +15,7 @@
 <%= yield %>
 <%= javascript_include_tag 'application' %>
 <%= javascript_include_tag 'http://jcrop-cdn.tapmodo.com/v0.9.12/js/jquery.Jcrop.min.js' %>
-<script src="https://fastcdn.org/Readmore.js/2.1.0/readmore.min.js"></script>
 <%= yield :javascripts %>
+<%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
 </body>
 </html>

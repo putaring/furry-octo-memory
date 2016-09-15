@@ -24,6 +24,7 @@ feature "Profile page" do
 
   describe "profile details" do
     background { visit user_path(user) }
+    it { should have_title("#{user.username} / #{user.age} / #{user.country_name} • Roozam") }
     it { should have_content('21 year old woman') }
     it { should have_content('Christian') }
     it { should have_content('Mother tongue is English') }
