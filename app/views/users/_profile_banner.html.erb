@@ -14,7 +14,20 @@
               <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
             </p>
             <p>
-              <a href="#" class="btn btn-accent btn-lg"><i class="fa fa-star-o"></i> Like</a> <a href="#" class="btn btn-outline-primary btn-lg"><i class="fa fa-ellipsis-h"></i></a>
+              <% if logged_in? %>
+                <a href="#" class="btn btn-accent btn-lg">Like</a>
+              <% else %>
+                <%= link_to('Log in to connect', login_path, { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#login-modal' } }) %>
+              <% end %>
+
+              <% if can_send_message_to?(@user) %>
+                <%= link_to('Message', '#', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+              <% end %>
+
+              <% if logged_in? %>
+                <a href="#" class="btn btn-outline-secondary btn-lg"><i class="fa fa-ellipsis-h"></i></a>
+              <% end %>
+
             </p>
           </div>
         </div>

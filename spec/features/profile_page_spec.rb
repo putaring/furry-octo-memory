@@ -25,9 +25,23 @@ feature "Profile page" do
   describe "profile details" do
     background { visit user_path(user) }
     it { should have_title("#{user.username} / #{user.age} / #{user.country_name} • Roozam") }
-    it { should have_content('21 year old woman') }
-    it { should have_content('Christian') }
+    it { should have_content('21 year old Christian woman') }
     it { should have_content('Mother tongue is English') }
     it { should have_content('Lives in the United States') }
+  end
+
+  context "logged out" do
+    background { visit user_path(user) }
+    it { should have_content('Log in to connect') }
+  end
+
+  context "logged in" do
+    background do
+      visit login_path
+      login(create(:user))
+      visit user_path(user)
+    end
+    it { should have_content('Like') }
+    it { should have_content('Message') }
   end
 end

@@ -1,12 +1,11 @@
 <% provide(:title, "#{@user.username} / #{@user.age} / #{@user.country_name}") %>
 <%= render partial: 'shared/main_nav' %>
 <%= render partial: 'users/profile_banner' %>
+<%= render partial: 'users/message_modal' if can_send_message_to?(@user) %>
 <div class="container">
   <div class="row">
     <div class="col-lg-5 push-lg-7">
-      <div class="card card-block">
-        <h3 class="card-title h5">Photos</h3>
-      </div>
+      <%= render partial: 'users/photos_card' %>
     </div>
     <div class="col-lg-7 pull-lg-5">
       <%= render partial: 'users/profile_about' %>

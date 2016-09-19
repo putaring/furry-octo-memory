@@ -15,5 +15,7 @@ Rails.application.routes.draw do
 
   resource :me, controller: :me, only: [:show, :edit, :update]
 
-  resources :users, only: [:show, :create, :new]
+  resources :users, only: [:show, :create, :new] do
+    resources :messages, only: [:create]
+  end
 end
