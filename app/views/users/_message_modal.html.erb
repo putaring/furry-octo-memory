@@ -6,7 +6,7 @@
         <div class="alert alert-danger" id="message-modal-error" role="alert" style="display:none">
         </div>
 
-        <%= form_for([@user, Message.new], { remote: true, id: 'profile-message-form' }) do |f| %>
+        <%= form_for([@user, Message.new], { remote: true }) do |f| %>
           <div class="form-group">
             <%= f.label :body, 'Compose a message', { class: 'col-form-label col-form-label-lg' } %>
             <%= f.text_area :body, { rows: 7, maxlength: 1000, class: 'form-control form-control-lg', placeholder: 'Say something nice', required: true } %>

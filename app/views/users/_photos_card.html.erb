@@ -1,3 +1,14 @@
+<% if @user.photos.count == 0 %>
+<div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
+  <h3 class="card-title h5">Photos</h3>
+  <p class="lead text-xs-center p-y-3">
+    <%= @user.male? ? 'He' : 'She' %> hasn't uploaded any photos<br>
+    <small>Camera shy, maybe?</small>
+  </p>
+</div>
+
+<% else %>
 <div class="card card-block card-no-border">
   <h3 class="card-title h5">Photos</h3>
 </div>
+<% end %>

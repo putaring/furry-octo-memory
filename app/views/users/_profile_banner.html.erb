@@ -21,7 +21,7 @@
               <% end %>
 
               <% if can_send_message_to?(@user) %>
-                <%= link_to('Message', '#', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+                <%= link_to('Message', '', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
               <% end %>
 
               <% if logged_in? %>

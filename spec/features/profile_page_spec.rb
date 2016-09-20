@@ -22,6 +22,13 @@ feature "Profile page" do
     end
   end
 
+  describe "photo section" do
+    context "when the user hasn't uploaded any photos" do
+      background { visit user_path(user) }
+      it { should have_content("Camera shy, maybe?")}
+    end
+  end
+
   describe "profile details" do
     background { visit user_path(user) }
     it { should have_title("#{user.username} / #{user.age} / #{user.country_name} • Roozam") }
@@ -33,6 +40,7 @@ feature "Profile page" do
   context "logged out" do
     background { visit user_path(user) }
     it { should have_content('Log in to connect') }
+    it { should have_content('New to Roozam?') }
   end
 
   context "logged in" do

@@ -5,6 +5,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-5 push-lg-7">
+      <%= render partial: 'users/signup_tease' unless logged_in? %>
       <%= render partial: 'users/photos_card' %>
     </div>
     <div class="col-lg-7 pull-lg-5">
