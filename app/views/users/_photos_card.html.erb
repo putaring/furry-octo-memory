@@ -10,5 +10,12 @@
 <% else %>
 <div class="card card-block card-no-border">
   <h3 class="card-title h5">Photos</h3>
+  <div class="row">
+    <% @user.photos.each do |photo| %>
+      <div class="col-xs-4">
+        <%= image_tag(photo.image.url(:small_thumb), { class: 'img-fluid' }) %>
+      </div>
+    <% end %>
+  </div>
 </div>
 <% end %>

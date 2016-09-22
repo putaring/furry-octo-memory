@@ -1,8 +1,10 @@
 <%= form_for(@photo, url: onboarding_photo_path) do |f| %>
-  <label class="custom-file" id="photo-upload-file">
-    <%= f.file_field :image, accept: 'image/*', class: "custom-file-input", capture: "camera" %>
-    <span class="custom-file-control"></span>
-  </label>
+  <% if current_user.photos.present? %>
+  <%= f.label :image, 'Add another photo', { id: 'photo-upload-file', class: 'btn btn-block btn-outline-primary' } %>
+  <% else %>
+  <%= f.label :image, 'Add a photo', { id: 'photo-upload-file', class: 'btn btn-block btn-accent' } %>
+  <% end %>
+  <%= f.file_field :image, { accept: 'image/*', capture: "camera" , style: "text-indent: -999em; position: absolute; opacity: 0" }%>
   <%= f.hidden_field :image_x %>
   <%= f.hidden_field :image_y %>
   <%= f.hidden_field :image_width %>

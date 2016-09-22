@@ -27,7 +27,12 @@ feature "Conversations" do
           visit user_path(recipient)
           within('#message-modal') do
             fill_in 'message_body', with: Faker::Lorem.characters(1000)
-            expect { click_button 'Send' }.to change(Message, :count).by(1)
+            click_button 'Send'
+            expect(Message.count).to eq(1)
+            expect(sender.sent_messages.count).to eq(1)
+            expect(recipient.received_messages.count).to eq(1)
+            expect(recipient.sent_messages.count).to eq(0)
+            expect(sender.received_messages.count).to eq(0)
           end
         end
 

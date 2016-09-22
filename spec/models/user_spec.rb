@@ -33,6 +33,8 @@ RSpec.describe User, type: :model do
     it { should have_secure_password }
 
     it { should have_many(:photos) }
+    it { should have_many(:sent_messages) }
+    it { should have_many(:received_messages) }
     it { should have_one(:profile) }
   end
 
@@ -188,5 +190,5 @@ RSpec.describe User, type: :model do
       specify { expect(user.preferences['max_age']).to eq(30) }
     end
   end
-  
+
 end

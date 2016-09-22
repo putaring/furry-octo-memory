@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :authenticate!, :set_conversation, only: :create
 
   def create
-    message = @conversation.messages.build(body: params[:message][:body], user_id: params[:user_id])
+    message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id, recipient_id: params[:user_id])
     if message.save
       if request.xhr?
         render json: message, status: :created

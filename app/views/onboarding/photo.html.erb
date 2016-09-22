@@ -28,8 +28,8 @@
 
   <% if current_user.profile_photo.nil? %>
     <div class="row">
-      <div class="col-xs-12 col-md-6 offset-md-3">
-        <div class="card card-block card-no-border">
+      <div class="col-xs-12 col-md-4 offset-md-4">
+        <div class="card card-block">
           <%= render "onboarding/photo_form" %>
           <small class="text-muted form-text">
             Most <%= current_user.male? ? 'men' : 'women' %> on Roozam have a photo. Adding a profile photo
@@ -60,7 +60,7 @@
         </div>
       <% end %>
 
-      <div class="card card-block card-no-border text-xs-center">
+      <div class="card card-block text-xs-center">
         <%= image_tag(current_user.display_thumbnail(:thumb), { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
         <strong class="d-block m-t-2" data-toggle="tooltip" data-placement="top" title="We create a username for you when you sign up. You can change it later."><%= current_user.username %></strong>
         <span class="text-muted"><%= "#{current_user.age} • #{current_user.religion.humanize} • #{current_user.country_alpha3}" %></span>
@@ -72,7 +72,7 @@
     <div class="row">
       <div class="col-xs-12 col-md-4 offset-md-4">
 
-        <div class="card card-block card-no-border p-a-1 text-xs-center">
+        <div class="card card-block p-a-1 text-xs-center">
           <small>Who can see your photos?</small>
           <div class="dropdown d-inline">
             <a class="btn btn-link btn-sm dropdown-toggle" href="#" data-toggle="dropdown">
@@ -111,6 +111,10 @@
 
         </div>
 
+        <% if current_user.profile_photo.present? %>
+          <%= render "onboarding/photo_form" %>
+        <% end %>
+        <p class="lead text-xs-center">or</p>
         <%= link_to "Take me to the final step ➔", onboarding_about_path, { class: 'btn btn-primary btn-block' } %>
         <p class="text-xs-center"><small class="text-muted">You can add more photos later.</small></p>
       </div>
