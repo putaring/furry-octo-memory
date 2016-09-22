@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_one :profile
 
   has_many :photos
+  has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
+  has_many :received_messages, foreign_key: :recipient_id, class_name: 'Message'
 
   enum religion: { hindu: 1, muslim: 2, christian: 3,
     sikh: 4, buddhist: 5, jain: 6, non_religious: 100 }

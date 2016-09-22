@@ -28,7 +28,7 @@
 
   <% if current_user.profile_photo.nil? %>
     <div class="row">
-      <div class="col-xs-12 col-md-6 offset-md-3">
+      <div class="col-xs-12 col-md-4 offset-md-4">
         <div class="card card-block">
           <%= render "onboarding/photo_form" %>
           <small class="text-muted form-text">
@@ -102,7 +102,7 @@
             </div>
           </div>
           <% if current_user.restricted? %>
-            <small class="text-muted d-block">Only people with permission can see your photos. Most people search for users with visible photos. We recommend making your photos visible to Roozam members to improve your chances of being noticed.</small>
+            <small class="text-muted d-block"><i class="fa fa-2x fa-exclamation-triangle text-danger"></i> Only people whom you "Like" can see your photos. This greatly reduces your chances of being noticed when people search for profiles. We recommend making you photos visible to Roozam members.</small>
           <% elsif current_user.members_only? %>
             <small class="text-muted d-block">Only Roozam members can see your photos. This is our recommended setting.</small>
           <% else %>
@@ -111,6 +111,10 @@
 
         </div>
 
+        <% if current_user.profile_photo.present? %>
+          <%= render "onboarding/photo_form" %>
+        <% end %>
+        <p class="lead text-xs-center">or</p>
         <%= link_to "Take me to the final step ➔", onboarding_about_path, { class: 'btn btn-primary btn-block' } %>
         <p class="text-xs-center"><small class="text-muted">You can add more photos later.</small></p>
       </div>

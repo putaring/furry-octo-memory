@@ -1,7 +1,7 @@
-<div class="jumbotron jumbotron-fluid" id="profile-page-hero">
+<div class="jumbotron jumbotron-fluid p-y-2" id="profile-page-hero">
   <div class="container">
     <div class="row">
-      <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div class="col-md-10 offset-md-1">
         <div class="row">
           <div class="col-md-4 push-md-8">
             <%= image_tag @user.display_picture_for(current_user), { class: 'img-circle img-fluid m-x-auto', id: 'display-picture' } %>
@@ -9,10 +9,25 @@
           <div class="col-md-8 pull-md-4 text-md-left text-xs-center p-t-1">
             <h2 class="h3"><%= @user.username %></h1>
             <p class="lead">
-              <%= "#{@user.age} • #{@user.religion.humanize} • " %><span class="hidden-sm-up"><%= @user.country_alpha3 %></span><span class="hidden-xs-down"><%= @user.country_name %></span>
+              <%= @user.age %> <span class="text-muted">year old</span> <%= @user.religion.humanize %> <%= @user.gender_expanded %><br>
+              <span class="text-muted">Mother tongue is</span> <%= @user.language_expanded %> <br>
+              <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
             </p>
             <p>
-              <button type="button" class="btn btn-outline-accent btn-lg">Send interest</button>
+              <% if logged_in? %>
+                <a href="#" class="btn btn-accent btn-lg">Like</a>
+              <% else %>
+                <%= link_to('Log in to connect', login_path, { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#login-modal' } }) %>
+              <% end %>
+
+              <% if can_send_message_to?(@user) %>
+                <%= link_to('Message', '', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+              <% end %>
+
+              <% if logged_in? %>
+                <a href="#" class="btn btn-outline-secondary btn-lg"><i class="fa fa-ellipsis-h"></i></a>
+              <% end %>
+
             </p>
           </div>
         </div>

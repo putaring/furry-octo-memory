@@ -5,7 +5,13 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def authenticate!
-    redirect_to login_path if current_user.nil?
+    if current_user.nil?
+      if request.xhr?
+        head :unauthorized, location: login_path
+      else
+        redirect_to login_path
+      end
+    end
   end
 
   def redirect_if_logged_in!

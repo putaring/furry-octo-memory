@@ -4,6 +4,8 @@
 @import "onboarding";
 @import "users";
 @import "profile";
+@import "snackbar";
+@import "snackbar_material";
 
 h1, h2, h3, h4, h5, h6 {
   &.brand {
@@ -13,7 +15,11 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
-
+.card {
+  &.card-no-border {
+    border: 0;
+  }
+}
 .btn-accent {
   @include button-variant($btn-accent-color, $btn-accent-bg, $btn-accent-border);
 }
