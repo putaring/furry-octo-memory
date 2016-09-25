@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:sender, :recipient] do
+  factory :user, aliases: [:sender, :recipient, :liker, :liked] do
     gender        { 'f' }
     birthdate     { 21.years.ago }
     religion      { User.religions.keys.sample }
@@ -20,6 +20,11 @@ FactoryGirl.define do
   factory :conversation do
     sender
     recipient
+  end
+
+  factory :interest do
+    liker
+    liked
   end
 
   factory :photo do

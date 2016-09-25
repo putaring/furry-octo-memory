@@ -39,11 +39,11 @@ feature "Profile page" do
 
   context "logged out" do
     background { visit user_path(user) }
-    it { should have_content('Log in to connect') }
-    it { should have_content('New to Roozam?') }
+    it { should have_content('Log in') }
+    it { should have_content('Join now') }
   end
 
-  context "logged in" do
+  context "logged in viewing a new match" do
     background do
       visit login_path
       login(create(:user))
@@ -51,5 +51,24 @@ feature "Profile page" do
     end
     it { should have_content('Like') }
     it { should have_content('Message') }
+  end
+
+  context "logged in viewing a match whom you've expressed interest in" do
+    background do
+      interest = create(:interest)
+      visit login_path
+      login(interest.liker)
+      visit user_path(interest.liked)
+    end
+    it { should have_content('Unlike') }
+  end
+
+  context "logged in viewing ones profile" do
+    background do
+      visit login_path
+      login(user)
+      visit user_path(user)
+    end
+    it { should have_content('Edit profile') }
   end
 end
