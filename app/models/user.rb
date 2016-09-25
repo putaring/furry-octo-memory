@@ -4,8 +4,15 @@ class User < ActiveRecord::Base
   has_one :profile
 
   has_many :photos
+
   has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
   has_many :received_messages, foreign_key: :recipient_id, class_name: 'Message'
+
+  has_many :active_interests, class_name: "Interest", foreign_key: "liker_id", dependent: :destroy
+  has_many :passive_interests, class_name: "Interest", foreign_key: "liked_id", dependent: :destroy
+
+  has_many :likes, through: :active_interests,  source: :liked
+  has_many :likers, through: :passive_interests, source: :liker
 
   enum religion: { hindu: 1, muslim: 2, christian: 3,
     sikh: 4, buddhist: 5, jain: 6, non_religious: 100 }
@@ -70,6 +77,18 @@ class User < ActiveRecord::Base
     @_language_expanded ||= LanguageList::LanguageInfo.find(language).name
   end
 
+  def like(other_user)
+    active_interests.create(liked_id: other_user.id)
+  end
+
+  def unlike(other_user)
+    active_interests.find_by(liked_id: other_user.id).destroy
+  end
+
+  def likes?(other_user)
+    likes.include?(other_user)
+  end
+
   def gender_expanded
     male? ? 'man' : 'woman'
   end
@@ -101,7 +120,7 @@ class User < ActiveRecord::Base
 
   def old_enough?
     minimum_age = gender.eql?('m') ? 21 : 18
-    errors.add(:birthdate, "cannot be less than #{minimum_age} years ago.") unless birthdate <= minimum_age.years.ago
+    errors.add(:birthdate, "shows you're too young. You must be at least #{minimum_age} years") unless birthdate <= minimum_age.years.ago
   end
 
   def set_default_preferences

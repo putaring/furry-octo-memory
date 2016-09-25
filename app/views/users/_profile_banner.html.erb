@@ -15,17 +15,20 @@
             </p>
             <p>
               <% if logged_in? %>
-                <a href="#" class="btn btn-accent btn-lg">Like</a>
+                <% if current_user == @user %>
+                  <a href="#" class="btn btn-primary btn-lg">Edit profile</a>
+                <% else %>
+                  <% if current_user.likes?(@user) %>
+                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, id: 'profile-like-btn', class: 'btn btn-lg btn-outline-accent') %>
+                  <% else %>
+                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, id: 'profile-like-btn', class: 'btn btn-lg btn-accent') %>
+                  <% end %>
+                  <%= link_to('Message', '', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+                  <a href="#" class="btn btn-outline-secondary btn-lg"><i class="fa fa-ellipsis-h"></i></a>
+                <% end %>
               <% else %>
-                <%= link_to('Log in to connect', login_path, { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#login-modal' } }) %>
-              <% end %>
-
-              <% if can_send_message_to?(@user) %>
-                <%= link_to('Message', '', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
-              <% end %>
-
-              <% if logged_in? %>
-                <a href="#" class="btn btn-outline-secondary btn-lg"><i class="fa fa-ellipsis-h"></i></a>
+                <%= link_to('Join now', signup_path, { class: 'btn btn-lg btn-primary' }) %>
+                <%= link_to('Log in', login_path, { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#login-modal' } }) %>
               <% end %>
 
             </p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920222055) do
+ActiveRecord::Schema.define(version: 20160922221440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20160920222055) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+
+  create_table "interests", force: :cascade do |t|
+    t.integer  "liker_id",                   null: false
+    t.integer  "liked_id",                   null: false
+    t.boolean  "rejected",   default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "interests", ["liked_id"], name: "index_interests_on_liked_id", using: :btree
+  add_index "interests", ["liker_id", "liked_id"], name: "index_interests_on_liker_id_and_liked_id", unique: true, using: :btree
+  add_index "interests", ["liker_id"], name: "index_interests_on_liker_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.string   "body",            limit: 1000,                 null: false

@@ -35,7 +35,45 @@ RSpec.describe User, type: :model do
     it { should have_many(:photos) }
     it { should have_many(:sent_messages) }
     it { should have_many(:received_messages) }
+    it { should have_many(:active_interests) }
+    it { should have_many(:passive_interests) }
+    it { should have_many(:likes) }
+    it { should have_many(:likers) }
     it { should have_one(:profile) }
+  end
+
+  describe "likes?(other_user)" do
+    user       = create(:user)
+    other_user = create(:user)
+    user.like(other_user)
+    it "returns true if you like a user" do
+      expect(user.likes?(other_user)).to be true
+    end
+
+    it "returns false if you don't like a user" do
+      expect(other_user.likes?(user)).to be false
+    end
+  end
+
+  describe "#like(user)" do
+    it "should allow the user to like another user" do
+      user       = create(:user)
+      other_user = create(:user)
+      user.like(other_user)
+      expect(user.likes.count).to eq(1)
+      expect(other_user.likers.count).to eq(1)
+    end
+  end
+
+  describe "#unlike(user)" do
+    it "should allow the user to unlike a liked user" do
+      user       = create(:user)
+      other_user = create(:user)
+      create(:interest, liker: user, liked: other_user)
+      user.unlike(other_user)
+      expect(user.likes.count).to eq(0)
+      expect(other_user.likers.count).to eq(0)
+    end
   end
 
   describe "#display_thumbnail" do
