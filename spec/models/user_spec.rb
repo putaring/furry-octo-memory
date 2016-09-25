@@ -43,9 +43,10 @@ RSpec.describe User, type: :model do
   end
 
   describe "likes?(other_user)" do
-    user       = create(:user)
-    other_user = create(:user)
-    user.like(other_user)
+    let(:user)        { create(:user) }
+    let(:other_user)  { create(:user) }
+    before { user.like(other_user) }
+
     it "returns true if you like a user" do
       expect(user.likes?(other_user)).to be true
     end
