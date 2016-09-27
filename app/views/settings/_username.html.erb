@@ -1,0 +1,22 @@
+<div class="card card-block">
+  <p class="card-title font-weight-bold">Edit username</p>
+  <div class="row">
+    <div class="col-lg-8">
+      <%= form_for(current_user, remote: true) do |f| %>
+        <div class="alert alert-danger edit_errors" style="display:none">
+        </div>
+        <div class="alert alert-success edit_success" style="display:none">
+          Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
+        </div>
+        <div class="form-group">
+          <%= f.label :username, class: "sr-only" %>
+          <%= f.text_field :username, { class: 'form-control', required: true, maxlength: 30, placeholder: 'Create a username'} %>
+          <small class="form-text text-muted d-block">This will be public. Don't use your real name</small>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Update', { data: { disable_with: 'Updating' }, class: 'btn btn-primary' } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

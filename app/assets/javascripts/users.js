@@ -32,7 +32,7 @@ $('#new_user').submit(function (e) {
 });
 
 // bootstrapify rails date_select
-var $birthdayDropDowns = $('#new_user').find('select[name*=birthdate]');
+var $birthdayDropDowns = $('select[name*=birthdate]');
 $birthdayDropDowns.wrap('<div class="col-xs-4">');
 
 $('[data-toggle="tooltip"]').tooltip()

@@ -1,0 +1,15 @@
+<% provide(:title, "Profile settings") %>
+
+<%= render partial: 'shared/main_nav' %>
+
+<div class="container m-t-1">
+  <div class="row">
+    <div class="col-lg-9 push-lg-3">
+      <%= render partial: 'settings/username' %>
+      <%= render partial: 'settings/details' %>
+    </div>
+    <div class="col-lg-3 pull-lg-9">
+      <%= render partial: 'settings/nav' %>
+    </div>
+  </div>
+</div>

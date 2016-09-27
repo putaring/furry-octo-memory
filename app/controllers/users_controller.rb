@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   before_action :redirect_if_logged_in!, only: [:new, :create]
-  before_action :authenticate!, only: [:like, :unlike]
+  before_action :authenticate!, only: [:like, :unlike, :update]
+  before_action :authorize!, only: [:update]
 
   def show
     @user = User.find(params[:id])
@@ -19,6 +20,14 @@ class UsersController < ApplicationController
       # onboarding_about_path
     else
       render 'new'
+    end
+  end
+
+  def update
+    if current_user.update_attributes(user_params)
+      head :no_content
+    else
+      render json: current_user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -41,6 +50,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def authorize!
+      head :forbidden unless current_user.id == params[:id].to_i
+    end
 
     def user_params
       params.require(:user).permit(:username, :birthdate, :password, :email,

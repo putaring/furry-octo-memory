@@ -13,9 +13,15 @@ Rails.application.routes.draw do
   post    'onboarding/photo', to: 'onboarding#create_photo'
   patch   'onboarding/photo-visibility/:visibility', to: 'onboarding#update_photo_visibility'
 
-  resource :me, controller: :me, only: [:show, :edit, :update]
+  resource :me, controller: :me, only: [:show]
+  resource :profile, controller: :profile, only: [:update]
+  resource :settings, only: [] do
+    get 'profile'
+    get 'about'
+    get 'preferences'
+  end
 
-  resources :users, only: [:show, :create, :new] do
+  resources :users, only: [:show, :create, :new, :update] do
     resources :messages, only: [:create]
     post 'like', on: :member
     delete 'like', to: 'users#unlike', on: :member

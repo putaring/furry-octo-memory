@@ -16,7 +16,7 @@
             <p>
               <% if logged_in? %>
                 <% if current_user == @user %>
-                  <a href="#" class="btn btn-primary btn-lg">Edit profile</a>
+                  <%= link_to 'Edit profile', profile_settings_path, class: 'btn btn-primary btn-lg' %>
                 <% else %>
                   <% if current_user.likes?(@user) %>
                     <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, id: 'profile-like-btn', class: 'btn btn-lg btn-outline-accent') %>
