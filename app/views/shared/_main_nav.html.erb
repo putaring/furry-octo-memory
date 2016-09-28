@@ -1,9 +1,13 @@
-<nav class="navbar navbar-full navbar-light" style="background-color:#fff; border-bottom: 1px solid #eee;">
+<nav class="navbar navbar-full navbar-light" style="background-color:#FFF;">
   <div class="container">
-    <h1 class="brand"><a class="navbar-brand" href="/">Roozam</a></h1>
+    <a class="navbar-brand" href="/">Roozam</a>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
-        <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
+        <% if logged_in? %>
+          <%= link_to 'Log out', logout_path, { class: 'nav-link', method: :delete } %>
+        <% else %>
+          <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
+        <% end %>
       </li>
     </ul>
   </div>

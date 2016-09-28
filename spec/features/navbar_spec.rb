@@ -1,19 +1,22 @@
 require 'rails_helper'
 feature "Navbar" do
   let(:user) { create(:user) }
-  context "when logged out" do
+  context "when logged in" do
 
     background do
       visit login_path
       login(user)
       visit user_path(user)
     end
-    it "should give the user the option of logging in or signing up" do
-      within('.navbar-full') { expect(page).to have_content('Log in') }
+    it "should give the user the option of logging out" do
+      within('.navbar-full') { expect(page).to have_content('Log out') }
     end
   end
 
-  context "when logged in" do
-
+  context "when logged out" do
+    it "should give the user the option of logging in" do
+      visit user_path(user)
+      within('.navbar-full') { expect(page).to have_content('Log in') }
+    end
   end
 end

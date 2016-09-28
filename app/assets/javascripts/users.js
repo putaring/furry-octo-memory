@@ -9,8 +9,34 @@ var validateRegistrationField = function (field) {
       siblings('.text-danger').text('').end().
       parent('.form-group').addClass('has-success').removeClass('has-danger');
   } else {
+    var errorMessage = '';
+    switch (field.id) {
+      case 'user_gender':
+        errorMessage = 'Pick a gender.';
+        break;
+      case 'user_birthdate':
+        errorMessage = 'Men should be at least 21 and women, 18.';
+        break;
+      case 'user_religion':
+        errorMessage = 'Choose your religion.';
+        break;
+      case 'user_language':
+        errorMessage = 'Select your mother tongue.';
+        break;
+      case 'user_country':
+        errorMessage = 'Where do you currently live.?';
+        break;
+      case 'user_email':
+        errorMessage = 'Enter a valid email address.';
+        break;
+      case 'user_password':
+        errorMessage = 'Create a valid password.';
+        break;
+      default:
+        errorMessage = 'Enter valid details.'
+    }
     $(field).addClass('form-control-danger').removeClass('form-control-success').
-      siblings('.text-danger').text(field.validationMessage).end().
+      siblings('.text-danger').text(errorMessage).end().
       parent('.form-group').addClass('has-danger').removeClass('has-success');
   }
 };
