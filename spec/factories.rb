@@ -3,7 +3,7 @@ FactoryGirl.define do
     gender        { 'f' }
     birthdate     { 21.years.ago }
     religion      { User.religions.keys.sample }
-    language      { LanguageList::COMMON_LANGUAGES.map(&:iso_639_3).sample }
+    language      { LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3).sample }
     country       { Faker::Address.country_code }
     email         { Faker::Internet.email }
     password      { Faker::Internet.password }

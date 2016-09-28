@@ -22,12 +22,12 @@
   </div>
   <div class="form-group">
     <%= f.label :language, 'Mother tongue', class: "sr-only" %>
-    <%= f.select :language, LanguageList::COMMON_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
+    <%= f.select :language, LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
     <%= f.label :country, 'Location', class: "sr-only" %>
-    <%= f.country_select :country, {prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
+    <%= f.country_select :country, { prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
     <small class="text-danger"></small>
   </div>
   <div class="form-group">
