@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid p-y-2" id="profile-page-hero">
+<div class="jumbotron jumbotron-fluid p-y-3" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
   <div class="container">
     <div class="row">
       <div class="col-md-10 offset-md-1">
@@ -19,9 +19,9 @@
                   <%= link_to 'Edit profile', profile_settings_path, class: 'btn btn-primary btn-lg' %>
                 <% else %>
                   <% if current_user.likes?(@user) %>
-                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, id: 'profile-like-btn', class: 'btn btn-lg btn-outline-accent') %>
+                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-outline-accent user-like-btn') %>
                   <% else %>
-                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, id: 'profile-like-btn', class: 'btn btn-lg btn-accent') %>
+                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-accent user-like-btn') %>
                   <% end %>
                   <%= link_to('Message', '', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
                   <a href="#" class="btn btn-outline-secondary btn-lg"><i class="fa fa-ellipsis-h"></i></a>

@@ -1,0 +1,11 @@
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <%= link_to 'Likes me', likes_me_path, { class: params[:action].eql?('likers') ? 'nav-link active' : 'nav-link' } %>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">I like</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Mutual likes</a>
+  </li>
+</ul>

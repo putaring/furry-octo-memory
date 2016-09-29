@@ -2,7 +2,7 @@
 <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
   <h3 class="card-title h5">Photos</h3>
   <p class="lead text-xs-center p-y-3">
-    <%= @user.male? ? 'He' : 'She' %> hasn't uploaded any photos<br>
+    No photos<br>
     <small>Camera shy, maybe?</small>
   </p>
 </div>
@@ -12,8 +12,8 @@
   <h3 class="card-title h5">Photos</h3>
   <div class="row">
     <% @user.photos.each do |photo| %>
-      <div class="col-xs-3">
-        <%= image_tag(photo.image.url(:small_thumb), { class: 'img-fluid' }) %>
+      <div class="col-xs-4" style="padding: 0.2em;">
+        <%= image_tag(photo.image.url(:thumb), { class: 'img-fluid' }) %>
       </div>
     <% end %>
   </div>

@@ -1,14 +1,26 @@
-<nav class="navbar navbar-full navbar-light" style="background-color:#FFF;">
+<nav class="navbar navbar-full navbar-light" style="background-color:#fff;">
   <div class="container">
     <a class="navbar-brand" href="/">Roozam</a>
     <ul class="nav navbar-nav pull-xs-right">
+      <% if logged_in? %>
       <li class="nav-item">
-        <% if logged_in? %>
-          <%= link_to 'Log out', logout_path, { class: 'nav-link', method: :delete } %>
-        <% else %>
-          <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
+        <%= link_to likes_me_path, { class: 'nav-link', data: { toggle: "tooltip", placement: "bottom", title: "Likes" } } do %>
+          <i class="fa fa-heart fa-lg" style="color: #FF5252;"></i>
         <% end %>
       </li>
+      <li class="nav-item">
+        <%= link_to likes_me_path, { class: 'nav-link', data: { toggle: "tooltip", placement: "bottom", title: "Messages" } } do %>
+          <i class="fa fa-comment fa-lg text-primary"></i>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Log out', logout_path, { class: 'nav-link', method: :delete } %>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
+      </li>
+      <% end %>
     </ul>
   </div>
 </nav>

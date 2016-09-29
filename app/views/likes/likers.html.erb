@@ -1,0 +1,51 @@
+<% provide(:title, 'People who like me') %>
+<%= render partial: 'shared/main_nav' %>
+
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>People who like me</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container p-y-1">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'likes/like_nav' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container m-t-2">
+  <div class="row">
+    <div class="col-lg-7">
+      <% if @passive_interests.empty? %>
+      <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
+        <p class="lead text-xs-center p-y-3">
+          0 likes<br>
+          <small>Like people you're interested in to know if they like you back.</small>
+        </p>
+      </div>
+      <% else %>
+        <% @passive_interests.each do |interest| %>
+        <%= render partial: 'likes/liker', locals: { interest: interest, liker: interest.liker } %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-5">
+      <div class="card card-inverse bg-primary">
+        <div class="card-block">
+          <p class="card-text text-xs-center" style="color:#fff;">
+            These fine <%= current_user.male? ? 'women' : 'gentlemen' %> are interested in you.
+            One of them could be your soon-to-be significant other. Incredible, isn't it?
+            Don't wait. Connect with them now to find out.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

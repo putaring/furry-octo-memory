@@ -7,14 +7,6 @@
 @import "snackbar";
 @import "snackbar_material";
 
-h1, h2, h3, h4, h5, h6 {
-  &.brand {
-    font-family: 'Bad Script', cursive;
-    a {
-      text-decoration: none;
-    }
-  }
-}
 .card {
   &.card-no-border {
     border: 0;
