@@ -1,6 +1,6 @@
 <%= form_for(@photo, url: onboarding_photo_path) do |f| %>
   <% if current_user.photos.present? %>
-  <%= f.label :image, 'Add another photo', { id: 'photo-upload-file', class: 'btn btn-block btn-outline-primary' } %>
+  <%= f.label :image, 'Add another photo', { id: 'photo-upload-file', class: 'btn btn-block btn-primary' } %>
   <% else %>
   <%= f.label :image, 'Add a photo', { id: 'photo-upload-file', class: 'btn btn-block btn-accent' } %>
   <% end %>
@@ -10,7 +10,7 @@
   <%= f.hidden_field :image_width %>
 <% end %>
 
-<div class="modal fade bd-example-modal-lg" id="photo-crop-modal" tabindex="-1">
+<div class="modal" id="photo-crop-modal" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">

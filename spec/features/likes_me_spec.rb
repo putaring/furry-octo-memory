@@ -8,25 +8,30 @@ feature 'Likes me' do
   end
 
   context "when logged in" do
+    let(:user)  { create(:user) }
+    let(:liker) { create(:user) }
     background do
       visit login_path
-      login(create(:user))
+      login(user)
       visit likes_me_path
     end
 
     it { should have_content("People who like me") }
+
     context "when nobody likes the user" do
       it { should have_content("0 likes") }
-      it { should have_content("Like other people to know if they like you back.") }
+      it { should have_content("Like people you're interested in to know if they like you.") }
     end
 
     context "when the user has likers" do
-      it "should display users who have liked the user" do
-
+      background do
+        interest  = create(:interest, liked: user, liker: liker)
+        visit likes_me_path
       end
-      it "should give the user the option to like users who have liked them" do
 
-      end
+      it { should have_content(liker.username) }
+      it { should have_content("Like back") }
+      it { should have_content("One of them could be your better half. Connect with them now to find out.") }
     end
   end
 end

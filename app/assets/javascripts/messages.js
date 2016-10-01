@@ -42,3 +42,8 @@ $(function() {
     $messageForm.find('textarea').val('');
   });
 });
+
+if (location.search.match(/message_dialog=true/)) {
+  $('#message-modal').modal('show');
+  history.replaceState(null, null, location.pathname)
+}

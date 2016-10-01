@@ -1,0 +1,10 @@
+<div class="media p-a-1 m-b-1" style="border-bottom:1px solid #f3f3f3;">
+  <%= link_to user_path(match), { class: 'media-left', style: "text-decoration:none;" } do %>
+    <%= image_tag(match.display_picture_for(current_user, :small_thumb), { class: 'img-circle' })%>
+  <% end %>
+  <div class="media-body">
+    <%= link_to match.username, user_path(match), { class: 'media-heading lead' } %><br>
+    <div class="m-b-1"><small class="text-muted"><%= time_ago_in_words(interest.matched_at) %> ago</small></div>
+    <%= link_to('Message', user_path(match, message_dialog: true), class: 'btn btn-accent' ) %>
+  </div>
+</div>

@@ -4,7 +4,7 @@
   <% end %>
   <div class="media-body">
     <%= link_to liker.username, user_path(liker), { class: 'media-heading lead' } %><br>
-    <div class="m-b-1"><small class="text-muted"><%= time_ago_in_words(interest.created_at) %></small></div>
+    <div class="m-b-1"><small class="text-muted"><%= time_ago_in_words(interest.created_at) %> ago</small></div>
     <% if current_user.likes?(liker) %>
       <%= link_to('Unlike', like_user_path(liker), remote: true, method: :delete, class: 'btn btn-outline-accent user-like-btn', data: { like_text: 'Like back'} ) %>
     <% else %>

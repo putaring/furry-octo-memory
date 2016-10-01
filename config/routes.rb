@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   patch   'onboarding/photo-visibility/:visibility', to: 'onboarding#update_photo_visibility'
 
   get 'likes-me', to: 'likes#likers'
-  get 'i-like', to: 'likes#likes'
+  get 'i-like', to: 'likes#liked'
   get 'mutual-likes', to: 'likes#mutual'
 
   resource :me, controller: :me, only: [:show, :update]

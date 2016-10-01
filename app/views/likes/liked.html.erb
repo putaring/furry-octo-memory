@@ -1,11 +1,11 @@
-<% provide(:title, 'People who like me') %>
+<% provide(:title, 'People I like') %>
 <%= render partial: 'shared/main_nav' %>
 
 <div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1>People who like me</h1>
+        <h1>People I like</h1>
       </div>
     </div>
   </div>
@@ -22,26 +22,24 @@
 
 <section class="container m-t-2">
   <div class="row">
-    <% if @passive_interests.empty? %>
+    <% if @active_interests.empty? %>
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
-          0 likes<br>
+          You haven't liked anybody yet.<br>
           <small>Like people you're interested in to know if they're interested.</small>
         </p>
       </div>
     <% else %>
       <div class="col-lg-7">
-        <% @passive_interests.each do |interest| %>
-          <%= render partial: 'likes/liker', locals: { interest: interest, liker: interest.liker } %>
+        <% @active_interests.each do |interest| %>
+          <%= render partial: 'likes/liked', locals: { interest: interest, liked: interest.liked } %>
         <% end %>
       </div>
       <div class="col-lg-5">
-        <div class="card card-inverse" style="background-color:#64B5F6; border-color:#64B5F6">
+        <div class="card card-inverse" style="background-color:#81C784; border-color:#81C784">
           <div class="card-block">
             <p class="card-text text-xs-center" style="color:#fff;">
-              They like you.
-              One of them could be your better half.
-              Connect with them now to find out.
+              You like them. Haven't heard back? Send a message.
             </p>
           </div>
         </div>
