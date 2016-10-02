@@ -45,8 +45,8 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save { language.downcase! }
 
-  def display_picture_for(visitor)
-    display_photos_to?(visitor) ? display_thumbnail : default_thumbnail
+  def display_picture_for(visitor, thumbnail_type = :thumb)
+    display_photos_to?(visitor) ? display_thumbnail(thumbnail_type) : default_thumbnail(thumbnail_type)
   end
 
   def display_thumbnail(thumbnail_type = :thumb)
@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
     case photo_visibility
     when 'everyone' then true
     when 'members_only' then visitor.present?
-    when 'restricted' then visitor.eql?(self)
+    when 'restricted' then visitor.present? && (visitor.eql?(self) || likes?(visitor))
     else true
     end
   end

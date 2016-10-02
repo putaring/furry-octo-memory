@@ -1,0 +1,8 @@
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <%= link_to 'Inbox', messages_path, { class: params[:action].eql?('index') ? 'nav-link active' : 'nav-link' } %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Sent messages', sent_messages_path, { class: params[:action].eql?('sent') ? 'nav-link active' : 'nav-link' } %>
+  </li>
+</ul>

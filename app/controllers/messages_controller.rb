@@ -1,5 +1,14 @@
 class MessagesController < ApplicationController
-  before_action :authenticate!, :set_conversation, only: :create
+  before_action :set_conversation, only: :create
+  before_action :authenticate!
+
+  def index
+    @messages = current_user.received_messages.reverse_ordered.to_a.uniq { |m| m.conversation_id }
+  end
+
+  def sent
+    @messages = current_user.sent_messages.reverse_ordered.to_a.uniq { |m| m.conversation_id }
+  end
 
   def create
     message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id, recipient_id: params[:user_id])

@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   get     'signup', to: 'users#new'
 
-  get     '/login',   to: 'sessions#new'
-  post    '/login',   to: 'sessions#create'
-  delete  '/logout',  to: 'sessions#destroy'
+  get     'login',   to: 'sessions#new'
+  post    'login',   to: 'sessions#create'
+  delete  'logout',  to: 'sessions#destroy'
 
   get     'onboarding/about'
   patch   'onboarding/about', to: 'onboarding#update_about'
@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   post    'onboarding/photo', to: 'onboarding#create_photo'
   patch   'onboarding/photo-visibility/:visibility', to: 'onboarding#update_photo_visibility'
 
-  resource :me, controller: :me, only: [:show]
+  get 'likes-me', to: 'likes#likers'
+  get 'i-like', to: 'likes#liked'
+  get 'mutual-likes', to: 'likes#mutual'
+
+  resources :conversation, only: :show
+
+  resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update]
   resource :settings, only: [] do
     get 'profile'
@@ -21,7 +27,11 @@ Rails.application.routes.draw do
     get 'preferences'
   end
 
-  resources :users, only: [:show, :create, :new, :update] do
+  resources :messages, only: :index do
+    get 'sent', on: :collection
+  end
+
+  resources :users, only: [:show, :create, :new] do
     resources :messages, only: [:create]
     post 'like', on: :member
     delete 'like', to: 'users#unlike', on: :member

@@ -1,0 +1,11 @@
+<ul class="nav nav-pills">
+  <li class="nav-item">
+    <%= link_to 'Likes me', likes_me_path, { class: params[:action].eql?('likers') ? 'nav-link active' : 'nav-link' } %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'I like', i_like_path, { class: params[:action].eql?('liked') ? 'nav-link active' : 'nav-link' } %>
+  </li>
+  <li class="nav-item">
+    <%= link_to 'Mutual likes', mutual_likes_path, { class: params[:action].eql?('mutual') ? 'nav-link active' : 'nav-link' } %>
+  </li>
+</ul>

@@ -98,12 +98,15 @@ RSpec.describe User, type: :model do
 
     context "photo visibility is restricted" do
       let(:user) { create(:restricted_user) }
+
       specify { expect(user.display_photos_to?(nil)).to be false }
       specify { expect(user.display_photos_to?(create(:user))).to be false }
       specify { expect(user.display_photos_to?(user)).to be true }
 
       it "should display photos to liked members" do
-        skip
+        liked = create(:liked)
+        create(:interest, liker: user, liked: liked)
+        expect(user.display_photos_to?(liked)).to be true
       end
     end
 

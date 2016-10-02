@@ -1,0 +1,21 @@
+a.message-card {
+  &:not(:last-child) {
+    .media {
+      border-bottom:1px solid #eee;
+    }
+  }
+  color: $gray-dark;
+  text-decoration: none;
+  &.unread {
+    font-weight: bold;
+    small.message-body {
+      font-weight: bold;
+    }
+  }
+  .username {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 80%;
+    overflow: hidden;
+  }
+}

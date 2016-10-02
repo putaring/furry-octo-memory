@@ -1,0 +1,14 @@
+<div class="media p-a-1 m-b-1 like-card" style="border-bottom:1px solid #f3f3f3;">
+  <%= link_to user_path(liker), { class: 'media-left', style: "text-decoration:none;" } do %>
+    <%= image_tag(liker.display_picture_for(current_user, :small_thumb), { class: 'img-circle' })%>
+  <% end %>
+  <div class="media-body">
+    <%= link_to liker.username, user_path(liker), { class: 'media-heading username lead' } %><br>
+    <div class="m-b-1"><small class="text-muted"><%= time_ago_in_words(interest.created_at) %> ago</small></div>
+    <% if current_user.likes?(liker) %>
+      <%= link_to('Unlike', like_user_path(liker), remote: true, method: :delete, class: 'btn btn-outline-accent user-like-btn', data: { like_text: 'Like back'} ) %>
+    <% else %>
+      <%= link_to('Like back', like_user_path(liker), remote: true, method: :post, class: 'btn btn-accent user-like-btn', data: { like_text: 'Like back'}) %>
+    <% end %>
+  </div>
+</div>

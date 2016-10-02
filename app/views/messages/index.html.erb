@@ -1,0 +1,44 @@
+<% provide(:title, 'Inbox') %>
+<%= render partial: 'shared/main_nav' %>
+
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Inbox</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container p-y-1">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'messages/messages_nav' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container m-t-2">
+  <div class="row">
+    <% if @messages.empty? %>
+      <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
+        <p class="lead text-xs-center p-y-3">
+          0 messages<br>
+          <small>Take the initiative to contact your matches.</small>
+        </p>
+      </div>
+    <% else %>
+      <div class="col-lg-7">
+        <div class="card card-block card-no-border" style="box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)">
+          <% @messages.each do |message| %>
+            <%= render partial: 'messages/received_message', locals: { message: message, sender: message.sender } %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+      </div>
+    <% end %>
+  </div>
+</section>
