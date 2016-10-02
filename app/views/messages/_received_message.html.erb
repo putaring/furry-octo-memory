@@ -1,0 +1,14 @@
+<%=link_to conversation_path(message.conversation_id), { class: message.read? ? 'message-card' : 'message-card unread' } do %>
+  <div class="media p-a-1">
+    <div class="media-left">
+      <%= image_tag(sender.display_picture_for(current_user, :small_thumb), { class: 'img-circle', width: 70 })%>
+    </div>
+    <div class="media-body">
+      <p class="media-heading username m-b-0"><%= sender.username %></p>
+      <small class="message-body">
+        <%= truncate message.body %>
+      </small><br>
+      <small class="text-muted"><%= time_ago_in_words(message.created_at) %> ago</small>
+    </div>
+  </div>
+<% end %>

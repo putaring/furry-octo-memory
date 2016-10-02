@@ -20,18 +20,18 @@ feature 'I like' do
 
     context "you don't like anybody" do
       it { should have_content("You haven't liked anybody yet.") }
-      it { should have_content("Like people you're interested in to know if they like you.") }
+      it { should have_content("Like people you're interested in to know if they like you back.") }
     end
 
     context "when you like somebody" do
       background do
-        interest  = create(:interest, liked: liked, liker: user)
+        create(:interest, liked: liked, liker: user)
         visit i_like_path
       end
 
       it { should have_content(liked.username) }
       it { should have_content("Message") }
-      it { should have_content("Haven't heard back? Send them a message.") }
+      it { should have_content("Haven't heard back? Send a message.") }
 
       it "should prompt the user page to bring up the message modal" do
         click_link "Message"

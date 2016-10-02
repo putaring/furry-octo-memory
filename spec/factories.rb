@@ -22,6 +22,13 @@ FactoryGirl.define do
     recipient
   end
 
+  factory :message do
+    body { Faker::Lorem.sentence }
+    sender
+    recipient
+    conversation
+  end
+
   factory :interest do
     liker
     liked

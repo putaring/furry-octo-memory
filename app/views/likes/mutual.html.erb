@@ -23,12 +23,14 @@
 <section class="container m-t-2">
   <div class="row">
     <% if @mutual_interests.empty? %>
+    <div class="col-xs-12">
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
           No mutual likes.<br>
           <small><%= current_user.male? ? "She's" : "He's" %> out there. Keep searching.</small>
         </p>
       </div>
+    </div>
     <% else %>
       <div class="col-lg-7">
         <% @mutual_interests.each do |interest| %>
@@ -36,7 +38,7 @@
         <% end %>
       </div>
       <div class="col-lg-5">
-        <div class="card card-inverse" style="background-color:#FF8A80; border-color:#FF8A80;">
+        <div class="card card-inverse hidden-md-down" style="background-color:#FF8A80; border-color:#FF8A80;">
           <div class="card-block">
             <p class="card-text text-xs-center" style="color:#fff;">
               Fantastic! You like each other. Send a message now to keep the flame burning.

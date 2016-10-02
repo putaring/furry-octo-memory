@@ -20,12 +20,12 @@ feature 'Likes me' do
 
     context "when nobody likes the user" do
       it { should have_content("0 likes") }
-      it { should have_content("Like people you're interested in to know if they like you.") }
+      it { should have_content("Like people you're interested in to know if they like you back.") }
     end
 
     context "when the user has likers" do
       background do
-        interest  = create(:interest, liked: user, liker: liker)
+        create(:interest, liked: user, liker: liker)
         visit likes_me_path
       end
 

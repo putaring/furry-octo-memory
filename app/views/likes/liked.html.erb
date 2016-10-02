@@ -23,12 +23,14 @@
 <section class="container m-t-2">
   <div class="row">
     <% if @active_interests.empty? %>
+    <div class="col-xs-12">
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
           You haven't liked anybody yet.<br>
-          <small>Like people you're interested in to know if they're interested.</small>
+          <small>Like people you're interested in to know if they like you back.</small>
         </p>
       </div>
+    </div>
     <% else %>
       <div class="col-lg-7">
         <% @active_interests.each do |interest| %>
@@ -36,7 +38,7 @@
         <% end %>
       </div>
       <div class="col-lg-5">
-        <div class="card card-inverse" style="background-color:#81C784; border-color:#81C784">
+        <div class="card card-inverse hidden-md-down" style="background-color:#81C784; border-color:#81C784">
           <div class="card-block">
             <p class="card-text text-xs-center" style="color:#fff;">
               You like them. Haven't heard back? Send a message.

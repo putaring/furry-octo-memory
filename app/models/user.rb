@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
     case photo_visibility
     when 'everyone' then true
     when 'members_only' then visitor.present?
-    when 'restricted' then visitor.eql?(self)
+    when 'restricted' then visitor.present? && (visitor.eql?(self) || likes?(visitor))
     else true
     end
   end

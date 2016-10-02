@@ -6,7 +6,13 @@
     <small>Camera shy, maybe?</small>
   </p>
 </div>
-
+<% elsif @user.display_photos_to?(current_user) == false %>
+<div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
+  <h3 class="card-title h5">Photos</h3>
+  <p class="text-xs-center p-a-3">
+    <%= @user.photo_visibility.eql?('restricted') ? 'Restricted. They must like you before you can view their photos.' : 'Log in to view their photos.' %>
+  </p>
+</div>
 <% else %>
 <div class="card card-block card-no-border">
   <h3 class="card-title h5">Photos</h3>
