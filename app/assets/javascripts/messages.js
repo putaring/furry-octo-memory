@@ -1,3 +1,4 @@
+// message modal form
 $(function() {
   var $errorAlert   = $('#message-modal-error'),
       $messageModal = $('#message-modal'),
@@ -47,3 +48,43 @@ if (location.search.match(/message_dialog=true/)) {
   $('#message-modal').modal('show');
   history.replaceState(null, null, location.pathname)
 }
+
+// message form for conversation
+$(function() {
+  var $messageForm  = $('[data-form-type="conversation-form"]');
+  $messageForm.on('ajax:error', function (e, xhr, status, error) {
+    if (xhr.status === 422) {
+      var errors = '';
+      for (var i = 0; i < xhr.responseJSON.length; i++) {
+        errors += xhr.responseJSON[i] + '\n';
+      }
+      alert(errors);
+    } else if (xhr.status === 401) {
+      window.location = '/login'
+    } else {
+      alert('Error code: ' + xhr.status + '. Something went wrong.');
+    }
+  }).on('ajax:success', function (event, data, status, xhr) {
+    $messageForm.find('textarea').val('');
+
+    var messageNode = $('<div class="media">\
+      <div class="media-left">\
+        <a href="/users/' + $messageForm.data('user').id + '">\
+          <img src="' + $messageForm.data('user').photo + '" class="img-circle" width="70" />\
+        </a>\
+      </div>\
+      <div class="media-body p-a-1" style="background-color:#E8F5E9;color:#5e6573">\
+        ' + $.simpleFormat(data.body) + '\
+        <small class="text-muted">Sent just now</small>\
+      </div>\
+    <div>');
+
+    $messageForm.closest('.media').before(messageNode);
+
+    $.snackbar({
+      content: "Message sent.",
+      style: "snackbar",
+      timeout: 5000
+    });
+  });
+});
