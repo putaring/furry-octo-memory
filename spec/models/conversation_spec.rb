@@ -28,6 +28,14 @@ RSpec.describe Conversation, type: :model do
     end
   end
 
+  describe "#other_participant" do
+    it "should return the other participant in the conversation" do
+      conversation = create(:conversation, sender: sender, recipient: recipient)
+      expect(conversation.other_participant(sender)).to eq(recipient)
+      expect(conversation.other_participant(recipient)).to eq(sender)
+    end
+  end
+
   describe ".with_participant" do
     it "should return all the conversation with the participant" do
       conversation1 = create(:conversation, sender: sender, recipient: recipient)

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-full navbar-light" style="background-color:#fff;">
   <div class="container">
-    <a class="navbar-brand" href="/">Roozam</a>
+    <%= link_to 'Roozam', logged_in? ? me_path : '/', class: 'navbar-brand' %>
     <ul class="nav navbar-nav pull-xs-right">
       <% if logged_in? %>
       <li class="nav-item">

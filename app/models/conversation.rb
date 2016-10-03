@@ -7,6 +7,10 @@ class Conversation < ActiveRecord::Base
   validates :sender, :recipient, presence: true
   validates_uniqueness_of :sender_id, scope: :recipient_id
 
+  def other_participant(participant)
+    @_other_participant ||= (participant.id == sender_id ? recipient : sender)
+  end
+
   def self.with_participant(participant)
     where('conversations.sender_id = ? OR conversations.recipient_id = ?', participant.id, participant.id)
   end

@@ -2,11 +2,11 @@ class LikesController < ApplicationController
   before_action :authenticate!
 
   def likers
-    @passive_interests = current_user.passive_interests.includes(:liker).reverse_ordered
+    @passive_interests = current_user.passive_interests.includes(:liker).reverse_order
   end
 
   def liked
-    @active_interests = current_user.active_interests.includes(:liked).reverse_ordered
+    @active_interests = current_user.active_interests.includes(:liked).reverse_order
   end
 
   def mutual

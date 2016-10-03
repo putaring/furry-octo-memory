@@ -3,15 +3,15 @@ class MessagesController < ApplicationController
   before_action :authenticate!
 
   def index
-    @messages = current_user.received_messages.reverse_ordered.to_a.uniq { |m| m.conversation_id }
+    @messages = current_user.received_messages.to_a.uniq { |m| m.conversation_id }
   end
 
   def sent
-    @messages = current_user.sent_messages.reverse_ordered.to_a.uniq { |m| m.conversation_id }
+    @messages = current_user.sent_messages.to_a.uniq { |m| m.conversation_id }
   end
 
   def create
-    message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id, recipient_id: params[:user_id])
+    message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id, recipient_id: @conversation.other_participant(current_user).id)
     if message.save
       if request.xhr?
         render json: message, status: :created

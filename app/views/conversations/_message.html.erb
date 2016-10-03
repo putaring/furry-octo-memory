@@ -1,0 +1,13 @@
+<%= content_tag :div, class: 'media', style: hidden ? 'display:none' : '' do %>
+  <div class="media-left">
+    <%= link_to user_path(sender) do %>
+      <%= image_tag(sender.display_picture_for(current_user, :small_thumb), { class: 'img-circle', width: 70 })%>
+    <% end %>
+  </div>
+  <div class="media-body p-a-1" style="background-color:<%= sender.eql?(current_user) ? '#E8F5E9' : '#E3F2FD' %>">
+    <p class="message-body">
+      <%= message.body %>
+    </p>
+    <small class="text-muted">Sent <%= time_ago_in_words(message.created_at) %> ago</small>
+  </div>
+<% end %>

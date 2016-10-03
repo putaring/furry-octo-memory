@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'i-like', to: 'likes#liked'
   get 'mutual-likes', to: 'likes#mutual'
 
-  resources :conversation, only: :show
+  resources :conversations, only: :show
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update]
