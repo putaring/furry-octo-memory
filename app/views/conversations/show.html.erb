@@ -1,4 +1,4 @@
-<% provide(:title, 'Conversation') %>
+<% provide(:title, "Conversation with #{@conversation.other_participant(current_user).username}") %>
 <%= render partial: 'shared/main_nav' %>
 
 <div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
@@ -33,6 +33,9 @@
       <% @messages.each_with_index do |message, index| %>
       <%= render partial: 'conversations/message', locals: { message: message, sender: message.sender, hidden: (total_messages - index) > display_count   } %>
       <% end %>
+
+      <%= render partial: 'conversations/message_form' %>
+
     </div>
   </div>
 </section>

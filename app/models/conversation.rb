@@ -8,7 +8,7 @@ class Conversation < ActiveRecord::Base
   validates_uniqueness_of :sender_id, scope: :recipient_id
 
   def other_participant(participant)
-    @_other_participant ||= (participant.id == sender_id ? recipient : sender)
+    participant.id == sender_id ? recipient : sender
   end
 
   def self.with_participant(participant)
