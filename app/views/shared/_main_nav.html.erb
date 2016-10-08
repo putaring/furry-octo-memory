@@ -1,26 +1,38 @@
 <nav class="navbar navbar-full navbar-light" style="background-color:#fff;">
   <div class="container">
-    <%= link_to 'Roozam', logged_in? ? me_path : '/', class: 'navbar-brand' %>
-    <ul class="nav navbar-nav pull-xs-right">
-      <% if logged_in? %>
-      <li class="nav-item">
-        <%= link_to likes_me_path, { class: 'nav-link', data: { toggle: "tooltip", placement: "bottom", title: "Likes" } } do %>
-          <i class="fa fa-heart fa-lg" style="color: #FF5252;"></i>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to messages_path, { class: 'nav-link', data: { toggle: "tooltip", placement: "bottom", title: "Messages" } } do %>
-          <i class="fa fa-comment fa-lg" style="color:#607D8B;"></i>
-        <% end %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Log out', logout_path, { class: 'nav-link', method: :delete } %>
-      </li>
-      <% else %>
-      <li class="nav-item">
-        <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
-      </li>
-      <% end %>
-    </ul>
+    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand font-weight-bold text-muted' } do %>
+    <%= image_tag 'logo.svg', width: 30, title: 'Roozam logo', class: 'd-inline' %>Roozam
+    <% end %>
+    <% if logged_in? %>
+      <ul class="nav navbar-nav pull-xs-right">
+        <li class="nav-item">
+          <%= link_to likes_me_path, { class: 'nav-link' } do %>
+            <i class="fa fa-heart fa-lg hidden-sm-up"></i><span class="hidden-xs-down">Likes</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to messages_path, { class: 'nav-link' } do %>
+            <i class="fa fa-comment fa-lg hidden-sm-up"></i><span class="hidden-xs-down">Messages</span>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <%= image_tag current_user.display_picture_for(current_user, :small_thumb), id: 'profile-dropdown', class: 'img-circle dropdown-toggle', width: 35, data: { toggle: "dropdown" } %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+              <%= link_to 'Profile', user_path(current_user), { class: 'dropdown-item' } %>
+              <%= link_to 'Settings', profile_settings_path, { class: 'dropdown-item' } %>
+              <div class="dropdown-divider"></div>
+              <%= link_to 'Log out', logout_path, { class: 'dropdown-item', method: :delete } %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="nav navbar-nav pull-xs-right">
+        <li class="nav-item">
+          <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
+        </li>
+      </ul>
+    <% end %>
   </div>
 </nav>

@@ -17,11 +17,35 @@
 <div class="card card-block card-no-border">
   <h3 class="card-title h5">Photos</h3>
   <div class="row">
-    <% @user.photos.each do |photo| %>
-      <div class="col-xs-4" style="padding: 0.2em;">
-        <%= image_tag(photo.image.url(:thumb), { class: 'img-fluid' }) %>
+    <% @user.photos.ranked.each do |photo| %>
+      <div class="col-xs-4 col-sm-3" style="padding: 0.1em;">
+        <%= image_tag(photo.image.url(:thumb), { class: 'img-fluid', data: { toggle: 'swipebox', rank: photo.rank } }) %>
       </div>
     <% end %>
   </div>
 </div>
+
+<%= content_for :javascripts do %>
+<script>
+<% if logged_in? %>
+$('[data-toggle="swipebox"]').click(function () {
+  $.swipebox(
+    <%= @user.photos.ranked.collect { |p| { href: p.image.url } }.to_json.html_safe %>, {
+      useCSS : true,
+      useSVG : false,
+      initialIndexOnArray : parseInt($(this).data('rank'), 10) - 1,
+      removeBarsOnMobile : true,
+      hideCloseButtonOnMobile : false
+    }
+  );
+});
+<% else %>
+$('[data-toggle="swipebox"]').click(function () {
+  $('#login-modal').modal('show');
+});
+<% end %>
+</script>
+<% end %>
+
+
 <% end %>

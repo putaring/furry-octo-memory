@@ -3,6 +3,7 @@ class ConversationsController < ApplicationController
 
   def show
     @messages = @conversation.messages.order(:id)
+
     # mark all received messages as read
     @messages.where(recipient_id: current_user.id).update_all(read: true)
   end

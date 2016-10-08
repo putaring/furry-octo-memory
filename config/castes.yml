@@ -1,0 +1,92 @@
+---
+
+- name: Aggarwal
+  abbr: agg
+  parent:
+- name: Ambalavasi
+  abbr: amb
+  parent:
+- name: Ahir
+  abbr: ahi
+  parent:
+- name: Arora
+  abbr: aro
+  parent:
+- name: Bania
+  abbr: ban
+  parent:
+- name: Banjara
+  abbr: bnj
+  parent:
+- name: Brahmin
+  abbr: bra
+  parent:
+- name: Bunt
+  abbr: bun
+  parent:
+- name: Chettiar
+  abbr: che
+  parent:
+- name: Dalit
+  abbr: dal
+  parent:
+- name: Dhangar
+  abbr: dha
+  parent:
+- name: Ezhava
+  abbr: ezh
+  parent:
+- name: Gounder
+  abbr: gou
+  parent:
+- name: Kapu
+  abbr: kap
+  parent:
+- name: Kayastha‎
+  abbr: kay
+  parent:
+- name: Khatri
+  abbr: kha
+  parent:
+- name: Kuruba
+  abbr: kur
+  parent:
+- name: Lohana
+  abbr: loh
+  parent:
+- name: Lubana
+  abbr: lub
+  parent:
+- name: Mahar
+  abbr: mah
+  parent:
+- name: Maratha
+  abbr: mar
+  parent:
+- name: Mogaveera
+  abbr: mog
+  parent:
+- name: Mudaliar
+  abbr: mud
+  parent:
+- name: Nadar
+  abbr: nad
+  parent:
+- name: Nair
+  abbr: nai
+  parent:
+- name: Rajput
+  abbr: raj
+  parent:
+- name: Saini
+  abbr: sai
+  parent:
+- name: Sunar
+  abbr: sun
+  parent:
+- name: Thevar
+  abbr: the
+  parent:
+- name: Vanniyar
+  abbr: van
+  parent:

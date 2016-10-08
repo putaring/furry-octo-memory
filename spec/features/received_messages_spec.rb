@@ -25,6 +25,7 @@ feature "Received messages" do
     end
 
     it { should have_content('Last message') }
+    it { should have_content('unread') }
   end
 
 end

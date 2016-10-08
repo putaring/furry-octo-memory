@@ -34,17 +34,10 @@
     <% else %>
       <div class="col-lg-7">
         <% @active_interests.each do |interest| %>
-          <%= render partial: 'likes/liked', locals: { interest: interest, liked: interest.liked } %>
+          <%= render partial: 'likes/like_card', locals: { time: interest.created_at, user: interest.liked } %>
         <% end %>
       </div>
       <div class="col-lg-5">
-        <div class="card card-inverse hidden-md-down" style="background-color:#81C784; border-color:#81C784">
-          <div class="card-block">
-            <p class="card-text text-xs-center" style="color:#fff;">
-              You like them. Haven't heard back? Send a message.
-            </p>
-          </div>
-        </div>
       </div>
     <% end %>
   </div>

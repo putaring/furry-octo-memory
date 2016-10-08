@@ -15,16 +15,16 @@ var validateRegistrationField = function (field) {
         errorMessage = 'Pick a gender.';
         break;
       case 'user_birthdate':
-        errorMessage = 'Men should be at least 21 and women, 18.';
+        errorMessage = 'Enter your birthdate.';
         break;
       case 'user_religion':
         errorMessage = 'Choose your religion.';
         break;
       case 'user_language':
-        errorMessage = 'Select your mother tongue.';
+        errorMessage = 'Pick a language.';
         break;
       case 'user_country':
-        errorMessage = 'Where do you currently live.?';
+        errorMessage = 'Where do you currently live?';
         break;
       case 'user_email':
         errorMessage = 'Enter a valid email address.';

@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_photo
-    @_profile_photo ||= photos.first
+    @_profile_photo ||= photos.find_by(rank: 1)
   end
 
   def country_name
@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
   end
 
   def likes?(other_user)
-    likes.include?(other_user)
+    likes.exists?(other_user)
   end
 
   def gender_expanded
