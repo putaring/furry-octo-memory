@@ -15,7 +15,9 @@
   <div class="form-group">
     <%= f.submit 'Create my account', { data: { disable_with: 'Hang tight…' }, class: 'btn btn-primary btn-block' } %>
     <p class="text-xs-center text-muted">
-      <small>By signing up, you agree to our Terms & Privacy Policy.</small>
+      <small>By signing up, you agree to our
+        <%= link_to 'Terms', terms_path, target: '_blank' %> and <%= link_to 'Privacy policy', privacy_path, target: '_blank' %>.
+      </small>
     </p>
   </div>
 <% end %>

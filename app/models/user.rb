@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
   end
 
   def likes?(other_user)
-    likes.exists?(other_user)
+    likes.find_by(id: other_user.id).present?
   end
 
   def gender_expanded

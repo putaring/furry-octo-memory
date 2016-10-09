@@ -17,9 +17,9 @@ feature "Registration" do
         select '1980',            from: 'user_birthdate_1i'
         select 'Jan',             from: 'user_birthdate_2i'
         select '31',              from: 'user_birthdate_3i'
-        select "I'm female",      from: 'Gender'
+        select "I'm a woman",      from: 'Gender'
         select 'Hindu',           from: 'Religion'
-        select 'India',           from: 'Location'
+        select 'India',           from: 'Where do you live?'
         select 'Malayalam',       from: 'Mother tongue'
         fill_in 'user_email',     with: Faker::Internet.email
         fill_in 'user_password',  with: Faker::Internet.password

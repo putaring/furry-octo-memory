@@ -5,7 +5,7 @@
       <%= link_to root_path, class: 'd-block text-xs-center' do %>
         <%= image_tag 'logo.svg', width: 48 %>
       <% end %>
-      <h1 class="lead text-xs-center m-y-1">Join Roozam</h1>
+      <h1 class="h2 text-xs-center m-y-1">Join Roozam</h1>
         <% if @user.errors.any? %>
           <div class="alert alert-danger">
             The form contains <%= pluralize(@user.errors.count, "error") %>.

@@ -30,13 +30,7 @@ feature 'I like' do
       end
 
       it { should have_content(liked.username) }
-      it { should have_content("Message") }
-      it { should have_content("Haven't heard back? Send a message.") }
 
-      it "should prompt the user page to bring up the message modal" do
-        click_link "Message"
-        expect(page).to have_current_path(user_path(liked, message_dialog: true))
-      end
     end
   end
 end

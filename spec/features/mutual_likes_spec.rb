@@ -41,8 +41,6 @@ feature 'Mutual likes' do
       end
 
       it { should have_content(liker.username) }
-      it { should have_content("Message") }
-      it { should have_content("Fantastic! You like each other. Send a message now to keep the flame burning.") }
     end
   end
 end
