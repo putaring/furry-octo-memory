@@ -6,7 +6,7 @@
 <div class="form-group">
   <%= f.label :birthdate, 'Birthday' %>
   <% if browser.platform.android? || browser.platform.ios? %>
-    <%= f.date_field :birthdate, class: 'form-control', value: 21.years.ago.to_date, max: 18.years.ago, min: 60.years.ago, required: true %>
+    <%= f.date_field :birthdate, class: 'd-block', max: 18.years.ago, min: 60.years.ago, required: true %>
   <% else %>
   <div class="row">
     <%= f.date_select :birthdate, { use_short_month: true, start_year: 60.years.ago.year, end_year: 17.years.ago.year, prompt: { day: 'Day', month: 'Month', year: 'Year' }, order: [:month, :day, :year]}, { class: 'form-control form-control p-l-0 p-r-0', required: true } %>
