@@ -1,10 +1,9 @@
 class Photo < ActiveRecord::Base
   attr_accessor :image_x, :image_y, :image_width
 
-  default_scope { order(:rank) }
-
   belongs_to :user
 
+  scope :ranked, -> { order(:rank) }
   mount_uploader :image, PhotoUploader
 
   validates_presence_of     :rank, :image
@@ -19,7 +18,7 @@ class Photo < ActiveRecord::Base
   def make_profile_photo
     update_attributes(rank: 1)
   end
-  
+
   private
 
   def set_rank

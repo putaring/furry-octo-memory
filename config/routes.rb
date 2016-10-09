@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
+  get     'terms',    to: 'static_pages#terms'
+  get     'privacy',  to: 'static_pages#terms'
+  get     'about',    to: 'static_pages#about'
 
-  get     'signup', to: 'users#new'
+  get     'signup',   to: 'users#new'
 
-  get     'login',   to: 'sessions#new'
-  post    'login',   to: 'sessions#create'
-  delete  'logout',  to: 'sessions#destroy'
+  get     'login',    to: 'sessions#new'
+  post    'login',    to: 'sessions#create'
+  delete  'logout',   to: 'sessions#destroy'
 
   get     'onboarding/about'
   patch   'onboarding/about', to: 'onboarding#update_about'

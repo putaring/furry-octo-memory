@@ -23,7 +23,7 @@
 <section class="container m-t-2">
   <div class="row">
     <div class="col-lg-7">
-      <% total_messages = @messages.to_a.count; display_count = 4; %>
+      <% total_messages = @messages.to_a.count; display_count = 3; %>
       <% if total_messages > display_count %>
       <p class="text-xs-center">
         <%= link_to "Show older messages (#{total_messages - display_count})", '', class: 'btn btn-outline-primary', id: 'older-messages-btn' %>

@@ -1,39 +1,10 @@
 <%= form_for @user, html: { class: 'm-t-1' } do |f| %>
-  <div class="form-group">
-    <%= f.label :gender, class: "sr-only" %>
-    <%= f.select :gender, [["I'm male", 'm'], ["I'm female", 'f']], {prompt: 'Gender'}, { class: 'form-control', required: true } %>
-    <small class="text-danger"></small>
-  </div>
-  <div class="form-group">
-    <%= f.label :birthdate, 'Birthday' %>
-    <% if browser.platform.android? || browser.platform.ios? %>
-      <%= f.date_field :birthdate, class: 'form-control', max: 18.years.ago, min: 60.years.ago, required: true %>
-      <small class="text-danger"></small>
-    <% else %>
-    <div class="row">
-      <%= f.date_select :birthdate, { use_short_month: true, start_year: 60.years.ago.year, end_year: 17.years.ago.year, prompt: { day: 'Day', month: 'Month', year: 'Year' }, order: [:month, :day, :year]}, { class: 'form-control form-control p-l-0 p-r-0', required: true } %>
-    </div>
-    <% end %>
-  </div>
-  <div class="form-group">
-    <%= f.label :religion, class: "sr-only" %>
-    <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: 'Religion' }, { class: 'form-control', required: true } %>
-    <small class="text-danger"></small>
-  </div>
-  <div class="form-group">
-    <%= f.label :language, 'Mother tongue', class: "sr-only" %>
-    <%= f.select :language, LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
-    <small class="text-danger"></small>
-  </div>
-  <div class="form-group">
-    <%= f.label :country, 'Location', class: "sr-only" %>
-    <%= f.country_select :country, { prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
-    <small class="text-danger"></small>
-  </div>
+  <%= render partial: 'users/profile_details', locals: { f: f, show_label: false } %>
   <div class="form-group">
     <%= f.label :email, class: "sr-only" %>
     <%= f.email_field :email , { class: 'form-control', required: true, placeholder: "Your current email address" } %>
     <small class="text-danger"></small>
+    <small class="form-text text-muted d-block">You'll need this to log in and get notifications.</small>
   </div>
   <div class="form-group">
     <%= f.label :password, class: "sr-only" %>
@@ -44,7 +15,9 @@
   <div class="form-group">
     <%= f.submit 'Create my account', { data: { disable_with: 'Hang tight…' }, class: 'btn btn-primary btn-block' } %>
     <p class="text-xs-center text-muted">
-      <small>By signing up, you agree to our Terms & Privacy Policy.</small>
+      <small>By signing up, you agree to our
+        <%= link_to 'Terms', terms_path, target: '_blank' %> and <%= link_to 'Privacy policy', privacy_path, target: '_blank' %>.
+      </small>
     </p>
   </div>
 <% end %>

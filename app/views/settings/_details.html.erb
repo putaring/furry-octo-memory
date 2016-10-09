@@ -8,37 +8,7 @@
       <div class="alert alert-success edit_success" style="display:none">
         Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
       </div>
-      <div class="form-group">
-        <%= f.label :gender %>
-        <%= f.select :gender, [["I'm male", 'm'], ["I'm female", 'f']], {prompt: 'Gender'}, { class: 'form-control', required: true } %>
-        <small class="text-danger"></small>
-      </div>
-      <div class="form-group">
-        <%= f.label :birthdate, 'Birthday' %>
-        <% if browser.platform.android? || browser.platform.ios? %>
-          <%= f.date_field :birthdate, class: 'form-control', max: 18.years.ago, min: 60.years.ago, required: true %>
-          <small class="text-danger"></small>
-        <% else %>
-        <div class="row">
-          <%= f.date_select :birthdate, { use_short_month: true, start_year: 60.years.ago.year, end_year: 17.years.ago.year, prompt: { day: 'Day', month: 'Month', year: 'Year' }, order: [:month, :day, :year]}, { class: 'form-control form-control p-l-0 p-r-0', required: true } %>
-        </div>
-        <% end %>
-      </div>
-      <div class="form-group">
-        <%= f.label :religion %>
-        <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: 'Religion' }, { class: 'form-control', required: true } %>
-        <small class="text-danger"></small>
-      </div>
-      <div class="form-group">
-        <%= f.label :language, 'Mother tongue' %>
-        <%= f.select :language, LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
-        <small class="text-danger"></small>
-      </div>
-      <div class="form-group">
-        <%= f.label :country, 'Location' %>
-        <%= f.country_select :country, { prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
-        <small class="text-danger"></small>
-      </div>
+      <%= render partial: 'users/profile_details', locals: { f: f, show_label: true } %>
       <div class="form-group">
         <%= f.submit 'Update', { data: { disable_with: 'Updating' }, class: 'btn btn-primary' } %>
       </div>

@@ -23,8 +23,9 @@
                   <% else %>
                     <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-accent user-like-btn') %>
                   <% end %>
-                  <%= link_to('Message', '', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
-                  <a href="#" class="btn btn-outline-secondary btn-lg"><i class="fa fa-ellipsis-h"></i></a>
+                  <%= link_to('', { class: 'btn btn-lg btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) do %>
+                  Message
+                  <% end %>
                 <% end %>
               <% else %>
                 <%= link_to('Join now', signup_path, { class: 'btn btn-lg btn-primary' }) %>

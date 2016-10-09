@@ -1,8 +1,11 @@
-<% provide(:title, 'Login') %>
+<% provide(:title, 'Log in to Roozam') %>
 <section class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 m-t-2">
-      <h1 class="text-xs-center h2 brand m-b-1"><%= link_to "Roozam", root_path %></h1>
+      <%= link_to root_path, class: 'd-block text-xs-center' do %>
+        <%= image_tag 'logo.svg', width: 48 %>
+      <% end %>
+      <h1 class="h2 text-xs-center m-y-1">Log in to Roozam</h1>
       <% if flash.present? %>
       <div class="alert alert-danger" role="alert">
         <%= flash.now[:error] %>

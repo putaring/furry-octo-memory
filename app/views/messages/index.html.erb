@@ -31,11 +31,9 @@
       </div>
     <% else %>
       <div class="col-lg-7">
-        <div class="card card-block">
-          <% @messages.each do |message| %>
-            <%= render partial: 'messages/received_message', locals: { message: message, sender: message.sender } %>
-          <% end %>
-        </div>
+        <% @messages.each do |message| %>
+          <%= render partial: 'messages/message_card', locals: { message: message, user: message.sender } %>
+        <% end %>
       </div>
       <div class="col-lg-5">
       </div>

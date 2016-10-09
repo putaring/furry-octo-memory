@@ -14,6 +14,7 @@ gem 'language_list'
 gem 'browser'
 gem 'carrierwave'
 gem 'mini_magick'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
@@ -35,6 +36,7 @@ group :development, :test do
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil
+gem 'bullet', group: 'development'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

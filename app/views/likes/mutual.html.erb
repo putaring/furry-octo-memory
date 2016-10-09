@@ -34,17 +34,10 @@
     <% else %>
       <div class="col-lg-7">
         <% @mutual_interests.each do |interest| %>
-          <%= render partial: 'likes/mutual', locals: { interest: interest, match: interest.liked } %>
+          <%= render partial: 'likes/like_card', locals: { time: interest.matched_at, user: interest.liked } %>
         <% end %>
       </div>
       <div class="col-lg-5">
-        <div class="card card-inverse hidden-md-down" style="background-color:#FF8A80; border-color:#FF8A80;">
-          <div class="card-block">
-            <p class="card-text text-xs-center" style="color:#fff;">
-              Fantastic! You like each other. Send a message now to keep the flame burning.
-            </p>
-          </div>
-        </div>
       </div>
     <% end %>
   </div>

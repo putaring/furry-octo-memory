@@ -30,8 +30,6 @@ feature 'Likes me' do
       end
 
       it { should have_content(liker.username) }
-      it { should have_content("Like back") }
-      it { should have_content("One of them could be your better half. Connect with them now to find out.") }
     end
   end
 end

@@ -16,7 +16,7 @@ feature "Sent messages" do
     it { should have_content('Take the initiative to contact people you like.') }
   end
 
-  context "has sent messages" do
+  context "has unread sent messages" do
     background do
       create(:message, sender: user, conversation: conversation, body: "First message")
       create(:message, sender: user, conversation: conversation, body: "Second message")
@@ -25,6 +25,7 @@ feature "Sent messages" do
     end
 
     it { should have_content('Last message') }
+    it { should have_content('unread') }
   end
 
 end
