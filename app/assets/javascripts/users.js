@@ -8,6 +8,23 @@ var validateRegistrationField = function (field) {
     $(field).removeClass('form-control-danger').addClass('form-control-success').
       siblings('.text-danger').text('').end().
       parent('.form-group').addClass('has-success').removeClass('has-danger');
+
+    if(field.id == 'user_height') {
+      var height  = $(field).val(),
+          gender  = $('#user_gender').val();
+      if (gender === 'm' && (height > 72 && height <= 75 )) {
+        $(field).siblings('.text-success').text('Whoa! Hey there handsome ;-)').show();
+      } else if (gender === 'm' && (height <= 72 && height >= 70 )) {
+        $(field).siblings('.text-success').text('Ah! Perfect.').show();
+      } else if (gender === 'f' && (height >= 67 && height <= 70 )) {
+        $(field).siblings('.text-success').text('Whoa! Hey there gorgeous ;-)').show();
+      } else if (gender === 'f' && (height >= 53 && height < 60 )) {
+        $(field).siblings('.text-success').text('Good things come in small packages :-)').show();
+      } else {
+        $(field).siblings('.text-success').hide();
+      }
+    }
+
   } else {
     var errorMessage = '';
     switch (field.id) {
@@ -16,6 +33,10 @@ var validateRegistrationField = function (field) {
         break;
       case 'user_birthdate':
         errorMessage = 'Enter your birthdate.';
+        break;
+      case 'user_height':
+        errorMessage = 'Enter your height.';
+        $(field).siblings('.text-success').hide();
         break;
       case 'user_religion':
         errorMessage = 'Choose your religion.';

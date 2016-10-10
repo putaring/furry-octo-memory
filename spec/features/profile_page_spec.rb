@@ -32,7 +32,7 @@ feature "Profile page" do
   describe "profile details" do
     background { visit user_path(user) }
     it { should have_title("#{user.username} / #{user.age} / #{user.country_name} • Roozam") }
-    it { should have_content('21 year old Christian woman') }
+    it { should have_content('21 year old, 6 ft tall woman') }
     it { should have_content('Mother tongue is English') }
     it { should have_content('Lives in the United States') }
   end

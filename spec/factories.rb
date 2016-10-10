@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :user, aliases: [:sender, :recipient, :liker, :liked] do
     gender        { 'f' }
     birthdate     { 21.years.ago }
+    height        { 72 }
     religion      { User.religions.keys.sample }
     language      { LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3).sample }
     country       { Faker::Address.country_code }
