@@ -31,10 +31,12 @@
     <% else %>
 
 
-      <div class="col-lg-7 p-a-1" style="background:#f6fbff;">
-        <% @photos.ranked.each do |photo| %>
-          <%= render partial: 'photos/photo', locals: { photo: photo } %>
-        <% end %>
+      <div class="col-lg-7 p-a-1">
+        <div class="row">
+          <% @photos.ranked.each do |photo| %>
+            <%= render partial: 'photos/photo', locals: { photo: photo } %>
+          <% end %>
+        </div>
       </div>
       <div class="col-lg-5">
         <div class="row">

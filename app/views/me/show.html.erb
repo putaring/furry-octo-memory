@@ -1,3 +1,4 @@
 <% provide(:title, 'Dashboard') %>
 <%= render partial: 'shared/main_nav' %>
 <%= current_user.username %>, <%= current_user.country %>
+<small class="form-text text-muted d-block">Take a minute to increase your chances of standing out by telling <%= current_user.male? ? 'women' : 'your matches' %> a little about yourself.</small>

@@ -9,7 +9,7 @@
         Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
       </div>
       <%= render partial: 'users/profile_details', locals: { f: f, show_label: true } %>
-      <div class="form-group">
+      <div class="form-group text-xs-right">
         <%= f.submit 'Update', { data: { disable_with: 'Updating' }, class: 'btn btn-primary' } %>
       </div>
       <% end %>

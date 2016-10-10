@@ -53,6 +53,19 @@ feature "Profile page" do
     it { should have_content('Message') }
   end
 
+  context "Logged in and viewing my profile page" do
+    background do
+      visit login_path
+      login(user)
+      visit user_path(user)
+    end
+
+    context "Empty about me" do
+      it { should have_content("You haven't written anything yet.") }
+      it { should have_content("Add a brief description") }
+    end
+  end
+
   context "logged in viewing a match whom you've expressed interest in" do
     background do
       interest = create(:interest)

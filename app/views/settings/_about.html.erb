@@ -4,21 +4,7 @@
   </p>
   <div class="row">
     <div class="col-lg-8">
-      <%= form_for(@profile, url: profile_path, remote: true) do |f| %>
-        <div class="alert alert-danger edit_errors" style="display:none">
-        </div>
-        <div class="alert alert-success edit_success" style="display:none">
-          Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
-        </div>
-        <div class="form-group">
-          <%= f.label :about, 'Update your description', class: "sr-only" %>
-          <%= f.text_area :about, { class: 'form-control', placeholder: 'How would your family describe you?', rows: 7} %>
-          <small class="form-text text-muted d-block">Take a minute to increase your chances of standing out by telling <%= current_user.male? ? 'women' : 'your matches' %> a little about yourself.</small>
-        </div>
-        <div class="form-group">
-          <%= f.submit 'Update', { data: { disable_with: 'Updating' }, class: 'btn btn-primary' } %>
-        </div>
-      <% end %>
+      <%= render partial: 'profiles/about_form' %>
     </div>
   </div>
 </div>
