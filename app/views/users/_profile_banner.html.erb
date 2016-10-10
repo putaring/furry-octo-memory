@@ -8,15 +8,16 @@
           </div>
           <div class="col-md-8 pull-md-4 text-md-left text-xs-center p-t-1">
             <h2 class="h3"><%= @user.username %></h1>
-            <p class="lead">
-              <%= @user.age %> <span class="text-muted">year old</span> <%= @user.religion.humanize %> <%= @user.gender_expanded %><br>
+            <p>
+              <%= @user.age %> <span class="text-muted">year old</span>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span> <%= @user.gender_expanded %><br>
+              <%= @user.religion.humanize %><br>
               <span class="text-muted">Mother tongue is</span> <%= @user.language_expanded %> <br>
               <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
             </p>
             <p>
               <% if logged_in? %>
                 <% if current_user == @user %>
-                  <%= link_to 'Edit profile', profile_settings_path, class: 'btn btn-primary btn-lg' %>
+                  <%= link_to 'Edit profile', profile_settings_path, class: 'btn btn-outline-primary btn-lg' %>
                 <% else %>
                   <% if current_user.likes?(@user) %>
                     <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-outline-accent user-like-btn') %>

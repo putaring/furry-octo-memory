@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   get 'mutual-likes', to: 'likes#mutual'
 
   resources :conversations, only: :show
+  resources :photos, only: [:index, :create, :destroy] do
+    patch 'make-profile-photo', on: :member
+  end
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update]

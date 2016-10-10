@@ -6,7 +6,7 @@
 <div class="form-group">
   <%= f.label :birthdate, 'Birthday' %>
   <% if browser.platform.android? || browser.platform.ios? %>
-    <%= f.date_field :birthdate, class: 'form-control', value: 21.years.ago.to_date, max: 18.years.ago, min: 60.years.ago, required: true %>
+    <%= f.date_field :birthdate, class: 'form-control', value: 21.years.ago.beginning_of_year.to_date, max: 18.years.ago, min: 60.years.ago, required: true %>
   <% else %>
   <div class="row">
     <%= f.date_select :birthdate, { use_short_month: true, start_year: 60.years.ago.year, end_year: 17.years.ago.year, prompt: { day: 'Day', month: 'Month', year: 'Year' }, order: [:month, :day, :year]}, { class: 'form-control form-control p-l-0 p-r-0', required: true } %>
@@ -15,6 +15,12 @@
   <% end %>
   <small class="text-danger form-text"></small>
   <small class="form-text text-muted">Women should be 18 years old and men must be 21. It's the law.</small>
+</div>
+<div class="form-group">
+  <%= f.label :height, class: show_label ? '' : "sr-only" %>
+  <%= f.select :height,  (48..84).map { |height_in_inches| [metric_height(height_in_inches), height_in_inches] }, { prompt: 'How tall are you?' }, { class: 'form-control', required: true } %>
+  <small class="text-danger form-text"></small>
+  <small class="text-success form-text"></small>
 </div>
 <div class="form-group">
   <%= f.label :religion, class: show_label ? '' : "sr-only" %>

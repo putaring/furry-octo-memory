@@ -1,0 +1,13 @@
+<div class="row m-b-1">
+  <div class="col-xs-12 text-xs-center">
+    <%= image_tag(photo.image.url(:thumb), style: 'max-height: 350px', class: 'img-fluid d-inline', data: { toggle: 'swipebox', rank: photo.rank } ) %>
+  </div>
+  <div class="col-xs-12 text-xs-center m-y-1">
+    <% if photo.rank == 1 %>
+      <span class="text-success lead p-a-1" style="border:0;">&#x2714; Your profile photo</span>
+    <% else %>
+      <%= link_to 'Make profile photo', make_profile_photo_photo_path(photo), class: 'btn btn-lg btn-outline-success', method: :patch %>
+    <% end %>
+    <%= link_to 'Delete', photo_path(photo), class: 'btn btn-lg btn-outline-danger', method: :delete %>
+  </div>
+</div>

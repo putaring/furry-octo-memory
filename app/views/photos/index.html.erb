@@ -1,0 +1,65 @@
+<% provide(:title, 'My photos') %>
+<%= render partial: 'shared/main_nav' %>
+
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Photos of me</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container m-t-2">
+  <div class="row">
+    <% if @photos.empty? %>
+    <div class="col-xs-12">
+      <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
+        <div class="lead text-xs-center p-y-3">
+
+          You haven't added any photos.<br>
+          <small class="m-b-1 d-block">
+            Most <%= current_user.male? ? 'men' : 'women' %> on Roozam have a photo.
+            Adding a photo greatly increases your chances of being contacted by <%= current_user.female? ? 'a match' : 'women' %>.
+          </small>
+
+          <%= render partial: 'photos/photo_form' %>
+        </div>
+      </div>
+    </div>
+    <% else %>
+
+
+      <div class="col-lg-7 p-a-1" style="background:#f6fbff;">
+        <% @photos.ranked.each do |photo| %>
+          <%= render partial: 'photos/photo', locals: { photo: photo } %>
+        <% end %>
+      </div>
+      <div class="col-lg-5">
+        <div class="row">
+          <div class="col-xs-12 text-xs-center">
+            <%= render partial: 'photos/photo_form' %>
+          </div>
+        </div>
+      </div>
+
+      <%= content_for :javascripts do %>
+      <script>
+      $('[data-toggle="swipebox"]').click(function () {
+        $.swipebox(
+          <%= @photos.ranked.collect { |p| { href: p.image.url } }.to_json.html_safe %>, {
+            useCSS : true,
+            useSVG : false,
+            initialIndexOnArray : parseInt($(this).data('rank'), 10) - 1,
+            removeBarsOnMobile : true,
+            hideCloseButtonOnMobile : false
+          }
+        );
+      });
+      </script>
+      <% end %>
+
+    <% end %>
+  </div>
+</section>

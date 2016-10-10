@@ -18,7 +18,7 @@
         jcropApi.destroy();
     });
 
-    $modal.find('button').click(function () {
+    $modal.find('.btn-primary').click(function () {
       $photoForm.submit();
       $modal.modal('hide');
     });

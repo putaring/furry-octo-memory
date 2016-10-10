@@ -21,6 +21,7 @@ feature "Registration" do
         select 'Hindu',           from: 'Religion'
         select 'India',           from: 'Where do you live?'
         select 'Malayalam',       from: 'Mother tongue'
+        select '6 ft',            from: 'Height'
         fill_in 'user_email',     with: Faker::Internet.email
         fill_in 'user_password',  with: Faker::Internet.password
       end
