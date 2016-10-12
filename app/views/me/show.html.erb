@@ -1,4 +1,63 @@
 <% provide(:title, 'Dashboard') %>
 <%= render partial: 'shared/main_nav' %>
-<%= current_user.username %>, <%= current_user.country %>
-<small class="form-text text-muted d-block">Take a minute to increase your chances of standing out by telling <%= current_user.male? ? 'women' : 'your matches' %> a little about yourself.</small>
+
+<style>
+.list-group-item {
+  border: 0;
+  background-color: #f6fbff;
+}
+
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="display-4 m-t-2 text-muted text-xs-center text-md-left">Welcome to Roozam!</h1>
+      <p class="lead text-muted text-xs-center text-md-left">
+        Get started in 3 easy steps.
+      </p>
+
+      <div class="list-group">
+        <a href="/photos" class="list-group-item list-group-item-action p-y-2 p-x-1 m-y-1">
+          <div class="row">
+            <div class="col-xs-3 col-md-2">
+              <%= image_tag 'camera.svg', class: 'img-fluid' %>
+            </div>
+            <div class="col-xs-9 col-md-10">
+              <p class="list-group-item-heading text-primary h4">Add some photos</p>
+              <p class="list-group-item-text">Everyone wants to know what you look like. Upload your best pictures to get more likes.</p>
+            </div>
+          </div>
+        </a>
+        <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
+          <div class="row">
+            <div class="col-xs-3 col-md-2">
+              <%= image_tag 'fill.svg', class: 'img-fluid' %>
+            </div>
+            <div class="col-xs-9 col-md-10">
+              <p class="list-group-item-heading text-primary h4">Fill out your profile</p>
+              <p class="list-group-item-text">Tell everyone a little about yourself. Keep your description and essays short, sweet, and accurate.</p>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
+          <div class="row">
+            <div class="col-xs-3 col-md-2">
+              <%= image_tag 'search.svg', class: 'img-fluid' %>
+            </div>
+            <div class="col-xs-9 col-md-10">
+              <p class="list-group-item-heading text-primary h4">Search for your match</p>
+              <p class="list-group-item-text">Find someone who you like. Start a conversation. Grab a coffee. Get married. It's that simple.</p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4">
+
+    </div>
+  </div>
+</div>
+<!--small class="form-text text-muted d-block">Take a minute to increase your chances of standing out by telling <%= current_user.male? ? 'women' : 'your matches' %> a little about yourself.</small-->
