@@ -6,6 +6,11 @@
     <% if logged_in? %>
       <ul class="nav navbar-nav pull-xs-right">
         <li class="nav-item">
+          <%= link_to search_path, { class: 'nav-link', title: "Browse matches", data: { toggle: "tooltip", placement: "bottom" } } do %>
+            <%= image_tag 'search.svg', width: 30 %>
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= link_to likes_me_path, { class: 'nav-link', title: "Likes", data: { toggle: "tooltip", placement: "bottom" } } do %>
             <%= image_tag 'like.svg', width: 30 %>
           <% end %>
