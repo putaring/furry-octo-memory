@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, case_sensitive: false,
     if: ->(u) { u.username_changed? }
 
-  validate :old_enough?, if: ->(u) { u.birthdate_changed? }
+  validate :old_enough?, if: ->(u) { u.birthdate_changed? || u.gender_changed? }
 
   before_create :assign_random_username, :set_default_profile, :set_default_preferences
 
@@ -122,7 +122,7 @@ class User < ActiveRecord::Base
 
   def old_enough?
     minimum_age = gender.eql?('m') ? 21 : 18
-    errors.add(:birthdate, "shows you're too young. You must be at least #{minimum_age} years") unless birthdate <= minimum_age.years.ago
+    errors.add(:birthdate, "indicates that you're underage. #{gender.eql?('m') ? 'Men' : 'Women'} must be at least #{minimum_age} years old.") unless birthdate <= minimum_age.years.ago
   end
 
   def set_default_preferences

@@ -34,6 +34,6 @@
 </div>
 <div class="form-group">
   <%= f.label :country, 'Where do you live?', class: show_label ? '' : "sr-only" %>
-  <%= f.country_select :country, { prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
+  <%= f.select :country, ISO3166::Country.with_indian_population.map { |country| [country.name, country.alpha2] } ,{ prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
   <small class="text-danger"></small>
 </div>

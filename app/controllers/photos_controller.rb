@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
     @photo.image  = photo_params[:image]
 
     if @photo.save
-      redirect_to photos_path, notice: 'Added photo'
+      redirect_to photos_path, notice: 'Added. You look fantastic.'
     else
       render 'index'
     end
@@ -19,7 +19,7 @@ class PhotosController < ApplicationController
   def make_profile_photo
     @photo = current_user.photos.find(params[:id])
     if @photo && @photo.make_profile_photo
-      redirect_to photos_path, notice: 'Profile photo updated.'
+      redirect_to photos_path, notice: 'Profile photo changed.'
     else
       render 'index'
     end
@@ -28,7 +28,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo = current_user.photos.find(params[:id])
     if @photo && @photo.destroy
-      redirect_to photos_path, notice: 'Deleted photo'
+      redirect_to photos_path, notice: 'Deleted.'
     else
       render 'index'
     end

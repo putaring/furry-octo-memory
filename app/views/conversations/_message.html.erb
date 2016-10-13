@@ -4,7 +4,7 @@
       <%= image_tag(sender.display_picture_for(current_user, :small_thumb), { class: 'img-circle', width: 70 })%>
     <% end %>
   </div>
-  <div class="media-body p-a-1" style="background-color:<%= sender.eql?(current_user) ? '#E8F5E9' : '#E3F2FD' %>;color:#5e6573">
+  <div class="media-body p-a-1" style="background-color:<%= sender.eql?(current_user) ? '#E8F5E9' : '#E1F5FE' %>;color:#5e6573">
     <%= simple_format message.body, class: 'message-body' %>
     <small class="text-muted">Sent <%= time_ago_in_words(message.created_at) %> ago</small>
   </div>
