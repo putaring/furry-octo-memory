@@ -1,7 +1,7 @@
 <% provide(:title, 'Inbox') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 feature-jumbotron">
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -26,7 +26,8 @@
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
           0 messages<br>
-          <small>Take the initiative to contact your matches.</small>
+          <small>Be the first to start a conversation.</small><br>
+          <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
         </p>
       </div>
     <% else %>

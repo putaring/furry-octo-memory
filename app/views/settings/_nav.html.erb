@@ -1,8 +1,11 @@
-<div class="card card-block">
-  <p class="card-title">Settings</p><hr />
-  <nav class="nav nav-pills nav-stacked">
+<ul class="nav nav-pills">
+  <li class="nav-item">
     <%= link_to 'Profile', profile_settings_path, class: params[:action].eql?('profile') ? 'nav-link active' : 'nav-link' %>
+  </li>
+  <li class="nav-item">
     <%= link_to 'About', about_settings_path, class: params[:action].eql?('about') ? 'nav-link active' : 'nav-link' %>
+  </li>
+  <li class="nav-item">
     <%= link_to 'Preferences', preferences_settings_path, class: params[:action].eql?('preferences') ? 'nav-link active' : 'nav-link' %>
-  </nav>
-</div>
+  </li>
+</ul>

@@ -2,14 +2,31 @@
 
 <%= render partial: 'shared/main_nav' %>
 
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1>Edit your profile</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container p-y-1">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'settings/nav' %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container m-t-1">
   <div class="row">
-    <div class="col-lg-9 push-lg-3">
+    <div class="col-lg-9">
       <%= render partial: 'settings/username' %>
       <%= render partial: 'settings/details' %>
-    </div>
-    <div class="col-lg-3 pull-lg-9">
-      <%= render partial: 'settings/nav' %>
     </div>
   </div>
 </div>

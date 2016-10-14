@@ -1,7 +1,7 @@
 <% provide(:title, 'My photos') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 feature-jumbotron">
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -10,12 +10,13 @@
     </div>
   </div>
 </div>
-<% if flash.notice.present? %>
-<div class="alert alert-success text-xs-center">
-  <strong>✔</strong> <%= flash.notice %>
-</div>
-<% end %>
+
 <section class="container m-t-2">
+  <% if flash.notice.present? %>
+  <div class="alert alert-success text-xs-center">
+    <strong>✔</strong> <%= flash.notice %>
+  </div>
+  <% end %>
   <div class="row">
     <% if @photos.empty? %>
     <div class="col-xs-12">

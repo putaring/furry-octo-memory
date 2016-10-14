@@ -1,7 +1,7 @@
 <% provide(:title, 'People I like') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 feature-jumbotron">
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -26,8 +26,8 @@
     <div class="col-xs-12">
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
-          You haven't liked anybody yet.<br>
-          <small>Like people you're interested in to know if they like you back.</small>
+          You haven't liked anybody yet<br>
+          <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
         </p>
       </div>
     </div>
