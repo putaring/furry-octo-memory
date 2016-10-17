@@ -6,13 +6,11 @@ $(function() {
     if (xhr.status === 201) {
       // liked
       $.snackbar({
-        content: "Liked. We'll let them know",
+        content: "Liked.",
         style: "snackbar",
         timeout: 5000
       });
       $(this).text('Unlike').
-        removeClass('btn-accent').
-        addClass('btn-outline-accent').
         data('method', 'delete');
     } else {
       // unliked
@@ -22,8 +20,6 @@ $(function() {
         timeout: 5000
       });
       $(this).text($(this).data('likeText') || 'Like').
-        addClass('btn-accent').
-        removeClass('btn-outline-accent').
         data('method', 'post');
     }
   }).on('ajax:before', function () {

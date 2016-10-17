@@ -9,6 +9,7 @@
 @import "likes";
 @import "snackbar_material";
 @import "swipebox";
+@import "search";
 
 .card {
   &.card-no-border {
@@ -50,4 +51,8 @@
   h1 {
     font-weight: 300;
   }
+}
+
+.thin {
+  font-weight: 300;
 }

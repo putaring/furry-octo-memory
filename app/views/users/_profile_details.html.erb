@@ -1,7 +1,7 @@
 <div class="form-group">
   <%= f.label :gender, class: show_label ? '' : "sr-only" %>
   <%= f.select :gender, [["I'm a man", 'm'], ["I'm a woman", 'f']], {prompt: 'Gender'}, { class: 'form-control', required: true } %>
-  <small class="text-danger"></small>
+  <small class="text-danger form-text"></small>
 </div>
 <div class="form-group">
   <%= f.label :birthdate, 'Birthday' %>
@@ -14,7 +14,7 @@
   </div>
   <% end %>
   <small class="text-danger form-text"></small>
-  <small class="form-text text-muted">Women should be at least 18 years old and men must be 21. It's the law.</small>
+  <small class="form-text text-muted">Women should be 18 years old and men must be 21.</small>
 </div>
 <div class="form-group">
   <%= f.label :height, class: show_label ? '' : "sr-only" %>

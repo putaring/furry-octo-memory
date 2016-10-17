@@ -1,11 +1,11 @@
 <% provide(:title, "Conversation with #{@conversation.other_participant(current_user).username}") %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
+<div class="jumbotron jumbotron-fluid text-xs-center bg-primary m-b-0">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1><span class="text-muted">Conversation with</span> <%= @conversation.other_participant(current_user).username %></h1>
+        <h1 class="thin">Conversation with <%= @conversation.other_participant(current_user).username %></h1>
       </div>
     </div>
   </div>

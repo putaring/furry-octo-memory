@@ -1,5 +1,5 @@
 <% if @user.about.present? %>
-<div class="card card-block card-outline-secondary" style="border-color: transparent">
+<div class="card card-block" style="border-color: transparent;">
   <h3 class="card-title h5">About me</h3>
   <%= simple_format(@user.about, { class: 'card-text', style: 'color: #5e6573' }) %>
 </div>
@@ -11,7 +11,7 @@
         You haven't written anything yet.<br>
         <small>
           <%= link_to about_settings_path, data: { toggle: 'modal', target: '#about-modal' }  do %>
-          Add a brief description <span class="text-success">&#x270E;</span>
+          Add a brief description
           <% end %>
         </small>
       </p>

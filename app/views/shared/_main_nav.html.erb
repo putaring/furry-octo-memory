@@ -1,7 +1,8 @@
 <nav class="navbar navbar-full navbar-light">
   <div class="container">
-    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand font-weight-bold text-muted' } do %>
-    <%= image_tag 'logo.svg', width: 30, title: 'Roozam logo', class: 'd-inline' %> Roozam
+    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand text-muted' } do %>
+    <%= image_tag 'logo.svg', height: 30, title: 'Roozam logo', class: 'd-inline' %>
+    <%= 'Roozam' unless logged_in? %>
     <% end %>
     <% if logged_in? %>
       <ul class="nav navbar-nav pull-xs-right">

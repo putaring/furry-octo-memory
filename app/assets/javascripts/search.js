@@ -1,10 +1,11 @@
 $('[type="checkbox"][data-toggle="languages"]').change(function (e) {
   if ($(this).is(":checked")) {
-    $('[type="checkbox"][name="language"]').prop('checked', false);
+    $('[type="checkbox"][name="languages[]"]').
+    prop('checked', false);
   }
 });
 
-$('[type="checkbox"][name="language"]').change(function (e) {
+$('[type="checkbox"][name="languages[]"]').change(function (e) {
   if ($(this).is(":checked")) {
     $('[type="checkbox"][data-toggle="languages"]').prop('checked', false);
   }
@@ -12,11 +13,12 @@ $('[type="checkbox"][name="language"]').change(function (e) {
 
 $('[type="checkbox"][data-toggle="countries"]').change(function (e) {
   if ($(this).is(":checked")) {
-    $('[type="checkbox"][name="country"]').prop('checked', false);
+    $('[type="checkbox"][name="countries[]"]').
+    prop('checked', false);
   }
 });
 
-$('[type="checkbox"][name="country"]').change(function (e) {
+$('[type="checkbox"][name="countries[]"]').change(function (e) {
   if ($(this).is(":checked")) {
     $('[type="checkbox"][data-toggle="countries"]').prop('checked', false);
   }

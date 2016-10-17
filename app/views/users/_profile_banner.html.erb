@@ -1,35 +1,35 @@
-<div class="jumbotron jumbotron-fluid m-b-1 p-y-1" style="background-color:#f9fcff;">
+<div class="jumbotron jumbotron-fluid p-y-1 bg-primary" style="background-color: #0288D1 !important;">
   <div class="container">
     <div class="row">
-      <div class="col-md-10 offset-md-1">
+      <div class="col-lg-8 offset-lg-2">
         <div class="row">
           <div class="col-md-4 push-md-8 p-t-1">
-            <%= image_tag @user.display_picture_for(current_user), { class: 'img-rounded img-fluid m-x-auto' } %>
+            <%= image_tag @user.display_picture_for(current_user), { class: 'img-circle img-fluid m-x-auto', style: "border: 5px solid #fff; max-height: 250px;" } %>
           </div>
           <div class="col-md-8 pull-md-4 text-md-left text-xs-center p-t-1">
             <h2 class="h3"><%= @user.username %></h1>
             <p>
-              <%= @user.age %> <span class="text-muted">year old</span>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span> <%= @user.gender_expanded %><br>
+              <%= @user.age %> year old, <%= metric_height(@user.height) %> tall <%= @user.gender_expanded %><br>
               <%= @user.religion.humanize %><br>
-              <span class="text-muted">Mother tongue is</span> <%= @user.language_expanded %> <br>
-              <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
+              Mother tongue is <%= @user.language_expanded %> <br>
+              Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %> <%= @user.country_name %>
             </p>
             <p>
               <% if logged_in? %>
                 <% if current_user == @user %>
-                  <%= link_to 'Edit profile', profile_settings_path, class: 'btn btn-outline-primary' %>
+                  <%= link_to 'Edit profile', profile_settings_path, class: 'btn btn-secondary' %>
                 <% else %>
                   <% if current_user.likes?(@user) %>
-                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-outline-accent user-like-btn') %>
+                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-warning user-like-btn') %>
                   <% else %>
-                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-accent user-like-btn') %>
+                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-warning user-like-btn') %>
                   <% end %>
-                  <%= link_to('', { class: 'btn btn-outline-primary', data: { toggle: 'modal', target: '#message-modal' } }) do %>
+                  <%= link_to('', { class: 'btn btn-primary', data: { toggle: 'modal', target: '#message-modal' } }) do %>
                   Message
                   <% end %>
                 <% end %>
               <% else %>
-                <%= link_to('Join now', signup_path, { class: 'btn btn-primary' }) %>
+                <%= link_to('Join now', root_path, { class: 'btn btn-primary' }) %>
                 <%= link_to('Log in', login_path, { class: 'btn btn-outline-primary', data: { toggle: 'modal', target: '#login-modal' } }) %>
               <% end %>
 

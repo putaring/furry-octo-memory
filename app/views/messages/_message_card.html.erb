@@ -4,13 +4,13 @@
       <%= image_tag(user.display_picture_for(current_user, :small_thumb), { class: 'img-circle', width: 70 })%>
     </div>
     <div class="media-body">
-      <p class="media-heading username m-b-0"><%= user.username %></p>
+      <p class="media-heading username m-b-0 text-muted"><%= user.username %></p>
       <small class="message-body">
         <%= truncate message.body %>
       </small><br>
       <small class="text-muted"><%= time_ago_in_words(message.created_at) %> ago</small>
       <% unless message.read? %>
-      <span class="tag tag-danger"><small>unread</small></span>
+      <span class="tag tag-info"><small>unread</small></span>
       <% end %>
     </div>
   </div>
