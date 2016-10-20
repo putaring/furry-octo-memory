@@ -62,11 +62,11 @@ $brand-danger:              #F44336;
 //
 // Quickly modify global styling by enabling or disabling optional features.
 
-// $enable-flex:               false;
+$enable-flex:               true;
 // $enable-rounded:            true;
 // $enable-shadows:            false;
 // $enable-gradients:          false;
-// $enable-transitions:        false;
+$enable-transitions:        true;
 // $enable-hover-media-query:  false;
 // $enable-grid-classes:       true;
 // $enable-print-styles:       true;
@@ -585,9 +585,9 @@ $dropdown-link-hover-bg:         #E1F5FE;
 // $card-spacer-x:            1.25rem;
 // $card-spacer-y:            .75rem;
 // $card-border-width:        1px;
-$card-border-radius:       $border-radius-sm;
+// $card-border-radius:       $border-radius;
 // $card-border-color:        rgba(0,0,0,.125);
-$card-border-radius-inner: $card-border-radius;
+// $card-border-radius-inner: $card-border-radius;
 // $card-cap-bg:              #f5f5f5;
 // $card-bg:                  #fff;
 

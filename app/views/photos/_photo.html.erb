@@ -1,6 +1,6 @@
 <div class="col-md-4">
-  <div class="card card-no-border">
-    <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid img-rounded w-100', data: { toggle: 'swipebox', rank: photo.rank } ) %>
+  <div class="card photo-card">
+    <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100', data: { toggle: 'swipebox', rank: photo.rank } ) %>
     <div class="card-block">
       <p class="card-text text-xs-center" style="min-height: 50px;">
         <% unless photo.rank.eql?(1) %>

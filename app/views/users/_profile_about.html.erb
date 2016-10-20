@@ -1,7 +1,7 @@
 <% if @user.about.present? %>
 <div class="card card-block" style="border-color: transparent;">
   <h3 class="card-title h5">About me</h3>
-  <%= simple_format(@user.about, { class: 'card-text', style: 'color: #5e6573' }) %>
+  <%= simple_format(@user.about, { class: 'card-text' }) %>
 </div>
 <% else %>
   <% if @user.eql?(current_user) %>

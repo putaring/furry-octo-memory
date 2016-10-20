@@ -1,0 +1,158 @@
+$('[type="checkbox"][data-toggle="languages"]').change(function (e) {
+  if ($(this).is(":checked")) {
+    $('[type="checkbox"][name="languages[]"]').
+    prop('checked', false);
+  }
+});
+
+$('[type="checkbox"][name="languages[]"]').change(function (e) {
+  if ($(this).is(":checked")) {
+    $('[type="checkbox"][data-toggle="languages"]').prop('checked', false);
+  }
+});
+
+$('[type="checkbox"][data-toggle="countries"]').change(function (e) {
+  if ($(this).is(":checked")) {
+    $('[type="checkbox"][name="countries[]"]').
+    prop('checked', false);
+  }
+});
+
+$('[type="checkbox"][name="countries[]"]').change(function (e) {
+  if ($(this).is(":checked")) {
+    $('[type="checkbox"][data-toggle="countries"]').prop('checked', false);
+  }
+});
+
+(function () {
+  var stockPhotos = {
+    "male": "<%= asset_path('profile_pictures/male.jpg') %>",
+    "female": "<%= asset_path('profile_pictures/female.jpg') %>"
+  };
+  var $searchForm     = $('#search-panel'),
+      $searchResults  = $('#search-results'),
+      likers          = $searchForm.data('likerIds'),
+      isLoggedIn      = $searchForm.data('loggedIn');
+
+  var pictureForUser = function (user) {
+    if (user.visibility === 'everyone') {
+      return user.picture;
+    } else if (user.visibility === 'members_only') {
+      if (isLoggedIn) {
+        return user.picture;
+      } else {
+        return (user.gender === 'm') ? stockPhotos.male : stockPhotos.female;
+      }
+    } else {
+      if (likers.indexOf(user.id) !== -1) {
+        return user.picture;
+      } else {
+        return (user.gender === 'm') ? stockPhotos.male : stockPhotos.female;
+      }
+    }
+  };
+
+  var renderUserCard = function (user) {
+    var $cardContainer   = $('<div class="col-md-4 col-sm-6 col-xs-6 user-card-container"></div>'),
+        $userCard = $('<a href="users/' + user.id + '" class="card user-card text-xs-center"><img class="card-img-top w-100" src="' + pictureForUser(user) + '" /><div class="card-block"><p class="card-title">' + user.username + '</p><p class="card-text text-muted"><small class="d-block">' + user.age + ' • ' + user.religion + '</small><small class="d-block country-name">' + user.country + '</small></p></div></a>');
+    $cardContainer.append($userCard).appendTo($searchResults);
+  };
+
+  $searchForm.on('ajax:before', function () {
+    if (window.isStorageSupported) {
+      var searchParams  = $searchForm.serializeArray(),
+          searchObject  = {
+            gender: null,
+            religion: null,
+            minHeight: null,
+            maxHeight: null,
+            minAge: null,
+            maxAge: null,
+            languages: [],
+            countries: []
+          };
+
+      for (var i  = 0; i < searchParams.length; i++) {
+        switch (searchParams[i].name) {
+          case "gender":
+            searchObject.gender = searchParams[i].value;
+            break;
+          case "min_age":
+            searchObject.minAge = searchParams[i].value;
+            break;
+          case "max_age":
+            searchObject.maxAge = searchParams[i].value;
+            break;
+          case "min_height":
+            searchObject.minHeight = searchParams[i].value;
+            break;
+          case "max_height":
+            searchObject.maxHeight = searchParams[i].value;
+            break;
+          case "religion":
+            searchObject.religion = searchParams[i].value;
+            break;
+          case "languages[]":
+            searchObject.languages.push(searchParams[i].value);
+            break;
+          case "countries[]":
+            searchObject.countries.push(searchParams[i].value);
+            break;
+          default:
+
+        }
+      }
+      localStorage.setItem('searchObject', JSON.stringify(searchObject));
+    }
+  }).on('ajax:success', function (e, data, status, xhr) {
+    $searchResults.empty();
+    var users = $.parseJSON(data);
+    if (users.length) {
+      $searchForm.collapse('hide');
+    }
+    for(var i = 0; i < users.length; i++) {
+      renderUserCard(users[i]);
+    }
+  });
+
+
+  // restore previous user query if localStorage is supported.
+  if (window.isStorageSupported && localStorage.getItem('searchObject') !== null) {
+    var searchObject = JSON.parse(localStorage.getItem('searchObject'));
+
+    $searchForm.find('[name="gender"]').val(searchObject.gender);
+    $searchForm.find('[name="min_age"]').val(searchObject.minAge);
+    $searchForm.find('[name="max_age"]').val(searchObject.maxAge);
+    $searchForm.find('[name="min_height"]').val(searchObject.minHeight);
+    $searchForm.find('[name="max_height"]').val(searchObject.maxHeight);
+    $searchForm.find('[name="religion"]').val(searchObject.religion);
+
+    var $languages = $searchForm.find('[name="languages[]"]');
+    if ($languages.length > 1) {
+      // checkboxes
+      for (var i = 0; i < $languages.length; i++) {
+        if (searchObject.languages.indexOf($languages.get(i).value) !== -1) {
+          $($languages.get(i)).prop('checked', true);
+        }
+      }
+    } else {
+      // multiselect
+      $languages.val(searchObject.languages);
+    }
+
+    var $countries = $searchForm.find('[name="countries[]"]');
+    if ($countries.length > 1) {
+      // checkboxes
+      for (var i = 0; i < $countries.length; i++) {
+        if (searchObject.countries.indexOf($countries.get(i).value) !== -1) {
+          $($countries.get(i)).prop('checked', true);
+        }
+      }
+    } else {
+      // multiselect
+      $countries.val(searchObject.countries);
+    }
+    $searchForm.submit();
+  }
+
+})();

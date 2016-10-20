@@ -10,6 +10,7 @@
 @import "snackbar_material";
 @import "swipebox";
 @import "search";
+@import "photos";
 
 .card {
   &.card-no-border {
@@ -54,5 +55,11 @@
 }
 
 .thin {
-  font-weight: 300;
+  font-weight: 300 !important;
+}
+
+.profile-detail-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

@@ -16,9 +16,9 @@
 <% else %>
 <div class="card card-block card-no-border">
   <h3 class="card-title h5">Photos</h3>
-  <div class="row">
-    <% @user.photos.ranked.each do |photo| %>
-      <div class="col-xs-4 col-sm-3" style="padding: 0.1em;">
+  <div class="row p-l-1 p-r-2">
+    <% @user.photos.ranked.limit(6).each do |photo| %>
+      <div class="col-xs-4 col-md-3 col-lg-4" style="padding: 0.1em;">
         <%= image_tag(photo.image.url(:thumb), { class: 'img-fluid', data: { toggle: 'swipebox', rank: photo.rank } }) %>
       </div>
     <% end %>
