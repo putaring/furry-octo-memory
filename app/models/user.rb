@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, case_sensitive: false,
     if: ->(u) { u.username_changed? }
 
-  validate :old_enough?, if: ->(u) { u.birthdate_changed? || u.gender_changed? }
+  validate :old_enough?, if: ->(u) { (u.birthdate_changed? || u.gender_changed?) && u.birthdate.present? }
 
   before_create :assign_random_username, :set_default_profile, :set_default_preferences
 

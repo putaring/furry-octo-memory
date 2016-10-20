@@ -10,9 +10,7 @@ class SearchController < ApplicationController
   private
 
   def search
-    users = User.includes(:photos)
-
-    users = users.where(gender: params[:gender])
+    @users = User.includes(:photos).where(gender: params[:gender])
 
     minimum_age, maximum_age = filter_age
     users = users.where("birthdate <= ?", minimum_age.years.ago.to_date) if minimum_age >= 18
@@ -34,7 +32,6 @@ class SearchController < ApplicationController
     end
   end
 
-  private
   def filter_age
     if params[:min_age].present? && params[:max_age].present?
       [params[:min_age].to_i, params[:max_age].to_i].sort

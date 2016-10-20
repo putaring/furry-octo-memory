@@ -13,7 +13,6 @@ feature "Received messages" do
     background { visit messages_path }
     it { should have_content('Inbox') }
     it { should have_content('0 messages') }
-    it { should have_content('Take the initiative to contact your matches.') }
   end
 
   context "has unread messages" do

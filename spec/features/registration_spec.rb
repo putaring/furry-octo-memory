@@ -4,7 +4,7 @@ feature "Registration" do
 
   describe "Signing up" do
     background { visit signup_path }
-    given(:submit) { "Create my account" }
+    given(:submit) { "Join now – It's free" }
 
     context "with invalid information" do
       scenario "should not create a user" do

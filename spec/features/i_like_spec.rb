@@ -20,7 +20,6 @@ feature 'I like' do
 
     context "you don't like anybody" do
       it { should have_content("You haven't liked anybody yet.") }
-      it { should have_content("Like people you're interested in to know if they like you back.") }
     end
 
     context "when you like somebody" do
