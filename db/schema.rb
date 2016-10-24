@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009162112) do
+ActiveRecord::Schema.define(version: 20161020221441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,19 +72,18 @@ ActiveRecord::Schema.define(version: 20161009162112) do
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "gender",           limit: 1,               null: false
-    t.date     "birthdate",                                null: false
-    t.integer  "religion",         limit: 2,               null: false
-    t.string   "language",         limit: 3,               null: false
-    t.string   "country",          limit: 2,               null: false
-    t.string   "username",         limit: 30,              null: false
-    t.string   "email",            limit: 60,              null: false
-    t.string   "password_digest",  limit: 60,              null: false
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.integer  "photo_visibility", limit: 2,  default: 1,  null: false
-    t.jsonb    "preferences",                 default: {}, null: false
-    t.integer  "height",           limit: 2,               null: false
+    t.string   "gender",           limit: 1,              null: false
+    t.date     "birthdate",                               null: false
+    t.integer  "religion",         limit: 2,              null: false
+    t.string   "language",         limit: 3,              null: false
+    t.string   "country",          limit: 2,              null: false
+    t.string   "username",         limit: 30,             null: false
+    t.string   "email",            limit: 60,             null: false
+    t.string   "password_digest",  limit: 60,             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "photo_visibility", limit: 2,  default: 1, null: false
+    t.integer  "height",           limit: 2,              null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

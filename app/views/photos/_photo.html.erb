@@ -5,7 +5,7 @@
       <p class="card-text text-xs-center" style="min-height: 50px;">
         <% unless photo.rank.eql?(1) %>
           <%= link_to make_profile_photo_photo_path(photo), class: 'card-link', method: :patch do %>
-            <%= image_tag 'portrait.svg', width: 50, data: { toggle: "tooltip", title: "Make profile photo", placement: "bottom" } %>
+            <%= image_tag 'portrait.svg', width: 48, data: { toggle: "tooltip", title: "Make profile photo", placement: "bottom" } %>
           <% end %>
         <% end %>
         <%= link_to 'Delete', photo_path(photo), class: 'btn btn-secondary', method: :delete %>

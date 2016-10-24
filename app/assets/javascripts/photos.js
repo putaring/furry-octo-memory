@@ -7,7 +7,6 @@
       $photoCanvas        = $('#photo-crop-canvas'),
       $photoPreview       = $('#photo-crop-preview'),
       $modal              = $('#photo-crop-modal'),
-      reader              = new FileReader(),
       jcropApi            = null;
 
   $photoFileInput.click(function() {
@@ -37,8 +36,8 @@
     };
 
     $photoFileInput.change(function(e) {
-      var file  = this.files[0];
-
+      var file    = this.files[0],
+          reader  = new FileReader();
       reader.addEventListener("load", function () {
         $photoCanvas.attr('src', reader.result);
         $photoPreview.attr('src', reader.result);
@@ -49,21 +48,25 @@
             topX        = (width/2) - (smallerSide/4),
             topY        = (height/2) - (smallerSide/4);
 
-        $photoCanvas.Jcrop({
-          onSelect: setCoordinates,
-          onChange: setCoordinates,
-          boxWidth: 600,
-          boxHeight: 600,
-          keySupport: false,
-          aspectRatio: 1,
-          bgOpacity: .4,
-          minSize: [100, 100],
-          setSelect: [topX, topY, topX + (smallerSide/2), topY]
-        }, function () {
-          jcropApi = this;
-        });
+        if (width < 400 || height < 400) {
+          alert("Please upload a bigger picture.");
+        } else {
+          $photoCanvas.Jcrop({
+            onSelect: setCoordinates,
+            onChange: setCoordinates,
+            boxWidth: 600,
+            boxHeight: 600,
+            keySupport: false,
+            aspectRatio: 1,
+            bgOpacity: .4,
+            minSize: [100, 100],
+            setSelect: [topX, topY, topX + (smallerSide/2), topY]
+          }, function () {
+            jcropApi = this;
+          });
 
-        $modal.modal();
+          $modal.modal();
+        }
       }, false);
 
       if (file) {

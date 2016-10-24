@@ -213,25 +213,4 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "when a user is being created" do
-    let(:user) { create(:user, gender: 'm', religion: 'christian', birthdate: 21.years.ago, language: 'eng', country: 'US') }
-    specify { expect(user.preferences['religion']).to eq('christian') }
-    specify { expect(user.preferences['languages']).to include('eng') }
-    specify { expect(user.preferences['countries']).to include('US') }
-    specify { expect(user.preferences['min_age']).to eq(18) }
-    specify { expect(user.preferences['max_age']).to eq(21) }
-
-    context "when the user is a woman" do
-      let(:user) { create(:user, gender: 'f', birthdate: 21.years.ago) }
-      specify { expect(user.preferences['min_age']).to eq(21) }
-      specify { expect(user.preferences['max_age']).to eq(26) }
-    end
-
-    context "when the user is a man" do
-      let(:user) { create(:user, gender: 'm', birthdate: 30.years.ago) }
-      specify { expect(user.preferences['min_age']).to eq(25) }
-      specify { expect(user.preferences['max_age']).to eq(30) }
-    end
-  end
-
 end

@@ -2,8 +2,16 @@
 <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
   <h3 class="card-title h5">Photos</h3>
   <p class="lead text-xs-center p-y-3">
-    No photos<br>
+    No photos.<br>
+    <% if @user.eql?(current_user) %>
+    <small>
+      <%= link_to photos_path do %>
+      Add some photos
+      <% end %>
+    </small>
+    <% else %>
     <small>Camera shy, maybe?</small>
+    <% end %>
   </p>
 </div>
 <% elsif @user.display_photos_to?(current_user) == false %>
@@ -15,7 +23,16 @@
 </div>
 <% else %>
 <div class="card card-block card-no-border">
-  <h3 class="card-title h5">Photos</h3>
+  <h2 class="card-title h5">
+    Photos
+    <% if @user.eql?(current_user) %>
+    <small>
+      <%= link_to photos_path, { title: "Manage photos", data: { toggle: "tooltip", placement: "bottom" } } do %>
+      <i class="material-icons mi-aligned text-success">mode_edit</i>
+      <% end %>
+    </small>
+    <% end %>
+  </h2>
   <div class="row p-l-1 p-r-2">
     <% @user.photos.ranked.limit(6).each do |photo| %>
       <div class="col-xs-4 col-md-3 col-lg-4" style="padding: 0.1em;">

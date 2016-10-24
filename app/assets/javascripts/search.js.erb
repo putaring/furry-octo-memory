@@ -59,6 +59,7 @@ $('[type="checkbox"][name="countries[]"]').change(function (e) {
   };
 
   $searchForm.on('ajax:before', function () {
+    $searchForm.collapse('hide');
     if (window.isStorageSupported) {
       var searchParams  = $searchForm.serializeArray(),
           searchObject  = {
@@ -107,9 +108,6 @@ $('[type="checkbox"][name="countries[]"]').change(function (e) {
   }).on('ajax:success', function (e, data, status, xhr) {
     $searchResults.empty();
     var users = $.parseJSON(data);
-    if (users.length) {
-      $searchForm.collapse('hide');
-    }
     for(var i = 0; i < users.length; i++) {
       renderUserCard(users[i]);
     }

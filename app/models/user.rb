@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
   validate :old_enough?, if: ->(u) { (u.birthdate_changed? || u.gender_changed?) && u.birthdate.present? }
 
-  before_create :assign_random_username, :set_default_profile, :set_default_preferences
+  before_create :assign_random_username, :set_default_profile
 
   before_update { username.downcase! }
 
@@ -123,16 +123,6 @@ class User < ActiveRecord::Base
   def old_enough?
     minimum_age = gender.eql?('m') ? 21 : 18
     errors.add(:birthdate, "indicates that you're underage. #{gender.eql?('m') ? 'Men' : 'Women'} must be at least #{minimum_age} years old.") unless birthdate <= minimum_age.years.ago
-  end
-
-  def set_default_preferences
-    self.preferences = {
-      min_age: self.male? ? [self.age - 5, 18].max : self.age,
-      max_age: self.male? ? self.age : (self.age + 5),
-      religion: self.religion,
-      countries: [self.country],
-      languages: [self.language]
-    }
   end
 
   def set_default_profile

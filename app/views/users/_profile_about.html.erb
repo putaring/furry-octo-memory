@@ -1,6 +1,15 @@
 <% if @user.about.present? %>
 <div class="card card-block" style="border-color: transparent;">
-  <h3 class="card-title h5">About me</h3>
+  <h2 class="card-title h5">
+    About me
+    <% if @user.eql?(current_user) %>
+    <small>
+      <%= link_to about_settings_path, { title: "Update summary", data: { toggle: "tooltip", placement: "bottom" } } do %>
+      <i class="material-icons mi-aligned text-success">mode_edit</i>
+      <% end %>
+    </small>
+    <% end %>
+  </h2>
   <%= simple_format(@user.about, { class: 'card-text' }) %>
 </div>
 <% else %>

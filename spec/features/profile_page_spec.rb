@@ -64,6 +64,10 @@ feature "Profile page" do
       it { should have_content("You haven't written anything yet.") }
       it { should have_content("Add a brief description") }
     end
+
+    context "Filled out About me" do
+      it { should have_content("Edit description") }
+    end
   end
 
   context "logged in viewing a match whom you've expressed interest in" do

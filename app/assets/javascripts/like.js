@@ -6,7 +6,7 @@ $(function() {
     if (xhr.status === 201) {
       // liked
       $.snackbar({
-        content: "Liked.",
+        content: "Awesome. We'll let them know.",
         style: "snackbar",
         timeout: 5000
       });
@@ -15,7 +15,7 @@ $(function() {
     } else {
       // unliked
       $.snackbar({
-        content: "Unliked",
+        content: "Unliked.",
         style: "snackbar",
         timeout: 5000
       });
