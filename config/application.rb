@@ -33,3 +33,4 @@ module Joonam
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
+CASTES = YAML.load(File.read(File.expand_path('../../lib/castes.yml', __FILE__)))

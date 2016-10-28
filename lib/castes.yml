@@ -1,0 +1,765 @@
+---
+- :name: No caste
+  :code: none
+- :name: Ad Dharmi
+  :code: add
+- :name: Adi Andhra
+  :code: adi
+- :name: Adi Dravidar
+  :code: adr
+- :name: Adi Karnataka
+  :code: adk
+- :name: Agamudayar
+  :code: aga
+- :name: Agarwal
+  :code: agr
+- :name: Agnikula Kshatriya
+  :code: agn
+- :name: Agrahari
+  :code: agh
+- :name: Agri
+  :code: agi
+- :name: Ahir Shimpi
+  :code: ahi
+- :name: Ahirwar
+  :code: ahr
+- :name: Ahom
+  :code: aho
+- :name: Ambalavasi
+  :code: amb
+- :name: Aramari / Gabit
+  :code: ara
+- :name: Arekatica
+  :code: are
+- :name: Arora
+  :code: aro
+- :name: Arunthathiyar
+  :code: aru
+- :name: Arya Vysya / Komati
+  :code: ary
+- :name: Asathi
+  :code: asa
+- :name: Ayira Vysya
+  :code: ayi
+- :name: Ayodhyavasi
+  :code: ayo
+- :name: Badaga
+  :code: bad
+- :name: Baidya
+  :code: bai
+- :name: Bairwa
+  :code: bar
+- :name: Baishnab
+  :code: bas
+- :name: Baishya
+  :code: bah
+- :name: Bajantri
+  :code: baj
+- :name: Balai
+  :code: bal
+- :name: Balija
+  :code: baa
+- :name: Banayat Oriya
+  :code: ban
+- :name: Banik
+  :code: bak
+- :name: Bania
+  :code: baeq
+- :name: Banjara
+  :code: bapi
+- :name: Bari
+  :code: baxo
+- :name: Barnwal
+  :code: baw
+- :name: Barujibi
+  :code: bau
+- :name: Besta
+  :code: bes
+- :name: Bhandari
+  :code: bha
+- :name: Bhatia
+  :code: bht
+- :name: Bhatraju
+  :code: bhr
+- :name: Bhavasar Kshatriya
+  :code: bhv
+- :name: Bhoi
+  :code: bho
+- :name: Bhovi
+  :code: bhi
+- :name: Bhoyar
+  :code: bhy
+- :name: Billava
+  :code: bil
+- :name: Bishnoi / Vishnoi
+  :code: bis
+- :name: Bondili
+  :code: bon
+- :name: Boyar
+  :code: boy
+- :name: Brahmbatt
+  :code: bra
+- :name: Brahmin
+  :code: brh
+- :name: Brahmin - Anavil
+  :code: brm
+- :name: Brahmin - Audichya
+  :code: bri
+- :name: Brahmin - Baidhiki / Vaidhiki
+  :code: brn
+- :name: Brahmin - Bardai
+  :code: brb
+- :name: Brahmin - Barendra
+  :code: brr
+- :name: Brahmin - Bhargav
+  :code: brg
+- :name: Brahmin - Bhatt
+  :code: brt
+- :name: Brahmin - Bhumihar
+  :code: bru
+- :name: Brahmin - Daivadnya
+  :code: brd
+- :name: Brahmin - Danua
+  :code: brft
+- :name: Brahmin - Deshastha
+  :code: bre
+- :name: Brahmin - Dhiman
+  :code: brdj
+- :name: Brahmin - Embrandiri
+  :code: brhg
+- :name: Brahmin - Garhwali
+  :code: brw
+- :name: Brahmin - Gaur
+  :code: brmc
+- :name: Brahmin - Goswami
+  :code: bro
+- :name: Brahmin - Gurukkal
+  :code: brk
+- :name: Brahmin - Halua
+  :code: brl
+- :name: Brahmin - Havyaka
+  :code: brv
+- :name: Brahmin - Hoysala
+  :code: bry
+- :name: Brahmin - Iyengar
+  :code: brat
+- :name: Brahmin - Iyer
+  :code: brnb
+- :name: Brahmin - Jangid
+  :code: brj
+- :name: Brahmin - Jhadua
+  :code: brpr
+- :name: Brahmin - Jyotish
+  :code: brs
+- :name: Brahmin - Kanyakubja
+  :code: brmw
+- :name: Brahmin - Karhade
+  :code: brgl
+- :name: Brahmin - Khadayata
+  :code: brvz
+- :name: Brahmin - Khandelwal
+  :code: brjw
+- :name: Brahmin - Khedaval
+  :code: brot
+- :name: Brahmin - Kokanastha
+  :code: braq
+- :name: Brahmin - Kota
+  :code: brcr
+- :name: Brahmin - Kulin
+  :code: brfp
+- :name: Brahmin - Kumaoni
+  :code: brty
+- :name: Brahmin - Madhwa
+  :code: brqk
+- :name: Brahmin - Maithil
+  :code: brbc
+- :name: Brahmin - Mevada
+  :code: brxn
+- :name: Brahmin - Modh
+  :code: brkf
+- :name: Brahmin - Mohyal
+  :code: brmz
+- :name: Brahmin - Nagar
+  :code: brwj
+- :name: Brahmin - Namboodiri
+  :code: brck
+- :name: Brahmin - Niyogi
+  :code: brvg
+- :name: Brahmin - Panda
+  :code: brp
+- :name: Brahmin - Pandit
+  :code: bruj
+- :name: Brahmin - Pareek
+  :code: brxt
+- :name: Brahmin - Rajgor
+  :code: brsz
+- :name: Brahmin - Rarhi
+  :code: brda
+- :name: Brahmin - Rarhi / Radhi
+  :code: brnd
+- :name: Brahmin - Rigvedi
+  :code: brjg
+- :name: Brahmin - Rudraj
+  :code: brpc
+- :name: Brahmin - Sakaldwipi
+  :code: brrs
+- :name: Brahmin - Sanadya
+  :code: brhs
+- :name: Brahmin - Sanketi
+  :code: briz
+- :name: Brahmin - Saraswat
+  :code: brxj
+- :name: Brahmin - Sarua
+  :code: brvi
+- :name: Brahmin - Saryuparin
+  :code: brve
+- :name: Brahmin - Shivhalli
+  :code: brkw
+- :name: Brahmin - Shrimali
+  :code: brhl
+- :name: Brahmin - Smartha
+  :code: brjh
+- :name: Brahmin - Sri Vaishnava
+  :code: brtf
+- :name: Brahmin - Tapodhan
+  :code: brwf
+- :name: Brahmin - Tyagi
+  :code: brod
+- :name: Brahmin - Vaidiki
+  :code: brsq
+- :name: Brahmin - Vaikhanasa
+  :code: brgz
+- :name: Brahmin - Velanadu
+  :code: brvu
+- :name: Brahmin - Vyas
+  :code: brwc
+- :name: Bunt
+  :code: bun
+- :name: Chalawadi and Holeya
+  :code: cha
+- :name: Chambhar
+  :code: chm
+- :name: Chandravanshi Kahar
+  :code: chn
+- :name: Chasa
+  :code: chs
+- :name: Chattada Sri Vaishnava
+  :code: cht
+- :name: Chaudary
+  :code: chu
+- :name: Chaurasia
+  :code: chr
+- :name: Chettiar
+  :code: che
+- :name: Chhetri
+  :code: chh
+- :name: Choudhary
+  :code: cho
+- :name: Coorgi
+  :code: coo
+- :name: Deshmukh
+  :code: des
+- :name: Devadiga
+  :code: dev
+- :name: Devanga
+  :code: dea
+- :name: Devar / Thevar / Mukkulathor
+  :code: der
+- :name: Dhanak
+  :code: dha
+- :name: Dhangar
+  :code: dhn
+- :name: Dheevara
+  :code: dhe
+- :name: Dhiman
+  :code: dhi
+- :name: Dhoba
+  :code: dho
+- :name: Dhobi
+  :code: dhb
+- :name: Dhor / Kakkayya
+  :code: dhr
+- :name: Dumal
+  :code: dum
+- :name: Ediga
+  :code: edi
+- :name: Ezhava
+  :code: ezh
+- :name: Ezhuthachan
+  :code: ezu
+- :name: Gabit
+  :code: gab
+- :name: Gahoi
+  :code: gah
+- :name: Gajula / Kavarai
+  :code: gaj
+- :name: Gandla
+  :code: gan
+- :name: Ganiga
+  :code: gai
+- :name: Garhwali
+  :code: gar
+- :name: Gavara
+  :code: gav
+- :name: Gawali
+  :code: gaw
+- :name: Goala
+  :code: goa
+- :name: Gondhali
+  :code: gon
+- :name: Goud
+  :code: gou
+- :name: Gounder
+  :code: god
+- :name: Gowda
+  :code: gow
+- :name: Gramani
+  :code: gra
+- :name: Gudia
+  :code: gud
+- :name: Gujjar
+  :code: guj
+- :name: Gupta
+  :code: gup
+- :name: Guptan
+  :code: gut
+- :name: Gurav
+  :code: gur
+- :name: Gurjar
+  :code: gua
+- :name: Hugar / Jeer
+  :code: hug
+- :name: Jangam
+  :code: jan
+- :name: Jat
+  :code: jat
+- :name: Jatav
+  :code: jaa
+- :name: Jhadav
+  :code: jha
+- :name: Jogi / Nath
+  :code: jog
+- :name: Julaha
+  :code: jul
+- :name: Kachara
+  :code: kac
+- :name: Kahar
+  :code: kah
+- :name: Kaibarta
+  :code: kai
+- :name: Kalal
+  :code: kal
+- :name: Kalar
+  :code: kaa
+- :name: Kalinga
+  :code: kan
+- :name: Kalinga Vysya
+  :code: kag
+- :name: Kalita
+  :code: kat
+- :name: Kalwar
+  :code: kaw
+- :name: Kamboj
+  :code: kam
+- :name: Kamma
+  :code: kaja
+- :name: Kanakkan Padanna
+  :code: kak
+- :name: Kandara
+  :code: kad
+- :name: Kansari
+  :code: kas
+- :name: Kapu
+  :code: kap
+- :name: Karana
+  :code: kar
+- :name: Karkathar
+  :code: kapo
+- :name: Karmakar
+  :code: kafb
+- :name: Karuneegar
+  :code: kau
+- :name: Kasar
+  :code: kamb
+- :name: Kasaundhan
+  :code: kanu
+- :name: Kashyap
+  :code: kay
+- :name: Katiya
+  :code: kawm
+- :name: Kavara
+  :code: kav
+- :name: Kayastha
+  :code: kavi
+- :name: Keshri / Kesarwani
+  :code: kes
+- :name: Khandayat
+  :code: kha
+- :name: Khandelwal
+  :code: khn
+- :name: Kharwa
+  :code: khr
+- :name: Kharwar
+  :code: khw
+- :name: Khatik
+  :code: kht
+- :name: Khatri
+  :code: khi
+- :name: Kirar
+  :code: kir
+- :name: Koli
+  :code: kol
+- :name: Korama
+  :code: kor
+- :name: Kori
+  :code: koi
+- :name: Kosthi
+  :code: kos
+- :name: Krishnavaka
+  :code: kri
+- :name: Kshatriya
+  :code: ksh
+- :name: Kshatriya Raju
+  :code: ksa
+- :name: Kudumbi
+  :code: kud
+- :name: Kulal
+  :code: kul
+- :name: Kulalar
+  :code: kua
+- :name: Kulita
+  :code: kui
+- :name: Kumawat
+  :code: kum
+- :name: Kumbhakar
+  :code: kub
+- :name: Kumbhar
+  :code: kuh
+- :name: Kumhar
+  :code: kur
+- :name: Kummari
+  :code: kuwl
+- :name: Kunbi
+  :code: kun
+- :name: Kuravan
+  :code: kuv
+- :name: Kurmi
+  :code: kufc
+- :name: Kurni
+  :code: kuxh
+- :name: Kuruba
+  :code: kuu
+- :name: Kurumbar
+  :code: kukh
+- :name: Kuruva
+  :code: kurk
+- :name: Kushwaha / Koiri
+  :code: kus
+- :name: Lambadi
+  :code: lam
+- :name: Lingayath
+  :code: lin
+- :name: Lohana
+  :code: loh
+- :name: Lohar
+  :code: loa
+- :name: Loniya
+  :code: lon
+- :name: Madhesiya / Kanu
+  :code: mad
+- :name: Madiga
+  :code: mai
+- :name: Mahajan
+  :code: mah
+- :name: Mahar
+  :code: maa
+- :name: Mahendra
+  :code: mae
+- :name: Maheshwari
+  :code: mas
+- :name: Mahishya
+  :code: may
+- :name: Mahuri
+  :code: mau
+- :name: Mala
+  :code: mal
+- :name: Mali
+  :code: maxk
+- :name: Mallah
+  :code: maxg
+- :name: Malwani
+  :code: maw
+- :name: Mannan / Velan
+  :code: man
+- :name: Maratha
+  :code: mar
+- :name: Maruthuvar
+  :code: mat
+- :name: Matang
+  :code: mag
+- :name: Maurya / Shakya
+  :code: mak
+- :name: Meena
+  :code: mee
+- :name: Meenavar
+  :code: men
+- :name: Meghwal
+  :code: meg
+- :name: Mehra
+  :code: meh
+- :name: Meru Darji
+  :code: mer
+- :name: Mochi
+  :code: moc
+- :name: Modak
+  :code: mod
+- :name: Modi
+  :code: moi
+- :name: Mogaveera
+  :code: mog
+- :name: Mudaliyar
+  :code: mud
+- :name: Mudiraj
+  :code: mui
+- :name: Muthuraja
+  :code: mut
+- :name: Naagavamsam
+  :code: naa
+- :name: Nadar
+  :code: nad
+- :name: Nagaralu
+  :code: nag
+- :name: Nai
+  :code: nai
+- :name: Naicker
+  :code: nac
+- :name: Naidu
+  :code: nau
+- :name: Naik
+  :code: nak
+- :name: Nair
+  :code: nar
+- :name: Nambiar
+  :code: nam
+- :name: Namosudra
+  :code: nao
+- :name: Napit
+  :code: nap
+- :name: Nayaka
+  :code: nay
+- :name: Nhavi
+  :code: nha
+- :name: Padmashali
+  :code: pam
+- :name: Pal
+  :code: pal
+- :name: Pallan / Devandrakula Vellalar
+  :code: paa
+- :name: Panan
+  :code: pan
+- :name: Panchal
+  :code: pac
+- :name: Pandaram
+  :code: par
+- :name: Panicker
+  :code: pai
+- :name: Paravan / Bharatar
+  :code: pav
+- :name: Parit
+  :code: pat
+- :name: Parkava Kulam
+  :code: pak
+- :name: Parvatha Rajakulam
+  :code: pah
+- :name: Pasi
+  :code: pas
+- :name: Paswan / Dusadh
+  :code: paw
+- :name: Patel
+  :code: pae
+- :name: Patil
+  :code: paqt
+- :name: Patnaick / Sistakaranam
+  :code: pagi
+- :name: Patra
+  :code: patv
+- :name: Pattinavar
+  :code: pagy
+- :name: Pattusali
+  :code: pau
+- :name: Perika
+  :code: per
+- :name: Pillai - Tamil
+  :code: pil
+- :name: Poundra
+  :code: pou
+- :name: Prajapati
+  :code: pra
+- :name: Pulaya / Cheruman
+  :code: pul
+- :name: Raigar
+  :code: rai
+- :name: Rajaka
+  :code: raj
+- :name: Rajbhar
+  :code: rab
+- :name: Rajbonshi
+  :code: rao
+- :name: Rajpurohit
+  :code: rap
+- :name: Rajput
+  :code: rau
+- :name: Ramanandi
+  :code: ram
+- :name: Ramdasia
+  :code: rad
+- :name: Ramoshi
+  :code: ras
+- :name: Rastogi
+  :code: rat
+- :name: Rauniar
+  :code: ran
+- :name: Ravidasia
+  :code: rav
+- :name: Rawat
+  :code: raw
+- :name: Reddy
+  :code: red
+- :name: Chamar
+  :code: chbz
+- :name: Ror
+  :code: ror
+- :name: Scheduled Caste
+  :code: sch
+- :name: Scheduled Tribe
+  :code: sce
+- :name: Sadgope
+  :code: sad
+- :name: Sagara (Uppara)
+  :code: sag
+- :name: Saha
+  :code: sah
+- :name: Sahu
+  :code: sau
+- :name: Saini
+  :code: sai
+- :name: Saliya
+  :code: sal
+- :name: Samagar
+  :code: sam
+- :name: Sambava
+  :code: sab
+- :name: Sathwara
+  :code: sat
+- :name: Satnami
+  :code: san
+- :name: Savji
+  :code: sav
+- :name: Senai Thalaivar
+  :code: sen
+- :name: Sengunthar / Kaikolar
+  :code: seg
+- :name: Shettigar
+  :code: she
+- :name: Shilpkar
+  :code: shi
+- :name: Shimpi / Namdev
+  :code: shm
+- :name: Sonar
+  :code: son
+- :name: Soni
+  :code: soi
+- :name: Sonkar
+  :code: sok
+- :name: Sourashtra
+  :code: sou
+- :name: Srisayana
+  :code: sri
+- :name: Sugali (Naika)
+  :code: sug
+- :name: Sunari
+  :code: sun
+- :name: Sundhi
+  :code: sud
+- :name: Suthar
+  :code: sut
+- :name: Swakula Sali
+  :code: swa
+- :name: Tamboli
+  :code: tam
+- :name: Tanti
+  :code: tan
+- :name: Tantubai
+  :code: tat
+- :name: Telaga
+  :code: tel
+- :name: Teli
+  :code: tei
+- :name: Telugupatti
+  :code: teu
+- :name: Thakkar
+  :code: tha
+- :name: Thakore
+  :code: thk
+- :name: Thakur
+  :code: thu
+- :name: Thandan
+  :code: thn
+- :name: Thigala
+  :code: thi
+- :name: Thiyya
+  :code: thy
+- :name: Tili
+  :code: til
+- :name: Togata
+  :code: tog
+- :name: Urs
+  :code: urs
+- :name: Vaddera
+  :code: vad
+- :name: Vadugan
+  :code: vau
+- :name: Vaish
+  :code: vai
+- :name: Vaishnav
+  :code: vas
+- :name: Vaishya Vani
+  :code: vah
+- :name: Valluvan
+  :code: val
+- :name: Valmiki
+  :code: vam
+- :name: Vani
+  :code: van
+- :name: Vanika Vyshya
+  :code: vak
+- :name: Vanjari
+  :code: vaj
+- :name: Vankar
+  :code: vaa
+- :name: Vannar
+  :code: var
+- :name: Vanniyar
+  :code: vay
+- :name: Variar
+  :code: vaxg
+- :name: Veera Saivam
+  :code: vee
+- :name: Veerakodi Vellala
+  :code: ver
+- :name: Velaan
+  :code: vel
+- :name: Velama
+  :code: vea
+- :name: Vellalar
+  :code: veqn
+- :name: Vettuvan
+  :code: vet
+- :name: Vishwakarma
+  :code: vis
+- :name: Vokkaliga
+  :code: vok
+- :name: Vysya
+  :code: vys
+- :name: Yadav
+  :code: yad

@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:language) }
     it { should validate_presence_of(:country) }
     it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:status) }
     it { should validate_presence_of(:username).on(:update) }
 
     it { should validate_numericality_of(:height).is_greater_than(24).only_integer }
@@ -22,6 +23,7 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:country).is_equal_to(2) }
 
     it { should validate_inclusion_of(:gender).in_array(%w(m f)) }
+    it { should validate_inclusion_of(:sect).in_array(CASTES.collect { |c| c[:code] }) }
     it { should validate_inclusion_of(:language).in_array(LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3)) }
     it { should validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 
@@ -210,6 +212,16 @@ RSpec.describe User, type: :model do
     let(:user) { create(:user, username: nil) }
     it 'should create a username before saving to the database' do
       expect(user.username).to be_present
+    end
+  end
+
+  context "change religion" do
+    it "should reset caste to nil if religion is not hindu" do
+      brahmin = create(:brahmin)
+      expect(brahmin.sect).to eq('brh')
+      brahmin.update_attributes(religion: 'muslim')
+
+      expect(brahmin.reload.sect).to be_nil
     end
   end
 

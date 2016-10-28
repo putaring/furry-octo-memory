@@ -11,6 +11,7 @@ class SearchController < ApplicationController
 
   def search
     users = User.includes(:photos).where(gender: params[:gender])
+    users = users.where(status: User.statuses[params[:status]]) if params[:status].present?
 
     minimum_age, maximum_age = filter_age
     users = users.where("birthdate <= ?", minimum_age.years.ago.to_date) if minimum_age >= 18

@@ -4,10 +4,16 @@ FactoryGirl.define do
     birthdate     { 21.years.ago }
     height        { 72 }
     religion      { User.religions.keys.sample }
+    status        { 'unmarried' }
     language      { LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3).sample }
     country       { Faker::Address.country_code }
     email         { Faker::Internet.email }
     password      { Faker::Internet.password }
+  end
+
+  factory :brahmin, parent: :user do
+    religion 'hindu'
+    sect    'brh'
   end
 
   factory :restricted_user, parent: :user do

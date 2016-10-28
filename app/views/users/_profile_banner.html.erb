@@ -7,7 +7,7 @@
             <%= image_tag @user.display_picture_for(current_user), { class: 'img-circle img-fluid d-inline-block', style: "border: 5px solid #fff; max-height: 250px;" } %>
           </div>
           <div class="col-lg-5 col-md-5 text-md-left text-xs-center profile-detail-centered p-y-1">
-            <h2 class="h4" style="color:rgba(255, 255, 255, 0.6);"><%= @user.username %></h1>
+            <h2 class="h4" style="color:rgba(255, 255, 255, 0.8);"><%= @user.username %></h1>
             <p>
               <%= @user.gender_expanded.humanize %>, <%= @user.age %> years old, <%= metric_height(@user.height) %> tall<br>
               <%= @user.religion.humanize %><br>
@@ -32,7 +32,6 @@
                 <% end %>
               <% else %>
                 <%= link_to('Join now', signup_path, { class: 'btn btn-lg btn-block btn-success' }) %>
-                <%= link_to('Log in', login_path, { class: 'btn btn-lg btn-block btn-outline-secondary', data: { toggle: 'modal', target: '#login-modal' } }) %>
               <% end %>
             </p>
           </div>

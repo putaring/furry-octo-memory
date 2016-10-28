@@ -17,6 +17,11 @@
   <small class="form-text text-muted">Women should be 18 years old and men must be 21.</small>
 </div>
 <div class="form-group">
+  <%= f.label :status, "Marital status", class: show_label ? '' : "sr-only" %>
+  <%= f.select :status, User.statuses.map{ |status, _| [status.humanize, status] }, {prompt: "What's your status?"}, { class: 'form-control', required: true } %>
+  <small class="text-danger form-text"></small>
+</div>
+<div class="form-group">
   <%= f.label :height, class: show_label ? '' : "sr-only" %>
   <%= f.select :height,  (48..84).map { |height_in_inches| [metric_height(height_in_inches), height_in_inches] }, { prompt: 'How tall are you?' }, { class: 'form-control', required: true } %>
   <small class="text-danger form-text"></small>
@@ -26,6 +31,11 @@
   <%= f.label :religion, class: show_label ? '' : "sr-only" %>
   <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: 'Religion' }, { class: 'form-control', required: true } %>
   <small class="text-danger"></small>
+</div>
+<% show_caste = f.object.religion.eql?('hindu') %>
+<div class="form-group" id="caste-selection-container" style="<%= show_caste ? '' : 'display:none;' %>">
+  <%= f.label :sect, 'Select your caste' %>
+  <%= f.select :sect, CASTES.map { |caste| [caste[:name], caste[:code]] }, { class: 'form-control', disabled: !show_caste } %>
 </div>
 <div class="form-group">
   <%= f.label :language, 'Mother tongue', class: show_label ? '' : "sr-only" %>

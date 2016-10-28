@@ -4,7 +4,7 @@ feature "Registration" do
 
   describe "Signing up" do
     background { visit signup_path }
-    given(:submit) { "Join now – It's free" }
+    given(:submit) { "Create my account" }
 
     context "with invalid information" do
       scenario "should not create a user" do
@@ -19,6 +19,7 @@ feature "Registration" do
         select '31',              from: 'user_birthdate_3i'
         select "I'm a woman",     from: 'Gender'
         select 'Hindu',           from: 'Religion'
+        select "Unmarried",       from: "Marital status"
         select 'India',           from: 'Where do you live?'
         select 'Malayalam',       from: 'Mother tongue'
         select '6 ft',            from: 'Height'

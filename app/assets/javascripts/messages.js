@@ -82,7 +82,7 @@ $(function() {
     $messageForm.closest('.media').before(messageNode);
 
     $.snackbar({
-      content: "Message sent.",
+      content: "Message sent",
       style: "snackbar",
       timeout: 5000
     });
