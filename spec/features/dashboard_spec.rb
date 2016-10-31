@@ -14,7 +14,7 @@ feature 'Dashboard' do
       it { should have_content('Get started in 3 easy steps') }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Browse profiles') }
+      it { should have_content('Find a match') }
     end
 
     context "only about has been filled up" do
@@ -25,7 +25,7 @@ feature 'Dashboard' do
       it { should have_content('Get started in 3 easy steps') }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Browse profiles') }
+      it { should have_content('Find a match') }
     end
 
     context "only photo has been uploaded" do
@@ -36,7 +36,7 @@ feature 'Dashboard' do
       it { should have_content('Get started in 3 easy steps') }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Browse profiles') }
+      it { should have_content('Find a match') }
     end
   end
 
@@ -47,8 +47,7 @@ feature 'Dashboard' do
       visit me_path
     end
     it { should have_content('What would you like to do?') }
-    it { should have_content('Browse profiles') }
-    it { should have_content('Go to your inbox') }
-    it { should have_content('View likes') }
+    it { should have_content('Find a match') }
+    it { should have_content('View your profile') }
   end
 end

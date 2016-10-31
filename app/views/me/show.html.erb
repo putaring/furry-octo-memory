@@ -60,7 +60,7 @@ finished_onboarding   = has_photos && has_description
               <%= image_tag 'search.svg', class: 'img-fluid' %>
             </div>
             <div class="col-xs-9 col-md-10">
-              <p class="list-group-item-heading text-primary h4">Browse profiles</p>
+              <p class="list-group-item-heading text-primary h4">Find a match</p>
               <p class="list-group-item-text">Browse matches, start a conversation, grab a coffee, get married.</p>
             </div>
           </div>
@@ -74,32 +74,8 @@ finished_onboarding   = has_photos && has_description
                 <%= image_tag 'profile.svg', class: 'img-fluid' %>
               </div>
               <div class="col-xs-9 col-md-10">
-                <p class="list-group-item-heading text-primary h4">Visit your profile</p>
+                <p class="list-group-item-heading text-primary h4">View your profile</p>
                 <p class="list-group-item-text">Make sure it's up to date with your best photos and a catchy description.</p>
-              </div>
-            </div>
-          <% end %>
-
-          <%= link_to messages_path, class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
-            <div class="row">
-              <div class="col-xs-3 col-md-2">
-                <%= image_tag 'message.svg', class: 'img-fluid' %>
-              </div>
-              <div class="col-xs-9 col-md-10">
-                <p class="list-group-item-heading text-primary h4">Go to your inbox</p>
-                <p class="list-group-item-text">View your conversations.</p>
-              </div>
-            </div>
-          <% end %>
-
-          <%= link_to likes_me_path, class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
-            <div class="row">
-              <div class="col-xs-3 col-md-2">
-                <%= image_tag 'like.svg', class: 'img-fluid' %>
-              </div>
-              <div class="col-xs-9 col-md-10">
-                <p class="list-group-item-heading text-primary h4">View likes</p>
-                <p class="list-group-item-text">See people who like you.</p>
               </div>
             </div>
           <% end %>

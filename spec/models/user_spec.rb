@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:country).is_equal_to(2) }
 
     it { should validate_inclusion_of(:gender).in_array(%w(m f)) }
-    it { should validate_inclusion_of(:sect).in_array(CASTES.collect { |c| c[:code] }) }
+    #it { should validate_inclusion_of(:sect).in_array(CASTES.collect { |c| c[:code] }).allow_nil }
     it { should validate_inclusion_of(:language).in_array(LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3)) }
     it { should validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 

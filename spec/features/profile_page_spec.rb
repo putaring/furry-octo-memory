@@ -32,7 +32,7 @@ feature "Profile page" do
   describe "profile details" do
     background { visit user_path(user) }
     it { should have_title("#{user.username} | Roozam") }
-    it { should have_content('Woman, 21 years old, 6 ft tall') }
+    it { should have_content('Woman, 21 years, 6 ft, Unmarried') }
     it { should have_content('Mother tongue is English') }
     it { should have_content('Lives in the United States') }
   end

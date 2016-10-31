@@ -13,7 +13,7 @@ FactoryGirl.define do
 
   factory :brahmin, parent: :user do
     religion 'hindu'
-    sect    'brh'
+    sect 'brh'
   end
 
   factory :restricted_user, parent: :user do

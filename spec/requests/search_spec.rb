@@ -64,5 +64,19 @@ RSpec.describe "Search", type: :request do
         expect(ids).to_not include(unmarried_user.id)
       end
     end
+
+    context "caste filter" do
+      it "returns only castes queries for" do
+        br1 = create(:brahmin, gender: 'm', sect: 'brh')
+        br2 = create(:brahmin, gender: 'm', sect: 'brm')
+        br3 = create(:brahmin, gender: 'm', sect: 'bri')
+        xhr :get, "/search", { gender: 'm', sects:['brh', 'brm'], religion: 'hindu' }
+        data  = JSON.parse(response.body)
+        ids   = data.map { |u| u["id"]}
+        expect(ids).to include(br1.id)
+        expect(ids).to include(br2.id)
+        expect(ids).to_not include(br3.id)
+      end
+    end
   end
 end
