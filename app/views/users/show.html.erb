@@ -1,4 +1,6 @@
-<% provide(:title, "#{@user.username} / #{@user.age} / #{@user.country_name}") %>
+<% provide(:title, @user.username) %>
+
+
 <%= render partial: 'shared/main_nav' %>
 <%= render partial: 'users/profile_banner' %>
 <%= render partial: 'users/message_modal' if logged_in? %>

@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   has_many :likers, through: :passive_interests, source: :liker
 
   enum religion: { hindu: 1, muslim: 2, christian: 3,
-    sikh: 4, buddhist: 5, jain: 6, non_religious: 100 }
+    sikh: 4, buddhist: 5, jain: 6, parsi: 7, jewish: 8, non_religious: 100 }
+
+  enum status: { unmarried: 1, divorced: 2, widowed: 3 }
 
   enum photo_visibility: { everyone: 1, members_only: 2, restricted: 3 }
 
@@ -26,7 +28,9 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :birthdate, presence: true
   validates :gender, presence: true, length: { is: 1 }, inclusion: { in: %w(m f) }
+  validates :sect, inclusion: { in: CASTES.collect { |c| c[:code] } }, allow_nil: true
   validates :religion, presence: true, inclusion: { in: User.religions.keys }
+  validates :status, presence: true, inclusion: { in: User.statuses.keys }
   validates :photo_visibility, inclusion: { in: User.photo_visibilities.keys }
   validates :country, presence: true, length: { is: 2 }, inclusion: { in: ISO3166::Data.codes }
   validates :language, presence: true, length: { is: 3 }, inclusion: { in: LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3) }
@@ -38,9 +42,11 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, case_sensitive: false,
     if: ->(u) { u.username_changed? }
 
-  validate :old_enough?, if: ->(u) { u.birthdate_changed? }
+  validate :old_enough?, if: ->(u) { (u.birthdate_changed? || u.gender_changed?) && u.birthdate.present? }
 
-  before_create :assign_random_username, :set_default_profile, :set_default_preferences
+  before_validation :tweak_sect
+
+  before_create :assign_random_username, :set_default_profile
 
   before_update { username.downcase! }
 
@@ -118,21 +124,19 @@ class User < ActiveRecord::Base
     end
   end
 
+  def sect_long_form
+    return nil if self.sect.blank?
+    CASTES.find { |caste| caste[:code].eql?(self.sect) }[:name]
+  end
+
   private
+  def tweak_sect
+    self.sect = nil if (self.sect.blank? || (self.religion != 'hindu'))
+  end
 
   def old_enough?
     minimum_age = gender.eql?('m') ? 21 : 18
-    errors.add(:birthdate, "shows you're too young. You must be at least #{minimum_age} years") unless birthdate <= minimum_age.years.ago
-  end
-
-  def set_default_preferences
-    self.preferences = {
-      min_age: self.male? ? [self.age - 5, 18].max : self.age,
-      max_age: self.male? ? self.age : (self.age + 5),
-      religion: self.religion,
-      countries: [self.country],
-      languages: [self.language]
-    }
+    errors.add(:birthdate, "indicates that you're underage. #{gender.eql?('m') ? 'Men' : 'Women'} must be at least #{minimum_age} years old.") unless birthdate <= minimum_age.years.ago
   end
 
   def set_default_profile

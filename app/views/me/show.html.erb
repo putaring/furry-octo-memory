@@ -4,52 +4,81 @@
 <style>
 .list-group-item {
   border: 0;
-  background-color: #f6fbff;
 }
 
 </style>
 
+<%
+has_photos            = current_user.photos.any?
+has_description       = current_user.profile.about.present?
+finished_onboarding   = has_photos && has_description
+%>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-8">
-      <h1 class="display-4 m-t-2 text-muted text-xs-center text-md-left">Welcome to Roozam!</h1>
-      <p class="lead text-muted text-xs-center text-md-left">
-        Get started in 3 easy steps.
-      </p>
+      <% if finished_onboarding %>
+        <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Hello!</h1>
+        <p class="lead text-muted text-xs-center text-md-left">
+          What would you like to do?
+        </p>
+      <% else %>
+        <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Welcome!</h1>
+        <p class="lead text-muted text-xs-center text-md-left">
+          Get started in 3 easy steps.
+        </p>
+      <% end %>
 
       <div class="list-group">
-        <a href="/photos" class="list-group-item list-group-item-action p-y-2 p-x-1 m-y-1">
-          <div class="row">
-            <div class="col-xs-3 col-md-2">
-              <%= image_tag 'camera.svg', class: 'img-fluid' %>
+        <% unless finished_onboarding %>
+          <a href="/photos" class="list-group-item list-group-item-action p-y-2 p-x-1 m-y-1">
+            <div class="row">
+              <div class="col-xs-3 col-md-2">
+                <%= image_tag has_photos ? 'tick.svg' : 'camera.svg', class: 'img-fluid' %>
+              </div>
+              <div class="col-xs-9 col-md-10">
+                <p class="list-group-item-heading text-primary h4">Add some photos</p>
+                <p class="list-group-item-text">Everyone wants to know what you look like. Upload your best pictures to get more likes.</p>
+              </div>
             </div>
-            <div class="col-xs-9 col-md-10">
-              <p class="list-group-item-heading text-primary h4">Add some photos</p>
-              <p class="list-group-item-text">Everyone wants to know what you look like. Upload your best pictures to get more likes.</p>
+          </a>
+          <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
+            <div class="row">
+              <div class="col-xs-3 col-md-2">
+                <%= image_tag has_description ? 'tick.svg' : 'fill.svg', class: 'img-fluid' %>
+              </div>
+              <div class="col-xs-9 col-md-10">
+                <p class="list-group-item-heading text-primary h4">Fill out your profile</p>
+                <p class="list-group-item-text">Tell everyone a little about yourself. Keep your description and essays short, sweet, and accurate.</p>
+              </div>
             </div>
-          </div>
-        </a>
-        <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
-          <div class="row">
-            <div class="col-xs-3 col-md-2">
-              <%= image_tag 'fill.svg', class: 'img-fluid' %>
-            </div>
-            <div class="col-xs-9 col-md-10">
-              <p class="list-group-item-heading text-primary h4">Fill out your profile</p>
-              <p class="list-group-item-text">Tell everyone a little about yourself. Keep your description and essays short, sweet, and accurate.</p>
-            </div>
-          </div>
+          <% end %>
         <% end %>
-        <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
+        <%= link_to search_path, class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
           <div class="row">
             <div class="col-xs-3 col-md-2">
               <%= image_tag 'search.svg', class: 'img-fluid' %>
             </div>
             <div class="col-xs-9 col-md-10">
-              <p class="list-group-item-heading text-primary h4">Search for your match</p>
-              <p class="list-group-item-text">Find someone who you like. Start a conversation. Grab a coffee. Get married. It's that simple.</p>
+              <p class="list-group-item-heading text-primary h4">Find a match</p>
+              <p class="list-group-item-text">Browse matches, start a conversation, grab a coffee, get married.</p>
             </div>
           </div>
+        <% end %>
+
+        <% if finished_onboarding %>
+
+          <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
+            <div class="row">
+              <div class="col-xs-3 col-md-2">
+                <%= image_tag 'profile.svg', class: 'img-fluid' %>
+              </div>
+              <div class="col-xs-9 col-md-10">
+                <p class="list-group-item-heading text-primary h4">View your profile</p>
+                <p class="list-group-item-text">Make sure it's up to date with your best photos and a catchy description.</p>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
 

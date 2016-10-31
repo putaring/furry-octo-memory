@@ -1,11 +1,11 @@
 <% provide(:title, 'Mutual likes') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1>You like each other</h1>
+        <h1 class="thin">You like each other</h1>
       </div>
     </div>
   </div>
@@ -27,7 +27,8 @@
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
           No mutual likes.<br>
-          <small><%= current_user.male? ? "She's" : "He's" %> out there. Keep searching.</small>
+          <small><%= current_user.male? ? "She's" : "He's" %> out there. Keep searching.</small><br>
+          <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
         </p>
       </div>
     </div>

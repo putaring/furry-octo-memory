@@ -31,8 +31,8 @@ feature "Profile page" do
 
   describe "profile details" do
     background { visit user_path(user) }
-    it { should have_title("#{user.username} / #{user.age} / #{user.country_name} • Roozam") }
-    it { should have_content('21 year old, 6 ft tall woman') }
+    it { should have_title("#{user.username} | Roozam") }
+    it { should have_content('Woman, 21 years, 6 ft, Unmarried') }
     it { should have_content('Mother tongue is English') }
     it { should have_content('Lives in the United States') }
   end
@@ -64,6 +64,7 @@ feature "Profile page" do
       it { should have_content("You haven't written anything yet.") }
       it { should have_content("Add a brief description") }
     end
+
   end
 
   context "logged in viewing a match whom you've expressed interest in" do

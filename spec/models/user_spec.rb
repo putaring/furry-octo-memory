@@ -9,6 +9,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:language) }
     it { should validate_presence_of(:country) }
     it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:status) }
     it { should validate_presence_of(:username).on(:update) }
 
     it { should validate_numericality_of(:height).is_greater_than(24).only_integer }
@@ -22,6 +23,7 @@ RSpec.describe User, type: :model do
     it { should validate_length_of(:country).is_equal_to(2) }
 
     it { should validate_inclusion_of(:gender).in_array(%w(m f)) }
+    #it { should validate_inclusion_of(:sect).in_array(CASTES.collect { |c| c[:code] }).allow_nil }
     it { should validate_inclusion_of(:language).in_array(LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3)) }
     it { should validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 
@@ -213,24 +215,13 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "when a user is being created" do
-    let(:user) { create(:user, gender: 'm', religion: 'christian', birthdate: 21.years.ago, language: 'eng', country: 'US') }
-    specify { expect(user.preferences['religion']).to eq('christian') }
-    specify { expect(user.preferences['languages']).to include('eng') }
-    specify { expect(user.preferences['countries']).to include('US') }
-    specify { expect(user.preferences['min_age']).to eq(18) }
-    specify { expect(user.preferences['max_age']).to eq(21) }
+  context "change religion" do
+    it "should reset caste to nil if religion is not hindu" do
+      brahmin = create(:brahmin)
+      expect(brahmin.sect).to eq('brh')
+      brahmin.update_attributes(religion: 'muslim')
 
-    context "when the user is a woman" do
-      let(:user) { create(:user, gender: 'f', birthdate: 21.years.ago) }
-      specify { expect(user.preferences['min_age']).to eq(21) }
-      specify { expect(user.preferences['max_age']).to eq(26) }
-    end
-
-    context "when the user is a man" do
-      let(:user) { create(:user, gender: 'm', birthdate: 30.years.ago) }
-      specify { expect(user.preferences['min_age']).to eq(25) }
-      specify { expect(user.preferences['max_age']).to eq(30) }
+      expect(brahmin.reload.sect).to be_nil
     end
   end
 

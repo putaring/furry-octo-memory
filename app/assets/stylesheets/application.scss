@@ -9,6 +9,8 @@
 @import "likes";
 @import "snackbar_material";
 @import "swipebox";
+@import "search";
+@import "photos";
 
 .card {
   &.card-no-border {
@@ -24,21 +26,15 @@
   @include button-outline-variant($btn-accent-bg);
 }
 
-.photo-thumbnail {
-  @extend .img-thumbnail;
-  max-height: 350px;
-  border:0;
-  border-radius: 0;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)
-}
-
 .navbar-full {
   background-color: #fff;
   box-shadow: 0 1px 0 0 rgba(0,0,0,.05),0 2px 4px 0 rgba(0,0,0,.06);
 }
 
 .scrollable-div {
-  height: 200px;
+  height: 100px;
+  padding-top: 0.1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   overflow-y: scroll;
   &::-webkit-scrollbar {
       -webkit-appearance: none;
@@ -49,4 +45,46 @@
       background-color: rgba(255,255,255,.5);
       -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
   }
+}
+
+.feature-jumbotron {
+  background-color: #fafafa;
+  h1 {
+    font-weight: 300;
+  }
+}
+
+.thin {
+  font-weight: 300 !important;
+}
+
+.profile-detail-centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.material-icons {
+  &.mi-aligned {
+    position: relative;
+    top: 5px;
+  }
+  &.md-18 {
+    font-size: 18px;
+    &.mi-aligned {
+      top: 2px;
+    }
+  }
+  &.md-36 {
+    font-size: 36px;
+  }
+  &.md-48 {
+    font-size: 48px;
+  }
+  /* Rules for using icons as black on a light background. */
+  &.md-dark { color: rgba(0, 0, 0, 0.54); }
+  &.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+  /* Rules for using icons as white on a dark background. */
+  &.md-light { color: rgba(255, 255, 255, 1); }
+  &.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 }

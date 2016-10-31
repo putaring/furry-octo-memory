@@ -24,7 +24,6 @@ feature 'Photos page' do
     end
 
     it { should have_content("Upload photo") }
-    it { should have_content("Your profile photo") }
     it { should have_content("Delete") }
 
     it "should delete a photo successfully" do
@@ -38,8 +37,6 @@ feature 'Photos page' do
       create(:photo, user: user)
       visit photos_path
     end
-
-    it { should have_content("Make profile photo") }
   end
 
 end

@@ -47,6 +47,9 @@ var validateRegistrationField = function (field) {
       case 'user_country':
         errorMessage = 'Where do you currently live?';
         break;
+      case 'status':
+        errorMessage = 'Select your marital status';
+        break;
       case 'user_email':
         errorMessage = 'Enter a valid email address.';
         break;
@@ -66,6 +69,16 @@ var $registrationFields =  $('#new_user').find('[name^=user]:not(select[name*=bi
 
 $registrationFields.on('change focusout', function (e) {
   validateRegistrationField(this);
+});
+
+$('#user_religion').change(function () {
+  if ($(this).val() === 'hindu') {
+    $('#caste-selection-container').slideDown();
+    $('#user_sect').prop('disabled', false);
+  } else {
+    $('#user_sect').prop('disabled', true);
+    $('#caste-selection-container').slideUp()
+  }
 });
 
 $('#new_user').submit(function (e) {

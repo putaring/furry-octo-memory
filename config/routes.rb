@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     get 'sent', on: :collection
   end
 
+  get 'users', to: redirect('/search', status: 301)
   resources :users, only: [:show, :create, :new] do
     resources :messages, only: [:create]
     post 'like', on: :member

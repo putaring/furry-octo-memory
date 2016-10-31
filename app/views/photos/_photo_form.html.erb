@@ -1,5 +1,7 @@
-<%= form_for(Photo.new) do |f| %>
-  <%= f.label :image, 'Upload photo', { id: 'photo-upload-file', class: 'btn btn-lg btn-primary' } %>
+<%= form_for(Photo.new, data: { crop_width: browser.device.mobile? ? 250 : 550 }) do |f| %>
+  <%= f.label :image, { id: 'photo-upload-file', class: 'btn btn-lg btn-success' } do %>
+  <i class="material-icons mi-aligned">photo_camera</i> Upload photo
+  <% end %>
   <%= f.file_field :image, { accept: 'image/*', capture: "camera" , style: "text-indent: -999em; width:1px; position: absolute; height:1px; opacity: 0" }%>
   <%= f.hidden_field :image_x %>
   <%= f.hidden_field :image_y %>
@@ -18,10 +20,10 @@
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-xs-9" style="border-right: 1px dashed #ccc">
+            <div class="col-lg-9 col-md-12" style="border-right: 1px dashed #ccc">
               <img id="photo-crop-canvas" />
             </div>
-            <div class="col-xs-3 text-xs-center">
+            <div class="col-xs-3 hidden-md-down text-xs-center">
               <div style="width:150px; height:150px; overflow:hidden; border-radius: 50%;" class="m-x-auto m-t-1 m-b-1">
                 <img id="photo-crop-preview" />
               </div>
@@ -31,7 +33,7 @@
         </div>
       </div>
       <div class="modal-footer text-xs-center">
-        <button type="button" class="btn btn-lg btn-primary">Save photo</button>
+        <%= button_tag 'Save Photo', class: 'btn btn-lg btn-primary', disable_with: 'Uploading' %>
       </div>
     </div>
   </div>

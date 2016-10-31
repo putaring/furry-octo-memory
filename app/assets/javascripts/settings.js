@@ -24,7 +24,11 @@ $(function() {
         show();
     }
   }).on('ajax:success', function () {
-    $(this).find('.edit_success').show();
+    if (location.pathname.match(/\/users\//)) {
+      location.reload(true);
+    } else {
+      $(this).find('.edit_success').show();
+    }
   }).on('ajax:before', function () {
     $(this).find('.edit_errors').hide();
     $(this).find('.edit_success').hide();

@@ -1,11 +1,11 @@
 <% provide(:title, 'People who like me') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0" style="background-color:#f6fbff;box-shadow:0 4px 2px -2px rgba(0,0,0,.05);">
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1>People who like me</h1>
+        <h1 class="thin">People who like me</h1>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <p class="lead text-xs-center p-y-3">
           0 likes<br>
-          <small>Like people you're interested in to know if they like you back.</small>
+          <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
         </p>
       </div>
     </div>
