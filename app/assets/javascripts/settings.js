@@ -25,6 +25,7 @@ $(function() {
     }
   }).on('ajax:success', function () {
     if (location.pathname.match(/\/users\//)) {
+      // if the user is updating information from their profile page, then reload page
       location.reload(true);
     } else {
       $(this).find('.edit_success').show();

@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><%= full_title(yield(:title)) %></title>
-  <%= render partial: 'shared/localstorage_support' %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="http://jcrop-cdn.tapmodo.com/v0.9.12/css/jquery.Jcrop.min.css">
   <link rel="icon"
       type="image/png"
       href="<%= image_path('roozam-favicon.png') %>" >
@@ -22,7 +20,6 @@
 <%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
 <%#= render partial: 'shared/footer' %>
 <%= javascript_include_tag 'application' %>
-<%= javascript_include_tag 'http://jcrop-cdn.tapmodo.com/v0.9.12/js/jquery.Jcrop.min.js' %>
 <%= yield :javascripts %>
 </body>
 </html>

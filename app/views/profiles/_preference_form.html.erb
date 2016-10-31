@@ -5,8 +5,8 @@
     Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
   </div>
   <div class="form-group">
-    <%= f.label :about, 'Edit your description', class: "sr-only" %>
-    <%= f.text_area :about, { class: 'form-control', placeholder: 'How would your family describe you?', rows: 7} %>
+    <%= f.label :preference, 'Who should contact you?', class: "sr-only" %>
+    <%= f.text_area :preference, { class: 'form-control', placeholder: "What're you looking for in a partner?", rows: 7} %>
   </div>
   <div class="form-group text-xs-right">
     <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success' } %>
