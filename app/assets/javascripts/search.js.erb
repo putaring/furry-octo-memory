@@ -11,6 +11,22 @@ $('[type="checkbox"][name="languages[]"]').change(function (e) {
   }
 });
 
+
+
+$('[type="checkbox"][data-toggle="sects"]').change(function (e) {
+  if ($(this).is(":checked")) {
+    $('[type="checkbox"][name="sects[]"]').
+    prop('checked', false);
+  }
+});
+
+$('[type="checkbox"][name="sects[]"]').change(function (e) {
+  if ($(this).is(":checked")) {
+    $('[type="checkbox"][data-toggle="sects"]').prop('checked', false);
+  }
+});
+
+
 $('[type="checkbox"][data-toggle="countries"]').change(function (e) {
   if ($(this).is(":checked")) {
     $('[type="checkbox"][name="countries[]"]').
@@ -21,6 +37,17 @@ $('[type="checkbox"][data-toggle="countries"]').change(function (e) {
 $('[type="checkbox"][name="countries[]"]').change(function (e) {
   if ($(this).is(":checked")) {
     $('[type="checkbox"][data-toggle="countries"]').prop('checked', false);
+  }
+});
+
+$('select#religion').change(function (e) {
+  var religion = $(this).val();
+  if (religion === 'hindu') {
+    $('#caste-search-container').slideDown();
+    $('[name="sects[]"]').prop('disabled', false);
+  } else {
+    $('#caste-search-container').slideUp();
+    $('[name="sects[]"]').prop('disabled', true);
   }
 });
 
@@ -69,6 +96,7 @@ $('[type="checkbox"][name="countries[]"]').change(function (e) {
             maxHeight: null,
             minAge: null,
             maxAge: null,
+            sects: [],
             languages: [],
             countries: []
           };
@@ -92,6 +120,11 @@ $('[type="checkbox"][name="countries[]"]').change(function (e) {
             break;
           case "religion":
             searchObject.religion = searchParams[i].value;
+            break;
+          case "sects[]":
+            if (searchObject.religion === 'hindu') {
+              searchObject.sects.push(searchParams[i].value);
+            }
             break;
           case "languages[]":
             searchObject.languages.push(searchParams[i].value);
@@ -124,6 +157,23 @@ $('[type="checkbox"][name="countries[]"]').change(function (e) {
     $searchForm.find('[name="min_height"]').val(searchObject.minHeight);
     $searchForm.find('[name="max_height"]').val(searchObject.maxHeight);
     $searchForm.find('[name="religion"]').val(searchObject.religion);
+
+    var $sects = $('[name="sects[]"]');
+    if (searchObject.religion === 'hindu') {
+      $('#caste-search-container').show();
+      $sects.prop('disabled', false);
+      if ($sects.length > 1) {
+        // checkboxes
+        for (var i = 0; i < $sects.length; i++) {
+          if (searchObject.sects.indexOf($sects.get(i).value) !== -1) {
+            $($sects.get(i)).prop('checked', true);
+          }
+        }
+      } else {
+        // multiselect
+        $sects.val(searchObject.sects);
+      }
+    }
 
     var $languages = $searchForm.find('[name="languages[]"]');
     if ($languages.length > 1) {

@@ -7,6 +7,7 @@
       $photoCanvas        = $('#photo-crop-canvas'),
       $photoPreview       = $('#photo-crop-preview'),
       $modal              = $('#photo-crop-modal'),
+      cropWidth           = $photoForm.data('cropWidth'),
       jcropApi            = null;
 
   $photoFileInput.click(function() {
@@ -18,8 +19,9 @@
     });
 
     $modal.find('.btn-primary').click(function () {
+      $(this).text('Uploading…').prop('disabled', true);
       $photoForm.submit();
-      $modal.modal('hide');
+      //$modal.modal('hide');
     });
 
     var setCoordinates = function (coords) {
@@ -54,8 +56,8 @@
           $photoCanvas.Jcrop({
             onSelect: setCoordinates,
             onChange: setCoordinates,
-            boxWidth: 600,
-            boxHeight: 600,
+            boxWidth: cropWidth,
+            boxHeight: cropWidth,
             keySupport: false,
             aspectRatio: 1,
             bgOpacity: .4,

@@ -124,6 +124,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def sect_long_form
+    return nil if self.sect.blank?
+    CASTES.find { |caste| caste[:code].eql?(self.sect) }[:name]
+  end
+
   private
   def tweak_sect
     self.sect = nil if (self.sect.blank? || (self.religion != 'hindu'))

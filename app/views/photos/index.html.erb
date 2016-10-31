@@ -13,8 +13,12 @@
 
 <section class="container m-t-2">
   <% if flash.notice.present? %>
-  <div class="alert alert-success text-xs-center">
-    <strong>✔</strong> <%= flash.notice %>
+  <div class="row">
+    <div class="offset-md-4 col-md-4">
+      <div class="alert alert-success text-xs-center">
+        <%= flash.notice %>
+      </div>
+    </div>
   </div>
   <% end %>
   <div class="row">

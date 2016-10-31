@@ -35,7 +35,7 @@
 <% show_caste = f.object.religion.eql?('hindu') %>
 <div class="form-group" id="caste-selection-container" style="<%= show_caste ? '' : 'display:none;' %>">
   <%= f.label :sect, 'Select your caste' %>
-  <%= f.select :sect, CASTES.map { |caste| [caste[:name], caste[:code]] }, { class: 'form-control', disabled: !show_caste } %>
+  <%= f.select :sect, CASTES.map { |caste| [caste[:name], caste[:code]] }, {}, { class: 'form-control', disabled: !show_caste } %>
 </div>
 <div class="form-group">
   <%= f.label :language, 'Mother tongue', class: show_label ? '' : "sr-only" %>

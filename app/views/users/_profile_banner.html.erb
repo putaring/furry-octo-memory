@@ -9,10 +9,14 @@
           <div class="col-lg-5 col-md-5 text-md-left text-xs-center profile-detail-centered p-y-1">
             <h2 class="h4" style="color:rgba(255, 255, 255, 0.8);"><%= @user.username %></h1>
             <p>
-              <%= @user.gender_expanded.humanize %>, <%= @user.age %> years old, <%= metric_height(@user.height) %> tall<br>
-              <%= @user.religion.humanize %><br>
-              Mother tongue is <%= @user.language_expanded %> <br>
-              Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %> <%= @user.country_name %>
+              <%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="no-focus">years,</span> <%= metric_height(@user.height) %>, <%= @user.status.humanize %><br>
+              <%= @user.religion.humanize %>
+              <% if @user.sect_long_form.present? %>
+              (<%= @user.sect_long_form %>)
+              <% end %>
+              <br>
+              <span class="no-focus">Mother tongue is</span> <%= @user.language_expanded %> <br>
+              <span class="no-focus">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %> </span><%= @user.country_name %>
             </p>
           </div>
           <div class="col-lg-4 col-md-3 profile-detail-centered text-md-left text-xs-center">
@@ -31,7 +35,7 @@
                   <% end %>
                 <% end %>
               <% else %>
-                <%= link_to('Join now', signup_path, { class: 'btn btn-lg btn-block btn-success' }) %>
+                <%= link_to('Join now', signup_path, { class: 'btn btn-lg btn-block btn-warning' }) %>
               <% end %>
             </p>
           </div>

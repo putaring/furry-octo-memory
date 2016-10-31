@@ -27,7 +27,7 @@
     Photos
     <% if @user.eql?(current_user) %>
     <small>
-      <%= link_to photos_path, { title: "Manage photos", data: { toggle: "tooltip", placement: "bottom" } } do %>
+      <%= link_to photos_path, { title: "Manage", data: { toggle: "tooltip", placement: "right" } } do %>
       <i class="material-icons mi-aligned text-success">mode_edit</i>
       <% end %>
     </small>

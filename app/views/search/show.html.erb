@@ -15,6 +15,52 @@
         </div>
 
         <div class="form-group">
+          <%= label_tag :religion, "Religion" %>
+          <%= select_tag :religion, options_for_select(User.religions.map{ |religion, _| [religion.humanize, religion] }), { class: 'form-control', include_blank: "Doesn't matter" } %>
+        </div>
+
+        <div class="form-group" id="caste-search-container" style="display:none">
+          <%= label_tag :sects, "Caste" %>
+          <% if browser.device.mobile? || browser.device.tablet? %>
+
+            <%= select_tag :sects, options_for_select(CASTES.map { |caste| [caste[:name], caste[:code]] }), { class: 'form-control', prompt: "Doesn't matter", multiple: true, disabled: true } %>
+
+          <% else %>
+            <div class="row scrollable-div m-b-1">
+              <div class="col-xs-6">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= check_box_tag nil, "", false, class: 'form-check-input', data: { toggle: 'sects' } %>
+                    Doesn't matter
+                  </label>
+                </div>
+                <% CASTES.map { |caste| [caste[:name], caste[:code]] }[0..200].each do |caste| %>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= check_box_tag "sects[]", caste[1], false, class: 'form-check-input', disabled: true %>
+                    <%= caste[0] %>
+                  </label>
+                </div>
+                <% end %>
+              </div>
+              <div class="col-xs-6">
+                <% CASTES.map { |caste| [caste[:name], caste[:code]] }[201..-1].each do |caste| %>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <%= check_box_tag "sects[]", caste[1], false, class: 'form-check-input', disabled: true %>
+                    <%= caste[0] %>
+                  </label>
+                </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
           <%= label_tag :min_age, "Age" %>
           <div class="row">
             <div class="col-xs-6">
@@ -37,55 +83,9 @@
             </div>
           </div>
         </div>
-
-      </div>
-      <div class="col-md-4">
         <div class="form-group">
           <%= label_tag :status, "Marital status" %>
           <%= select_tag :status, options_for_select(User.statuses.map{ |status, _| [status.humanize, status] }), { class: 'form-control', include_blank: "Doesn't matter" } %>
-        </div>
-
-        <div class="form-group">
-          <%= label_tag :religion, "Religion" %>
-          <%= select_tag :religion, options_for_select(User.religions.map{ |religion, _| [religion.humanize, religion] }), { class: 'form-control', include_blank: "Doesn't matter" } %>
-        </div>
-
-        <div class="form-group">
-          <%= label_tag :sects, "Caste" %>
-          <% if browser.device.mobile? || browser.device.tablet? %>
-
-            <%= select_tag :sects, options_for_select(CASTES.map { |caste| [caste[:name], caste[:code]] }), { class: 'form-control', prompt: "Doesn't matter", multiple: true } %>
-
-          <% else %>
-            <div class="row scrollable-div m-b-1">
-              <div class="col-xs-6">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag nil, "", false, class: 'form-check-input', data: { toggle: 'sects' } %>
-                    Doesn't matter
-                  </label>
-                </div>
-                <% CASTES.map { |caste| [caste[:name], caste[:code]] }[0..200].each do |caste| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "sects[]", caste[1], false, class: 'form-check-input' %>
-                    <%= caste[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-              <div class="col-xs-6">
-                <% CASTES.map { |caste| [caste[:name], caste[:code]] }[201..-1].each do |caste| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "sects[]", caste[1], false, class: 'form-check-input' %>
-                    <%= caste[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
         </div>
       </div>
 

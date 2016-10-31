@@ -4,7 +4,7 @@
     About me
     <% if @user.eql?(current_user) %>
     <small>
-      <%= link_to about_settings_path, { title: "Update summary", data: { toggle: "tooltip", placement: "bottom" } } do %>
+      <%= link_to about_settings_path, { title: "Edit", data: { toggle: "tooltip", placement: "right" } } do %>
       <i class="material-icons mi-aligned text-success">mode_edit</i>
       <% end %>
     </small>
