@@ -23,12 +23,14 @@
 <section class="container m-t-2">
   <div class="row">
     <% if @messages.empty? %>
-      <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-        <p class="lead text-xs-center p-y-3">
-          0 messages<br>
-          <small>Be the first to start a conversation.</small><br>
-          <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
-        </p>
+      <div class="col-xs-12">
+        <div class="card card-block card-outline-secondary text-muted p-y-3" style="border-style:dashed">
+          <p class="text-xs-center p-y-3">
+            0 messages<br>
+            <small>Be the first to start a conversation.</small><br>
+            <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
+          </p>
+        </div>
       </div>
     <% else %>
       <div class="col-lg-7">

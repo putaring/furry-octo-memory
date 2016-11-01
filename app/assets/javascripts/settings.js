@@ -28,7 +28,12 @@ $(function() {
       // if the user is updating information from their profile page, then reload page
       location.reload(true);
     } else {
-      $(this).find('.edit_success').show();
+      $.snackbar({
+        content: "Updated. <strong><a href='/users/" + $(this).data('userId') + "'>VIEW PROFILE</a></strong>",
+        style: "snackbar",
+        htmlAllowed: true,
+        timeout: 5000
+      });
     }
   }).on('ajax:before', function () {
     $(this).find('.edit_errors').hide();
