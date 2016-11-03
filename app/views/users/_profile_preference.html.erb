@@ -1,7 +1,7 @@
-<% if @user.occupation.present? %>
+<% if @user.preference.present? %>
 <div class="card card-block" style="border-color: transparent;">
   <h2 class="card-title h5">
-    What I'm doing with my life
+    Who should contact me
     <% if @user.eql?(current_user) %>
     <small>
       <%= link_to essays_profile_path, { title: "Edit", data: { toggle: "tooltip", placement: "right" } } do %>
@@ -10,19 +10,19 @@
     </small>
     <% end %>
   </h2>
-  <%= simple_format(@user.occupation, { class: 'card-text' }) %>
+  <%= simple_format(@user.preference, { class: 'card-text' }) %>
 </div>
 <% else %>
   <% if @user.eql?(current_user) %>
     <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-      <h3 class="card-title h5">What I'm doing with my life</h3>
+      <h3 class="card-title h5">Who should contact me</h3>
       <p class="text-xs-center p-y-3">
-        This essay is empty.<br>
-          <%= link_to essays_profile_path, data: { toggle: 'modal', target: '#occupation-modal' }  do %>
-          What do you do day-to-day?
+        You haven't mentioned your preference.<br>
+          <%= link_to essays_profile_path, data: { toggle: 'modal', target: '#preference-modal' }  do %>
+          Fill it out
           <% end %>
       </p>
     </div>
-    <%= render partial: 'users/occupation_modal' %>
+    <%= render partial: 'users/preference_modal' %>
   <% end %>
 <% end %>

@@ -28,6 +28,7 @@ feature "Profile page" do
         visit user_path(user)
       end
 
+      it { should have_content("What I'm doing with my life") }
       it { should have_content('I cook goats') }
     end
 
@@ -38,6 +39,7 @@ feature "Profile page" do
         visit user_path(user)
       end
 
+      it { should have_content("Who should contact me") }
       it { should have_content('I like goats') }
     end
   end
@@ -81,18 +83,21 @@ feature "Profile page" do
     end
 
     context "Empty about me" do
+      it { should have_content("About me") }
       it { should have_content("You haven't written anything yet.") }
       it { should have_content("Add a short description") }
     end
 
     context "Empty occupation" do
-      it { should have_content("You haven't written anything yet.") }
-      it { should have_content("What're you doing with your life?") }
+      it { should have_content("What I'm doing with my life") }
+      it { should have_content("This essay is empty.") }
+      it { should have_content("What do you do day-to-day?") }
     end
 
     context "Empty preference" do
-      it { should have_content("You haven't written anything yet.") }
-      it { should have_content("Who should contact you?") }
+      it { should have_content("Who should contact me") }
+      it { should have_content("You haven't mentioned your preference") }
+      it { should have_content("Fill it out") }
     end
 
   end
