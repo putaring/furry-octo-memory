@@ -15,7 +15,7 @@ class MeController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :birthdate, :password, :email,
-      :country, :gender, :language, :religion, :height, :status, :sect)
+    params.require(:user).permit(:username, :birthdate, :password, :password_confirmation, :email,
+      :country, :gender, :language, :religion, :height, :status, :sect, :photo_visibility)
   end
 end

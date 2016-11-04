@@ -1,4 +1,4 @@
-<% provide(:title, "Edit profile") %>
+<% provide(:title, "Account settings") %>
 
 <%= render partial: 'shared/main_nav' %>
 
@@ -6,7 +6,7 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <h1 class="thin">Edit details</h1>
+        <h1 class="thin">Account settings</h1>
       </div>
     </div>
   </div>
@@ -16,7 +16,7 @@
   <div class="container p-y-1">
     <div class="row">
       <div class="col-xs-12">
-        <%= render partial: 'profile/nav' %>
+        <%= render partial: 'settings/nav' %>
       </div>
     </div>
   </div>
@@ -25,8 +25,8 @@
 <div class="container m-t-1">
   <div class="row">
     <div class="col-lg-7">
-      <%= render partial: 'profile/username' %>
-      <%= render partial: 'profile/details' %>
+      <%= render partial: 'settings/email' %>
+      <%= render partial: 'settings/password' %>
     </div>
   </div>
 </div>
