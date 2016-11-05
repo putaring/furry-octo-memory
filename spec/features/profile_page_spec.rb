@@ -83,7 +83,7 @@ feature "Profile page" do
     end
 
     context "Empty about me" do
-      it { should have_content("About me") }
+      it { should have_content("A few words about me") }
       it { should have_content("You haven't written anything yet.") }
       it { should have_content("Add a short description") }
     end

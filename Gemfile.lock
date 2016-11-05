@@ -108,6 +108,8 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    has_secure_token (1.0.0)
+      activerecord (>= 3.0)
     i18n (0.7.0)
     i18n_data (0.7.0)
     jquery-rails (4.1.1)
@@ -274,6 +276,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   guard-rspec
+  has_secure_token
   jquery-rails
   language_list
   mini_magick

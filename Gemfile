@@ -14,6 +14,7 @@ gem 'language_list'
 gem 'browser'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'has_secure_token'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
