@@ -24,16 +24,15 @@ $(function() {
         show();
     }
   }).on('ajax:success', function () {
-    if (location.pathname.match(/\/users\//)) {
-      // if the user is updating information from their profile page, then reload page
-      location.reload(true);
-    } else {
+    if (location.pathname.match(/\/settings\//) || location.pathname.match(/\/profile\//)) {
       $.snackbar({
-        content: "Updated. <strong><a href='/users/" + $(this).data('userId') + "'>VIEW PROFILE</a></strong>",
+        content: "Updated. <a href='/users/" + $(this).data('userId') + "'><strong>GO TO PROFILE</strong></a>",
         style: "snackbar",
         htmlAllowed: true,
         timeout: 5000
       });
+    } else {
+      location.reload(true);
     }
   }).on('ajax:before', function () {
     $(this).find('.edit_errors').hide();

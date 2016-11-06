@@ -2,34 +2,7 @@
   <p class="card-title font-weight-bold">Edit photo privacy</p>
   <div class="row">
     <div class="col-lg-10">
-      <%= form_for(current_user, url: me_path, remote: true, data: { user_id: current_user.id }) do |f| %>
-        <div class="alert alert-danger edit_errors" style="display:none">
-        </div>
-        <div class="alert alert-success edit_success" style="display:none">
-          Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
-        </div>
-        <% User.photo_visibilities.keys.each do |privacy_setting| %>
-          <div class="form-check">
-            <label class="form-check-label">
-              <%= f.radio_button :photo_visibility,  privacy_setting, class: 'form-check-input' %>
-              <% if privacy_setting.eql?('everyone') %>
-              Public
-              <small class="d-block text-muted">People on and off Roozam can see your photos.</small>
-              <% elsif privacy_setting.eql?('members_only') %>
-              Members only
-              <small class="d-block text-muted">Registered Roozam users can see your photos.</small>
-              <% else %>
-              Restricted
-              <small class="d-block text-muted">Only people you like can view your photos.</small>
-              <small class="d-block text-danger"><em>We don't recommend this setting - very few people can see your settings.</em></small>
-              <% end %>
-            </label>
-          </div>
-        <% end %>
-        <div class="form-group text-xs-right">
-          <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success' } %>
-        </div>
-      <% end %>
+      <%= render partial: 'settings/privacy_form' %>
     </div>
   </div>
 </div>

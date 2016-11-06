@@ -18,7 +18,7 @@
 <body>
 <%= yield %>
 <%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
-<%#= render partial: 'shared/footer' %>
+<%= render partial: 'shared/footer' %>
 <%= javascript_include_tag 'application' %>
 <%= yield :javascripts %>
 </body>
