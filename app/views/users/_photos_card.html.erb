@@ -1,14 +1,12 @@
 <% if @user.photos.count == 0 %>
 <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
   <h3 class="card-title h5">Photos</h3>
-  <p class="lead text-xs-center p-y-3">
+  <p class="text-xs-center p-y-3">
     No photos.<br>
     <% if @user.eql?(current_user) %>
-    <small>
       <%= link_to photos_path do %>
       Add some photos
       <% end %>
-    </small>
     <% else %>
     <small>Camera shy, maybe?</small>
     <% end %>
@@ -17,8 +15,8 @@
 <% elsif @user.display_photos_to?(current_user) == false %>
 <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
   <h3 class="card-title h5">Photos</h3>
-  <p class="text-xs-center p-a-3">
-    <%= @user.photo_visibility.eql?('restricted') ? 'Restricted. They must like you before you can view their photos.' : 'Log in to view their photos.' %>
+  <p class="text-xs-center p-y-3">
+    <%= @user.photo_visibility.eql?('restricted') ? 'Restricted. You can view their photos only if they like you.' : 'Log in to view their photos.' %>
   </p>
 </div>
 <% else %>

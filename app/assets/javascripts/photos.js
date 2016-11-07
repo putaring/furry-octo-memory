@@ -50,7 +50,7 @@
             topX        = (width/2) - (smallerSide/4),
             topY        = (height/2) - (smallerSide/4);
 
-        if (width < 400 || height < 400) {
+        if (width < 100 || height < 100) {
           alert("Please upload a bigger picture.");
         } else {
           $photoCanvas.Jcrop({

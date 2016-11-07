@@ -1,8 +1,8 @@
 <ul class="nav nav-pills">
   <li class="nav-item">
-    <%= link_to 'Profile', profile_settings_path, class: params[:action].eql?('profile') ? 'nav-link active' : 'nav-link' %>
+    <%= link_to 'Account', account_settings_path, class: params[:action].eql?('account') ? 'nav-link active' : 'nav-link' %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Description', about_settings_path, class: params[:action].eql?('about') ? 'nav-link active' : 'nav-link' %>
+    <%= link_to 'Privacy', privacy_settings_path, class: params[:action].eql?('privacy') ? 'nav-link active' : 'nav-link' %>
   </li>
 </ul>

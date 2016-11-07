@@ -24,10 +24,15 @@ $(function() {
         show();
     }
   }).on('ajax:success', function () {
-    if (location.pathname.match(/\/users\//)) {
-      location.reload(true);
+    if (location.pathname.match(/\/settings\//) || location.pathname.match(/\/profile\//)) {
+      $.snackbar({
+        content: "Updated. <a href='/users/" + $(this).data('userId') + "'><strong>GO TO PROFILE</strong></a>",
+        style: "snackbar",
+        htmlAllowed: true,
+        timeout: 5000
+      });
     } else {
-      $(this).find('.edit_success').show();
+      location.reload(true);
     }
   }).on('ajax:before', function () {
     $(this).find('.edit_errors').hide();

@@ -13,7 +13,7 @@ class Photo < ActiveRecord::Base
 
   before_validation :set_rank, on: :create, if: ->(p) { p.user.present? }
   before_update     :sort_photos, if: ->(p) { p.rank_changed? }
-  before_destroy    :adjust_ranks, :remove_photo_files
+  before_destroy    :adjust_ranks
 
   def make_profile_photo
     update_attributes(rank: 1)
@@ -43,10 +43,6 @@ class Photo < ActiveRecord::Base
 
   def valid_rank
     errors.add(:rank, 'cannot exceed photo count') if rank > user.photos.count
-  end
-
-  def remove_photo_files
-    self.remove_image!
   end
 
 end

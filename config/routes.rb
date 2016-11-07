@@ -28,11 +28,14 @@ Rails.application.routes.draw do
   end
 
   resource :me, controller: :me, only: [:show, :update]
-  resource :profile, controller: :profile, only: [:update]
+  resource :profile, controller: :profile, only: [:update] do
+    get 'details'
+    get 'essays'
+  end
+
   resource :settings, only: [] do
-    get 'profile'
-    get 'about'
-    get 'preferences'
+    get 'account'
+    get 'privacy'
   end
 
   resources :messages, only: :index do

@@ -1,4 +1,4 @@
-<% provide(:title, 'Dashboard') %>
+<% provide(:title, 'Home') %>
 <%= render partial: 'shared/main_nav' %>
 
 <style>
@@ -18,14 +18,14 @@ finished_onboarding   = has_photos && has_description
   <div class="row">
     <div class="col-lg-8">
       <% if finished_onboarding %>
-        <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Hello!</h1>
+        <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Hey there</h1>
         <p class="lead text-muted text-xs-center text-md-left">
-          What would you like to do?
+          What would you like to do today?
         </p>
       <% else %>
         <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Welcome!</h1>
         <p class="lead text-muted text-xs-center text-md-left">
-          Get started in 3 easy steps.
+          We're so glad to have you on Roozam. <span class="font-weight-bold">Get started in 3 easy steps.</span>
         </p>
       <% end %>
 
@@ -38,7 +38,7 @@ finished_onboarding   = has_photos && has_description
               </div>
               <div class="col-xs-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Add some photos</p>
-                <p class="list-group-item-text">Everyone wants to know what you look like. Upload your best pictures to get more likes.</p>
+                <p class="list-group-item-text">Everyone wants to know what you look like.</p>
               </div>
             </div>
           </a>
@@ -49,7 +49,7 @@ finished_onboarding   = has_photos && has_description
               </div>
               <div class="col-xs-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Fill out your profile</p>
-                <p class="list-group-item-text">Tell everyone a little about yourself. Keep your description and essays short, sweet, and accurate.</p>
+                <p class="list-group-item-text">Tell everyone a little about yourself. Keep your essays short and sweet.</p>
               </div>
             </div>
           <% end %>

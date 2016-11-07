@@ -14,11 +14,33 @@ feature "Profile page" do
     context "non-empty about me essay" do
       let(:user) { create(:user) }
       background do
-        user.profile.update_attributes(about: 'Lorem ipsum')
+        user.profile.update_attributes(about: 'I am a fox')
         visit user_path(user)
       end
 
-      it { should have_content('Lorem ipsum') }
+      it { should have_content('I am a fox') }
+    end
+
+    context "non-empty occupation essay" do
+      let(:user) { create(:user) }
+      background do
+        user.profile.update_attributes(occupation: 'I cook goats')
+        visit user_path(user)
+      end
+
+      it { should have_content("What I'm doing with my life") }
+      it { should have_content('I cook goats') }
+    end
+
+    context "non-empty preference essay" do
+      let(:user) { create(:user) }
+      background do
+        user.profile.update_attributes(preference: 'I like goats')
+        visit user_path(user)
+      end
+
+      it { should have_content("Who should contact me") }
+      it { should have_content('I like goats') }
     end
   end
 
@@ -61,8 +83,21 @@ feature "Profile page" do
     end
 
     context "Empty about me" do
+      it { should have_content("A few words about me") }
       it { should have_content("You haven't written anything yet.") }
-      it { should have_content("Add a brief description") }
+      it { should have_content("Add a short description") }
+    end
+
+    context "Empty occupation" do
+      it { should have_content("What I'm doing with my life") }
+      it { should have_content("This essay is empty.") }
+      it { should have_content("What do you do day-to-day?") }
+    end
+
+    context "Empty preference" do
+      it { should have_content("Who should contact me") }
+      it { should have_content("You haven't mentioned your preference") }
+      it { should have_content("Fill it out") }
     end
 
   end

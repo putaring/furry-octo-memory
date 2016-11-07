@@ -1,0 +1,28 @@
+<% if @user.occupation.present? %>
+<div class="card card-block" style="border-color: transparent;">
+  <h2 class="card-title h5">
+    What I'm doing with my life
+    <% if @user.eql?(current_user) %>
+    <small>
+      <%= link_to essays_profile_path, { title: "Edit", data: { toggle: "tooltip", placement: "right" } } do %>
+      <i class="material-icons mi-aligned text-success">mode_edit</i>
+      <% end %>
+    </small>
+    <% end %>
+  </h2>
+  <%= simple_format(@user.occupation, { class: 'card-text' }) %>
+</div>
+<% else %>
+  <% if @user.eql?(current_user) %>
+    <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
+      <h3 class="card-title h5">What I'm doing with my life</h3>
+      <p class="text-xs-center p-y-3">
+        This essay is empty.<br>
+          <%= link_to essays_profile_path, data: { toggle: 'modal', target: '#occupation-modal' }  do %>
+          What do you do day-to-day?
+          <% end %>
+      </p>
+    </div>
+    <%= render partial: 'users/occupation_modal' %>
+  <% end %>
+<% end %>

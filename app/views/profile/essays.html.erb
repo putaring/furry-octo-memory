@@ -1,0 +1,42 @@
+<% provide(:title, "Edit essays") %>
+
+<%= render partial: 'shared/main_nav' %>
+
+<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="thin">Edit essays</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container p-y-1">
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'profile/nav' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container m-t-1">
+  <div class="row">
+    <div class="col-lg-7">
+      <%= render partial: 'profile/about' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7">
+      <%= render partial: 'profile/occupation' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-7">
+      <%= render partial: 'profile/preference' %>
+    </div>
+  </div>
+</div>

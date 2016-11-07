@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_secure_token :reset_token
 
   has_one :profile
 
@@ -44,6 +45,8 @@ class User < ActiveRecord::Base
 
   validate :old_enough?, if: ->(u) { (u.birthdate_changed? || u.gender_changed?) && u.birthdate.present? }
 
+  delegate :about, :occupation, :preference, to: :profile
+
   before_validation :tweak_sect
 
   before_create :assign_random_username, :set_default_profile
@@ -63,10 +66,6 @@ class User < ActiveRecord::Base
     else
       default_thumbnail(thumbnail_type)
     end
-  end
-
-  def about
-    @_about ||= profile.about
   end
 
   def profile_photo

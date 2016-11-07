@@ -1,10 +1,10 @@
 <% if @user.about.present? %>
 <div class="card card-block" style="border-color: transparent;">
   <h2 class="card-title h5">
-    About me
+    A few words about me
     <% if @user.eql?(current_user) %>
     <small>
-      <%= link_to about_settings_path, { title: "Edit", data: { toggle: "tooltip", placement: "right" } } do %>
+      <%= link_to essays_profile_path, { title: "Edit", data: { toggle: "tooltip", placement: "right" } } do %>
       <i class="material-icons mi-aligned text-success">mode_edit</i>
       <% end %>
     </small>
@@ -15,21 +15,19 @@
 <% else %>
   <% if @user.eql?(current_user) %>
     <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-      <h3 class="card-title h5">About me</h3>
-      <p class="lead text-xs-center p-y-3">
+      <h3 class="card-title h5">A few words about me</h3>
+      <p class="text-xs-center p-y-3">
         You haven't written anything yet.<br>
-        <small>
-          <%= link_to about_settings_path, data: { toggle: 'modal', target: '#about-modal' }  do %>
-          Add a brief description
-          <% end %>
-        </small>
+        <%= link_to essays_profile_path, data: { toggle: 'modal', target: '#about-modal' }  do %>
+        Add a short description
+        <% end %>
       </p>
     </div>
     <%= render partial: 'users/about_modal' %>
   <% else %>
     <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-      <h3 class="card-title h5">About me</h3>
-      <p class="lead text-xs-center p-y-3">
+      <h3 class="card-title h5">A few words about me</h3>
+      <p class="text-xs-center p-y-3">
         <%= @user.male? ? 'He' : 'She' %> hasn't written anything yet&hellip;<br>
         <small>Perhaps a thinker, not a talker.</small>
       </p>
