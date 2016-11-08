@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   end
 
   get 'users', to: redirect('/search', status: 301)
+  get 'forgot-password', to: 'users#forgot_password'
   resources :users, only: [:show, :create, :new] do
     resources :messages, only: [:create]
     post 'like', on: :member
