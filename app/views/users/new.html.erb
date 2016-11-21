@@ -8,7 +8,6 @@
       <h1 class="h2 text-xs-center m-y-1">Join Roozam</h1>
         <% if @user.errors.any? %>
           <div class="alert alert-danger">
-            The form contains <%= pluralize(@user.errors.count, "error") %>.
             <ul>
             <% @user.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
