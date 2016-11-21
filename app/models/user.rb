@@ -68,6 +68,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def send_password_reset_instructions
+    Rails.logger.info "#{self.reset_token}"
+  end
+
   def profile_photo
     @_profile_photo ||= photos.find_by(rank: 1)
   end

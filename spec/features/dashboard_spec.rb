@@ -14,7 +14,7 @@ feature 'Dashboard' do
       it { should have_content("We're so glad to have you on Roozam. Get started in 3 easy steps.") }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Find a match') }
+      it { should have_content('Like somebody') }
     end
 
     context "only about has been filled up" do
@@ -25,7 +25,7 @@ feature 'Dashboard' do
       it { should have_content("We're so glad to have you on Roozam. Get started in 3 easy steps.") }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Find a match') }
+      it { should have_content('Like somebody') }
     end
 
     context "only photo has been uploaded" do
@@ -36,7 +36,7 @@ feature 'Dashboard' do
       it { should have_content("We're so glad to have you on Roozam. Get started in 3 easy steps.") }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Find a match') }
+      it { should have_content('Like somebody') }
     end
   end
 
@@ -47,7 +47,7 @@ feature 'Dashboard' do
       visit me_path
     end
     it { should have_content('What would you like to do today?') }
-    it { should have_content('Find a match') }
+    it { should have_content('Like somebody') }
     it { should have_content('View your profile') }
   end
 end

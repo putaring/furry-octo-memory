@@ -42,8 +42,16 @@ Rails.application.routes.draw do
     get 'sent', on: :collection
   end
 
+
+  get 'forgot-password', to: 'forgot_password#index'
+  post 'forgot-password', to: 'forgot_password#send_instructions'
+
+  get 'check-your-email', to: 'forgot_password#check_email'
+
+  get 'reset-password/:reset_token', to: 'forgot_password#reset_password', as: :reset_password
+  patch 'reset-password/:reset_token', to: 'forgot_password#change_password'
+
   get 'users', to: redirect('/search', status: 301)
-  get 'forgot-password', to: 'users#forgot_password'
   resources :users, only: [:show, :create, :new] do
     resources :messages, only: [:create]
     post 'like', on: :member
