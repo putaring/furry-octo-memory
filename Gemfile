@@ -13,8 +13,10 @@ gem 'country_select'
 gem 'language_list'
 gem 'browser'
 gem 'carrierwave'
+gem 'fog', '~> 1.20.0'
 gem 'mini_magick'
 gem 'has_secure_token'
+gem 'dotenv-rails', groups: [:development]
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
