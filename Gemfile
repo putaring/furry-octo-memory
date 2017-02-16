@@ -16,6 +16,7 @@ gem 'carrierwave'
 gem 'fog', '~> 1.20.0'
 gem 'mini_magick'
 gem 'has_secure_token'
+gem 'faker'
 gem 'dotenv-rails', groups: [:development]
 
 source 'https://rails-assets.org' do
@@ -34,7 +35,6 @@ group :development, :test do
   gem 'factory_girl_rails', require: false
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker'
   gem 'guard-rspec', require: false
 end
 
