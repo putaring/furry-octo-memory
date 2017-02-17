@@ -11,13 +11,13 @@ class SearchController < ApplicationController
 
   def search
     @users = User.includes(:photos)
-    filter_gender
-    filter_status
+    filter_gender if params[:gender].present?
+    filter_status if params[:status].present?
     filter_age
     filter_height
-    filter_religion
-    filter_languages
-    filter_countries
+    filter_religion if params[:religion].present?
+    filter_languages if params[:languages].present?
+    filter_countries if params[:countries].present?
 
     @users.map do |user|
       {
@@ -28,11 +28,11 @@ class SearchController < ApplicationController
   end
 
   def filter_gender
-    @users = @users.where(gender: params[:gender]) if params[:gender].present?
+    @users = @users.where(gender: params[:gender])
   end
 
   def filter_status
-    @users = @users.where(status: User.statuses[params[:status]]) if params[:status].present?
+    @users = @users.where(status: User.statuses[params[:status]])
   end
 
   def filter_age
@@ -48,7 +48,7 @@ class SearchController < ApplicationController
   end
 
   def filter_religion
-    @users = @users.where(religion: User.religions[params[:religion]]) if params[:religion].present?
+    @users = @users.where(religion: User.religions[params[:religion]])
     if params[:religion].eql?('hindu') && params[:sects].present?
       sects = params[:sects].reject { |s| s.empty? }
       @users = @users.where(sect: sects) if sects.any?
@@ -56,10 +56,10 @@ class SearchController < ApplicationController
   end
 
   def filter_languages
-    @users = @users.where(language: params[:languages]) if params[:languages].present?
+    @users = @users.where(language: params[:languages])
   end
 
   def filter_countries
-    @users = @users.where(country: params[:countries]) if params[:countries].present?
+    @users = @users.where(country: params[:countries])
   end
 end
