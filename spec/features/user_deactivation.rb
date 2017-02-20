@@ -35,5 +35,10 @@ feature 'User deactivation' do
     end
 
     it { should have_current_path(me_path) }
+
+    scenario "deactivating the user" do
+      visit account_settings_path
+      expect { click_button 'Deactivate my profile' }.to change { User.inactive.count }.by(1)
+    end
   end
 end

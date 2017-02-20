@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'mutual-likes', to: 'likes#mutual'
   get 'activate', to: 'me#activate'
   patch 'activate', to: 'me#reactivate'
+  patch 'deactivate', to: 'me#deactivate'
 
   resource :search, only: :show, controller: :search
 

@@ -1,6 +1,7 @@
 class MeController < ApplicationController
   before_action :authenticate!
   before_action :allow_inactive!, only: [:activate, :reactivate]
+  before_action :allow_active!, only: [:deactivate]
 
   def show
   end
@@ -17,6 +18,10 @@ class MeController < ApplicationController
     current_user.active! and redirect_to me_path
   end
 
+  def deactivate
+    current_user.inactive! and redirect_to activate_path
+  end
+
   private
 
   def user_params
@@ -27,4 +32,9 @@ class MeController < ApplicationController
   def allow_inactive!
     redirect_to me_path if current_user && !current_user.inactive?
   end
+
+  def allow_active!
+    redirect_to me_path if current_user && !current_user.active?
+  end
+
 end
