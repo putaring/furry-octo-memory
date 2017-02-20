@@ -1,0 +1,20 @@
+<% provide(:title, 'Reactivate your account') %>
+
+<section class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 offset-sm-2 m-t-2">
+      <h1 class="h2 text-xs-center m-y-1">Your account in inactive</h1>
+      <p class="text-xs-center">
+        Your profile, photos, conversations, and likes are not visible to other members. Activate your account to connect with others on Roozam.
+      </p>
+      <%= form_tag(activate_path, method: :patch) do %>
+        <div class="form-group">
+          <%= submit_tag 'Activate', class: 'btn btn-lg btn-block btn-primary' %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= link_to 'Logout', logout_path, { class: 'btn btn-lg btn-block btn-secondary', method: :delete } %>
+      </div>
+    </div>
+  </div>
+</section>
