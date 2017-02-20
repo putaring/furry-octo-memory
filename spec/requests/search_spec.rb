@@ -9,6 +9,8 @@ RSpec.describe "Search", type: :request do
     create(:user, gender: 'm', country: 'US', birthdate: 45.years.ago)
     create(:user, gender: 'm', country: 'IN', birthdate: 50.years.ago)
     create(:user, gender: 'm', country: 'AE', birthdate: 55.years.ago)
+
+    create(:inactive_user, gender: 'm')
   end
 
   describe "GET /search" do
@@ -29,6 +31,15 @@ RSpec.describe "Search", type: :request do
         genders   = data.map { |u| u["gender"]}
         expect(genders).to include('f')
         expect(genders).to_not include('m')
+      end
+    end
+
+    context "active user search" do
+      it "does not return inactive users" do
+        xhr :get, "/search", { gender: 'm' }
+        expect(response).to have_http_status(:ok)
+        data      = JSON.parse(response.body)
+        expect(data.count).to eq(6)
       end
     end
 
