@@ -11,6 +11,12 @@ feature "Profile page" do
       it { should have_content("Perhaps a thinker, not a talker.")}
     end
 
+    context "inactive user" do
+      it "should raise 404 not found exception" do
+        expect { visit user_path(create(:inactive_user)) }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
     context "non-empty about me essay" do
       let(:user) { create(:user) }
       background do
