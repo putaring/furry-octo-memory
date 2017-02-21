@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   before_action :authenticate!
 
   def index
-    @messages = current_user.received_messages.includes(:sender).reverse_order.to_a.uniq { |m| m.conversation_id }
+    @messages = current_user.received_messages.joins(:sender).includes(:sender).reverse_order.to_a.uniq { |m| m.conversation_id }
   end
 
   def sent

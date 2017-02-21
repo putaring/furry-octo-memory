@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature "Received messages" do
   subject { page }
-  let(:user) { create(:user) }
-  let(:conversation) { create(:conversation, recipient: user) }
+  let(:user)                    { create(:user) }
+  let(:inactive_user)           { create(:inactive_user) }
+  let(:conversation)            { create(:conversation, recipient: user) }
+  let(:inactive_conversation)   { create(:conversation, recipient: user, sender: inactive_user) }
   background do
     visit login_path
     login(user)
@@ -27,4 +29,11 @@ feature "Received messages" do
     it { should have_content('unread') }
   end
 
+  context "has message from inactive user" do
+    background do
+      create(:message, recipient: user, sender: inactive_user, conversation: inactive_conversation, body: "First message")
+      visit messages_path
+    end
+    it { should have_content('0 messages') }
+  end
 end
