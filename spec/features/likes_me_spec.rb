@@ -8,8 +8,9 @@ feature 'Likes me' do
   end
 
   context "when logged in" do
-    let(:user)  { create(:user) }
-    let(:liker) { create(:user) }
+    let(:user)          { create(:user) }
+    let(:liker)         { create(:user) }
+    let(:inactive_user) { create(:inactive_user)}
     background do
       visit login_path
       login(user)
@@ -25,10 +26,12 @@ feature 'Likes me' do
     context "when the user has likers" do
       background do
         create(:interest, liked: user, liker: liker)
+        create(:interest, liked: user, liker: inactive_user)
         visit likes_me_path
       end
 
       it { should have_content(liker.username) }
+      it { should_not have_content(inactive_user.username) }
     end
   end
 end

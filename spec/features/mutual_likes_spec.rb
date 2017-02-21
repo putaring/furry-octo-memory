@@ -8,8 +8,9 @@ feature 'Mutual likes' do
   end
 
   context "when logged in" do
-    let(:user)  { create(:user) }
-    let(:liker) { create(:user) }
+    let(:user)          { create(:user) }
+    let(:liker)         { create(:user) }
+    let(:inactive_user) { create(:inactive_user) }
     background do
       visit login_path
       login(user)
@@ -37,10 +38,13 @@ feature 'Mutual likes' do
       background do
         create(:interest, liked: user, liker: liker)
         create(:interest, liked: liker, liker: user)
+        create(:interest, liked: user, liker: inactive_user)
+        create(:interest, liked: inactive_user, liker: user)
         visit mutual_likes_path
       end
 
       it { should have_content(liker.username) }
+      it { should_not have_content(inactive_user.username) }
     end
   end
 end
