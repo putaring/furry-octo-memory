@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :authenticate!, only: [:like, :unlike]
 
   def show
-    @user = User.find(params[:id])
+    @user = User.active.find(params[:id])
   end
 
   def new

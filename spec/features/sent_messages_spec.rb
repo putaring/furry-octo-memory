@@ -2,8 +2,11 @@ require 'rails_helper'
 
 feature "Sent messages" do
   subject { page }
-  let(:user) { create(:user) }
-  let(:conversation) { create(:conversation, sender: user) }
+  let(:user)                    { create(:user) }
+  let(:inactive_user)           { create(:inactive_user) }
+  let(:conversation)            { create(:conversation, sender: user) }
+  let(:inactive_conversation)   { create(:conversation, sender: user, recipient: inactive_user) }
+
   background do
     visit login_path
     login(user)
@@ -13,7 +16,6 @@ feature "Sent messages" do
     background { visit sent_messages_path }
     it { should have_content('Sent messages') }
     it { should have_content("You've not messaged anybody yet.") }
-    it { should have_content('Take the initiative to contact people you like.') }
   end
 
   context "has unread sent messages" do
@@ -28,4 +30,11 @@ feature "Sent messages" do
     it { should have_content('unread') }
   end
 
+  context "has message from inactive user" do
+    background do
+      create(:message, sender: user, recipient: inactive_user, conversation: inactive_conversation, body: "First message")
+      visit messages_path
+    end
+    it { should have_content('0 messages') }
+  end
 end

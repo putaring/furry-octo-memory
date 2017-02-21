@@ -24,6 +24,10 @@ FactoryGirl.define do
     photo_visibility 'members_only'
   end
 
+  factory :inactive_user, parent: :user do
+    account_status 'inactive'
+  end
+
   factory :conversation do
     sender
     recipient

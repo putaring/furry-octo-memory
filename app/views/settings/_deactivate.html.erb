@@ -1,0 +1,12 @@
+<div class="card card-block card-no-border">
+  <div class="row">
+    <div class="col-lg-10">
+      <%= form_tag(deactivate_path, method: :patch) do |f| %>
+        <div class="form-group">
+          <%= submit_tag 'Deactivate my profile', { data: { disable_with: 'Deactivating…', confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' } %>
+          <small class="form-text text-muted">Users will not be able to contact you if you deactivate your profile.</small>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
