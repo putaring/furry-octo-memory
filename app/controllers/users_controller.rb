@@ -15,8 +15,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to me_path
-      # onboarding_about_path
     else
       render 'new'
     end

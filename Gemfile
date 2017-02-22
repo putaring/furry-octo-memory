@@ -17,7 +17,6 @@ gem 'fog', '~> 1.20.0'
 gem 'mini_magick'
 gem 'has_secure_token'
 gem 'faker'
-gem 'dotenv-rails', groups: [:development]
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
@@ -36,6 +35,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 3.1'
   gem 'guard-rspec', require: false
+  gem 'dotenv-rails'
 end
 
 gem 'codeclimate-test-reporter', group: :test, require: nil

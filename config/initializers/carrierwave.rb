@@ -10,7 +10,7 @@ if Rails.env.production?
       region: ENV['S3_REGION']
     }
     config.fog_directory  = ENV['S3_BUCKET']
-    config.fog_attributes = {'Cache-Control' => 'max-age=315576000, public'}
+    config.fog_attributes = {'Cache-Control' => 'public, max-age=315576000'}
     config.cache_dir      = "#{Rails.root}/tmp/uploads"
   end
 else
