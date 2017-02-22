@@ -3,7 +3,7 @@ class ForgotPasswordController < ApplicationController
   def send_instructions
     email = params[:email].downcase.strip
     user  = User.find_by(email: email)
-    user.send_password_reset_instructions if user.present?
+    UserMailer.password_email(user).deliver_now if user.present?
 
     redirect_to check_your_email_path(email: email)
   end
