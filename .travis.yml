@@ -1,8 +1,6 @@
 cache: bundler
 language: ruby
 rvm: 2.2.3
-env:
-  - RAILS_HOST=localhost:3000
 services:
   - postgresql
 before_script:
