@@ -10,4 +10,20 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: user.email, subject: 'Reset your password')
   end
+
+  def message_email(message)
+    @message = message
+    @sender  = @message.sender
+    mail(to: @message.recipient.email, subject: "New message from #{@sender.username}")
+  end
+
+  def like_email(like)
+    @liker = like.liker
+    mail(to: like.liked.email, subject: "Somebody likes you")
+  end
+
+  def match_email(like)
+    @liker = like.liker
+    mail(to: like.liked.email, subject: 'You have a match!')
+  end
 end
