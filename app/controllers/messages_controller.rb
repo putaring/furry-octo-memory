@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
   def create
     message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id, recipient_id: @conversation.other_participant(current_user).id)
     if message.save
+      UserMailer.message_email(message).deliver_now
       if request.xhr?
         render json: message, status: :created
       else
