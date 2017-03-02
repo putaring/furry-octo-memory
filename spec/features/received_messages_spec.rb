@@ -27,6 +27,10 @@ feature "Received messages" do
 
     it { should have_content('Last message') }
     it { should have_content('unread') }
+    it { should have_css('.tag.tag-pill.tag-danger') }
+    it "should display unread notification count" do
+      expect(page.find('.tag.tag-pill.tag-danger')).to have_content(3)
+    end
   end
 
   context "has message from inactive user" do
@@ -35,5 +39,6 @@ feature "Received messages" do
       visit messages_path
     end
     it { should have_content('0 messages') }
+    it { should_not have_css('.tag.tag-pill.tag-danger') }
   end
 end

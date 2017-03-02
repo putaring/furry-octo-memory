@@ -4,4 +4,7 @@ class Message < ActiveRecord::Base
   belongs_to :conversation
 
   validates :body, presence: true, length: { maximum: 1000 }
+
+  scope :unread, -> { joins(:sender).where(read: false) }
+
 end
