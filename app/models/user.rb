@@ -176,6 +176,6 @@ class User < ActiveRecord::Base
                     male? ? "profile_pictures/male-small.jpg" : "profile_pictures/female-small.jpg"
                   end
 
-    ActionController::Base.helpers.asset_path(image_path)
+    ActionController::Base.helpers.asset_url(image_path)
   end
 end
