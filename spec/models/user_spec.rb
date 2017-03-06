@@ -80,6 +80,18 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#decline(user)" do
+    it "should remove all interests between the users" do
+      user        = create(:user)
+      other_user  = create(:user)
+      create(:interest, liker: other_user, liked: user)
+      create(:interest, liked: other_user, liker: user)
+      user.decline(other_user)
+      expect(user.likers.count).to eq(0)
+      expect(user.likes.count).to eq(0)
+    end
+  end
+
   describe "#display_thumbnail" do
     it "should display the profile thumbnail if the user has a profile picture" do
       profile_photo = create(:photo)

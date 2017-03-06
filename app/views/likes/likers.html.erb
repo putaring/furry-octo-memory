@@ -34,7 +34,7 @@
     <% else %>
       <div class="col-lg-7">
         <% @passive_interests.each do |interest| %>
-          <%= render partial: 'likes/like_card', locals: { time: interest.created_at, user: interest.liker } %>
+          <%= render partial: 'likes/liker_card', locals: { time: interest.created_at, user: interest.liker } %>
         <% end %>
       </div>
       <div class="col-lg-5">

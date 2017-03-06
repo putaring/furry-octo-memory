@@ -90,7 +90,12 @@ class User < ActiveRecord::Base
   end
 
   def unlike(other_user)
-    active_interests.find_by(liked_id: other_user.id).destroy
+    active_interests.find_by(liked_id: other_user.id).try(:destroy)
+  end
+
+  def decline(other_user)
+    unlike(other_user)
+    passive_interests.find_by(liker_id: other_user.id).try(:destroy)
   end
 
   def likes?(other_user)

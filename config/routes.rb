@@ -59,5 +59,6 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     post 'like', on: :member
     delete 'like', to: 'users#unlike', on: :member
+    delete 'decline', to: 'users#decline', on: :member
   end
 end

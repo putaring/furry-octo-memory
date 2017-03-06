@@ -6,6 +6,6 @@
     <%= link_to 'I like', i_like_path, { class: params[:action].eql?('liked') ? 'nav-link active' : 'nav-link' } %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Mutual likes', mutual_likes_path, { class: params[:action].eql?('mutual') ? 'nav-link active' : 'nav-link' } %>
+    <%= link_to 'Matches', mutual_likes_path, { class: params[:action].eql?('mutual') ? 'nav-link active' : 'nav-link' } %>
   </li>
 </ul>
