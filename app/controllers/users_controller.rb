@@ -41,6 +41,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def decline
+    @user = User.find(params[:id])
+    if current_user.decline(@user)
+      head :no_content
+    else
+      head :unprocessable_entity
+    end
+  end
+
   private
 
     def user_params

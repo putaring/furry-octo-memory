@@ -26,9 +26,9 @@
                   <%= link_to 'Edit profile', details_profile_path, class: 'btn btn-lg btn-block btn-outline-secondary' %>
                 <% else %>
                   <% if current_user.likes?(@user) %>
-                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-block btn-warning user-like-btn') %>
+                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
                   <% else %>
-                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-block btn-warning user-like-btn') %>
+                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
                   <% end %>
                   <%= link_to('', { class: 'btn btn-lg btn-block btn-primary', data: { toggle: 'modal', target: '#message-modal' } }) do %>
                   Message
