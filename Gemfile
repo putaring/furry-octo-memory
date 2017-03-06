@@ -17,6 +17,9 @@ gem 'fog', '~> 1.20.0'
 gem 'mini_magick'
 gem 'has_secure_token'
 gem 'faker'
+gem 'resque', "~> 1.27.0"
+gem 'puma'
+gem "rack-timeout"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
