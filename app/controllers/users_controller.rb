@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(@user)
-      UserMailer.welcome_email(@user).deliver_now
+      UserMailer.welcome_email(@user).deliver_later
       redirect_to me_path
     else
       render 'new'
