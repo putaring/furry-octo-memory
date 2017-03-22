@@ -22,8 +22,8 @@ class UserMailer < ApplicationMailer
     mail(to: like.liked.email, subject: "Somebody likes you")
   end
 
-  def decline_email(recipient)
-    @user = current_user
+  def decline_email(recipient, sender)
+    @user = sender
     mail(to: recipient.email, subject: "#{@user.username} declined your interest")
   end
 
