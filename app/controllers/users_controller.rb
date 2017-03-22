@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   def decline
     @user = User.find(params[:id])
     if current_user.decline(@user)
+      UserMailer.decline_email(@user).deliver_later
       head :no_content
     else
       head :unprocessable_entity
