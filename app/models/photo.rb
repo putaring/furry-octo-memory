@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
   scope :ranked, -> { order(:rank) }
   mount_uploader :image, PhotoUploader
 
-  validates_presence_of     :rank, :image
+  validates_presence_of     :rank#, :image
   validates_numericality_of :rank, greater_than_or_equal_to: 1
 
   validate :valid_rank, on: :update, if: ->(p) { p.rank_changed? }

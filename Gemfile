@@ -20,6 +20,7 @@ gem 'faker'
 gem 'resque', "~> 1.27.0"
 gem 'puma'
 gem "rack-timeout"
+gem 'aws-sdk', '~> 2'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
