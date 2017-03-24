@@ -21,6 +21,10 @@ class Photo < ActiveRecord::Base
     update_attributes(rank: 1)
   end
 
+  def process_remote_picture(photo_details)
+    update_attributes(photo_details.merge(status: Photo.statuses[:active]))
+  end
+
   private
 
   def set_rank

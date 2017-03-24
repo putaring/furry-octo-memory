@@ -2,7 +2,7 @@ class ProcessPhotoJob < ActiveJob::Base
   queue_as :photos
 
   def perform(photo_id, attributes)
-    photo = Photo.find(photo_id)
-    photo.update_attributes(attributes.merge(status: Photo.statuses[:active]))
+    photo = Photo.inactive.find(photo_id)
+    photo.process_remote_picture(attributes) if photo.present?
   end
 end

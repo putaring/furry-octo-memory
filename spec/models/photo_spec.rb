@@ -51,4 +51,24 @@ RSpec.describe Photo, type: :model do
       expect(photo).to be_invalid
     end
   end
+
+  context "processing remote url" do
+    let(:photo)   { create(:photo) }
+
+    describe "#process_remote_picture" do
+      before do
+        photo.process_remote_picture({
+          remote_image_url: "http://i.imgur.com/Vc5yfmY.jpg"
+        })
+      end
+      it "should be made active" do
+        expect(photo.reload.status).to eq("active")
+      end
+
+      it "should have a valid url" do
+        expect(photo.image.url).to be_present
+      end
+    end
+
+  end
 end

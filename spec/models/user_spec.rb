@@ -93,8 +93,16 @@ RSpec.describe User, type: :model do
   end
 
   describe "#display_thumbnail" do
+    it "should return default url if the user has an inactive profile photo" do
+      profile_photo = create(:photo, user: create(:user, gender: 'f'))
+      user          = profile_photo.user
+
+      expect(user.display_thumbnail(:thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.jpg"))
+      expect(user.display_thumbnail(:small_thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female-small.jpg"))
+    end
+
     it "should display the profile thumbnail if the user has a profile picture" do
-      profile_photo = create(:photo)
+      profile_photo = create(:active_photo)
       user          = profile_photo.user
 
       expect(user.display_thumbnail(:thumb)).to eq(profile_photo.image.url(:thumb))
@@ -144,8 +152,16 @@ RSpec.describe User, type: :model do
   end
 
   describe "#profile_photo" do
-    it "should return the top ranked photo of the user" do
+    it "should return nil if the main picture of the user is still being processed" do
       profile_photo = create(:photo)
+      user          = profile_photo.user
+      create(:photo, user: user)
+
+      expect(user.profile_photo).to be_nil
+    end
+
+    it "should return nthe profile picture of the user if he has an active picture" do
+      profile_photo = create(:active_photo)
       user          = profile_photo.user
       create(:photo, user: user)
 
