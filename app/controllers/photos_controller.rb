@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
 
     if @photo.save
       ProcessPhotoJob.perform_later(@photo.id, photo_params.except(:image))
-      redirect_to photos_path, notice: 'You look fantastic.'
+      redirect_to photos_path, notice: "Your photo will be ready in a bit."
     else
       render 'index'
     end

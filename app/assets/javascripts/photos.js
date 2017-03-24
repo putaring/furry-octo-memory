@@ -60,6 +60,7 @@
 
   $modal.find('.btn-primary').click(function () {
     $(this).text('Uploading…').prop('disabled', true);
+    $photoFileInput.val(null);
     $photoForm.submit();
     //$modal.modal('hide');
   });

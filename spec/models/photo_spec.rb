@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Photo, type: :model do
 
   context "validations" do
-    it { should validate_presence_of(:image) }
     it { should validate_presence_of(:rank) }
     it { should validate_numericality_of(:rank).is_greater_than_or_equal_to(1) }
 
