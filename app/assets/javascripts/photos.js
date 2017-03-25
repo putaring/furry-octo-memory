@@ -9,7 +9,6 @@
       $photoPreview       = $('#photo-crop-preview'),
       $progressBar        = $('#s3-upload-progress'),
       $modal              = $('#photo-crop-modal'),
-      $dummyImage         = $('<img />'),
       cropWidth           = $photoForm.data('cropWidth'),
       jcropApi            = null;
 
@@ -23,11 +22,9 @@
     dataType:  'XML',  // S3 returns XML if success_action_status is set to 201
     replaceFileInput: false,
     add: function (e, data) {
-      if (data.files[0].size > 4000000) {
-        alert('File is too large. Maximum filesize is 4 MB');
-      } else {
+      data.context = $('body').on('crop.finished', function () {
         data.submit();
-      }
+      });
     },
     progressall: function (e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -41,7 +38,9 @@
     done: function(e, data) {
       $progressBar.val(100);
       var url = data.url + '/' + $(data.jqXHR.responseXML).find('Key').text();
-      $dummyImage.attr('src', url);
+      $imageUrlField.val(url);
+      $photoFileInput.val(null);
+      $photoForm.submit();
     },
     fail: function(e, data) {
       alert("Oops! Something went wrong.");
@@ -61,8 +60,9 @@
   $modal.find('.btn-primary').click(function () {
     $(this).text('Uploading…').prop('disabled', true);
     $photoFileInput.val(null);
-    $photoForm.submit();
-    //$modal.modal('hide');
+    //$photoForm.submit();
+    $modal.modal('hide');
+    $('body').trigger('crop.finished');
   });
 
   var setCoordinates = function (coords) {
@@ -78,39 +78,42 @@
     })
   };
 
-  $dummyImage.load(function () {
-    var url = $(this).attr('src');
-    $progressBar.val(120);
 
-    $imageUrlField.val(url);
-    $photoCanvas.attr('src', url);
-    $photoPreview.attr('src', url);
+  $photoFileInput.change(function(e) {
+    var file    = this.files[0],
+        reader  = new FileReader();
 
-    $progressBar.hide();
-    $photoForm.show();
+    reader.addEventListener("load", function () {
+      $photoCanvas.attr('src', reader.result);
+      $photoPreview.attr('src', reader.result);
 
-    var width       = $photoCanvas.get(0).naturalWidth,
-        height      = $photoCanvas.get(0).naturalHeight,
-        smallerSide = (width < height) ? width : height,
-        topX        = (width/2) - (smallerSide/4),
-        topY        = (height/2) - (smallerSide/4);
+      var width       = $photoCanvas.get(0).naturalWidth,
+          height      = $photoCanvas.get(0).naturalHeight,
+          smallerSide = (width < height) ? width : height,
+          topX        = (width/2) - (smallerSide/4),
+          topY        = (height/2) - (smallerSide/4);
 
-    $photoCanvas.Jcrop({
-      onSelect: setCoordinates,
-      onChange: setCoordinates,
-      boxWidth: cropWidth,
-      boxHeight: cropWidth,
-      keySupport: false,
-      aspectRatio: 1,
-      bgOpacity: .4,
-      minSize: [100, 100],
-      setSelect: [topX, topY, topX + (smallerSide/2), topY]
-    }, function () {
-      jcropApi = this;
-    });
+      $photoCanvas.Jcrop({
+        onSelect: setCoordinates,
+        onChange: setCoordinates,
+        boxWidth: cropWidth,
+        boxHeight: cropWidth,
+        keySupport: false,
+        aspectRatio: 1,
+        bgOpacity: .4,
+        minSize: [100, 100],
+        setSelect: [topX, topY, topX + (smallerSide/2), topY]
+      }, function () {
+        jcropApi = this;
+      });
 
-    $modal.modal();
+      $modal.modal();
 
+    }, false);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   });
 
 })();
