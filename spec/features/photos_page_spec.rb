@@ -12,8 +12,6 @@ feature 'Photos page' do
   it { should have_content('Photos of me') }
 
   context "No photos uploaded" do
-    it { should have_content("You haven't added any photos.") }
-    it { should have_content("Most women on Roozam have a photo. Adding a photo greatly increases your chances of being contacted by a match.") }
     it { should have_content("Upload photo") }
   end
 

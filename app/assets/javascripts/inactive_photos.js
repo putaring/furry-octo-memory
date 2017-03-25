@@ -48,11 +48,7 @@
                             </div>';
       }
       this.$elem.html(newPhotoHtml);
-      $.snackbar({
-        content: "Your photo is ready. You look fantastic ;-)",
-        style: "snackbar",
-        timeout: 7000
-      });
+      $('.alert.alert-info').text('Your photo is ready. You look great. 👍');
     }
   };
 

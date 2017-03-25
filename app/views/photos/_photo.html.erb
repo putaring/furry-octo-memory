@@ -5,7 +5,7 @@
       <%= image_tag('ripple.svg', class: 'card-img-top img-fluid w-100') %>
       <div class="card-block">
         <p class="card-text text-xs-center" style="min-height: 50px;">
-          <button class="btn btn-sm btn-link btn-block" disabled>Processing…</button>
+          <button class="btn btn-sm btn-link btn-block" disabled>Almost ready…</button>
           <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, data: { disable_with: 'Deleting…' } %>
         </p>
       </div>
@@ -27,5 +27,4 @@
       </div>
     </div>
   <% end %>
-
 </div>

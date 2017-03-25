@@ -10,6 +10,7 @@
       $progressBar        = $('#s3-upload-progress'),
       $modal              = $('#photo-crop-modal'),
       cropWidth           = $photoForm.data('cropWidth'),
+      $progressText       = $('#progress-text'),
       jcropApi            = null;
 
   $photoFileInput.fileupload({
@@ -29,14 +30,19 @@
     progressall: function (e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
       $progressBar.val(progress);
+      if(progress >= 50) {
+        $progressText.text('Saving…');
+      }
     },
     start: function (e) {
       $progressBar.val(0);
+      $progressText.show().text('Processing request…');
       $photoForm.hide();
       $progressBar.show();
     },
     done: function(e, data) {
       $progressBar.val(100);
+      $progressText.text('Hang in there…');
       var url = data.url + '/' + $(data.jqXHR.responseXML).find('Key').text();
       $imageUrlField.val(url);
       $photoFileInput.val(null);
@@ -44,6 +50,7 @@
     },
     fail: function(e, data) {
       alert("Oops! Something went wrong.");
+      $progressBar.hide();
       $photoForm.show();
       $progressBar.hide();
     }

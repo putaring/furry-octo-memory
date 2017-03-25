@@ -16,7 +16,7 @@
   <div class="row">
     <div class="offset-md-4 col-md-4">
       <div class="alert alert-info text-xs-center">
-        <%= flash.notice %> <%= link_to 'GO TO PROFILE', user_path(current_user), class: 'alert-link' %>
+        <%= flash.notice %>
       </div>
     </div>
   </div>
@@ -26,13 +26,6 @@
     <div class="col-xs-12">
       <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
         <div class="text-xs-center p-y-3">
-          <p>
-          You haven't added any photos.<br>
-          <small class="m-b-1 d-block">
-            Most <%= current_user.male? ? 'men' : 'women' %> on Roozam have a photo.
-            Adding a photo greatly increases your chances of being contacted by <%= current_user.female? ? 'a match' : 'women' %>.
-          </small>
-        </p>
           <%= render partial: 'photos/photo_form' %>
         </div>
       </div>
@@ -51,16 +44,6 @@
         <div class="row">
           <div class="col-xs-12 text-xs-center">
             <%= render partial: 'photos/photo_form' %>
-            <small class="text-muted">
-              <% if current_user.photo_visibility == 'everyone' %>
-                Everyone can see your photos
-              <% elsif current_user.photo_visibility == 'members_only' %>
-                Only Roozam members can see your photos
-              <% else %>
-                Only people you like can see your photos
-              <% end %>
-              &mdash; <%= link_to 'Edit', privacy_settings_path, data: { toggle: 'modal', target: '#privacy-modal' } %>
-            </small>
           </div>
         </div>
       </div>
@@ -85,7 +68,7 @@
       });*/
       </script>
       <% end %>
-      <%= render partial: 'photos/privacy_modal' %>
     <% end %>
   </div>
 </section>
+<%= render partial: 'photos/privacy_modal' %>
