@@ -67,9 +67,14 @@
 
       <%= content_for :javascripts do %>
       <script>
-      $('[data-toggle="swipebox"]').click(function () {
+      $('[data-toggle="swipebox"]').swipebox({
+        useCSS : true,
+        useSVG : false,
+        removeBarsOnMobile : true,
+      });
+      /*$('[data-toggle="swipebox"]').click(function () {
         $.swipebox(
-          <%= @photos.ranked.collect { |p| { href: p.image.url } }.to_json.html_safe %>, {
+          <%= @photos.active.ranked.collect { |p| { href: p.image.url } }.to_json.html_safe %>, {
             useCSS : true,
             useSVG : false,
             initialIndexOnArray : parseInt($(this).data('rank'), 10) - 1,
@@ -77,7 +82,7 @@
             hideCloseButtonOnMobile : false
           }
         );
-      });
+      });*/
       </script>
       <% end %>
       <%= render partial: 'photos/privacy_modal' %>

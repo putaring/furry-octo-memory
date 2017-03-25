@@ -6,8 +6,13 @@ class PhotosController < ApplicationController
     @photos = current_user.photos
   end
 
+  def show
+    photo = current_user.photos.find(params[:id])
+    render json: photo, status: :ok
+  end
+
   def create
-    @photo        = current_user.photos.create
+    @photo = current_user.photos.create
 
     if @photo.save
       ProcessPhotoJob.perform_later(@photo.id, photo_params.except(:image))

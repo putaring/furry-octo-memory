@@ -1,7 +1,7 @@
 <div class="col-md-4">
 
   <% if photo.inactive? %>
-    <div class="card photo-card">
+    <%= content_tag(:div, class: 'card photo-card', data: { component: 'inactive-photo', photo_id: photo.id }) do %>
       <%= image_tag('ripple.svg', class: 'card-img-top img-fluid w-100') %>
       <div class="card-block">
         <p class="card-text text-xs-center" style="min-height: 50px;">
@@ -9,10 +9,12 @@
           <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, data: { disable_with: 'Deleting…' } %>
         </p>
       </div>
-    </div>
+    <% end %>
   <% else %>
     <div class="card photo-card">
-      <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100', data: { toggle: 'swipebox', rank: photo.rank } ) %>
+      <%= link_to photo.image.url, data: { toggle: 'swipebox' } do %>
+        <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100') %>
+      <% end %>
       <div class="card-block">
         <p class="card-text text-xs-center" style="min-height: 50px;">
           <% if photo.rank.eql?(1) %>

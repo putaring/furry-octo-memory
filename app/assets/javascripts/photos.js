@@ -40,7 +40,7 @@
     },
     done: function(e, data) {
       $progressBar.val(100);
-      var url = $(data.jqXHR.responseXML).find('Location').text();
+      var url = data.url + '/' + $(data.jqXHR.responseXML).find('Key').text();
       $dummyImage.attr('src', url);
     },
     fail: function(e, data) {
@@ -95,25 +95,22 @@
         topX        = (width/2) - (smallerSide/4),
         topY        = (height/2) - (smallerSide/4);
 
-    if (width < 100 || height < 100) {
-      alert("Please upload a bigger picture.");
-    } else {
-      $photoCanvas.Jcrop({
-        onSelect: setCoordinates,
-        onChange: setCoordinates,
-        boxWidth: cropWidth,
-        boxHeight: cropWidth,
-        keySupport: false,
-        aspectRatio: 1,
-        bgOpacity: .4,
-        minSize: [100, 100],
-        setSelect: [topX, topY, topX + (smallerSide/2), topY]
-      }, function () {
-        jcropApi = this;
-      });
+    $photoCanvas.Jcrop({
+      onSelect: setCoordinates,
+      onChange: setCoordinates,
+      boxWidth: cropWidth,
+      boxHeight: cropWidth,
+      keySupport: false,
+      aspectRatio: 1,
+      bgOpacity: .4,
+      minSize: [100, 100],
+      setSelect: [topX, topY, topX + (smallerSide/2), topY]
+    }, function () {
+      jcropApi = this;
+    });
 
-      $modal.modal();
-    }
+    $modal.modal();
+
   });
 
 })();
