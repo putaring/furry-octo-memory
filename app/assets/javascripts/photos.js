@@ -36,13 +36,13 @@
     },
     start: function (e) {
       $progressBar.val(0);
-      $progressText.show().text('Processing request…');
+      $progressText.show().text('Adding photo…');
       $photoForm.hide();
       $progressBar.show();
     },
     done: function(e, data) {
       $progressBar.val(100);
-      $progressText.text('Hang in there…');
+      $progressText.text("Hang in there… We're almost done.");
       var url = data.url + '/' + $(data.jqXHR.responseXML).find('Key').text();
       $imageUrlField.val(url);
       $photoFileInput.val(null);

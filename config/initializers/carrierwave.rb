@@ -2,7 +2,7 @@ CarrierWave.configure { |config| config.enable_processing = false } if Rails.env
 
 if Rails.env.production?
   CarrierWave.configure do |config|
-    config.storage = :fog
+    config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider:               'AWS',
       aws_access_key_id:      ENV['AWS_ID'],
@@ -10,7 +10,8 @@ if Rails.env.production?
       region:                 ENV['S3_REGION']
     }
     config.fog_directory  = ENV['S3_BUCKET']
-    config.fog_attributes = {'Cache-Control' => 'public, max-age=31536000'}
+    config.fog_attributes = {'Cache-Control' => "public, max-age=#{365.day.to_i}"}
+    config.storage        = :fog
     config.cache_dir      = "#{Rails.root}/tmp/uploads"
   end
 else

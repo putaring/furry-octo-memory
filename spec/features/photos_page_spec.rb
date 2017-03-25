@@ -12,7 +12,7 @@ feature 'Photos page' do
   it { should have_content('Photos of me') }
 
   context "No photos uploaded" do
-    it { should have_content("Upload photo") }
+    it { should have_content("Add photo") }
   end
 
   context "Has profile photo" do
@@ -21,7 +21,7 @@ feature 'Photos page' do
       visit photos_path
     end
 
-    it { should have_content("Upload photo") }
+    it { should have_content("Add photo") }
     it { should have_content("Delete") }
 
     it "should delete a photo successfully" do
