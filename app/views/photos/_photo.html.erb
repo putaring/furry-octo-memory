@@ -12,7 +12,7 @@
     <% end %>
   <% else %>
     <div class="card photo-card">
-      <%= link_to photo.image.url, data: { toggle: 'swipebox' } do %>
+      <%= link_to photo.image.url(:large), data: { toggle: 'swipebox' } do %>
         <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100') %>
       <% end %>
       <div class="card-block">
