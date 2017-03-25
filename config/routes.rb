@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resource :search, only: :show, controller: :search
 
   resources :conversations, only: :show
-  resources :photos, only: [:index, :create, :destroy] do
+  resources :photos, only: [:index, :show, :create, :destroy] do
     patch 'make-profile-photo', on: :member
   end
 

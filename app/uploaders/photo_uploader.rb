@@ -10,7 +10,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   process convert: 'jpg', if: :convert_to_jpeg?
-
+  
   # Create different versions of your uploaded files:
 
   version :large do

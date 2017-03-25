@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_photo
-    @_profile_photo ||= photos.find_by(rank: 1)
+    @_profile_photo ||= photos.active.find_by(rank: 1)
   end
 
   def country_name

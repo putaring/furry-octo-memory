@@ -1,15 +1,31 @@
 <div class="col-md-4">
-  <div class="card photo-card">
-    <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100', data: { toggle: 'swipebox', rank: photo.rank } ) %>
-    <div class="card-block">
-      <p class="card-text text-xs-center" style="min-height: 50px;">
-        <% unless photo.rank.eql?(1) %>
-          <%= link_to make_profile_photo_photo_path(photo), class: 'card-link', method: :patch do %>
-            <%= image_tag 'portrait.svg', width: 48, data: { toggle: "tooltip", title: "Make profile photo", placement: "bottom" } %>
+
+  <% if photo.inactive? %>
+    <%= content_tag(:div, class: 'card photo-card', data: { component: 'inactive-photo', photo_id: photo.id }) do %>
+      <%= image_tag('ripple.svg', class: 'card-img-top img-fluid w-100') %>
+      <div class="card-block">
+        <p class="card-text text-xs-center" style="min-height: 50px;">
+          <button class="btn btn-sm btn-link btn-block" disabled>Processing…</button>
+          <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, data: { disable_with: 'Deleting…' } %>
+        </p>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card photo-card">
+      <%= link_to photo.image.url, data: { toggle: 'swipebox' } do %>
+        <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100') %>
+      <% end %>
+      <div class="card-block">
+        <p class="card-text text-xs-center" style="min-height: 50px;">
+          <% if photo.rank.eql?(1) %>
+            <button class="btn btn-sm btn-outline-primary btn-block" disabled>Profile photo</button>
+          <% else %>
+            <%= link_to 'Make profile photo', make_profile_photo_photo_path(photo), class: 'btn btn-sm btn-outline-primary btn-block', method: :patch, data: { confirm: 'Do you want to make this your profile picture?', disable_with: 'okey-dokey…' } %>
           <% end %>
-        <% end %>
-        <%= link_to 'Delete', photo_path(photo), class: 'btn btn-secondary', method: :delete, data: { disable_with: 'Deleting…' } %>
-      </p>
+          <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, data: { confirm: 'Delete picture?', disable_with: 'Deleting…' } %>
+        </p>
+      </div>
     </div>
-  </div>
+  <% end %>
+
 </div>

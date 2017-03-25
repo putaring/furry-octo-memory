@@ -1,16 +1,22 @@
 class PhotosController < ApplicationController
   before_action :authenticate!
+  before_action :set_s3_direct_post, only: [:index]
 
   def index
     @photos = current_user.photos
   end
 
+  def show
+    photo = current_user.photos.find(params[:id])
+    render json: photo, status: :ok
+  end
+
   def create
-    @photo        = current_user.photos.new(photo_params.except(:image))
-    @photo.image  = photo_params[:image]
+    @photo = current_user.photos.create
 
     if @photo.save
-      redirect_to photos_path, notice: 'You look fantastic.'
+      ProcessPhotoJob.perform_later(@photo.id, photo_params.except(:image))
+      redirect_to photos_path, notice: "Your photo will be ready in a bit."
     else
       render 'index'
     end
@@ -37,7 +43,15 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    @_photo_params ||= params.require(:photo).permit(:image, :image_x, :image_y, :image_width)
+    @_photo_params ||= params.require(:photo).permit(:image, :image_x, :image_y, :image_width, :remote_image_url)
+  end
+
+  def set_s3_direct_post
+    @s3_direct_post = S3_BUCKET.presigned_post({
+      key: "temp-uploads/#{Date.today}/#{SecureRandom.uuid}/${filename}",
+      success_action_status: '201',
+      acl: 'public-read'
+    })
   end
 
 end

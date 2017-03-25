@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Photo, type: :model do
 
   context "validations" do
-    it { should validate_presence_of(:image) }
     it { should validate_presence_of(:rank) }
     it { should validate_numericality_of(:rank).is_greater_than_or_equal_to(1) }
 
@@ -51,5 +50,25 @@ RSpec.describe Photo, type: :model do
       photo.update_attributes(rank: 4)
       expect(photo).to be_invalid
     end
+  end
+
+  context "processing remote url" do
+    let(:photo)   { create(:photo) }
+
+    describe "#process_remote_picture" do
+      before do
+        photo.process_remote_picture({
+          remote_image_url: "http://i.imgur.com/Vc5yfmY.jpg"
+        })
+      end
+      it "should be made active" do
+        expect(photo.reload.status).to eq("active")
+      end
+
+      it "should have a valid url" do
+        expect(photo.image.url).to be_present
+      end
+    end
+
   end
 end
