@@ -11,6 +11,7 @@ if Rails.env.production?
     }
     config.fog_directory  = ENV['S3_BUCKET']
     config.fog_attributes = {'Cache-Control' => "public, max-age=#{365.day.to_i}"}
+    config.asset_host     = ENV['CDN_HOST']
     config.storage        = :fog
     config.cache_dir      = "#{Rails.root}/tmp/uploads"
   end
