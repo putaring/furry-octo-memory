@@ -85,38 +85,44 @@
     })
   };
 
+  var addPhotoToCanvas = function () {
+    $photoCanvas.attr('src', this.result);
+    $photoPreview.attr('src', this.result);
+    $photoCanvas.load(setupJcrop);
+  };
+
+  var setupJcrop = function () {
+
+    var width       = $photoCanvas.get(0).naturalWidth,
+        height      = $photoCanvas.get(0).naturalHeight,
+        smallerSide = (width < height) ? width : height,
+        topX        = (width/2) - (smallerSide/4),
+        topY        = (height/2) - (smallerSide/4);
+
+
+    $photoCanvas.Jcrop({
+      onSelect: setCoordinates,
+      onChange: setCoordinates,
+      boxWidth: cropWidth,
+      boxHeight: cropWidth,
+      keySupport: false,
+      aspectRatio: 1,
+      bgOpacity: .4,
+      minSize: [100, 100],
+      setSelect: [topX, topY, topX + (smallerSide/2), topY]
+    }, function () {
+      jcropApi = this;
+    });
+
+    $modal.modal();
+  };
+
 
   $photoFileInput.change(function(e) {
     var file    = this.files[0],
         reader  = new FileReader();
 
-    reader.addEventListener("load", function () {
-      $photoCanvas.attr('src', reader.result);
-      $photoPreview.attr('src', reader.result);
-
-      var width       = $photoCanvas.get(0).naturalWidth,
-          height      = $photoCanvas.get(0).naturalHeight,
-          smallerSide = (width < height) ? width : height,
-          topX        = (width/2) - (smallerSide/4),
-          topY        = (height/2) - (smallerSide/4);
-
-      $photoCanvas.Jcrop({
-        onSelect: setCoordinates,
-        onChange: setCoordinates,
-        boxWidth: cropWidth,
-        boxHeight: cropWidth,
-        keySupport: false,
-        aspectRatio: 1,
-        bgOpacity: .4,
-        minSize: [100, 100],
-        setSelect: [topX, topY, topX + (smallerSide/2), topY]
-      }, function () {
-        jcropApi = this;
-      });
-
-      $modal.modal();
-
-    }, false);
+    reader.addEventListener("load", addPhotoToCanvas, false);
 
     if (file) {
       reader.readAsDataURL(file);
