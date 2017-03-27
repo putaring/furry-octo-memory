@@ -122,6 +122,11 @@
     var file    = this.files[0],
         reader  = new FileReader();
 
+    if(!(/image\//).test(file.type)) {
+      alert("We couldn't read the file you added. Please upload an image and try again.");
+      return;
+    }
+
     reader.addEventListener("load", addPhotoToCanvas, false);
 
     if (file) {
