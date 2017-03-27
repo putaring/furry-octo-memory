@@ -21,6 +21,7 @@ gem 'resque', "~> 1.27.0"
 gem 'puma'
 gem "rack-timeout"
 gem 'aws-sdk', '~> 2'
+gem 'newrelic_rpm'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
