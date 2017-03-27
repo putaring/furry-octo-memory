@@ -27,7 +27,7 @@
     updatePhoto: function () {
       var isProfilePhoto = this.photo.rank == 1;
       if (isProfilePhoto) {
-        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.url + '">\
+        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.large.url + '">\
                               <img class="card-img-top img-fluid w-100" src="' + this.photo.image.thumb.url + '" />\
                             </a>\
                             <div class="card-block">\
@@ -37,7 +37,7 @@
                               </p>\
                             </div>';
       } else {
-        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.url + '">\
+        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.large.url + '">\
                               <img class="card-img-top img-fluid w-100" src="' + this.photo.image.thumb.url + '" />\
                             </a>\
                             <div class="card-block">\
