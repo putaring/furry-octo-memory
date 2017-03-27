@@ -1,3 +1,4 @@
+require 'resque/server'
 Rails.application.routes.draw do
   root 'static_pages#index'
   get     'terms',    to: 'static_pages#terms'
@@ -61,4 +62,6 @@ Rails.application.routes.draw do
     delete 'like', to: 'users#unlike', on: :member
     delete 'decline', to: 'users#decline', on: :member
   end
+
+  mount Resque::Server.new, at: "/resque"
 end
