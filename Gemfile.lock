@@ -165,7 +165,6 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.12.1)
     nenv (0.3.0)
-    newrelic_rpm (4.0.0.332)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     notiffany (0.1.0)
@@ -332,7 +331,6 @@ DEPENDENCIES
   jquery-rails
   language_list
   mini_magick
-  newrelic_rpm
   pg
   puma
   rack-timeout
