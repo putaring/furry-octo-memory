@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     patch 'make-profile-photo', on: :member
   end
 
+  resources :favorites, only: [:index]
+
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update] do
     get 'details'

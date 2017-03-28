@@ -1,0 +1,10 @@
+<div class="media p-a-1 m-b-1 like-card" style="border-bottom:1px solid #f3f3f3;">
+  <%= link_to user_path(user), { class: 'media-left', style: "text-decoration:none;" } do %>
+    <%= image_tag(user.display_picture_for(current_user, :small_thumb), { class: 'img-circle', width: 120 }) %>
+  <% end %>
+  <div class="media-body">
+    <%= link_to user.username, user_path(user), { class: 'media-heading username' } %><br>
+    <div class="m-b-1"><small class="text-muted"><%= time_ago_in_words(time) %> ago</small></div>
+    <%= link_to('Remove from favorites', favorite_user_path(user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
+  </div>
+</div>
