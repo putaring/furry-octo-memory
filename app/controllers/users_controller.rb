@@ -41,6 +41,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def favorite
+    @user = User.find(params[:id])
+    if (bookmark = current_user.favorite(@user))
+      render json: bookmark, status: :created
+    else
+      head :unprocessable_entity
+    end
+  end
+
+  def unfavorite
+    @user = User.find(params[:id])
+    if current_user.unfavorite(@user)
+      head :no_content
+    else
+      head :unprocessable_entity
+    end
+  end
+
   def decline
     @user = User.find(params[:id])
     if current_user.decline(@user)

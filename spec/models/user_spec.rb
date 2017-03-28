@@ -63,6 +63,21 @@ RSpec.describe User, type: :model do
     end
   end
 
+
+  describe "bookmarked?(other_user)" do
+    let(:user)        { create(:user) }
+    let(:other_user)  { create(:user) }
+    before { user.favorite(other_user) }
+
+    it "returns true if you have bookmarked a user" do
+      expect(user.bookmarked?(other_user)).to be true
+    end
+
+    it "returns false if you haven't bookmarked a user" do
+      expect(other_user.bookmarked?(user)).to be false
+    end
+  end
+
   describe "#favorite(user)" do
     it "should allow the user to favorite another user" do
       user       = create(:user)

@@ -79,6 +79,7 @@ feature "Profile page" do
     end
     it { should have_content('Like') }
     it { should have_content('Message') }
+    it { should have_content('Add to favorites') }
   end
 
   context "Logged in and viewing my profile page" do

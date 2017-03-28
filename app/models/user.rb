@@ -103,6 +103,10 @@ class User < ActiveRecord::Base
     active_bookmarks.create(bookmarked_id: other_user.id)
   end
 
+  def bookmarked?(other_user)
+    favorites.find_by(id: other_user.id).present?
+  end
+
   def unfavorite(other_user)
     active_bookmarks.find_by(bookmarked_id: other_user.id).try(:destroy)
   end

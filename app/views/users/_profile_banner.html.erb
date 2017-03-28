@@ -30,9 +30,22 @@
                   <% else %>
                     <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
                   <% end %>
-                  <%= link_to('', { class: 'btn btn-lg btn-block btn-primary', data: { toggle: 'modal', target: '#message-modal' } }) do %>
-                  Message
-                  <% end %>
+
+                  <div class="btn-group btn-flex">
+                    <%= link_to('Message', '', { class: 'btn btn-lg btn-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+                    <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <h6 class="dropdown-header">More actions</h6>
+                      <% if current_user.bookmarked?(@user) %>
+                        <%= link_to('Remove from favorites', favorite_user_path(@user), remote: true, method: :delete, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
+                      <% else %>
+                        <%= link_to('Add to favorites', favorite_user_path(@user), remote: true, method: :post, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
+                      <% end %>
+                    </div>
+                  </div>
+
                 <% end %>
               <% else %>
                 <p class="text-xs-center no-focus">Find a great match today</p>
