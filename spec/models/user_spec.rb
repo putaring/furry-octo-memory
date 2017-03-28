@@ -42,6 +42,10 @@ RSpec.describe User, type: :model do
     it { should have_many(:passive_interests) }
     it { should have_many(:likes) }
     it { should have_many(:likers) }
+    it { should have_many(:active_bookmarks) }
+    it { should have_many(:passive_bookmarks) }
+    it { should have_many(:favorites) }
+    it { should have_many(:favoriters) }
     it { should have_one(:profile) }
   end
 
@@ -56,6 +60,27 @@ RSpec.describe User, type: :model do
 
     it "returns false if you don't like a user" do
       expect(other_user.likes?(user)).to be false
+    end
+  end
+
+  describe "#favorite(user)" do
+    it "should allow the user to favorite another user" do
+      user       = create(:user)
+      other_user = create(:user)
+      user.favorite(other_user)
+      expect(user.favorites.count).to eq(1)
+      expect(other_user.favoriters.count).to eq(1)
+    end
+  end
+
+  describe "#unfavorite(user)" do
+    it "should allow the user to unfavorite another user" do
+      user       = create(:user)
+      other_user = create(:user)
+      create(:bookmark, bookmarker: user, bookmarked: other_user)
+      user.unfavorite(other_user)
+      expect(user.favorites.count).to eq(0)
+      expect(other_user.favoriters.count).to eq(0)
     end
   end
 

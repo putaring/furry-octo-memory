@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:sender, :recipient, :liker, :liked] do
+  factory :user, aliases: [:sender, :recipient, :liker, :liked, :bookmarker, :bookmarked] do
     gender        { 'f' }
     birthdate     { 21.years.ago }
     height        { 72 }
@@ -43,6 +43,11 @@ FactoryGirl.define do
   factory :interest do
     liker
     liked
+  end
+
+  factory :bookmark do
+    bookmarker
+    bookmarked
   end
 
   factory :photo do

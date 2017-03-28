@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Bookmark, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:bookmarker) }
+  it { should belong_to(:bookmarked) }
 end
