@@ -6,8 +6,9 @@ $(function() {
     if (xhr.status === 201) {
       // favorited
       $.snackbar({
-        content: "Added to favorites.",
+        content: "Added to favorites. <a href='/favorites'><strong>VIEW FAVORITES</strong></a>",
         style: "snackbar",
+        htmlAllowed: true,
         timeout: 7000
       });
       $(this).text('Remove from favorites').
@@ -23,12 +24,12 @@ $(function() {
         data('method', 'post');
     }
   }).on('ajax:before', function (e) {
-    $(this).addClass('disabled');
-    $.snackbar({
-      content: ($(e.target).data('method') === "post") ? "Adding…" : "Removing…",
-      style: "snackbar",
-      timeout: 7000
-    });
+    var linkText =  ($(e.target).data('method') === "post") ? "Adding…" : "Removing…";
+
+    $(this).
+      text(linkText).
+      addClass('disabled');
+
   }).on('ajax:complete', function () {
     $(this).removeClass('disabled');
   });
