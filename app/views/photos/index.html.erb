@@ -35,7 +35,7 @@
 
       <div class="col-lg-7 p-a-1">
         <div class="row">
-          <% @photos.ranked.each do |photo| %>
+          <% @photos.each do |photo| %>
             <%= render partial: 'photos/photo', locals: { photo: photo } %>
           <% end %>
         </div>
@@ -55,17 +55,6 @@
         useSVG : false,
         removeBarsOnMobile : true,
       });
-      /*$('[data-toggle="swipebox"]').click(function () {
-        $.swipebox(
-          <%= @photos.active.ranked.collect { |p| { href: p.image.url } }.to_json.html_safe %>, {
-            useCSS : true,
-            useSVG : false,
-            initialIndexOnArray : parseInt($(this).data('rank'), 10) - 1,
-            removeBarsOnMobile : true,
-            hideCloseButtonOnMobile : false
-          }
-        );
-      });*/
       </script>
       <% end %>
     <% end %>
