@@ -104,3 +104,13 @@ body {
   left: 0;
   right: 0;
 }
+
+.btn-flex {
+  display: flex;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.btn-flex .btn:first-child {
+  flex-grow: 1;
+}

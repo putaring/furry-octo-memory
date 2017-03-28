@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
   has_many :likes, through: :active_interests,  source: :liked
   has_many :likers, through: :passive_interests, source: :liker
 
+  has_many :active_bookmarks, class_name: "Bookmark", foreign_key: "bookmarker_id", dependent: :destroy
+  has_many :passive_bookmarks, class_name: "Bookmark", foreign_key: "bookmarked_id", dependent: :destroy
+
+  has_many :favorites, through: :active_bookmarks,  source: :bookmarked
+  has_many :favoriters, through: :passive_bookmarks, source: :bookmarker
+
   enum religion: { hindu: 1, muslim: 2, christian: 3,
     sikh: 4, buddhist: 5, jain: 6, parsi: 7, jewish: 8, non_religious: 100 }
 
@@ -91,6 +97,18 @@ class User < ActiveRecord::Base
 
   def unlike(other_user)
     active_interests.find_by(liked_id: other_user.id).try(:destroy)
+  end
+
+  def favorite(other_user)
+    active_bookmarks.create(bookmarked_id: other_user.id)
+  end
+
+  def bookmarked?(other_user)
+    favorites.find_by(id: other_user.id).present?
+  end
+
+  def unfavorite(other_user)
+    active_bookmarks.find_by(bookmarked_id: other_user.id).try(:destroy)
   end
 
   def decline(other_user)
