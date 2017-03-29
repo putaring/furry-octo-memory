@@ -3,11 +3,18 @@
     this.$elem  = $(elem);
     this.id     = this.$elem.data('photoId');
     this.photo  = null;
+    this.tries  = 0;
   };
 
   InactivePhoto.prototype = {
     process: function () {
-      window.setTimeout($.proxy(this.getPhoto, this), 5000);
+      this.tries += 1;
+
+      if (this.tries <= 5) {
+        // we only poll 5 times. We dont want to keep polling for the photo
+        // in case something went wrong
+        window.setTimeout($.proxy(this.getPhoto, this), 5000);
+      }
     },
 
     getPhoto: function () {
