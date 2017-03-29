@@ -25,7 +25,7 @@ feature 'Photos page' do
     it { should have_content("Delete") }
 
     it "should delete a photo successfully" do
-      expect { click_link "Delete" }.to change {Photo.count}.from(1).to(0)
+      expect { click_link "Delete" }.to change {Photo.visible.count}.from(1).to(0)
     end
   end
 

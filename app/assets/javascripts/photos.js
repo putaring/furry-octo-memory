@@ -43,7 +43,7 @@
     done: function(e, data) {
       $progressBar.val(100);
       $progressText.text("Hang in there… We're almost done.");
-      var url = data.url + '/' + $(data.jqXHR.responseXML).find('Key').text();
+      var url = data.url + '/' + encodeURI($(data.jqXHR.responseXML).find('Key').text());
       $imageUrlField.val(url);
       $photoFileInput.val(null);
       $photoForm.submit();
