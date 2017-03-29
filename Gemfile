@@ -19,7 +19,6 @@ gem 'has_secure_token'
 gem 'faker'
 gem 'resque', "~> 1.27.0"
 gem 'puma'
-gem 'newrelic_rpm'
 gem "rack-timeout"
 gem 'aws-sdk', '~> 2'
 
