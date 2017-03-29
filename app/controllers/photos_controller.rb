@@ -3,11 +3,11 @@ class PhotosController < ApplicationController
   before_action :set_s3_direct_post, only: [:index]
 
   def index
-    @photos = current_user.photos
+    @photos = visible_photos.ranked
   end
 
   def show
-    photo = current_user.photos.find(params[:id])
+    photo = visible_photos.find(params[:id])
     render json: photo, status: :ok
   end
 
@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
   end
 
   def make_profile_photo
-    @photo = current_user.photos.find(params[:id])
+    @photo = visible_photos.find(params[:id])
     if @photo && @photo.make_profile_photo
       redirect_to photos_path, notice: 'Profile photo updated.'
     else
@@ -32,15 +32,25 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = current_user.photos.find(params[:id])
-    if @photo && @photo.destroy
-      redirect_to photos_path, notice: 'Deleted.'
-    else
-      render 'index'
+    @photo = visible_photos.find(params[:id])
+
+    respond_to do |format|
+      if @photo && @photo.deleted!
+        DeletePhotoJob.perform_later(@photo.id)
+        format.html { redirect_to photos_path, notice: 'Deleted.' }
+        format.js { head :no_content }
+      else
+        format.html { render 'index' }
+        format.js { head :unprocessable_entity }
+      end
     end
   end
 
   private
+
+  def visible_photos
+    current_user.photos.visible
+  end
 
   def photo_params
     @_photo_params ||= params.require(:photo).permit(:image, :image_x, :image_y, :image_width, :remote_image_url)

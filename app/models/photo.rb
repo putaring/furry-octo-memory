@@ -4,9 +4,10 @@ class Photo < ActiveRecord::Base
   belongs_to :user
 
   scope :ranked, -> { order(:rank) }
+  scope :visible, -> { where(status: [Photo.statuses[:active], Photo.statuses[:inactive]]) }
   mount_uploader :image, PhotoUploader
 
-  validates_presence_of     :rank#, :image
+  validates_presence_of     :rank
   validates_numericality_of :rank, greater_than_or_equal_to: 1
 
   validate :valid_rank, on: :update, if: ->(p) { p.rank_changed? }
@@ -15,7 +16,7 @@ class Photo < ActiveRecord::Base
   before_update     :sort_photos, if: ->(p) { p.rank_changed? }
   before_destroy    :adjust_ranks
 
-  enum status: { inactive: 0, active: 1 }
+  enum status: { inactive: 0, active: 1, deleted: 2 }
 
   def make_profile_photo
     update_attributes(rank: 1)

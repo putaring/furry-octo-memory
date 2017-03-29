@@ -1,17 +1,17 @@
 <div class="col-md-4">
 
   <% if photo.inactive? %>
-    <%= content_tag(:div, class: 'card photo-card', data: { component: 'inactive-photo', photo_id: photo.id }) do %>
+    <%= content_tag(:div, class: 'card', data: { component: 'inactive-photo', photo_id: photo.id }) do %>
       <%= image_tag('ripple.svg', class: 'card-img-top img-fluid w-100') %>
       <div class="card-block">
         <p class="card-text text-xs-center" style="min-height: 50px;">
           <button class="btn btn-sm btn-link btn-block" disabled>Almost ready…</button>
-          <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, data: { disable_with: 'Deleting…' } %>
+          <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, remote: true, data: { component: 'deletePhotoLink', confirm: 'Delete picture?', disable_with: 'Deleting…' } %>
         </p>
       </div>
     <% end %>
   <% else %>
-    <div class="card photo-card">
+    <div class="card">
       <%= link_to photo.image.url(:large), data: { toggle: 'swipebox' } do %>
         <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100') %>
       <% end %>
@@ -22,7 +22,7 @@
           <% else %>
             <%= link_to 'Make profile photo', make_profile_photo_photo_path(photo), class: 'btn btn-sm btn-outline-primary btn-block', method: :patch, data: { confirm: 'Do you want to make this your profile picture?', disable_with: 'okey-dokey…' } %>
           <% end %>
-          <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, data: { confirm: 'Delete picture?', disable_with: 'Deleting…' } %>
+          <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, remote: true, data: { component: 'deletePhotoLink', confirm: 'Delete picture?', disable_with: 'Deleting…' } %>
         </p>
       </div>
     </div>
