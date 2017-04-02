@@ -12,6 +12,10 @@
 @import "swipebox";
 @import "search";
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+}
+
 .card {
   &.card-no-border {
     border: 0;
@@ -63,6 +67,15 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.navbar.navbar-full.navbar-light {
+  img {
+    @include media-breakpoint-down(xs) {
+      width: 25px;
+    }
+  }
+}
+
 .material-icons {
   &.mi-aligned {
     position: relative;
@@ -112,4 +125,9 @@ body {
 
 .btn-flex .btn:first-child {
   flex-grow: 1;
+}
+
+
+.text-branded {
+  color: #01579B !important;
 }

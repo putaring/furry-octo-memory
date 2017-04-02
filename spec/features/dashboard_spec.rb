@@ -11,10 +11,10 @@ feature 'Dashboard' do
 
   context "on boarding has not been completed" do
     context "no information has been filled in" do
-      it { should have_content("We're so glad to have you on Roozam. Get started in 3 easy steps.") }
+      it { should have_content("Get started in 3 easy steps.") }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Like somebody') }
+      it { should have_content('Browse profiles') }
     end
 
     context "only about has been filled up" do
@@ -22,10 +22,10 @@ feature 'Dashboard' do
         user.profile.update_attributes(about: Faker::Lorem.sentence)
         visit me_path
       end
-      it { should have_content("We're so glad to have you on Roozam. Get started in 3 easy steps.") }
+      it { should have_content("Get started in 3 easy steps.") }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Like somebody') }
+      it { should have_content('Browse profiles') }
     end
 
     context "only photo has been uploaded" do
@@ -33,10 +33,10 @@ feature 'Dashboard' do
         create(:photo, user: user)
         visit me_path
       end
-      it { should have_content("We're so glad to have you on Roozam. Get started in 3 easy steps.") }
+      it { should have_content("Get started in 3 easy steps.") }
       it { should have_content('Add some photos') }
       it { should have_content('Fill out your profile') }
-      it { should have_content('Like somebody') }
+      it { should have_content('Browse profiles') }
     end
   end
 
@@ -47,7 +47,7 @@ feature 'Dashboard' do
       visit me_path
     end
     it { should have_content('What would you like to do today?') }
-    it { should have_content('Like somebody') }
+    it { should have_content('Browse profiles') }
     it { should have_content('View your profile') }
   end
 end
