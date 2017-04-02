@@ -18,15 +18,9 @@ finished_onboarding   = has_photos && has_description
   <div class="row">
     <div class="col-lg-8">
       <% if finished_onboarding %>
-        <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Hey there</h1>
-        <p class="lead text-muted text-xs-center text-md-left">
-          What would you like to do today?
-        </p>
+        <h1 class="h2 m-t-2 text-xs-center text-md-left text-branded">What would you like to do today?</h1>
       <% else %>
-        <h1 class="h2 m-t-2 text-muted text-xs-center text-md-left">Welcome!</h1>
-        <p class="lead text-muted text-xs-center text-md-left">
-          We're so glad to have you on Roozam. <span class="font-weight-bold">Get started in 3 easy steps.</span>
-        </p>
+        <h1 class="h2 m-t-2 text-xs-center text-md-left text-branded">Get started in 3 easy steps.</h1>
       <% end %>
 
       <div class="list-group">
@@ -38,7 +32,7 @@ finished_onboarding   = has_photos && has_description
               </div>
               <div class="col-xs-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Add some photos</p>
-                <p class="list-group-item-text">Everyone wants to know what you look like.</p>
+                <p class="list-group-item-text hidden-xs-down">Everyone wants to know what you look like.</p>
               </div>
             </div>
           </a>
@@ -49,7 +43,7 @@ finished_onboarding   = has_photos && has_description
               </div>
               <div class="col-xs-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Fill out your profile</p>
-                <p class="list-group-item-text">Tell everyone a little about yourself. Keep your essays short and sweet.</p>
+                <p class="list-group-item-text hidden-xs-down">Tell everyone a little about yourself and what you do. Keep 'em short and sweet.</p>
               </div>
             </div>
           <% end %>
@@ -60,8 +54,8 @@ finished_onboarding   = has_photos && has_description
               <%= image_tag 'search.svg', class: 'img-fluid' %>
             </div>
             <div class="col-xs-9 col-md-10">
-              <p class="list-group-item-heading text-primary h4">Like somebody</p>
-              <p class="list-group-item-text">Browse matches, find people you like and press the like button to show your interest. We'll let you know when they like you back.</p>
+              <p class="list-group-item-heading text-primary h4">Browse profiles</p>
+              <p class="list-group-item-text hidden-xs-down">Find your perfect match.</p>
             </div>
           </div>
         <% end %>
@@ -75,7 +69,7 @@ finished_onboarding   = has_photos && has_description
               </div>
               <div class="col-xs-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">View your profile</p>
-                <p class="list-group-item-text">Make sure it's up to date with your best photos and a catchy description.</p>
+                <p class="list-group-item-text hidden-xs-down">Because you're awesome!</p>
               </div>
             </div>
           <% end %>

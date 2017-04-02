@@ -11,7 +11,7 @@
         <div class="form-group">
           <%= f.label :username, class: "sr-only" %>
           <%= f.text_field :username, { class: 'form-control', required: true, maxlength: 30, placeholder: 'Create a username'} %>
-          <small class="form-text text-muted d-block">This will be public. Don't use your real name</small>
+          <small class="form-text text-muted d-block">This will be publicly visible. Pick a unique username.</small>
         </div>
         <div class="form-group text-xs-right">
           <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success' } %>

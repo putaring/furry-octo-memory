@@ -16,13 +16,13 @@
 
   <div class="text-muted">
     <% if current_user.photo_visibility == 'everyone' %>
-      Everyone can see your photos
+      Visible to members and non-members
     <% elsif current_user.photo_visibility == 'members_only' %>
-      Only Roozam members can see your photos
+      Only visible to members
     <% else %>
-      Only people you like can see your photos
+      Only visible to people you like
     <% end %>
-    &mdash; <%= link_to 'Edit', privacy_settings_path, data: { toggle: 'modal', target: '#privacy-modal' } %>
+    &mdash; <%= link_to 'Edit privacy', privacy_settings_path, data: { toggle: 'modal', target: '#privacy-modal' } %>
   </div>
 <% end %>
 
