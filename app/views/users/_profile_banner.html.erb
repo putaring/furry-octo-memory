@@ -3,7 +3,7 @@
     <div class="row align-items-center">
 
       <div class="col-md-3 text-center">
-        <%= image_tag @user.display_picture_for(current_user), { class: 'rounded-circle img-fluid', style: "border: 5px solid #fff; max-height: 250px;" } %>
+        <%= render partial: 'users/profile_banner/profile_picture' %>
       </div>
 
       <div class="col-md-5 text-center text-md-left" style="color:#fff;">
