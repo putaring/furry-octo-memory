@@ -5,7 +5,7 @@
       <p>One last step</p>
     </div>
     <div class="col-sm-6 hidden-xs-down">
-      <p class="lead text-xs-center">Spice up your profile with a brief description.</p>
+      <p class="lead text-center">Spice up your profile with a brief description.</p>
     </div>
     <div class="col-sm-3 col-xs-6">
       <%= link_to 'Skip ➔', me_path, { class: 'pull-xs-right' } %>
@@ -14,7 +14,7 @@
 </section>
 <section class="container">
   <div class="row">
-    <div class="col-xs-12 col-md-8 offset-md-2">
+    <div class="col-12 col-md-8 offset-md-2">
       <div class="card card-block">
         <%= form_for(@profile, url: onboarding_about_path) do |f| %>
         <div class="form-group">

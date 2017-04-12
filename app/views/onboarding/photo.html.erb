@@ -5,7 +5,7 @@
       <p>Step 1 of 2</p>
     </div>
     <div class="col-sm-6 hidden-xs-down">
-      <p class="lead text-xs-center">
+      <p class="lead text-center">
         <% if current_user.profile_photo.present? %>
           You look fantastic.
         <% else %>
@@ -28,7 +28,7 @@
 
   <% if current_user.profile_photo.nil? %>
     <div class="row">
-      <div class="col-xs-12 col-md-4 offset-md-4">
+      <div class="col-12 col-md-4 offset-md-4">
         <div class="card card-block">
           <%= render "onboarding/photo_form" %>
           <small class="text-muted form-text">
@@ -41,7 +41,7 @@
   <% end %>
 
   <div class="row">
-    <div class="col-xs-12 col-md-4 offset-md-4">
+    <div class="col-12 col-md-4 offset-md-4">
 
       <% if current_user.errors.any? %>
         <div class="alert alert-danger">
@@ -60,7 +60,7 @@
         </div>
       <% end %>
 
-      <div class="card card-block text-xs-center">
+      <div class="card card-block text-center">
         <%= image_tag(current_user.display_thumbnail(:thumb), { class: "img-circle d-block m-x-auto", width: 180, height: 180 }) %>
         <strong class="d-block m-t-2" data-toggle="tooltip" data-placement="top" title="We create a username for you when you sign up. You can change it later."><%= current_user.username %></strong>
         <span class="text-muted"><%= "#{current_user.age} • #{current_user.religion.humanize} • #{current_user.country_alpha3}" %></span>
@@ -70,9 +70,9 @@
 
   <% if current_user.profile_photo.present? %>
     <div class="row">
-      <div class="col-xs-12 col-md-4 offset-md-4">
+      <div class="col-12 col-md-4 offset-md-4">
 
-        <div class="card card-block p-a-1 text-xs-center">
+        <div class="card card-block p-a-1 text-center">
           <small>Who can see your photos?</small>
           <div class="dropdown d-inline">
             <a class="btn btn-link btn-sm dropdown-toggle" href="#" data-toggle="dropdown">
@@ -114,7 +114,7 @@
         <% if current_user.profile_photo.present? %>
           <%= render "onboarding/photo_form" %>
         <% end %>
-        <p class="lead text-xs-center">or</p>
+        <p class="lead text-center">or</p>
         <%= link_to "Take me to the final step ➔", onboarding_about_path, { class: 'btn btn-outline-primary btn-block' } %>
       </div>
     </div>

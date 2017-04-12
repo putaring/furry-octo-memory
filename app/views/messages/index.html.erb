@@ -1,31 +1,31 @@
 <% provide(:title, 'Inbox') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
+<div class="jumbotron jumbotron-fluid text-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
-        <h1 class="thin">Inbox</h1>
+      <div class="col">
+        <h1 class="jumbotron-heading">Inbox</h1>
       </div>
     </div>
   </div>
 </div>
 <div style="border-bottom: 1px solid #f3f3f3;">
-  <div class="container p-y-1">
+  <div class="container py-1">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col">
         <%= render partial: 'messages/messages_nav' %>
       </div>
     </div>
   </div>
 </div>
 
-<section class="container m-t-2">
+<section class="container mt-2">
   <div class="row">
     <% if @messages.empty? %>
-      <div class="col-xs-12">
+      <div class="col">
         <div class="card card-block card-outline-secondary text-muted p-y-3" style="border-style:dashed">
-          <p class="text-xs-center p-y-3">
+          <p class="text-center py-3">
             0 messages<br>
             <small>Be the first to start a conversation.</small><br>
             <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>

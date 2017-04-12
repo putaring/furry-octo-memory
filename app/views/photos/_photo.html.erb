@@ -4,7 +4,7 @@
     <%= content_tag(:div, class: 'card', data: { component: 'inactive-photo', photo_id: photo.id }) do %>
       <%= image_tag('ripple.svg', class: 'card-img-top img-fluid w-100') %>
       <div class="card-block">
-        <p class="card-text text-xs-center" style="min-height: 50px;">
+        <p class="card-text text-center" style="min-height: 50px;">
           <button class="btn btn-sm btn-link btn-block" disabled>Almost ready…</button>
           <%= link_to 'Delete', photo_path(photo), class: 'btn btn-sm btn-block btn-outline-secondary', method: :delete, remote: true, data: { component: 'deletePhotoLink', confirm: 'Delete picture?', disable_with: 'Deleting…' } %>
         </p>
@@ -16,7 +16,7 @@
         <%= image_tag(photo.image.url(:thumb), class: 'card-img-top img-fluid w-100') %>
       <% end %>
       <div class="card-block">
-        <p class="card-text text-xs-center" style="min-height: 50px;">
+        <p class="card-text text-center" style="min-height: 50px;">
           <% if photo.rank.eql?(1) %>
             <button class="btn btn-sm btn-outline-primary btn-block" disabled>Profile photo</button>
           <% else %>

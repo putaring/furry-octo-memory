@@ -1,31 +1,31 @@
 <% provide(:title, "Conversation with #{@conversation.other_participant(current_user).username}") %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center bg-primary m-b-0">
+<div class="jumbotron jumbotron-fluid bg-primary">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
-        <h1 class="thin">Conversation with <%= @conversation.other_participant(current_user).username %></h1>
+      <div class="col">
+        <h1 class="jumbotron-heading">Conversation with <%= @conversation.other_participant(current_user).username %></h1>
       </div>
     </div>
   </div>
 </div>
 <div style="border-bottom: 1px solid #f3f3f3;">
-  <div class="container p-y-1">
+  <div class="container py-1">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col">
         <%= render partial: 'messages/messages_nav' %>
       </div>
     </div>
   </div>
 </div>
 
-<section class="container m-t-2">
+<section class="container mt-2">
   <div class="row">
     <div class="col-lg-7">
       <% total_messages = @messages.to_a.count; display_count = 3; %>
       <% if total_messages > display_count %>
-      <p class="text-xs-center">
+      <p class="text-center">
         <%= link_to "Show older messages (#{total_messages - display_count})", '', class: 'btn btn-outline-primary', id: 'older-messages-btn' %>
       </p>
       <% end %>

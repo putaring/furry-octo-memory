@@ -1,10 +1,10 @@
 <% provide(:title, 'My favorites') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
+<div class="jumbotron jumbotron-fluid text-center m-b-0 bg-primary">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <h1 class="thin">Favorites</h1>
       </div>
     </div>
@@ -15,9 +15,9 @@
 <section class="container m-t-2">
   <div class="row">
     <% if @active_bookmarks.empty? %>
-    <div class="col-xs-12">
+    <div class="col-12">
       <div class="card card-block card-outline-secondary text-muted p-y-3" style="border-style:dashed">
-        <p class="text-xs-center p-y-3">
+        <p class="text-center p-y-3">
           <span class="lead">You haven't favorited anybody.</span><br>
           Favorites is a place to to easily access profiles that you want to view later. We will <strong>not</strong> notify a user when you add them to your favorites.<br />
             <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
