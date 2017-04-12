@@ -6,10 +6,10 @@
 <%= render partial: 'users/message_modal' if logged_in? %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-5 push-lg-7">
+    <div class="col-lg-5 push-lg-7 d-flex justify-content-center align-items-start">
       <%= render partial: 'users/photos_card' %>
     </div>
-    <div class="col-lg-7 pull-lg-5 p-r-2">
+    <div class="col-lg-7 pull-lg-5">
       <%= render partial: 'users/profile_about' %>
       <%= render partial: 'users/profile_occupation' %>
       <%= render partial: 'users/profile_preference' %>

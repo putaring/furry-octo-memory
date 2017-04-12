@@ -9,8 +9,8 @@
     <%= f.date_field :birthdate, class: 'form-control', value: f.object.birthdate.presence || 21.years.ago.end_of_year.to_date, max: 17.years.ago, min: 60.years.ago, required: true %>
   <% else %>
   <div class="row">
-    <%= f.date_select :birthdate, { use_short_month: true, start_year: 60.years.ago.year, end_year: 17.years.ago.year, prompt: { day: 'Day', month: 'Month', year: 'Year' }, order: [:month, :day, :year]}, { class: 'form-control form-control p-l-0 p-r-0', required: true } %>
-    <script>$('select[name*=birthdate]').wrap('<div class="col-xs-4">');</script>
+    <%= f.date_select :birthdate, { use_short_month: true, start_year: 60.years.ago.year, end_year: 17.years.ago.year, prompt: { day: 'Day', month: 'Month', year: 'Year' }, order: [:month, :day, :year]}, { class: 'form-control', required: true } %>
+    <script>$('select[name*=birthdate]').wrap('<div class="col">');</script>
   </div>
   <% end %>
   <small class="text-danger form-text"></small>
@@ -30,7 +30,7 @@
 <div class="form-group">
   <%= f.label :religion, class: show_label ? '' : "sr-only" %>
   <%= f.select :religion,  User.religions.map{ |religion, _| [religion.humanize, religion] }, { prompt: 'Religion' }, { class: 'form-control', required: true } %>
-  <small class="text-danger"></small>
+  <small class="text-danger form-text"></small>
 </div>
 <% show_caste = f.object.religion.eql?('hindu') %>
 <div class="form-group" id="caste-selection-container" style="<%= show_caste ? '' : 'display:none;' %>">
@@ -40,10 +40,10 @@
 <div class="form-group">
   <%= f.label :language, 'Mother tongue', class: show_label ? '' : "sr-only" %>
   <%= f.select :language, LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
-  <small class="text-danger"></small>
+  <small class="text-danger form-text"></small>
 </div>
 <div class="form-group">
   <%= f.label :country, 'Where do you live?', class: show_label ? '' : "sr-only" %>
   <%= f.select :country, ISO3166::Country.with_indian_population.map { |country| [country.name, country.alpha2] } ,{ prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
-  <small class="text-danger"></small>
+  <small class="text-danger form-text"></small>
 </div>

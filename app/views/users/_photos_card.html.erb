@@ -1,66 +1,23 @@
-<% if @user.photos.count == 0 %>
-<div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-  <h3 class="card-title h5">Photos</h3>
-  <p class="text-xs-center p-y-3">
-    No photos.<br>
-    <% if @user.eql?(current_user) %>
-      <%= link_to photos_path do %>
-      Add some photos
-      <% end %>
-    <% else %>
-    <small>Camera shy, maybe?</small>
-    <% end %>
-  </p>
-</div>
+<% if @user.photos.visible.count == 0 %>
+  <% if @user.eql?(current_user) %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">Heads up!</h4>
+      <p><%= link_to "Add a photo now", photos_path, class: "alert-link" %> to greatly increase your chances of being noticed by others.</p>
+    </div>
+
+  <% end %>
+
 <% elsif @user.display_photos_to?(current_user) == false %>
-<div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-  <h3 class="card-title h5">Photos</h3>
-  <p class="text-xs-center p-y-3">
-    <%= @user.photo_visibility.eql?('restricted') ? 'Restricted. You can view their photos only if they like you.' : 'Log in to view their photos.' %>
-  </p>
-</div>
-<% else %>
-<div class="card card-block card-no-border">
-  <h2 class="card-title h5">
-    Photos
-    <% if @user.eql?(current_user) %>
-    <small>
-      <%= link_to photos_path, { title: "Manage", data: { toggle: "tooltip", placement: "right" } } do %>
-      <i class="material-icons mi-aligned text-success">mode_edit</i>
-      <% end %>
-    </small>
-    <% end %>
-  </h2>
-  <div class="row p-l-1 p-r-2">
-    <% @user.photos.ranked.limit(6).each do |photo| %>
-      <div class="col-xs-4 col-md-3 col-lg-4" style="padding: 0.1em;">
-        <%= image_tag(photo.image.url(:thumb), { class: 'img-fluid', data: { toggle: 'swipebox', rank: photo.rank } }) %>
-      </div>
+  <div class="alert alert-warning">
+    <% if @user.photo_visibility.eql?('restricted') %>
+      <h4 class="alert-heading">Private photos</h4>
+      Only members whom they like can view their photos. <%= link_to('Send a message', '', { class: 'alert-link', data: { toggle: 'modal', target: '#message-modal' } }) %> to say hello.
+    <% else %>
+      <h4 class="alert-heading">Members-only photos</h4>
+      Only Roozam members can view their photos.
+      <%= link_to 'Join now', signup_path, { class: 'alert-link' } %> or
+      <%= link_to 'log in', login_path, { class: 'alert-link', data: { toggle: 'modal', target: '#login-modal' } } %> to see their photos.
     <% end %>
   </div>
-</div>
-
-<%= content_for :javascripts do %>
-<script>
-<% if logged_in? %>
-$('[data-toggle="swipebox"]').click(function () {
-  $.swipebox(
-    <%= @user.photos.ranked.collect { |p| { href: p.image.url(:large) } }.to_json.html_safe %>, {
-      useCSS : true,
-      useSVG : false,
-      initialIndexOnArray : parseInt($(this).data('rank'), 10) - 1,
-      removeBarsOnMobile : true,
-      hideCloseButtonOnMobile : false
-    }
-  );
-});
 <% else %>
-$('[data-toggle="swipebox"]').click(function () {
-  $('#login-modal').modal('show');
-});
-<% end %>
-</script>
-<% end %>
-
-
 <% end %>

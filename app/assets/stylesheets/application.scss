@@ -16,24 +16,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: bold;
 }
 
-.card {
-  &.card-no-border {
-    border: 0;
-  }
-}
-.btn-accent {
-  @include button-variant($btn-accent-color, $btn-accent-bg, $btn-accent-border);
-}
-
-// Remove all backgrounds
-.btn-outline-accent {
-  @include button-outline-variant($btn-accent-bg);
-}
-
-.navbar-full {
-  background-color: #fff;
-  box-shadow: 0 1px 0 0 rgba(0,0,0,.05),0 2px 4px 0 rgba(0,0,0,.06);
-}
 
 .scrollable-div {
   height: 100px;
@@ -51,83 +33,26 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   }
 }
 
-.feature-jumbotron {
-  background-color: #fafafa;
-  h1 {
-    font-weight: 300;
-  }
-}
-
-.thin {
-  font-weight: 300 !important;
-}
-
-.profile-detail-centered {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.navbar.navbar-full.navbar-light {
-  img {
-    @include media-breakpoint-down(xs) {
-      width: 25px;
+.btn-group-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  .btn,
+  .btn-group {
+    float: none;
+    display: table-cell;
+    width: 1%;
+    .btn {
+      width: 100%;
+    }
+    .dropdown-menu {
+      left: auto;
     }
   }
 }
 
-.material-icons {
-  &.mi-aligned {
-    position: relative;
-    top: 5px;
-  }
-  &.md-18 {
-    font-size: 18px;
-    &.mi-aligned {
-      top: 2px;
-    }
-  }
-  &.md-36 {
-    font-size: 36px;
-  }
-  &.md-48 {
-    font-size: 48px;
-  }
-  /* Rules for using icons as black on a light background. */
-  &.md-dark { color: rgba(0, 0, 0, 0.54); }
-  &.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
-
-  /* Rules for using icons as white on a dark background. */
-  &.md-light { color: rgba(255, 255, 255, 1); }
-  &.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
-}
-
-html {
-  min-height: 100%;
-  position: relative;
-}
-
-body {
-  margin-bottom: 60px;
-}
-#page-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.btn-flex {
-  display: flex;
-  align-items: stretch;
-  align-content: stretch;
-}
-
-.btn-flex .btn:first-child {
-  flex-grow: 1;
-}
-
-
-.text-branded {
-  color: #01579B !important;
+.essay {
+  font-size: 1.13rem;
+  color: #555;
 }

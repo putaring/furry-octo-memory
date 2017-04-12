@@ -1,50 +1,48 @@
-<nav class="navbar navbar-full navbar-light">
-  <div class="container">
-    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand text-branded' } do %>
-    <%= image_tag 'logo.svg', height: 30, title: 'Roozam logo', class: 'd-inline' %> <span class="hidden-xs-down">Roozam</span>
+<div class="container">
+  <nav class="navbar navbar-light navbar-toggleable-md">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand ' } do %>
+      <%= image_tag 'logo.svg', height: 30, title: "Home", alt: "Home" %> Roozam
     <% end %>
-    <% if logged_in? %>
-      <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <%= link_to search_path, { class: 'nav-link', title: "Browse matches", data: { toggle: "tooltip", placement: "bottom" } } do %>
-            <%= image_tag 'search.svg', width: 30 %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to likes_me_path, { class: 'nav-link', title: "Likes", data: { toggle: "tooltip", placement: "bottom" } } do %>
-            <%= image_tag 'like.svg', width: 30 %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to messages_path, { class: 'nav-link', title: "Messages", data: { toggle: "tooltip", placement: "bottom" } } do %>
-            <%= image_tag 'message.svg', width: 30 %>
-            <%= notification_counter(current_user.received_messages.unread.count) %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to favorites_path, { class: 'nav-link', title: "Favorites", data: { toggle: "tooltip", placement: "bottom" } } do %>
-            <%= image_tag 'favorites.svg', width: 30 %>
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-            <%= image_tag 'more.svg', title: 'Settings', alt: 'More', width: 30, id: 'profile-dropdown', class: 'nav-link dropdown-toggle', data: { toggle: "dropdown" } %>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-              <%= link_to 'Profile', user_path(current_user), { class: 'dropdown-item' } %>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <% if logged_in? %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to "Search", search_path, { class: 'nav-link' } %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Likes", likes_me_path, { class: 'nav-link' } %>
+          </li>
+          <li class="nav-item">
+            <%= link_to messages_path, { class: 'nav-link' } do %>
+              Messages
+              <%= notification_counter(current_user.received_messages.unread.count) %>
+            <% end %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to 'My profile', user_path(current_user), { class: 'dropdown-item' } %>
               <%= link_to 'My photos', photos_path, { class: 'dropdown-item' } %>
-              <%= link_to 'Account settings', account_settings_path, { class: 'dropdown-item' } %>
+              <%= link_to "Favorites", favorites_path, { class: 'dropdown-item' } %>
               <div class="dropdown-divider"></div>
+              <%= link_to 'Settings', account_settings_path, { class: 'dropdown-item' } %>
               <%= link_to 'Log out', logout_path, { class: 'dropdown-item', method: :delete } %>
             </div>
-          </div>
-        </li>
-      </ul>
-    <% else %>
-      <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <%= link_to 'Log in', login_path, { class: 'btn btn-outline-primary', data: { toggle: 'modal', target: '#login-modal' } } %>
-        </li>
-      </ul>
-    <% end %>
-  </div>
-</nav>
+            </div>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to 'Log in', login_path, { class: 'nav-link', data: { toggle: 'modal', target: '#login-modal' } } %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </nav>
+</div>
