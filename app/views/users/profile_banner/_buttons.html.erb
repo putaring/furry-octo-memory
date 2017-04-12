@@ -1,0 +1,27 @@
+<% if logged_in? %>
+
+  <% if current_user == @user %>
+    <%= link_to 'Edit profile', details_profile_path, class: 'btn btn-lg btn-block btn-secondary' %>
+  <% else %>
+    <% if current_user.likes?(@user) %>
+      <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
+    <% else %>
+      <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
+    <% end %>
+
+    <div class="d-flex justify-content-center mt-1">
+      <div class="btn-group btn-group-justified">
+        <%= link_to('Message', '', { class: 'btn btn-secondary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+        <% if current_user.bookmarked?(@user) %>
+          <%= link_to('Unfavorite', favorite_user_path(@user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
+        <% else %>
+          <%= link_to('Favorite', favorite_user_path(@user), remote: true, method: :post, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+
+<% else %>
+  <%= link_to('Sign up for free', signup_path, { class: 'btn btn-lg btn-block btn-warning' }) %>
+<% end %>
