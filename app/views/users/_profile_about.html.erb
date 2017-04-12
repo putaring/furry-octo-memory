@@ -1,14 +1,14 @@
 <% if @user.about.present? %>
 
-  <h2 class="h3 mb-3">A few words about me</h2>
+  <h2 class="h4 mb-3">A few words about me</h2>
   <div class="essay mb-5">
     <%= simple_format(@user.about) %>
   </div>
 
 <% else %>
 <div class="rounded text-muted mb-5" style="border: 2px dashed #ccc">
-  <h2 class="h3 mt-3 ml-3">A few words about me</h2>
-  <p class="text-center essay text-muted p-5">
+  <h2 class="h4 mt-3 ml-3">A few words about me</h2>
+  <p class="text-center text-muted p-5">
     <% if @user.eql?(current_user) %>
       You haven't written anything.<br />
       <%= link_to "Add a short description", essays_profile_path, data: { toggle: 'modal', target: '#about-modal' } %>

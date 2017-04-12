@@ -2,7 +2,7 @@
   <% if @user.eql?(current_user) %>
     <div class="alert alert-danger">
       <h4 class="alert-heading">Heads up!</h4>
-      <p><%= link_to "Add a photo now", photos_path, class: "alert-link" %> to greatly increase your chances of being noticed by others.</p>
+      <%= link_to "Add a photo now", photos_path, class: "alert-link" %> to greatly increase your chances of being noticed by others.
     </div>
   <% end %>
 

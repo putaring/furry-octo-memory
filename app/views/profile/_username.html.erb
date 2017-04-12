@@ -1,22 +1,20 @@
-<div class="card card-block card-no-border" style="border-bottom: 1px solid #eee; border-radius:0">
-  <p class="card-title font-weight-bold">Username</p>
-  <div class="row">
-    <div class="col-lg-10">
-      <%= form_for(current_user, url: me_path, remote: true, data: { user_id: current_user.id }) do |f| %>
-        <div class="alert alert-danger edit_errors" style="display:none">
-        </div>
-        <div class="alert alert-success edit_success" style="display:none">
-          Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
-        </div>
-        <div class="form-group">
-          <%= f.label :username, class: "sr-only" %>
-          <%= f.text_field :username, { class: 'form-control', required: true, maxlength: 30, placeholder: 'Create a username'} %>
-          <small class="form-text text-muted d-block">This will be publicly visible. Pick a unique username.</small>
-        </div>
-        <div class="form-group text-xs-right">
-          <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success' } %>
-        </div>
-      <% end %>
-    </div>
+<p class="h5">Username</p>
+<div class="row">
+  <div class="col-lg-10">
+    <%= form_for(current_user, url: me_path, remote: true, data: { user_id: current_user.id }) do |f| %>
+      <div class="alert alert-danger edit_errors" style="display:none">
+      </div>
+      <div class="alert alert-success edit_success" style="display:none">
+        Updated. Go to your <%= link_to 'profile', user_path(current_user) %>
+      </div>
+      <div class="form-group">
+        <%= f.label :username, class: "sr-only" %>
+        <%= f.text_field :username, { class: 'form-control', required: true, maxlength: 30, placeholder: 'Create a username'} %>
+        <small class="form-text text-muted d-block">This will be publicly visible. Pick a unique username.</small>
+      </div>
+      <div class="form-group text-right">
+        <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-lg btn-success' } %>
+      </div>
+    <% end %>
   </div>
 </div>

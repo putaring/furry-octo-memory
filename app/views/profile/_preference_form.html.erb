@@ -6,9 +6,9 @@
   </div>
   <div class="form-group">
     <%= f.label :preference, 'Who should contact you?', class: "sr-only" %>
-    <%= f.text_area :preference, { class: 'form-control', placeholder: "What're you looking for in a partner? Be specific.", rows: 7} %>
+    <%= f.text_area :preference, { class: 'form-control form-control-lg', placeholder: "Who is your ideal partner?", rows: 7} %>
   </div>
-  <div class="form-group text-xs-right">
-    <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success' } %>
+  <div class="form-group text-right">
+    <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success btn-lg' } %>
   </div>
 <% end %>
