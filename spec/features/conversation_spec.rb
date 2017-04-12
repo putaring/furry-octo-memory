@@ -19,7 +19,7 @@ feature "Conversations" do
 
       it "should give the user an option to send a message to the recipient" do
         visit user_path(recipient)
-        expect(page).to have_content('Message')
+        within('.jumbotron') { expect(page).to have_content('Message') }
       end
 
       context "sending a message" do
@@ -55,7 +55,7 @@ feature "Conversations" do
 
       it "should not give the user an option to send a message when they're on their own profile page" do
         visit user_path(sender)
-        expect(page).to_not have_content('Message')
+        within('.jumbotron') { expect(page).to_not have_content('Message') }
       end
 
     end

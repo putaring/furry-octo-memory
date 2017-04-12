@@ -50,25 +50,18 @@ feature "Profile page" do
     end
   end
 
-  describe "photo section" do
-    context "when the user hasn't uploaded any photos" do
-      background { visit user_path(user) }
-      it { should have_content("Camera shy, maybe?")}
-    end
-  end
-
   describe "profile details" do
     background { visit user_path(user) }
     it { should have_title("#{user.username} | Roozam") }
     it { should have_content('Woman, 21 years, 6 ft, Unmarried') }
-    it { should have_content('Mother tongue is English') }
+    it { should have_content('Speaks English') }
     it { should have_content('Lives in the United States') }
   end
 
   context "logged out" do
     background { visit user_path(user) }
     it { should have_content('Log in') }
-    it { should have_content('Join now') }
+    it { should have_content('Sign up for free') }
   end
 
   context "logged in viewing a new match" do
@@ -79,7 +72,7 @@ feature "Profile page" do
     end
     it { should have_content('Like') }
     it { should have_content('Message') }
-    it { should have_content('Add to favorites') }
+    it { should have_content('Favorite') }
   end
 
   context "Logged in and viewing my profile page" do
@@ -91,7 +84,7 @@ feature "Profile page" do
 
     context "Empty about me" do
       it { should have_content("A few words about me") }
-      it { should have_content("You haven't written anything yet.") }
+      it { should have_content("You haven't written anything.") }
       it { should have_content("Add a short description") }
     end
 
@@ -103,8 +96,8 @@ feature "Profile page" do
 
     context "Empty preference" do
       it { should have_content("Who should contact me") }
-      it { should have_content("You haven't mentioned your preference") }
-      it { should have_content("Fill it out") }
+      it { should have_content("Connect with the right people") }
+      it { should have_content("What's your preference?") }
     end
 
   end

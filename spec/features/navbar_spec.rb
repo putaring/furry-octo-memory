@@ -9,14 +9,14 @@ feature "Navbar" do
       visit user_path(user)
     end
     it "should give the user the option of logging out" do
-      within('.navbar-full') { expect(page).to have_content('Log out') }
+      within('.navbar') { expect(page).to have_content('Log out') }
     end
   end
 
   context "when logged out" do
     it "should give the user the option of logging in" do
       visit user_path(user)
-      within('.navbar-full') { expect(page).to have_content('Log in') }
+      within('.navbar') { expect(page).to have_content('Log in') }
     end
   end
 end
