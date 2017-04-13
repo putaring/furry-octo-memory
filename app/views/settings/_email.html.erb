@@ -13,7 +13,7 @@
           <%= f.email_field :email, { class: 'form-control', required: true, placeholder: 'Your current email address'} %>
           <small class="form-text text-muted d-block">You'll need this to log in and we send notifications to your email address when people like you or send messages.</small>
         </div>
-        <div class="form-group text-xs-right">
+        <div class="form-group text-right">
           <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-success' } %>
         </div>
       <% end %>

@@ -1,7 +1,7 @@
 <% provide(:title, 'Add a photo') %>
 <section class="container-fluid">
   <div class="row p-a-1">
-    <div class="col-sm-3 col-xs-6">
+    <div class="col-sm-3 col-6">
       <p>Step 1 of 2</p>
     </div>
     <div class="col-sm-6 hidden-xs-down">
@@ -17,7 +17,7 @@
         <% end %>
       </p>
     </div>
-    <div class="col-sm-3 col-xs-6">
+    <div class="col-sm-3 col-6">
       <% if current_user.profile_photo.nil? %>
         <%= link_to 'Skip ➔', onboarding_about_path, { class: 'pull-xs-right' } %>
       <% end %>

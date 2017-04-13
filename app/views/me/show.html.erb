@@ -42,10 +42,10 @@ finished_onboarding   = has_photos && has_description
         <% unless finished_onboarding %>
           <a href="/photos" class="list-group-item list-group-item-action p-y-2 p-x-1 m-y-1">
             <div class="row">
-              <div class="col-xs-3 col-md-2">
+              <div class="col-3 col-md-2">
                 <%= image_tag has_photos ? 'tick.svg' : 'camera.svg', class: 'img-fluid' %>
               </div>
-              <div class="col-xs-9 col-md-10">
+              <div class="col-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Add some photos</p>
                 <p class="list-group-item-text hidden-xs-down">Everyone wants to know what you look like.</p>
               </div>
@@ -53,10 +53,10 @@ finished_onboarding   = has_photos && has_description
           </a>
           <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
             <div class="row">
-              <div class="col-xs-3 col-md-2">
+              <div class="col-3 col-md-2">
                 <%= image_tag has_description ? 'tick.svg' : 'fill.svg', class: 'img-fluid' %>
               </div>
-              <div class="col-xs-9 col-md-10">
+              <div class="col-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Say something about yourself</p>
                 <p class="list-group-item-text hidden-xs-down">Tell everyone a little about yourself and what you do. Keep 'em short and sweet.</p>
               </div>
@@ -68,10 +68,10 @@ finished_onboarding   = has_photos && has_description
 
           <%= link_to search_path, class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
             <div class="row">
-              <div class="col-xs-3 col-md-2">
+              <div class="col-3 col-md-2">
                 <%= image_tag 'search.svg', class: 'img-fluid' %>
               </div>
-              <div class="col-xs-9 col-md-10">
+              <div class="col-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">Browse profiles</p>
                 <p class="list-group-item-text hidden-xs-down">Find your perfect match.</p>
               </div>
@@ -80,10 +80,10 @@ finished_onboarding   = has_photos && has_description
 
           <%= link_to user_path(current_user), class: 'list-group-item list-group-item-action p-y-2 p-x-1 m-y-1' do %>
             <div class="row">
-              <div class="col-xs-3 col-md-2">
+              <div class="col-3 col-md-2">
                 <%= image_tag 'profile.svg', class: 'img-fluid' %>
               </div>
-              <div class="col-xs-9 col-md-10">
+              <div class="col-9 col-md-10">
                 <p class="list-group-item-heading text-primary h4">View your profile</p>
                 <p class="list-group-item-text hidden-xs-down">Because you're awesome!</p>
               </div>

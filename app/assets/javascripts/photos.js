@@ -29,19 +29,25 @@
     },
     progressall: function (e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
-      $progressBar.val(progress);
+      $progressBar.css({
+        width: progress + '%'
+      });
       if(progress >= 50) {
         $progressText.text('Saving…');
       }
     },
     start: function (e) {
-      $progressBar.val(0);
+      $progressBar.css({
+        width: '0%'
+      });
       $progressText.show().text('Adding photo…');
       $photoForm.hide();
       $progressBar.show();
     },
     done: function(e, data) {
-      $progressBar.val(100);
+      $progressBar.css({
+        width: '100%'
+      });
       $progressText.text("Hang in there… We're almost done.");
       var url = data.url + '/' + encodeURI($(data.jqXHR.responseXML).find('Key').text());
       $imageUrlField.val(url);

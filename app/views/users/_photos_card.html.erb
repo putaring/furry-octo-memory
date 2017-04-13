@@ -1,6 +1,6 @@
 <% if !@user.has_active_photos? %>
   <% if @user.eql?(current_user) %>
-    <div class="alert alert-danger">
+    <div class="alert alert-warning">
       <h4 class="alert-heading">Heads up!</h4>
       <%= link_to "Add a photo now", photos_path, class: "alert-link" %> to greatly increase your chances of being noticed by others.
     </div>

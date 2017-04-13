@@ -6,37 +6,30 @@
   }) do |f| %>
 
   <%= f.label :image, { id: 'photo-upload-file', class: 'btn btn-lg btn-success' } do %>
-  <i class="material-icons mi-aligned">photo_camera</i> Add photo
+  Add photo
   <% end %>
   <%= f.file_field :image, { accept: 'image/*', capture: "camera" , style: "text-indent: -999em; width:1px; position: absolute; height:1px; opacity: 0" }%>
   <%= f.hidden_field :remote_image_url %>
   <%= f.hidden_field :image_x %>
   <%= f.hidden_field :image_y %>
   <%= f.hidden_field :image_width %>
-
-  <div class="text-muted">
-    <% if current_user.photo_visibility == 'everyone' %>
-      Visible to members and non-members
-    <% elsif current_user.photo_visibility == 'members_only' %>
-      Only visible to members
-    <% else %>
-      Only visible to people you like
-    <% end %>
-    &mdash; <%= link_to 'Edit privacy', privacy_settings_path, data: { toggle: 'modal', target: '#privacy-modal' } %>
-  </div>
+  <br />
+  <%= link_to 'Edit visibility', privacy_settings_path, data: { toggle: 'modal', target: '#privacy-modal' } %>
 <% end %>
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="s3-upload-progress" role="progressbar" style="width: 0%;display:none"></div>
+</div>
 
-<progress value="0" max="100" id="s3-upload-progress" class="progress-striped progress-success progress" style="display:none"></progress>
 <p class="text-muted" id="progress-text" style="display:none">Saving…</p>
 
 <div class="modal" id="photo-crop-modal" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
+        <p class="modal-title h5">Drag the square around your face</p>
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
-        <p class="modal-title lead">Drag the square around your face</p>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
@@ -44,8 +37,8 @@
             <div class="col-lg-9 col-md-12" style="border-right: 1px dashed #ccc">
               <img id="photo-crop-canvas" />
             </div>
-            <div class="col-xs-3 hidden-md-down text-center">
-              <div style="width:150px; height:150px; overflow:hidden; border-radius: 50%;" class="m-x-auto m-t-1 m-b-1">
+            <div class="col-3 hidden-md-down text-center">
+              <div style="width:150px; height:150px; overflow:hidden; border-radius: 50%;" class="mx-auto mt-1 mb-1">
                 <img id="photo-crop-preview" />
               </div>
               <small class="text-muted">Preview</small>
