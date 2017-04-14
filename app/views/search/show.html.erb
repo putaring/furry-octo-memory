@@ -6,7 +6,7 @@
     <h1 data-toggle="collapse" href="#search-panel" class="h2" style="cursor: pointer">
       <a style="color:#fff; text-decoration: none;">Browse matches</a>
     </h1>
-    <%= form_tag search_path, method: :get, remote: true, format: :json, id: "search-panel", class: "collapse in mt-3", data: { logged_in: logged_in?, liker_ids: logged_in? ? current_user.liker_ids : [] } do %>
+    <%= form_tag search_path, method: :get, remote: true, format: :json, id: "search-panel", class: "collapse show mt-3", data: { logged_in: logged_in?, liker_ids: logged_in? ? current_user.liker_ids : [] } do %>
     <div class="row">
       <div class="col-md-4">
         <div class="form-group">
