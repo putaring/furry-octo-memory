@@ -1,7 +1,7 @@
 <% provide(:title, "Conversation with #{@conversation.other_participant(current_user).username}") %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid bg-primary">
+<div class="jumbotron jumbotron-fluid bg-primary mb-0" style="color:#fff">
   <div class="container">
     <div class="row">
       <div class="col">
@@ -10,8 +10,8 @@
     </div>
   </div>
 </div>
-<div style="border-bottom: 1px solid #f3f3f3;">
-  <div class="container py-1">
+<div class="mb-3" style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container py-3">
     <div class="row">
       <div class="col">
         <%= render partial: 'messages/messages_nav' %>
@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<section class="container mt-2">
+<section class="container">
   <div class="row">
     <div class="col-lg-7">
       <% total_messages = @messages.to_a.count; display_count = 3; %>

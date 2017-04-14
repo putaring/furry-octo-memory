@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def notification_counter(count)
-    content_tag(:span, count > 99 ? '99+' : count, class: 'tag tag-pill tag-danger') if count > 0
+    content_tag(:span, count > 99 ? '99+' : count, class: 'badge badge-pill badge-danger') if count > 0
   end
 
 end

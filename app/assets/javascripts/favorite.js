@@ -22,7 +22,7 @@ $(function() {
       });
       $(this).text('Favorite').
         data('method', 'post');
-      $(this).parents('.media').css('background-color', '#ECEFF1').slideUp('slow');
+      $(this).parents('.media').slideUp();
     }
   }).on('ajax:before', function (e) {
     var linkText =  ($(e.target).data('method') === "post") ? "Adding…" : "Removing…";

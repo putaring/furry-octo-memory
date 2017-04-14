@@ -67,13 +67,13 @@ $(function() {
   }).on('ajax:success', function (event, data, status, xhr) {
     $messageForm.find('textarea').val('');
 
-    var messageNode = $('<div class="media">\
-      <div class="media-left">\
+    var messageNode = $('<div class="media mb-3">\
+      <div>\
         <a href="/users/' + $messageForm.data('user').id + '">\
-          <img src="' + $messageForm.data('user').photo + '" class="img-circle" width="70" />\
+          <img src="' + $messageForm.data('user').photo + '" class="rounded-circle mr-3" width="70" />\
         </a>\
       </div>\
-      <div class="media-body p-a-1" style="background-color:#E8F5E9;color:#5e6573">\
+      <div class="media-body p-3" style="background-color:#E8F5E9;color:#5e6573">\
         ' + $.simpleFormat(data.body) + '\
         <small class="text-muted">Sent just now</small>\
       </div>\
