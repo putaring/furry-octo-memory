@@ -34,14 +34,10 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
 
   resource :me, controller: :me, only: [:show, :update]
-  resource :profile, controller: :profile, only: [:update] do
-    get 'details'
-    get 'essays'
-  end
+  resource :profile, controller: :profile, only: [:update, :edit]
 
   resource :settings, only: [] do
     get 'account'
-    get 'privacy'
   end
 
   resources :messages, only: :index do

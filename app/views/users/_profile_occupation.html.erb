@@ -9,7 +9,7 @@
       <h2 class="h4 mt-3 ml-3">What I'm doing with my life</h2>
       <p class="text-center text-muted p-5">
         This essay is empty.<br>
-        <%= link_to "What do you do day-to-day?", essays_profile_path, data: { toggle: 'modal', target: '#occupation-modal' } %>
+        <%= link_to "What do you do day-to-day?", edit_profile_path, data: { toggle: 'modal', target: '#occupation-modal' } %>
       </p>
     </div>
     <%= render partial: 'users/occupation_modal' %>

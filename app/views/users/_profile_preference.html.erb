@@ -9,7 +9,7 @@
       <h2 class="h4 mt-3 ml-3">Who should contact me</h2>
       <p class="text-center text-muted p-5">
         Connect with the right people.<br>
-        <%= link_to "What's your preference?", essays_profile_path, data: { toggle: 'modal', target: '#preference-modal' } %>
+        <%= link_to "What's your preference?", edit_profile_path, data: { toggle: 'modal', target: '#preference-modal' } %>
       </p>
     </div>
     <%= render partial: 'users/preference_modal' %>
