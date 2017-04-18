@@ -14,7 +14,7 @@ feature "Received messages" do
   context "has no messages" do
     background { visit messages_path }
     it { should have_content('Inbox') }
-    it { should have_content('0 messages') }
+    it { should have_content('Start a conversation') }
   end
 
   context "has unread messages" do
@@ -27,9 +27,9 @@ feature "Received messages" do
 
     it { should have_content('Last message') }
     it { should have_content('unread') }
-    it { should have_css('.tag.tag-pill.tag-danger') }
+    it { should have_css('.badge.badge-pill.badge-danger') }
     it "should display unread notification count" do
-      expect(page.find('.tag.tag-pill.tag-danger')).to have_content(3)
+      expect(page.find('.badge.badge-pill.badge-danger')).to have_content(3)
     end
   end
 
@@ -38,7 +38,7 @@ feature "Received messages" do
       create(:message, recipient: user, sender: inactive_user, conversation: inactive_conversation, body: "First message")
       visit messages_path
     end
-    it { should have_content('0 messages') }
-    it { should_not have_css('.tag.tag-pill.tag-danger') }
+    it { should have_content('Start a conversation') }
+    it { should_not have_css('.badge.badge-pill.badge-danger') }
   end
 end
