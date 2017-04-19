@@ -84,13 +84,13 @@ feature "Profile page" do
 
     context "Empty about me" do
       it { should have_content("A few words about me") }
-      it { should have_content("You haven't written anything.") }
+      it { should have_content("Help other people get to know you.") }
       it { should have_content("Add a short description") }
     end
 
     context "Empty occupation" do
       it { should have_content("What I'm doing with my life") }
-      it { should have_content("This essay is empty.") }
+      it { should have_content("You haven't written anything.") }
       it { should have_content("What do you do day-to-day?") }
     end
 
