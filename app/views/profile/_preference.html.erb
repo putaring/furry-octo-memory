@@ -1,10 +1,5 @@
-<div class="card card-block card-no-border" style="border-radius:0;">
-  <p class="card-title font-weight-bold">
-    Who should contact you?
-  </p>
-  <div class="row">
-    <div class="col-lg-10">
-      <%= render partial: 'profile/preference_form' %>
-    </div>
+<div class="row mb-5">
+  <div class="col-lg-10">
+    <%= render partial: 'profile/preference_form', locals: { show_label: true } %>
   </div>
 </div>

@@ -1,14 +1,14 @@
-<div class="modal fade" id="occupation-modal" tabindex="-1">
+<div class="modal fade" id="occupation-modal">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header" style="border-bottom: 0">
+      <div class="modal-header">
+        <h5 class="modal-title">Tell them what you do</h5>
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
-        <p class="modal-title font-weight-bold">Tell us what you do</p>
       </div>
       <div class="modal-body">
-        <%= render partial: 'profile/occupation_form' %>
+        <%= render partial: 'profile/occupation_form', locals: { show_label: false } %>
       </div>
     </div>
   </div>

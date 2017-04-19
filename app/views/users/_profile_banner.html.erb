@@ -1,60 +1,29 @@
-<div class="jumbotron jumbotron-fluid p-y-1 bg-primary" style="background-color: #0288D1 !important;">
+<div class="jumbotron jumbotron-fluid py-3" style="background-color: #0288D1 !important;">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="row">
-          <div class="col-lg-3 col-md-4 text-xs-center">
-            <%= image_tag @user.display_picture_for(current_user), { class: 'img-circle img-fluid d-inline-block', style: "border: 5px solid #fff; max-height: 250px;" } %>
-          </div>
-          <div class="col-lg-5 col-md-5 text-md-left text-xs-center profile-detail-centered p-y-1">
-            <h2 class="h4" style="color:rgba(255, 255, 255, 0.8);"><%= @user.username %></h1>
-            <p>
-              <%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="no-focus">years,</span> <%= metric_height(@user.height) %>, <%= @user.status.humanize %><br>
-              <%= @user.religion.humanize %>
-              <% if @user.sect_long_form.present? %>
-              (<%= @user.sect_long_form %>)
-              <% end %>
-              <br>
-              <span class="no-focus">Mother tongue is</span> <%= @user.language_expanded %> <br>
-              <span class="no-focus">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %> </span><%= @user.country_name %>
-            </p>
-          </div>
-          <div class="col-lg-4 col-md-3 profile-detail-centered text-md-left text-xs-center">
-            <p>
-              <% if logged_in? %>
-                <% if current_user == @user %>
-                  <%= link_to 'Edit profile', details_profile_path, class: 'btn btn-lg btn-block btn-outline-secondary' %>
-                <% else %>
-                  <% if current_user.likes?(@user) %>
-                    <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
-                  <% else %>
-                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
-                  <% end %>
+    <div class="row align-items-center">
 
-                  <div class="btn-group btn-flex">
-                    <%= link_to('Message', '', { class: 'btn btn-lg btn-primary', data: { toggle: 'modal', target: '#message-modal' } }) %>
-                    <button type="button" class="btn btn-lg btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                      <h6 class="dropdown-header">More actions</h6>
-                      <% if current_user.bookmarked?(@user) %>
-                        <%= link_to('Remove from favorites', favorite_user_path(@user), remote: true, method: :delete, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
-                      <% else %>
-                        <%= link_to('Add to favorites', favorite_user_path(@user), remote: true, method: :post, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
-                      <% end %>
-                    </div>
-                  </div>
-
-                <% end %>
-              <% else %>
-                <p class="text-xs-center no-focus">Find a great match today</p>
-                <%= link_to('Join now', signup_path, { class: 'btn btn-lg btn-block btn-warning' }) %>
-              <% end %>
-            </p>
-          </div>
-        </div>
+      <div class="col-md-3 text-center">
+        <%= render partial: 'users/profile_banner/profile_picture' %>
       </div>
+
+      <div class="col-md-5 text-center text-md-left" style="color:#fff;">
+        <p class="h3 no-focus"><%= @user.username %></p>
+        <p class="lead">
+          <%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="no-focus">years,</span> <%= metric_height(@user.height) %>, <%= @user.status.humanize %><br>
+          <%= @user.religion.humanize %>
+          <% if @user.sect_long_form.present? %>
+          (<%= @user.sect_long_form %>)
+          <% end %>
+          <br>
+          <span class="no-focus">Speaks</span> <%= @user.language_expanded %> <br>
+          <span class="no-focus">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %> </span><%= @user.country_name %>
+        </p>
+      </div>
+
+      <div class="col-md-4">
+        <%= render partial: 'users/profile_banner/buttons' %>
+      </div>
+
     </div>
   </div>
 </div>

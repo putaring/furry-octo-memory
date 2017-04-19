@@ -20,8 +20,7 @@ feature 'Mutual likes' do
     it { should have_content("You like each other") }
 
     context "when nobody likes the user" do
-      it { should have_content("No mutual likes.") }
-      it { should have_content("Keep searching.") }
+      it { should have_content("Browse matches to find someone you like.") }
     end
 
     context "has no mutual likes" do
@@ -30,8 +29,7 @@ feature 'Mutual likes' do
         create(:interest, liked: create(:user), liker: user)
         visit mutual_likes_path
       end
-      it { should have_content("No mutual likes.") }
-      it { should have_content("Keep searching.") }
+      it { should have_content("Browse matches to find someone you like.") }
     end
 
     context "when the user has mutual likes" do

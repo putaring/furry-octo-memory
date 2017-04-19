@@ -1,6 +1,6 @@
-<nav class="navbar navbar-full navbar-light">
+<nav class="navbar navbar-light">
   <div class="container">
-    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand text-muted d-block text-xs-center', style: 'float:none' } do %>
+    <%= link_to logged_in? ? me_path : root_path, { class: 'navbar-brand text-muted d-block text-center', style: 'float:none' } do %>
     <%= image_tag 'logo.svg', height: 30, title: 'Roozam logo', class: 'd-inline' %> <span>Roozam</span>
     <% end %>
   </div>

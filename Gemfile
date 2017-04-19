@@ -8,7 +8,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'country_select'
 gem 'language_list'
 gem 'browser'
@@ -24,7 +24,7 @@ gem "rack-timeout"
 gem 'aws-sdk', '~> 2'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.0'
+  gem 'rails-assets-tether', '>= 1.3.3'
 end
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -11,17 +11,13 @@ Rails.application.routes.draw do
   post    'login',    to: 'sessions#create'
   delete  'logout',   to: 'sessions#destroy'
 
-  get     'onboarding/about'
-  patch   'onboarding/about', to: 'onboarding#update_about'
-  get     'onboarding/photo'
-  post    'onboarding/photo', to: 'onboarding#create_photo'
-  patch   'onboarding/photo-visibility/:visibility', to: 'onboarding#update_photo_visibility'
+  get 'onboarding', to: 'onboarding#index'
 
-  get 'likes-me', to: 'likes#likers'
-  get 'i-like', to: 'likes#liked'
+  get 'likes-me',     to: 'likes#likers'
+  get 'i-like',       to: 'likes#liked'
   get 'mutual-likes', to: 'likes#mutual'
-  get 'activate', to: 'me#activate'
-  patch 'activate', to: 'me#reactivate'
+  get 'activate',     to: 'me#activate'
+  patch 'activate',   to: 'me#reactivate'
   patch 'deactivate', to: 'me#deactivate'
 
   resource :search, only: :show, controller: :search
@@ -34,14 +30,10 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
 
   resource :me, controller: :me, only: [:show, :update]
-  resource :profile, controller: :profile, only: [:update] do
-    get 'details'
-    get 'essays'
-  end
+  resource :profile, controller: :profile, only: [:update, :edit]
 
   resource :settings, only: [] do
     get 'account'
-    get 'privacy'
   end
 
   resources :messages, only: :index do

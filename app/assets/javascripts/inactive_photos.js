@@ -38,7 +38,7 @@
                               <img class="card-img-top img-fluid w-100" src="' + this.photo.image.thumb.url + '" />\
                             </a>\
                             <div class="card-block">\
-                              <p class="card-text text-xs-center" style="min-height: 50px;">\
+                              <p class="card-text text-center" style="min-height: 50px;">\
                                 <button class="btn btn-sm btn-outline-primary btn-block" disabled>Profile photo</button>\
                                 <a class="btn btn-sm btn-block btn-outline-secondary" data-confirm="Delete picture?" data-component="deletePhotoLink" data-disable-with="Deleting…" data-remote="true" rel="nofollow" data-method="delete" href="/photos/' + this.id + '">Delete</a>\
                               </p>\
@@ -48,7 +48,7 @@
                               <img class="card-img-top img-fluid w-100" src="' + this.photo.image.thumb.url + '" />\
                             </a>\
                             <div class="card-block">\
-                              <p class="card-text text-xs-center" style="min-height: 50px;">\
+                              <p class="card-text text-center" style="min-height: 50px;">\
                                 <a class="btn btn-sm btn-outline-primary btn-block" data-confirm="Do you want to make this your profile picture?" data-disable-with="okey-dokey…" rel="nofollow" data-method="patch" href="/photos/' + this.id + '/make-profile-photo">Make profile photo</a>\
                                 <a class="btn btn-sm btn-block btn-outline-secondary" data-confirm="Delete picture?" data-component="deletePhotoLink" data-disable-with="Deleting…" data-remote="true" rel="nofollow" data-method="delete" href="/photos/' + this.id + '">Delete</a>\
                               </p>\

@@ -1,0 +1,25 @@
+<%= image_tag @user.display_picture_for(current_user), { class: 'rounded-circle img-fluid', data: { toggle: @user.display_photos_to?(current_user) ? 'swipebox' : 'no-op' }, style: "border: 5px solid #fff; max-height: 250px;" } %>
+
+<% if @user.has_active_photos? %>
+  <%= content_for :javascripts do %>
+    <script>
+    <% if logged_in? %>
+    $('[data-toggle="swipebox"]').click(function () {
+      $.swipebox(
+        <%= @user.photos.active.ranked.collect { |p| { href: p.image.url(:large) } }.to_json.html_safe %>, {
+          useCSS : true,
+          useSVG : false,
+          initialIndexOnArray : 0,
+          removeBarsOnMobile : true,
+          hideCloseButtonOnMobile : false
+        }
+      );
+    });
+    <% else %>
+    $('[data-toggle="swipebox"]').click(function () {
+      $('#login-modal').modal('show');
+    });
+    <% end %>
+    </script>
+  <% end %>
+<% end %>

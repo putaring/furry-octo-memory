@@ -11,7 +11,7 @@ $(function() {
         htmlAllowed: true,
         timeout: 7000
       });
-      $(this).text('Remove from favorites').
+      $(this).text('Unfavorite').
         data('method', 'delete');
     } else {
       // unfavorited
@@ -20,9 +20,9 @@ $(function() {
         style: "snackbar",
         timeout: 7000
       });
-      $(this).text('Add to favorites').
+      $(this).text('Favorite').
         data('method', 'post');
-      $(this).parents('.media').css('background-color', '#ECEFF1').slideUp('slow');
+      $(this).parents('.media').slideUp();
     }
   }).on('ajax:before', function (e) {
     var linkText =  ($(e.target).data('method') === "post") ? "Adding…" : "Removing…";

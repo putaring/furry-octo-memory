@@ -1,11 +1,11 @@
 <% provide(:title, 'Join Now') %>
 <section class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 m-t-2">
-      <%= link_to root_path, class: 'd-block text-xs-center' do %>
+    <div class="col col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 m-t-2">
+      <%= link_to root_path, class: 'd-block text-center' do %>
         <%= image_tag 'logo.svg', width: 48 %>
       <% end %>
-      <h1 class="h2 text-xs-center m-y-1">Join Roozam</h1>
+      <h1 class="h2 text-center">Join Roozam</h1>
         <% if @user.errors.any? %>
           <div class="alert alert-danger">
             <ul>
@@ -17,7 +17,7 @@
         <% end %>
         <%= render partial: 'signup_form' %>
         <hr>
-      <div class="text-xs-center">
+      <div class="text-center">
         Already have an account? <%= link_to('Log in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
       </div>
     </div>

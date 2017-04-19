@@ -20,7 +20,7 @@ feature 'I like' do
     it { should have_content("People I like") }
 
     context "you don't like anybody" do
-      it { should have_content("You haven't liked anybody yet.") }
+      it { should have_content("Browse matches to find someone you like.") }
     end
 
     context "when you like somebody" do

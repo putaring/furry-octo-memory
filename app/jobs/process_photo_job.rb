@@ -7,7 +7,17 @@ class ProcessPhotoJob < ActiveJob::Base
     uri               = URI.parse(image_url)
     uri.open do |file|
       photo = Photo.inactive.find(photo_id)
+
+      if file.class == StringIO
+        tempfile  = file
+        file      = Tempfile.new([SecureRandom.uuid, '.jpg'])
+
+        file.binmode
+        file.write tempfile.read
+      end
+
       photo.process_remote_picture(photo_attributes.merge(image: file)) if photo.present?
+
     end
   end
 end

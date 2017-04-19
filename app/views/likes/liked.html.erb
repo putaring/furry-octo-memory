@@ -1,43 +1,42 @@
 <% provide(:title, 'People I like') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid text-xs-center m-b-0 bg-primary">
+<div class="jumbotron jumbotron-fluid mb-0 bg-primary" style="color:#fff">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12">
-        <h1 class="thin">People I like</h1>
+      <div class="col-12">
+        <h1 class="jumbotron-heading">People I like</h1>
       </div>
     </div>
   </div>
 </div>
-<div style="border-bottom: 1px solid #f3f3f3;">
-  <div class="container p-y-1">
+
+<div class="mb-3" style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container py-3">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <%= render partial: 'likes/like_nav' %>
       </div>
     </div>
   </div>
 </div>
 
-<section class="container m-t-2">
-  <div class="row">
+<section class="container">
+  <div class="row justify-content-center">
     <% if @active_interests.empty? %>
-    <div class="col-xs-12">
-      <div class="card card-block card-outline-secondary text-muted p-y-3" style="border-style:dashed">
-        <p class="lead text-xs-center p-y-3">
-          You haven't liked anybody yet.<br>
-          <%= link_to 'Browse matches', search_path, class: "btn btn-success m-t-1" %>
-        </p>
+      <div class="col-lg-7">
+        <div class="rounded p-5 text-center text-muted" style="border: 2px dashed #ccc">
+          <p class="m-5">
+            Browse matches to find someone you like. <br />
+            <%= link_to 'Browse matches', search_path, class: "btn btn-success mt-1" %>
+          </p>
+        </div>
       </div>
-    </div>
     <% else %>
       <div class="col-lg-7">
         <% @active_interests.each do |interest| %>
           <%= render partial: 'likes/like_card', locals: { time: interest.created_at, user: interest.liked } %>
         <% end %>
-      </div>
-      <div class="col-lg-5">
       </div>
     <% end %>
   </div>

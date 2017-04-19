@@ -11,6 +11,12 @@
   -moz-transform: translateY(200%);
   -webkit-transform: translateY(200%);
   transform: translateY(200%);
+
+  a {
+    font-weight: bold;
+    text-decoration: none;
+    color: $brand-success;
+  }
 }
 .snackbar.snackbar-opened {
   padding: 14px 15px;

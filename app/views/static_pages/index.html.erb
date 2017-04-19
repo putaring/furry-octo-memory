@@ -1,77 +1,27 @@
 <% provide(:title, 'Free Matrimonial Site for Indians') %>
-
-<div class="container">
+<%= render partial: 'shared/main_nav' %>
+<div class="container mt-3">
   <div class="row">
-    <div class="col-xs-12 m-b-2 m-t-1 text-xs-center">
-      <p class="h3">
-        <%= link_to root_path, style: 'text-decoration:none', class: 'text-branded' do %>
-          <%= image_tag 'logo.svg', width: 35, alt: 'Roozam logo' %> Roozam
-        <% end %>
+    <div class="col col-lg-8 text-center">
+      <h1 class="h2">Matrimony made easy.</h1>
+      <p class="lead">
+        Send and receive <strong>unlimited</strong> interests and messages for <strong>free</strong>. <strong>Forever</strong>.
+      </p>
+      <div>
+        <p class="hidden-lg-up">
+          <%= link_to('Sign up for free', signup_path, class: 'btn btn-outline-primary') %>
+        </p>
+        <p class="hidden-lg-up">
+          or <%= link_to('Sign in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
+        </p>
+      </div>
+      <p>
+        <%= image_tag('watermarked.png', id: 'landing-illustration') %>
       </p>
     </div>
-    <div class="col-xs-12 col-lg-7 text-xs-center">
-      <h1 class="h3">Free matrimonial website for Indians</h1>
-        <p>
-          Send unlimited messages for free. Signing up takes only a minute.
-        </p>
-        <div class="m-t-2 m-b-2">
-          <p class="hidden-lg-up">
-            <%= link_to('Sign up for free', signup_path, class: 'btn btn-outline-primary') %>
-          </p>
-          <p class="hidden-lg-up">
-            or <%= link_to('sign in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
-          </p>
-        </div>
-        <p>
-          <%= image_tag('watermarked.png', class: 'img-fluid m-x-auto', id: 'landing-illustration') %>
-        </p>
-    </div>
-    <div class="hidden-md-down offset-lg-1 col-lg-4">
+    <div class="col-lg-4 hidden-md-down">
+      <h2 class="h4 mb-3 text-muted text-center">Sign up for free</h2>
       <%= render partial: 'users/signup_form' %>
-      <p class="text-xs-center">
-        Already have an account? <%= link_to('Log in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
-      </p>
-    </div>
-  </div>
-</div>
-
-
-<div class="jumbotron jumbotron-fluid text-xs-center m-t-2 m-b-0" style="background-color:#f6fbff;">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2 class="m-b-3 h3">How Roozam works</h2>
-      </div>
-    </div>
-    <div class="row">
-
-      <div class="col-md-4">
-        <div class="card card-outline-secondary card-no-border">
-          <%= image_tag('like.svg', class: 'card-img-top', alt: 'Like', style: 'max-width:100px;') %>
-          <div class="card-block">
-            <p class="card-text text-xs-center">Like people you're interested in. We'll let you know when they like you back.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card card-outline-secondary card-no-border">
-          <%= image_tag('message.svg', class: 'card-img-top', alt: 'Send a message', style: 'max-width:100px;') %>
-          <div class="card-block">
-            <p class="card-text text-xs-center">Start a conversation to get to know each other. It's totally free - we promise.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card card-outline-secondary card-no-border">
-          <%= image_tag('wedding.svg', class: 'card-img-top', alt: 'Get married', style: 'max-width:100px;') %>
-          <div class="card-block">
-            <p class="card-text text-xs-center">Pick the person you like most. Grab a coffee. Get hitched. It's that simple.</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

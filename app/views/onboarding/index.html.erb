@@ -1,0 +1,24 @@
+<% provide(:title, 'Welcome aboard!') %>
+<style media="screen">
+  body {
+    background-color: #01579B;
+    color: #FFF;
+  }
+  p {
+    font-size: 18px;
+  }
+</style>
+<section class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <%= image_tag 'fireworks.svg', class: "img-fluid mx-auto d-block mb-3", style: 'max-width: 200px' %>
+      <h1 class="text-center mb-3">Welcome to Roozam</h1>
+      <p>Thanks for signing up! You've joined a vibrant community of Indians just like you who're looking for a partner.</p>
+      <p>Let's get started by adding some photos and a brief description. </p>
+      <h2 class="h4 text-center mt-4">Ready to get started?</h2>
+      <p class="text-center mt-4">
+      <%= link_to 'Yes! Set up my profile', user_path(current_user), class: 'btn btn-warning btn-lg' %>
+      </p>
+    </div>
+  </div>
+</section>

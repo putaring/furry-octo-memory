@@ -137,6 +137,10 @@ class User < ActiveRecord::Base
     now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
   end
 
+  def has_active_photos?
+    @_has_visible_photos ||= photos.active.count > 0
+  end
+
   def display_photos_to?(visitor)
     @_display_photos_to ||=
     case photo_visibility

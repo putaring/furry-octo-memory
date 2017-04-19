@@ -15,7 +15,7 @@ feature "Sent messages" do
   context "has not sent any messages" do
     background { visit sent_messages_path }
     it { should have_content('Sent messages') }
-    it { should have_content("You've not messaged anybody yet.") }
+    it { should have_content("Start a conversation.") }
   end
 
   context "has unread sent messages" do
@@ -35,6 +35,6 @@ feature "Sent messages" do
       create(:message, sender: user, recipient: inactive_user, conversation: inactive_conversation, body: "First message")
       visit messages_path
     end
-    it { should have_content('0 messages') }
+    it { should have_content('Start a conversation.') }
   end
 end

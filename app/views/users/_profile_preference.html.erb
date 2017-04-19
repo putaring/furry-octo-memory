@@ -1,26 +1,15 @@
 <% if @user.preference.present? %>
-<div class="card card-block" style="border-color: transparent;">
-  <h2 class="card-title h5">
-    Who should contact me
-    <% if @user.eql?(current_user) %>
-    <small>
-      <%= link_to essays_profile_path, { title: "Edit", data: { toggle: "tooltip", placement: "right" } } do %>
-      <i class="material-icons mi-aligned text-success">mode_edit</i>
-      <% end %>
-    </small>
-    <% end %>
-  </h2>
-  <%= simple_format(@user.preference, { class: 'card-text' }) %>
-</div>
+  <h2 class="h4 mb-3">Who should contact me</h2>
+  <div class="essay mb-5">
+    <%= simple_format(@user.preference) %>
+  </div>
 <% else %>
   <% if @user.eql?(current_user) %>
-    <div class="card card-block card-outline-secondary text-muted" style="border-style:dashed">
-      <h3 class="card-title h5">Who should contact me</h3>
-      <p class="text-xs-center p-y-3">
-        You haven't mentioned your preference.<br>
-          <%= link_to essays_profile_path, data: { toggle: 'modal', target: '#preference-modal' }  do %>
-          Fill it out
-          <% end %>
+    <div class="rounded text-muted mb-5" style="border: 2px dashed #ccc">
+      <h2 class="h4 mt-3 ml-3">Who should contact me</h2>
+      <p class="text-center text-muted p-5">
+        Connect with the right people.<br>
+        <%= link_to "What's your preference?", edit_profile_path, data: { toggle: 'modal', target: '#preference-modal' } %>
       </p>
     </div>
     <%= render partial: 'users/preference_modal' %>

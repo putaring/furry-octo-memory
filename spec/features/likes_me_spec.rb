@@ -20,7 +20,7 @@ feature 'Likes me' do
     it { should have_content("People who like me") }
 
     context "when nobody likes the user" do
-      it { should have_content("0 likes") }
+      it { should have_content("People who are interested in you will show up here.") }
     end
 
     context "when the user has likers" do
