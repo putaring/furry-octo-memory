@@ -24,18 +24,19 @@ feature "Authentication" do
       background { login(user) }
 
       scenario "should redirect user to the user's homepage" do
-        expect(page).to have_current_path(me_path)
+        expect(page).to have_current_path(user_path(user))
       end
     end
   end
 
   describe "Login page" do
     context "when logged in" do
+      given(:user) { create(:user) }
       it "should redirect user to the user landing page" do
         visit login_path
-        login(create(:user))
+        login(user)
         visit login_path
-        expect(page).to have_current_path(me_path)
+        expect(page).to have_current_path(user_path(user))
       end
     end
   end

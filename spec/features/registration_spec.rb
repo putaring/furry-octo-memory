@@ -33,15 +33,16 @@ feature "Registration" do
   end
 
   describe "Sign up page" do
+    given(:user) { create(:user) }
     context "when logged in" do
       background do
         visit login_path
-        login(create(:user))
+        login(user)
       end
 
       it "should redirect to user landing page" do
         visit signup_path
-        expect(page).to have_current_path(me_path)
+        expect(page).to have_current_path(user_path(user))
       end
     end
 
