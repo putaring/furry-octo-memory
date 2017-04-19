@@ -12,4 +12,8 @@ module ApplicationHelper
     content_tag(:span, count > 99 ? '99+' : count, class: 'badge badge-pill badge-danger') if count > 0
   end
 
+  def display_footer?
+    params[:controller] != "onboarding"
+  end
+
 end

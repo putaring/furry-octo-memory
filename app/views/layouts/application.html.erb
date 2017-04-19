@@ -21,5 +21,6 @@
 <%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
 <%= javascript_include_tag 'application' %>
 <%= yield :javascripts %>
+<%= render partial: 'shared/footer' if display_footer? %>
 </body>
 </html>
