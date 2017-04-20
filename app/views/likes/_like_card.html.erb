@@ -1,9 +1,13 @@
-<div class="media pa-1 mb-1 like-card" style="border-bottom:1px solid #f3f3f3;">
-  <%= link_to user_path(user), { style: "text-decoration:none;", class: 'mb-2' } do %>
-    <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle d-flex mr-3', width: 120 }) %>
-  <% end %>
-  <div class="media-body">
-    <%= link_to user.username, user_path(user), { class: 'h5 username' } %><br>
-    <div><small class="text-muted"><%= time_ago_in_words(time) %> ago</small></div>
+<div class="card mb-2">
+  <div class="card-block">
+    <div class="media">
+      <%= link_to user_path(user), { style: "text-decoration:none;", class: 'mb-2' } do %>
+        <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle d-flex mr-3', width: 120 }) %>
+      <% end %>
+      <div class="media-body align-self-center">
+        <%= link_to user.username, user_path(user), { class: 'h5' } %><br>
+        <div><small class="text-muted"><%= time_ago_in_words(time) %> ago</small></div>
+      </div>
+    </div>
   </div>
 </div>

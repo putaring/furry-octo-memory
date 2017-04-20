@@ -38,7 +38,7 @@ $(function() {
         style: "snackbar",
         timeout: 7000
       });
-      $(this).parents('.media').slideUp();
+      $(this).parents('.card').slideUp();
     } else {
       alert('Something went wrong. Refresh and try again');
     }

@@ -10,23 +10,37 @@
       <% if logged_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to "Search", search_path, { class: 'nav-link' } %>
+            <%= link_to search_path, { class: 'nav-link' } do %>
+              <%= image_tag 'search.svg', height: 30 %>
+              Search
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to "Likes", likes_me_path, { class: 'nav-link' } %>
+            <%= link_to likes_me_path, { class: 'nav-link' } do %>
+            <%= image_tag 'like.svg', height: 30 %>
+            Likes
+            <% end %>
           </li>
           <li class="nav-item">
             <%= link_to messages_path, { class: 'nav-link' } do %>
+              <%= image_tag 'message.svg', height: 30 %>
               Messages
               <%= notification_counter(current_user.received_messages.unread.count) %>
             <% end %>
           </li>
+          <li class="nav-item">
+            <%= link_to favorites_path, { class: 'nav-link' } do %>
+              <%= image_tag 'favorites.svg', height: 30 %>
+              Favorites
+            <% end %>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               More
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <%= link_to "Favorites", favorites_path, { class: 'dropdown-item' } %>
+              <%= link_to 'Profile', user_path(current_user), { class: 'dropdown-item' } %>
               <%= link_to 'Settings', account_settings_path, { class: 'dropdown-item' } %>
               <%= link_to 'Log out', logout_path, { class: 'dropdown-item', method: :delete } %>
             </div>

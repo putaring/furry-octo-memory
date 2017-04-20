@@ -1,7 +1,6 @@
 <% if !@user.has_active_photos? %>
   <% if @user.eql?(current_user) %>
     <div class="alert alert-info">
-      <h4 class="alert-heading">Heads up!</h4>
       <%= link_to "Add a photo now", photos_path, class: "alert-link" %> to greatly increase your chances of being noticed by others.
     </div>
   <% end %>
@@ -9,10 +8,8 @@
 <% elsif @user.display_photos_to?(current_user) == false %>
   <div class="alert alert-info">
     <% if @user.photo_visibility.eql?('restricted') %>
-      <h4 class="alert-heading">Private photos</h4>
       Only members whom <%= @user.male? ? 'he' : 'she' %> likes can view <%= @user.male? ? 'his' : 'her' %> photos. <%= link_to('Send a message', '', { class: 'alert-link', data: { toggle: 'modal', target: '#message-modal' } }) %> to say hello.
     <% else %>
-      <h4 class="alert-heading">Members-only photos</h4>
       Only Roozam members can view <%= @user.male? ? 'his' : 'her' %> photos.
       <%= link_to 'Join now', signup_path, { class: 'alert-link' } %> or
       <%= link_to 'log in', login_path, { class: 'alert-link', data: { toggle: 'modal', target: '#login-modal' } } %> to see their photos.

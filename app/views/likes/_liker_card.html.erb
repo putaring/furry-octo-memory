@@ -1,16 +1,20 @@
-<div class="media pa-1 mb-1 like-card" style="border-bottom:1px solid #f3f3f3;">
-  <%= link_to user_path(user), { class: 'mb-2', style: "text-decoration:none;" } do %>
-    <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle d-flex mr-3', width: 120 }) %>
-  <% end %>
-  <div class="media-body">
-    <%= link_to user.username, user_path(user), { class: 'h5 username' } %><br>
-    <div class="mb-1"><small class="text-muted"><%= time_ago_in_words(time) %> ago</small></div>
+<div class="card">
+  <div class="card-block">
+    <div class="media">
+      <%= link_to user_path(user), { class: 'mb-2', style: "text-decoration:none;" } do %>
+        <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle d-flex mr-3', width: 120 }) %>
+      <% end %>
+      <div class="media-body align-self-center">
+        <%= link_to user.username, user_path(user), { class: 'h5' } %><br>
+        <div class="mb-1"><small class="text-muted"><%= time_ago_in_words(time) %> ago</small></div>
 
-    <% if current_user.likes?(user) %>
-      <%= link_to('Unlike', like_user_path(user), remote: true, method: :delete, class: 'btn btn-warning', data: { component: 'likeButton', like_text: 'Like back'}) %>
-    <% else %>
-      <%= link_to('Like back', like_user_path(user), remote: true, method: :post, class: 'btn btn-warning', data: { component: 'likeButton', like_text: 'Like back'}) %>
-    <% end %>
-    <%= link_to('Decline', decline_user_path(user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'declineButton', confirm: 'Are you sure you want to decline this request?' }) %>
+        <% if current_user.likes?(user) %>
+          <%= link_to('Unlike', like_user_path(user), remote: true, method: :delete, class: 'btn btn-warning', data: { component: 'likeButton', like_text: 'Like back'}) %>
+        <% else %>
+          <%= link_to('Like back', like_user_path(user), remote: true, method: :post, class: 'btn btn-warning', data: { component: 'likeButton', like_text: 'Like back'}) %>
+        <% end %>
+        <%= link_to('Decline', decline_user_path(user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'declineButton', confirm: 'Are you sure you want to decline this request?' }) %>
+      </div>
+    </div>
   </div>
 </div>
