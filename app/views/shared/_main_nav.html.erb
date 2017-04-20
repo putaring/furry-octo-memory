@@ -26,10 +26,7 @@
               More
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <%= link_to 'Profile', user_path(current_user), { class: 'dropdown-item' } %>
-              <%= link_to 'Photos', photos_path, { class: 'dropdown-item' } %>
               <%= link_to "Favorites", favorites_path, { class: 'dropdown-item' } %>
-              <div class="dropdown-divider"></div>
               <%= link_to 'Settings', account_settings_path, { class: 'dropdown-item' } %>
               <%= link_to 'Log out', logout_path, { class: 'dropdown-item', method: :delete } %>
             </div>
