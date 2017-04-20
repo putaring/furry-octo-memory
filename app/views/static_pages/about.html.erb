@@ -1,26 +1,31 @@
 <% provide(:title, 'About Us') %>
 <%= render partial: 'shared/simple_nav' %>
-
-<div class="jumbotron jumbotron-fluid text-center m-b-0 bg-primary">
+<style>
+p {
+  font-size: 21px;
+  margin-bottom: 2em;
+}
+</style>
+<div class="jumbotron jumbotron-fluid text-center bg-primary">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="thin">We make matchmaking simple and free for everyone</h1>
+        <h1 class="display-2" style="color:#FFFFFF">We make matchmaking simple and free for everyone</h1>
       </div>
     </div>
   </div>
 </div>
-<section class="container m-t-2">
-  <div class="row">
+<section class="container mt-2">
+  <div class="row justify-content-center">
     <div class="col-12 col-md-8">
-      <h2>What's this all about?</h2>
-      <p class="lead">We created Roozam with the aim of providing a simple and free space for Indians to find their partners.</p>
-      <p>
-        The popular matchmaking portals in the market charge exorbitant rates while the free ones are not actively maintained and are hard to navigate. We believe it is possible to provide all the matchmaking tools packaged in an elegant and easy-to-use website for free.
-      </p>
-      <p>
-        We will keep the options of searching for, messaging, and liking Roozam members free forever.
-      </p>
+      <h2 class="text-success">Free forever</h2>
+      <p>We won't charge you a dime to connect with others. We'll always be free. Until the end of time.</p>
+
+      <h2 class="text-primary">Simple is good</h2>
+      <p>... said Jim Henson and so does our team. No clutter. No non sense. Just straight up, elegant features to connect you with the right people.</p>
+
+      <h2 class="text-warning">Continuous improvement</h2>
+      <p>We're always looking to improve in tiny ways, and in big ways. Got feedback? <%= link_to "Let us know.", "https://www.facebook.com/roozamofficial", target: "_blank", title: 'Our Facebook page' %></p>
     </div>
   </div>
 </section>
