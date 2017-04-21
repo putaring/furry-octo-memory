@@ -8,6 +8,7 @@ $(function() {
       style: "snackbar",
       timeout: 7000
     });
+    $('.alert.alert-info').text('Deleted')
   }).on('ajax:before', '[data-component="deletePhotoLink"]', function () {
     $(this).addClass('disabled');
   }).on('ajax:complete', '[data-component="deletePhotoLink"]', function () {

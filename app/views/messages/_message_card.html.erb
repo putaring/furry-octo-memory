@@ -1,5 +1,6 @@
-<%=link_to conversation_path(message.conversation_id), { class: 'message-card' } do %>
-  <div class="media p-4 mb-3">
+<%=link_to conversation_path(message.conversation_id), { class: 'card message-card mb-3' } do %>
+<div class="card-block">
+  <div class="media">
     <div>
       <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle mr-3', width: 80 })%>
     </div>
@@ -8,10 +9,11 @@
       <span class="message-body">
         <%= truncate message.body %>
       </span><br>
-      <small class="text-muted"><%= time_ago_in_words(message.created_at) %> ago</small>
       <% unless message.read? %>
-        <span class="badge badge-info">unread</span>
+        <span class="badge badge-danger">unread</span>
       <% end %>
+      <small class="text-muted"><%= time_ago_in_words(message.created_at) %> ago</small>
     </div>
   </div>
+</div>
 <% end %>

@@ -1,9 +1,4 @@
 a.message-card {
-  &:not(:last-child) {
-    .media {
-      border-bottom:1px solid #eee;
-    }
-  }
   color: $gray-dark;
   text-decoration: none;
   &.unread {
@@ -19,8 +14,6 @@ a.message-card {
     overflow: hidden;
   }
   &:hover {
-    .media {
-      background-color: #E3F2FD;
-    }
+    background-color: #E3F2FD;
   }
 }
