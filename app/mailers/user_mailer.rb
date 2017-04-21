@@ -29,6 +29,6 @@ class UserMailer < ApplicationMailer
 
   def match_email(like)
     @liker = like.liker
-    mail(to: like.liked.email, subject: 'You have a match!')
+    mail(to: like.liked.email, subject: 'Congratulations! You have a mutual like')
   end
 end
