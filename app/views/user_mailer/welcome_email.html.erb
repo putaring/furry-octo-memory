@@ -578,11 +578,11 @@
 
 <p>Thanks for signing up! You've joined a vibrant community&nbsp;of Indians just like you who are looking for a partner.</p>
 
-<p>We hope you enjoy this opportunity&nbsp;to take Roozam for a spin. Feel free to browse profiles, connect with people you like, and send unlimited messages. It's totally free.</p>
+<p>We hope you enjoy this opportunity to take Roozam for a spin. Feel free to browse profiles, connect with people you like, and send unlimited messages. It's totally free.</p>
 
-<p>If you haven't done so already, please&nbsp;<a href="https://www.roozam.com/" target="_blank">complete your profile</a> by adding some photos and filling out your description.</p>
+<p>If you haven't done so already, please <%= link_to "complete your profile", user_url(@user, transactional_campaign(:welcome_email)), target: "_blank" %> by adding some photos and filling out your description.</p>
 
-<p>P.S. Don't forget to <a href="https://www.facebook.com/roozamofficial/" target="_blank">Like us on Facebook</a> for the lastest product updates.</p>
+<p>P.S. Don't forget to <%= link_to "Like us on Facebook", "https://www.facebook.com/roozamofficial/?utm_campaign=welcome_email&utm_medium=email&utm_source=transactional", target: "_blank" %> for the lastest product updates.</p>
 
 <p><strong>Have a great day,</strong><br>
 The Roozam Team</p>

@@ -13,7 +13,7 @@
 		<meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title><%= @user.username %> declines your interest</title>
+		<title><%= @user.username %> declined your interest</title>
 
     <style type="text/css">
 		p{
@@ -574,7 +574,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-                            <h1 style="text-align: center;">username declined your interest</h1>
+                            <h1 style="text-align: center;"><%= @user.username %> declined your interest</h1>
 
                         </td>
                     </tr>
@@ -631,7 +631,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 15px;">
-                                <a class="mcnButton " title="Browse profiles" href="https://www.roozam.com/" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Browse profiles</a>
+                                <a class="mcnButton " title="Browse profiles" href="<%= search_url(transactional_campaign(:decline_email)) %>" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Browse profiles</a>
                             </td>
                         </tr>
                     </tbody>
