@@ -576,9 +576,8 @@
                             <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #FAFBFD;border: 1px ridge #EEEEEE;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="color: #3A3737;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: left;">
-                                        <h2 class="null">username says:</h2>
-<br>
-This is a boxed text block. You can use it to draw attention to important content.
+                                        <h2 class="null"><%= @sender.username %> says:</h2>
+																				<%= simple_format(truncate(@message.body, length: 250)) %>
                                     </td>
                                 </tr>
                             </tbody></table>
@@ -604,7 +603,7 @@ This is a boxed text block. You can use it to draw attention to important conten
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 15px;">
-                                <a class="mcnButton " title="View conversation" href="https://www.roozam.com/" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">View conversation</a>
+                                <a class="mcnButton " title="View conversation" href="<%= conversation_url(@message.conversation, transactional_campaign(:message_email)) %>" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">View conversation</a>
                             </td>
                         </tr>
                     </tbody>
