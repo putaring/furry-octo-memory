@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
 
   def like_email(like)
     @liker = like.liker
-    mail(to: like.liked.email, subject: "Somebody likes you")
+    mail(to: like.liked.email, subject: "New interest from #{@liker.username}")
   end
 
   def decline_email(recipient, sender)
@@ -29,6 +29,6 @@ class UserMailer < ApplicationMailer
 
   def match_email(like)
     @liker = like.liker
-    mail(to: like.liked.email, subject: 'You have a match!')
+    mail(to: like.liked.email, subject: 'You have a mutual like')
   end
 end
