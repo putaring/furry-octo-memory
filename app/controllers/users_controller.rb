@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     if @user.save
       login(@user)
       UserMailer.welcome_email(@user).deliver_later
-      redirect_to onboarding_path
+      redirect_to user_path(@user, welcome: true)
     else
       render 'new'
     end

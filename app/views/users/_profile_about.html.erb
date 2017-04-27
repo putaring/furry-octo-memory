@@ -9,7 +9,7 @@
 <div class="rounded text-muted mb-5" style="border: 2px dashed #ccc">
   <h2 class="h4 mt-3 ml-3">A few words about me</h2>
   <p class="text-center text-muted p-5">
-    <% if @user.eql?(current_user) %>
+    <% if is_me?(@user) %>
       Help other people get to know you.<br />
       <%= link_to "Add a short description", edit_profile_path, data: { toggle: 'modal', target: '#about-modal' } %>
       <%= render partial: 'users/about_modal' %>

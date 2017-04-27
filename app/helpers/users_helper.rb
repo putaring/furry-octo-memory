@@ -4,4 +4,8 @@ module UsersHelper
     inches  = (height_in_inches % 12 == 0) ? "" : "#{height_in_inches % 12} in"
     "#{feet} #{inches}".strip
   end
+
+  def is_me?(user)
+    user.eql?(current_user)
+  end
 end

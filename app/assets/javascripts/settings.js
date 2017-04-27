@@ -32,7 +32,7 @@ $(function() {
         timeout: 5000
       });
     } else {
-      location.reload(true);
+      location.href = location.origin + location.pathname;
     }
   }).on('ajax:before', function () {
     $(this).find('.edit_errors').hide();

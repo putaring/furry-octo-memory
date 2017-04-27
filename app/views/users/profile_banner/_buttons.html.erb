@@ -1,6 +1,6 @@
 <% if logged_in? %>
 
-  <% if current_user == @user %>
+  <% if is_me?(@user) %>
     <%= link_to @user.has_active_photos? ? 'Manage photos' : 'Add a photo', photos_path, class: 'btn btn-lg btn-warning btn-block' %>
     <%= link_to 'My account', account_settings_path, class: 'btn btn-lg btn-block btn-outline-secondary' %>
   <% else %>
@@ -12,11 +12,11 @@
 
     <div class="d-flex justify-content-center mt-1">
       <div class="btn-group btn-group-justified">
-        <%= link_to('Message', '', { class: 'btn btn-secondary btn-lg', data: { toggle: 'modal', target: '#message-modal' } }) %>
+        <%= link_to('Message', '', { class: 'btn btn-secondary', data: { toggle: 'modal', target: '#message-modal' } }) %>
         <% if current_user.bookmarked?(@user) %>
-          <%= link_to('Unfavorite', favorite_user_path(@user), remote: true, method: :delete, class: 'btn btn-secondary btn-lg', data: { component: 'favoriteLink' }) %>
+          <%= link_to('Unfavorite', favorite_user_path(@user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
         <% else %>
-          <%= link_to('Favorite', favorite_user_path(@user), remote: true, method: :post, class: 'btn btn-secondary btn-lg', data: { component: 'favoriteLink' }) %>
+          <%= link_to('Favorite', favorite_user_path(@user), remote: true, method: :post, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
         <% end %>
       </div>
     </div>

@@ -1,15 +1,16 @@
 <% provide(:title, "Conversation with #{@conversation.other_participant(current_user).username}") %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid bg-primary mb-0" style="color:#fff">
+<div class="jumbotron jumbotron-fluid mb-0" style="background-color:#E1F5FE;">
   <div class="container">
     <div class="row">
-      <div class="col">
-        <h1 class="jumbotron-heading">Conversation with <%= @conversation.other_participant(current_user).username %></h1>
+      <div class="col-12">
+        <h1 class="jumbotron-heading h2"><span class="text-muted">Conversation with</span> <%= @conversation.other_participant(current_user).username %></h1>
       </div>
     </div>
   </div>
 </div>
+
 <div class="mb-3" style="border-bottom: 1px solid #f3f3f3;">
   <div class="container py-3">
     <div class="row">

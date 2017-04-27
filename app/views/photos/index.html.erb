@@ -1,7 +1,7 @@
 <% provide(:title, 'My photos') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid" style="background-color:#E1F5FE">
+<div class="jumbotron jumbotron-fluid mb-0" style="background-color:#E1F5FE">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -10,7 +10,19 @@
     </div>
   </div>
 </div>
-
+<div class="mb-3" style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <%= link_to 'Back to profile', user_path(current_user), { class: 'nav-link active' } %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <section class="container">
 
   <% if flash.notice.present? %>
