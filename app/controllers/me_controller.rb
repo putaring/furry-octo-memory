@@ -15,7 +15,7 @@ class MeController < ApplicationController
   end
 
   def reactivate
-    current_user.active! and redirect_to me_path
+    current_user.active! and redirect_to user_path(current_user)
   end
 
   def deactivate
