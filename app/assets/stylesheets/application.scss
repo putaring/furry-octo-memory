@@ -58,6 +58,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 
+.non-distracting {
+  img {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+  }
+
+  &:hover {
+    img {
+      -webkit-filter: none;
+      filter: none;
+    }
+  }
+}
+
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
