@@ -56,7 +56,6 @@
     },
     fail: function(e, data) {
       alert("Oops! Something went wrong.");
-      $progressBar.hide();
       $photoForm.show();
       $progressBar.hide();
     }
@@ -120,7 +119,10 @@
       jcropApi = this;
     });
 
-    $modal.modal();
+    $modal.modal({
+      backdrop: 'static',
+      keyboard: false
+    });
   };
 
 

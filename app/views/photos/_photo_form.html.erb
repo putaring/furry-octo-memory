@@ -8,7 +8,7 @@
   <%= f.label :image, { id: 'photo-upload-file', class: 'btn btn-lg btn-success' } do %>
   Add photo
   <% end %>
-  <%= f.file_field :image, { accept: 'image/*', capture: "camera" , style: "text-indent: -999em; width:1px; position: absolute; height:1px; opacity: 0" }%>
+  <%= f.file_field :image, { accept: 'image/*', style: "text-indent: -999em; width:1px; position: absolute; height:1px; opacity: 0" }%>
   <%= f.hidden_field :remote_image_url %>
   <%= f.hidden_field :image_x %>
   <%= f.hidden_field :image_y %>

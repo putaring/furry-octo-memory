@@ -20,6 +20,9 @@
 
 <%= content_for(:javascripts) do %>
 <script type="text/javascript">
-$("#welcome-modal").modal();
+$("#welcome-modal").modal({
+  backdrop: 'static',
+  keyboard: false
+});
 </script>
 <% end %>
