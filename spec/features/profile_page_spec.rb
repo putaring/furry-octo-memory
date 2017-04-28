@@ -118,6 +118,6 @@ feature "Profile page" do
       login(user)
       visit user_path(user)
     end
-    it { should have_content('My account') }
+    it { should have_content('Edit profile') }
   end
 end
