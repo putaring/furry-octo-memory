@@ -19,9 +19,60 @@
         <%= image_tag('watermarked.png', id: 'landing-illustration') %>
       </p>
     </div>
-    <div class="col-lg-4 hidden-md-down">
+    <div class="col-lg-4 hidden-md-down" id="homepage-signup-form">
       <h2 class="h4 mb-3 text-muted text-center">Sign up for free</h2>
       <%= render partial: 'users/signup_form' %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<hr>
+</div>
+
+<div class="jumbotron mb-0 text-center text-sm-left" style="background-color: #fff">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-3 text-center">
+        <h2>Send a like</h2>
+        <%= image_tag 'heart.svg', class: 'img-fluid', width: 120 %>
+      </div>
+      <div class="col-sm-6 essay">
+        <p><strong><u>Like</u></strong> a profile to let someone know that you're interested. We'll notify them immediately and let you know when they like you back.</p>
+        <p>Want to create a shortlist? <strong><u>Favorite</u></strong> profiles to quickly access them when you're ready.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<hr>
+</div>
+
+<div class="jumbotron mb-0 text-center text-sm-left" style="background-color: #fff">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-3 text-center">
+        <h2>Unlimited messages</h2>
+        <%= image_tag 'chat.svg', class: 'img-fluid', width: 120 %>
+      </div>
+      <div class="col-sm-6 essay">
+        <p>Start a conversation with the click of button.</p>
+        <p>Send and receive <strong><u>unlimited</u></strong> messages to get to know your matches. We highly recommend doing this - we won't charge a dime.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-fluid bg-primary">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-sm-9 essay" style="color: #fff !important">
+        <h2>It's totally free</h2>
+        <p>No payment required after signing up. We're 100% free. We promise.</p>
+        <%= link_to "Sign up for free", signup_path, class: "btn btn-secondary hidden-lg-up" %>
+        <%= link_to "Sign up for free", "#top", class: "btn btn-secondary hidden-md-down", onclick: "javascript: $('html,body').animate({scrollTop: 0}, 'slow');return false;" %>
+      </div>
     </div>
   </div>
 </div>
