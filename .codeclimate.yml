@@ -32,6 +32,8 @@ ratings:
   - "**.py"
 exclude_paths:
 - app/assets/javascripts/jquery.swipebox.js
+- app/assets/javascripts/jquery.Jcrop.js
+- app/assets/javascripts/jquery.ui.widget.js
 - config/
 - db/
 - spec/
