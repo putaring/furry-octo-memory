@@ -58,4 +58,10 @@ FactoryGirl.define do
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'photos', 'jesus_large.png')) }
     status 'active'
   end
+
+  factory :report do
+    reporter { create(:user) }
+    reported { create(:user) }
+    reason   { 'inappropriate_photo' }
+  end
 end
