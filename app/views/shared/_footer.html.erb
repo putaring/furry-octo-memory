@@ -1,14 +1,15 @@
 <section class="footer">
   <footer class="container pt-4" style="border-top: 1px solid #f0f0f0;">
     <div class="row">
-      <div class="col-8">
-        <a href="/about" class="mr-3"><small>About</small></a>
-        <a href="/terms" class="mr-3"><small>Terms</small></a>
-        <a href="/privacy"><small>Privacy</small></a>
+      <div class="col-12 col-sm-6">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="/about"><small class="font-weight-bold text-muted">About</small></a></li>
+          <li class="list-inline-item"><a href="/terms"><small class="font-weight-bold text-muted">Terms</small></a></li>
+          <li class="list-inline-item"><a href="/privacy"><small class="font-weight-bold text-muted">Privacy</small></a></li>
         </ul>
       </div>
-      <div class="col-4 text-right">
-        <small>&copy; 2016 Roozam</small>
+      <div class="col-12 col-sm-6 text-left text-sm-right">
+        <small class="text-muted">© <%= Time.current.year %> Roozam</small>
       </div>
     </div>
   </footer>
