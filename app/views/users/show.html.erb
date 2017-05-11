@@ -4,6 +4,7 @@
 <%= render partial: 'shared/main_nav' %>
 <%= render partial: 'users/profile_banner' %>
 <%= render partial: 'users/message_modal' if logged_in? %>
+<%= render partial: 'users/report_modal' if logged_in? %>
 <%= render partial: 'users/welcome_modal' if (is_me?(@user) && params[:welcome] == "true") %>
 <div class="container">
   <div class="row">
