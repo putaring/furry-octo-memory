@@ -18,9 +18,9 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right">
         <% if current_user.bookmarked?(@user) %>
-          <%= link_to('Unfavorite', favorite_user_path(@user), remote: true, method: :delete, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
+          <%= link_to('Remove from favorites', favorite_user_path(@user), remote: true, method: :delete, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
         <% else %>
-          <%= link_to('Favorite', favorite_user_path(@user), remote: true, method: :post, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
+          <%= link_to('Add to favorites', favorite_user_path(@user), remote: true, method: :post, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
         <% end %>
         <%= link_to('Report user', '', { class: 'dropdown-item', data: { toggle: 'modal', target: '#report-modal' } }) %>
       </div>

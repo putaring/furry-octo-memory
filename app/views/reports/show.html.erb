@@ -1,0 +1,44 @@
+<% provide(:title, "Report ##{@report.id}") %>
+<div style="border-bottom: 1px solid #f0f0f0;">
+<%= render partial: 'shared/main_nav' %>
+</div>
+
+<div class="container mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <% if @report.resolved? %>
+      <div class="alert alert-success my-3" role="alert">
+        We have resolved this complaint
+      </div>
+      <% else %>
+      <div class="alert alert-info my-3" role="alert">
+        Thanks for reporting this user. We'll get back to you shortly.
+      </div>
+      <% end %>
+
+      <div class="card mb-2">
+        <div class="card-block">
+            <dl class="row">
+              <dt class="col-md-3">Reference #</dt>
+              <dd class="col-md-9"><%= @report.id %></dd>
+              <dt class="col-md-3">User</dt>
+              <dd class="col-md-9"><%= link_to @report.reported.username, user_path(@report.reported_id) %></dd>
+              <dt class="col-md-3">Reason</dt>
+              <dd class="col-md-9"><%= @report.reason.humanize %></dd>
+              <dt class="col-md-3">Description</dt>
+              <dd class="col-md-9"><%= simple_format(@report.description.presence || "N/A", {}, wrapper_tag: :span) %></dd>
+              <dt class="col-md-3">Resolution</dt>
+              <dd class="col-md-9">
+                <% if @report.resolved? %>
+                <% else %>
+                  We're currently investigating your complaint. We'll notify you as soon as we have a resolution.
+                <% end %>
+              </dd>
+            </dl>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

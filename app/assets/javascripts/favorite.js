@@ -10,7 +10,7 @@ $(function() {
         style: "snackbar",
         timeout: 7000
       });
-      $(this).text('Unfavorite').
+      $(this).text('Remove from favorites').
         data('method', 'delete');
     } else {
       // unfavorited
@@ -19,7 +19,7 @@ $(function() {
         style: "snackbar",
         timeout: 7000
       });
-      $(this).text('Favorite').
+      $(this).text('Add to favorites').
         data('method', 'post');
       $(this).parents('.card').slideUp();
     }

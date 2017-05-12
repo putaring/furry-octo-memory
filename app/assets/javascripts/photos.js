@@ -55,7 +55,6 @@
       $photoForm.submit();
     },
     fail: function(e, data) {
-      alert("Oops! Something went wrong.");
       $photoForm.show();
       $progressBar.hide();
     }

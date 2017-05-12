@@ -13,7 +13,7 @@ module ApplicationHelper
   end
 
   def display_footer?
-    params[:controller] != "onboarding"
+    !params[:controller].in?(["onboarding", "report3s"])
   end
 
 end
