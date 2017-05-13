@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Report user</h5>
+        <h5 class="modal-title text-muted">Report user</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,7 +10,7 @@
       <div class="modal-body">
         <%= form_for(Report.new) do |f| %>
           <fieldset class="form-group">
-            <legend>Reason</legend>
+            <label class="font-weight-bold">Reason for complaint</label>
             <% Report.reasons.keys.each_with_index do |reason, index| %>
               <div class="form-check">
                 <label class="form-check-label">
@@ -23,13 +23,15 @@
           <%= f.hidden_field :reported_id, value: @user.id %>
 
           <div class="form-group">
-            <%= f.label :description %>
-            <%= f.text_area :description, class: "form-control", rows: 5, maxlength: 500, placeholder: "Additional details (optional)" %>
+            <%= f.label :description do %>
+            Description <span class="text-muted">(optional)</span>
+            <% end %>
+            <%= f.text_area :description, class: "form-control", rows: 5, maxlength: 500, placeholder: "Add a brief description to provide more details" %>
           </div>
 
           <div class="form-group text-right">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <%= f.submit "Report this profile", class: 'btn btn-danger', data: { confirm: "Are you sure?", disable_with: "Reporting" } %>
+            <%= f.submit "Report this profile", class: 'btn btn-danger', data: { disable_with: "Reporting" } %>
           </div>
 
         <% end %>
