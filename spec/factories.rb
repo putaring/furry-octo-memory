@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:sender, :recipient, :liker, :liked, :bookmarker, :bookmarked] do
+  factory :user, aliases: [:sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
     gender        { 'f' }
     birthdate     { 21.years.ago }
     height        { 72 }
@@ -57,5 +57,11 @@ FactoryGirl.define do
   factory :active_photo, parent: :photo do
     image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'photos', 'jesus_large.png')) }
     status 'active'
+  end
+
+  factory :report do
+    reporter
+    reported
+    reason   { 'inappropriate_photo' }
   end
 end

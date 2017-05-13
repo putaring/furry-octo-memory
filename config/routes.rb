@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :favorites, only: [:index]
+  resources :reports, only: [:show, :create]
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update, :edit]

@@ -10,14 +10,19 @@
       <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>
     <% end %>
 
-    <div class="d-flex justify-content-center mt-1">
-      <div class="btn-group btn-group-justified">
-        <%= link_to('Message', '', { class: 'btn btn-secondary', data: { toggle: 'modal', target: '#message-modal' } }) %>
+
+    <div class="btn-group btn-block">
+      <%= link_to('Message', '', { class: 'btn btn-secondary btn-lg btn-block', data: { toggle: 'modal', target: '#message-modal' } }) %>
+      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
         <% if current_user.bookmarked?(@user) %>
-          <%= link_to('Unfavorite', favorite_user_path(@user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
+          <%= link_to('Remove from favorites', favorite_user_path(@user), remote: true, method: :delete, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
         <% else %>
-          <%= link_to('Favorite', favorite_user_path(@user), remote: true, method: :post, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
+          <%= link_to('Add to favorites', favorite_user_path(@user), remote: true, method: :post, class: 'dropdown-item', data: { component: 'favoriteLink' }) %>
         <% end %>
+        <%= link_to('Report user', '', { class: 'dropdown-item', data: { toggle: 'modal', target: '#report-modal' } }) %>
       </div>
     </div>
 
