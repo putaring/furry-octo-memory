@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       if request.xhr?
         head :ok
       else
-        redirect_to user_path(current_user)
+        redirect_to current_user.admin? ? admin_root_path : user_path(current_user)
       end
     else
       if request.xhr?

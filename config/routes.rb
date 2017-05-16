@@ -60,5 +60,9 @@ Rails.application.routes.draw do
     delete 'decline', to: 'users#decline', on: :member
   end
 
+  namespace :admin do
+    root 'admin#index'
+  end
+
   mount Resque::Server.new, at: "/resque"
 end

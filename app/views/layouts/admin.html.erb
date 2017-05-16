@@ -4,22 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title><%= full_title(yield(:title)) %></title>
-  <%= render partial: 'shared/ga' %>
+  <title>Admin | Roozam</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
   <link rel="icon"
       type="image/png"
       href="<%= image_path('roozam-favicon.png') %>" >
 
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag    'admin', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <%= link_to 'Roozam Admin', admin_root_path, class: 'navbar-brand' %>
+  </nav>
 <%= yield %>
-<%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
-<%= javascript_include_tag 'application' %>
-<%= yield :javascripts %>
-<%= render partial: 'shared/footer' if display_footer? %>
+<%= javascript_include_tag 'admin' %>
 </body>
 </html>

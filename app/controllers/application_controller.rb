@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_logged_in!
-    redirect_to user_path(current_user) if logged_in?
+    redirect_to current_user.admin? ? admin_root_path : user_path(current_user) if logged_in?
   end
 
   def disallow_inactive_users!

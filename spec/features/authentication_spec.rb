@@ -20,23 +20,42 @@ feature "Authentication" do
     end
 
     context "with valid credentials" do
-      given(:user) { create(:user) }
-      background { login(user) }
+      context "active user" do
+        given(:user) { create(:user) }
+        background { login(user) }
 
-      scenario "should redirect user to the user's homepage" do
-        expect(page).to have_current_path(user_path(user))
+        scenario "should redirect user to the user's homepage" do
+          expect(page).to have_current_path(user_path(user))
+        end
+      end
+
+      context "admin user" do
+        background { login(create(:admin_user)) }
+
+        scenario "should redirect user to the admin root" do
+          expect(page).to have_current_path(admin_root_path)
+        end
       end
     end
   end
 
   describe "Login page" do
-    context "when logged in" do
+    context "when logged in as active user" do
       given(:user) { create(:user) }
       it "should redirect user to the user landing page" do
         visit login_path
         login(user)
         visit login_path
         expect(page).to have_current_path(user_path(user))
+      end
+    end
+
+    context "when logged in as admin user" do
+      it "should redirect admin user to the admin root page" do
+        visit login_path
+        login(create(:admin_user))
+        visit login_path
+        expect(page).to have_current_path(admin_root_path)
       end
     end
   end

@@ -28,6 +28,10 @@ FactoryGirl.define do
     account_status 'inactive'
   end
 
+  factory :admin_user, parent: :user do
+    account_status 'admin'
+  end
+
   factory :conversation do
     sender
     recipient
