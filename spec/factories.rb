@@ -68,4 +68,8 @@ FactoryGirl.define do
     reported
     reason   { 'inappropriate_photo' }
   end
+
+  factory :resolved_report, parent: :report do
+    resolved true
+  end
 end

@@ -4,4 +4,7 @@ class Report < ActiveRecord::Base
   validates_presence_of :reason
 
   enum reason: { inappropriate_photo: 1, fake_profile: 2, other: 100 }
+
+  scope :unresolved, -> { where(resolved: false) }
+  scope :resolved, -> { where(resolved: true) }
 end
