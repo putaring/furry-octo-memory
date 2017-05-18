@@ -1,0 +1,27 @@
+<section class="container">
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h1 class="h2 text-muted">Report #<%= @report.id %></h1>
+    <dl>
+      <dt>User</dt>
+      <dd><%= link_to @report.reported.username, user_path(@report.reported), target: "_blank" %></dd>
+
+      <dt>Reason</dt>
+      <dd><%= @report.reason.humanize %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @report.description.presence || "N/A" %></dd>
+    </dl>
+
+    <%= form_for([:admin, @report], data: { confirm: "Are you sure?" }) do |f| %>
+    <%= f.hidden_field :resolved, value: true %>
+    <div class="form-group">
+      <%= f.label :resolution, class: 'font-weight-bold' %>
+      <%= f.text_area :resolution, class: 'form-control', rows: 5, required: true, placeholder: "Briefly state resolution and reasons for resolution" %>
+      <small class="form-text text-muted">This will be emailed to the user.</small>
+    </div>
+    <%= f.submit "Resolve", class: "btn btn-primary", data: { disable_with: 'Resolving…' } %>
+    <% end %>
+  </div>
+</div>
+</section>

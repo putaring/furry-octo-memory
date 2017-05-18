@@ -4,7 +4,7 @@
     <div class="col-lg-7">
       <div class="rounded p-5 text-center text-muted" style="border: 2px dashed #ccc">
         <p class="m-lg-5 m-2">
-          No reports to resolve.
+          No reports to review.
         </p>
       </div>
   </div>
@@ -24,7 +24,7 @@
           <tr>
             <td><%= link_to report.reported.username, user_path(report.reported) %></td>
             <td><%= report.reason.humanize %></td>
-            <td><%= link_to "Investigate", admin_report_path(report) %></td>
+            <td><%= link_to "Review", edit_admin_report_path(report) %></td>
           </tr>
           <% end %>
         </tbody>

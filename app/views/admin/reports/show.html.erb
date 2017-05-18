@@ -1,0 +1,24 @@
+<section class="container">
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <div class="alert alert-success">
+      <strong>Resolved.</strong> The reporter has been notified.
+    </div>
+    <h1 class="h2 text-muted">Report #<%= @report.id %></h1>
+    <dl>
+      <dt>User</dt>
+      <dd><%= link_to @report.reported.username, user_path(@report.reported), target: "_blank" %></dd>
+
+      <dt>Reason</dt>
+      <dd><%= @report.reason.humanize %></dd>
+
+      <dt>Description</dt>
+      <dd><%= @report.description.presence || "N/A" %></dd>
+
+      <dt>Resolution</dt>
+      <dd><%= @report.resolution %></dd>
+    </dl>
+    <%= link_to "← Back to reports", admin_reports_path %>
+  </div>
+</div>
+</section>
