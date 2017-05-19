@@ -31,15 +31,15 @@ class MeController < ApplicationController
   end
 
   def allow_inactive!
-    redirect_to user_path(current_user) if logged_in? && !current_user.inactive?
+    redirect_to user_path(current_user) unless current_user.inactive?
   end
 
   def allow_banned!
-    redirect_to user_path(current_user) if logged_in? && !current_user.banned?
+    redirect_to user_path(current_user) unless current_user.banned?
   end
 
   def allow_active!
-    redirect_to user_path(current_user) if logged_in? && !current_user.active?
+    redirect_to user_path(current_user) unless current_user.active?
   end
 
 end
