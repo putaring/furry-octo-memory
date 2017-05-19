@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'i-like',       to: 'likes#liked'
   get 'mutual-likes', to: 'likes#mutual'
   get 'activate',     to: 'me#activate'
+  get 'banned',       to: 'me#banned'
   patch 'activate',   to: 'me#reactivate'
   patch 'deactivate', to: 'me#deactivate'
 
@@ -58,6 +59,11 @@ Rails.application.routes.draw do
     post 'favorite', on: :member
     delete 'favorite', to: 'users#unfavorite', on: :member
     delete 'decline', to: 'users#decline', on: :member
+  end
+
+  namespace :admin do
+    root 'admin#index'
+    resources :reports
   end
 
   mount Resque::Server.new, at: "/resque"

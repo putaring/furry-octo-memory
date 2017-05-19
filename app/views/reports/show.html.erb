@@ -1,7 +1,6 @@
 <% provide(:title, "Report ##{@report.id}") %>
-<div style="border-bottom: 1px solid #f0f0f0;">
+
 <%= render partial: 'shared/main_nav' %>
-</div>
 
 <div class="container mb-5">
   <div class="row justify-content-center">
@@ -9,28 +8,29 @@
 
       <% if @report.resolved? %>
       <div class="alert alert-success my-3" role="alert">
-        We have resolved this complaint
+        The complaint has been resolved.
       </div>
       <% else %>
       <div class="alert alert-info my-3" role="alert">
-        Thanks for submitting this complaint. We'll look into it and get back to you shortly.
+        Thanks for submitting this complaint. We'll review it and get back to you shortly.
       </div>
       <% end %>
 
-      <div class="card mb-2">
+      <div class="card card-inverse <%= @report.resolved? ? 'card-success' : 'card-danger' %> mb-2">
         <div class="card-block">
             <dl class="row">
-              <dt class="col-md-3 text-muted">Reference #</dt>
+              <dt class="col-md-3">Reference #</dt>
               <dd class="col-md-9"><%= @report.id %></dd>
-              <dt class="col-md-3 text-muted">User</dt>
-              <dd class="col-md-9"><%= link_to @report.reported.username, user_path(@report.reported_id), class: "text-muted" %></dd>
-              <dt class="col-md-3 text-muted">Reason</dt>
+              <dt class="col-md-3">User</dt>
+              <dd class="col-md-9"><%= @report.reported.username %></dd>
+              <dt class="col-md-3">Reason</dt>
               <dd class="col-md-9"><%= @report.reason.humanize %></dd>
-              <dt class="col-md-3 text-muted">Description</dt>
+              <dt class="col-md-3">Description</dt>
               <dd class="col-md-9"><%= simple_format(@report.description.presence || "N/A", {}, wrapper_tag: :span) %></dd>
-              <dt class="col-md-3 text-muted">Resolution</dt>
+              <dt class="col-md-3">Resolution</dt>
               <dd class="col-md-9">
                 <% if @report.resolved? %>
+                  <%= @report.resolution %>
                 <% else %>
                   We're currently investigating your complaint. We'll notify you as soon as we have a resolution.
                 <% end %>

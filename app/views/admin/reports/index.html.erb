@@ -1,0 +1,36 @@
+<section class="container">
+  <% if Report.unresolved.empty? %>
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="rounded p-5 text-center text-muted" style="border: 2px dashed #ccc">
+        <p class="m-lg-5 m-2">
+          <p class="h1">🚀</p>
+          All set. No reports to review.
+        </p>
+      </div>
+  </div>
+  <% else %>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>User</th>
+            <th>Reason</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Report.includes(:reported).unresolved.each do |report| %>
+          <tr>
+            <td><%= link_to report.reported.username, user_path(report.reported) %></td>
+            <td><%= report.reason.humanize %></td>
+            <td><%= link_to "Review", edit_admin_report_path(report) %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <% end %>
+</section>

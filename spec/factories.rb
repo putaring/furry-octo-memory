@@ -28,6 +28,14 @@ FactoryGirl.define do
     account_status 'inactive'
   end
 
+  factory :admin_user, parent: :user do
+    account_status 'admin'
+  end
+
+  factory :banned_user, parent: :user do
+    account_status 'banned'
+  end
+
   factory :conversation do
     sender
     recipient
@@ -63,5 +71,9 @@ FactoryGirl.define do
     reporter
     reported
     reason   { 'inappropriate_photo' }
+  end
+
+  factory :resolved_report, parent: :report do
+    resolved true
   end
 end
