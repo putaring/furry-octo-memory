@@ -32,6 +32,10 @@ FactoryGirl.define do
     account_status 'admin'
   end
 
+  factory :banned_user, parent: :user do
+    account_status 'banned'
+  end
+
   factory :conversation do
     sender
     recipient

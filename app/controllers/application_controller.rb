@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   before_action :disallow_inactive_users!, unless: :allow_inactive_users?
+  before_action :disallow_banned_users!, unless: :allow_banned_users?
 
   def authenticate!
     if current_user.nil?
@@ -21,10 +22,18 @@ class ApplicationController < ActionController::Base
   end
 
   def disallow_inactive_users!
-    redirect_to activate_path if current_user && current_user.inactive? && request.path != activate_path
+    redirect_to activate_path if logged_in? && current_user.inactive? && request.path != activate_path
+  end
+
+  def disallow_banned_users!
+    redirect_to banned_path if logged_in? && current_user.banned? && request.path != banned_path
   end
 
   def allow_inactive_users?
     params[:controller].eql?("sessions") && params[:action].eql?("destroy")
+  end
+
+  def allow_banned_users?
+    (params[:controller].eql?("sessions") && params[:action].eql?("destroy")) || params[:controller].eql?("static_pages")
   end
 end

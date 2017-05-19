@@ -11,7 +11,7 @@ feature 'User deactivation' do
     end
 
     describe "me page" do
-      background { visit me_path }
+      background { visit user_path(inactive_user) }
       it { should have_current_path(activate_path) }
     end
 
@@ -34,7 +34,7 @@ feature 'User deactivation' do
       visit activate_path
     end
 
-    it { should have_current_path(me_path) }
+    it { should have_current_path(user_path(user)) }
 
     scenario "deactivating the user" do
       visit account_settings_path

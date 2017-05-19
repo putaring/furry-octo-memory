@@ -1,0 +1,18 @@
+<% provide(:title, 'Banned') %>
+
+<section class="container mb-5">
+  <div class="row">
+    <div class="col-12 col-sm-8 offset-sm-2 mt-3">
+      <h1 class="h2 text-center text-muted my-3">Account Banned</h1>
+      <p class="text-center lead">
+        Your account has been terminated. <br />Your IP address has been logged as <strong><%= request.remote_ip %></strong>
+      </p>
+      <p class="text-center">
+        We reserve the right to turn over your information to law enforcement, if requested.
+      </p>
+      <div class="form-group">
+        <%= link_to 'Logout', logout_path, { class: 'btn btn-lg btn-block btn-danger', method: :delete } %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'i-like',       to: 'likes#liked'
   get 'mutual-likes', to: 'likes#mutual'
   get 'activate',     to: 'me#activate'
+  get 'banned',       to: 'me#banned'
   patch 'activate',   to: 'me#reactivate'
   patch 'deactivate', to: 'me#deactivate'
 
