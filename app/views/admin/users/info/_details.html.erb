@@ -1,0 +1,48 @@
+<table class="table table-striped">
+<tbody>
+  <tr>
+    <th>ID</th>
+    <td><%= @user.id %></td>
+  </tr>
+  <tr>
+    <th>Username</th>
+    <td><%= @user.username %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= @user.email %></td>
+  </tr>
+  <tr>
+    <th>Birthdate</th>
+    <td><%= @user.birthdate.to_formatted_s(:long) %></td>
+  </tr>
+  <tr>
+    <th>Height</th>
+    <td><%= metric_height(@user.height) %></td>
+  </tr>
+  <tr>
+    <th>Status</th>
+    <td><%= @user.status.humanize %></td>
+  </tr>
+  <tr>
+    <th>Religion</th>
+    <td><%= @user.religion.humanize %></td>
+  </tr>
+  <tr>
+    <th>Sect</th>
+    <td><%= @user.sect_long_form %></td>
+  </tr>
+  <tr>
+    <th>Mother toungue</th>
+    <td><%= @user.language_expanded %></td>
+  </tr>
+  <tr>
+    <th>Account status</th>
+    <td><%= @user.account_status.humanize %></td>
+  </tr>
+  <tr>
+    <th>Photo privacy</th>
+    <td><%= @user.photo_visibility.humanize %></td>
+  </tr>
+</tbody>
+</table>

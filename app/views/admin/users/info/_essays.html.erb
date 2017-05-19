@@ -1,0 +1,8 @@
+<p class="text-muted lead">About</p>
+<%= simple_format(@user.profile.about.presence || "The user hasn't written anything") %>
+
+<p class="text-muted lead">Occupation</p>
+<%= simple_format(@user.profile.occupation.presence || "The user hasn't written anything") %>
+
+<p class="text-muted lead">Preference</p>
+<%= simple_format(@user.profile.preference.presence || "The user hasn't written anything") %>
