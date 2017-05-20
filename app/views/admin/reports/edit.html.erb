@@ -4,7 +4,7 @@
     <h1 class="h2 text-muted">Report #<%= @report.id %></h1>
     <dl>
       <dt>User</dt>
-      <dd><%= link_to @report.reported.username, user_path(@report.reported), target: "_blank" %></dd>
+      <dd><%= link_to @report.reported.username, admin_user_path(@report.reported), target: "_blank" %></dd>
 
       <dt>Reason</dt>
       <dd><%= @report.reason.humanize %></dd>
