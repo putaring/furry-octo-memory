@@ -23,7 +23,7 @@
         <tbody>
           <% Report.includes(:reported).unresolved.each do |report| %>
           <tr>
-            <td><%= link_to report.reported.username, user_path(report.reported) %></td>
+            <td><%= link_to report.reported.username, admin_user_path(report.reported) %></td>
             <td><%= report.reason.humanize %></td>
             <td><%= link_to "Review", edit_admin_report_path(report) %></td>
           </tr>

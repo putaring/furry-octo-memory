@@ -63,7 +63,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'admin#index'
-    resources :reports
+    resources :reports, except: :destroy
+    resources :users, only: :show do
+      patch :ban
+      patch :activate
+    end
   end
 
   mount Resque::Server.new, at: "/resque"
