@@ -76,4 +76,8 @@ FactoryGirl.define do
   factory :resolved_report, parent: :report do
     resolved true
   end
+
+  factory :phone_verification do
+    user
+  end
 end
