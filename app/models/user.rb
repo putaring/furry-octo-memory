@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :photos
 
+  has_many :phone_verifications
+
   has_many :reports, foreign_key: "reporter_id", dependent: :destroy
 
   has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
