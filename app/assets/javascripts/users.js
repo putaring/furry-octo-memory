@@ -90,6 +90,3 @@ $('#new_user').submit(function (e) {
     return false;
   }
 });
-
-
-$('[data-toggle="tooltip"]').tooltip()

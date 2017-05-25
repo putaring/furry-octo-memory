@@ -1,0 +1,25 @@
+<% provide(:title, 'Verify your phone number') %>
+
+<section class="container mb-5">
+  <div class="row">
+    <div class="col-12 col-sm-6 offset-sm-3 mt-3" id="enter-ph-number">
+      <h1 class="h2 text-center text-muted my-3">Verify your number</h1>
+      <p class="lead text-center text-muted">
+        We'll send you an SMS with a verification code.
+      </p>
+      <%= form_for(PhoneVerification.new) do |f| %>
+          <label class="text-muted col-form-label col-form-label-lg" for="country">Enter your phone number</label>
+          <div class="form-group">
+            <%= select_tag :country, options_for_select(ISO3166::Country.with_indian_population.map { |country| ["#{country.name} (+#{country.country_code})", country.alpha2] }) , { prompt: "Country code", class: 'form-control form-control-lg', required: true } %>
+          </div>
+
+          <div class="form-group">
+            <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, placeholder: "Your mobile number", autocomplete: :off } %>
+            <small class="form-text text-muted">This step is required to verify your identity. We won't display your number to other Roozam members.</small>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Send verification code</button>
+          <%= link_to 'Exit', logout_path, { class: 'btn btn-lg btn-block btn-outline-secondary', method: :delete, data: { confirm: "You will be logged out. Proceed?" } } %>
+      <% end %>
+    </div>
+  </div>
+</section>

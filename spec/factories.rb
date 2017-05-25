@@ -78,6 +78,7 @@ FactoryGirl.define do
   end
 
   factory :phone_verification do
+    phone_number { "+13109009000" }
     user
   end
 end
