@@ -7,19 +7,31 @@
       <p class="lead text-center text-muted">
         We'll send you an SMS with a verification code.
       </p>
-      <%= form_for(PhoneVerification.new) do |f| %>
-          <label class="text-muted col-form-label col-form-label-lg" for="country">Enter your phone number</label>
+      <%= form_for(PhoneVerification.new, remote: true) do |f| %>
+          <label class="text-muted col-form-label col-form-label-lg" for="country">Enter your mobile number</label>
           <div class="form-group">
-            <%= select_tag :country, options_for_select(ISO3166::Country.with_indian_population.map { |country| ["#{country.name} (+#{country.country_code})", country.alpha2] }) , { prompt: "Country code", class: 'form-control form-control-lg', required: true } %>
+            <%= select_tag :country, options_for_select(ISO3166::Country.with_indian_population.map { |country| ["#{country.name} (+#{country.country_code})", country.alpha2] }) , { prompt: "Country code", class: 'form-control form-control-lg text-muted', required: true } %>
           </div>
-
-          <div class="form-group">
-            <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, placeholder: "Your mobile number", autocomplete: :off } %>
+          <%= f.hidden_field :phone_number %>
+          <div class="form-group" id="phone-input">
+            <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, id: "cell_phone", placeholder: "Your mobile number", autocomplete: :off } %>
+            <div class="form-control-feedback" style="display:none;"></div>
             <small class="form-text text-muted">This step is required to verify your identity. We won't display your number to other Roozam members.</small>
           </div>
-          <button type="submit" class="btn btn-primary btn-lg btn-block">Send verification code</button>
+          <%= f.submit "Send verification code", class: "btn btn-primary btn-lg btn-block", data: { disable_with: "Sending…" } %>
           <%= link_to 'Exit', logout_path, { class: 'btn btn-lg btn-block btn-outline-secondary', method: :delete, data: { confirm: "You will be logged out. Proceed?" } } %>
       <% end %>
     </div>
+
+    <div class="col-12 col-sm-6 offset-sm-3 mt-3" id="enter-sms-code">
+      <h1 class="h2 text-center text-muted my-3">Enter the 4 digit code</h1>
+      <p class="lead text-center text-muted">
+        We have sent a 4 digit verfication code to <strong id="international-phone-number"></strong>. It may take a few minutes.
+      </p>
+    </div>
   </div>
 </section>
+
+<%= content_for(:javascripts) do %>
+<%= javascript_include_tag 'phone-verification' %>
+<% end %>
