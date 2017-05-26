@@ -25,3 +25,17 @@ $form.find("#country").change(function() {
     .find('.form-control-feedback')
     .hide();
 });
+
+$form.on('ajax:error', function (e, xhr, status, error) {
+
+}).on('ajax:success', function (e, data, status, xhr) {
+  if (xhr.status === 201) {
+    $('#collapseOne').collapse('hide');
+  }
+});
+
+$('#collapseOne').on('show.bs.collapse', function () {
+  $('#collapseTwo').collapse('hide');
+}).on('hide.bs.collapse', function () {
+  $('#collapseTwo').collapse('show');
+});

@@ -1,32 +1,66 @@
-<% provide(:title, 'Verify your phone number') %>
+<% provide(:title, 'Get verified') %>
+
+<style media="screen">
+  .card-header {
+    background-color: #FFF;
+    border-bottom: 0;
+  }
+</style>
 
 <section class="container mb-5">
   <div class="row">
-    <div class="col-12 col-sm-6 offset-sm-3 mt-3" id="enter-ph-number">
-      <h1 class="h2 text-center text-muted my-3">Verify your number</h1>
-      <p class="lead text-center text-muted">
-        We'll send you an SMS with a verification code.
-      </p>
-      <%= form_for(PhoneVerification.new, remote: true) do |f| %>
-          <label class="text-muted col-form-label col-form-label-lg" for="country">Enter your mobile number</label>
-          <div class="form-group">
-            <%= select_tag :country, options_for_select(ISO3166::Country.with_indian_population.map { |country| ["#{country.name} (+#{country.country_code})", country.alpha2] }) , { prompt: "Country code", class: 'form-control form-control-lg text-muted', required: true } %>
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+      <%= image_tag 'smartphone.svg', class: 'img-fluid mx-auto d-block mb-3', width: 60 %>
+      <h1 class="h3 text-center text-muted">Get verified</h1>
+      <p class="text-center"><span class="text-muted">Verify your mobile number in </span><strong>2 easy steps</strong></p>
+      <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card">
+          <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+              1. <span class="text-muted">Enter your mobile number</span>
+            </h5>
           </div>
-          <%= f.hidden_field :phone_number %>
-          <div class="form-group" id="phone-input">
-            <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, id: "cell_phone", placeholder: "Your mobile number", autocomplete: :off } %>
-            <div class="form-control-feedback" style="display:none;"></div>
-            <small class="form-text text-muted">This step is required to verify your identity. We won't display your number to other Roozam members.</small>
-          </div>
-          <%= f.submit "Send verification code", class: "btn btn-primary btn-lg btn-block", data: { disable_with: "Sending…" } %>
-          <%= link_to 'Exit', logout_path, { class: 'btn btn-lg btn-block btn-outline-secondary', method: :delete, data: { confirm: "You will be logged out. Proceed?" } } %>
-      <% end %>
-    </div>
 
-    <div class="col-12 col-sm-6 offset-sm-3 mt-3" id="enter-sms-code">
-      <h1 class="h2 text-center text-muted my-3">Enter the 4 digit code</h1>
-      <p class="lead text-center text-muted">
-        We have sent a 4 digit verfication code to <strong id="international-phone-number"></strong>. It may take a few minutes.
+          <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="card-block">
+              <p class="text-center text-muted">
+              We'll send an SMS with a verification code.
+              </p>
+              <%= form_for(PhoneVerification.new, remote: true) do |f| %>
+                  <div class="form-group">
+                    <%= select_tag :country, options_for_select(ISO3166::Country.with_indian_population.map { |country| ["#{country.name} (+#{country.country_code})", country.alpha2] }) , { prompt: "Country code", class: 'form-control form-control-lg text-muted', required: true } %>
+                  </div>
+                  <%= f.hidden_field :phone_number %>
+                  <div class="form-group" id="phone-input">
+                    <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, id: "cell_phone", placeholder: "Your mobile number", autocomplete: :off } %>
+                    <div class="form-control-feedback" style="display:none;"></div>
+                    <small class="form-text text-muted">We won't reveal your number to anyone else, or use it to send you spam.</small>
+                  </div>
+                  <%= f.submit "Send verification code", class: "btn btn-primary btn-lg btn-block", data: { disable_with: "Sending…" } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+              2. <span class="text-muted">Enter verification code</span>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="card-block">
+              <p class="text-center">
+                <span class="text-muted">A 4 digit verfication code was sent to your phone.</span><br>
+                <strong id="international-phone-number"></strong>
+                – <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">Edit number</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="pt-4 text-center">
+        <small class="text-muted">Don't have a mobile number?</small>
+        <%= link_to 'Logout', logout_path, { class: 'btn btn-lg btn-block btn-outline-secondary', method: :delete, data: { confirm: "Are you sure? You will be logged out and your account won't be verified." } } %>
       </p>
     </div>
   </div>
