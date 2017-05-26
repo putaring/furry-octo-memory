@@ -11,10 +11,13 @@
   <div class="row">
     <div class="col-12 col-md-6 offset-md-3 mt-3">
       <%= image_tag 'smartphone.svg', class: 'img-fluid mx-auto d-block mb-3', width: 60 %>
-      <h1 class="h3 text-center text-muted">Get verified</h1>
-      <p class="text-center"><span class="text-muted">Verify your mobile number in </span><strong>2 easy steps</strong></p>
+      <h1 class="h4 text-center text-muted">One last step</h1>
+      <p class="text-center">
+        <span class="text-muted">Verify your mobile number in </span><strong>2 easy steps</strong>.
+        <span class="text-muted">It helps us ensure that only real people join Spouzz.com</span>
+        </p>
       <div id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="card">
+        <div class="card card-outline-success">
           <div class="card-header" role="tab" id="headingOne">
             <h5 class="mb-0">
               1. <span class="text-muted">Enter your mobile number</span>
@@ -34,14 +37,13 @@
                   <div class="form-group" id="phone-input">
                     <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, id: "cell_phone", placeholder: "Your mobile number", autocomplete: :off } %>
                     <div class="form-control-feedback" style="display:none;"></div>
-                    <small class="form-text text-muted">We won't reveal your number to anyone else, or use it to send you spam.</small>
                   </div>
-                  <%= f.submit "Send verification code", class: "btn btn-primary btn-lg btn-block", data: { disable_with: "Sending…" } %>
+                  <%= f.submit "Send verification code", class: "btn btn-success btn-lg btn-block", data: { disable_with: "Sending…" } %>
               <% end %>
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card card-outline-success">
           <div class="card-header" role="tab" id="headingTwo">
             <h5 class="mb-0">
               2. <span class="text-muted">Enter verification code</span>
@@ -50,17 +52,17 @@
           <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="card-block">
               <p class="text-center">
-                <span class="text-muted">A 4 digit verfication code was sent to your phone.</span><br>
-                <strong id="international-phone-number"></strong>
-                – <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">Edit number</a>
+                <span class="text-muted">SMS sent to</span> <strong id="international-phone-number"></strong>
+                – <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">Edit number</a>. <br>
+                <span class="text-muted">You will receive <strong>4 digit verfication code</strong> in a few minutes. Enter it below to verify your account.</span><br>
               </p>
             </div>
           </div>
         </div>
       </div>
       <p class="pt-4 text-center">
-        <small class="text-muted">Don't have a mobile number?</small>
-        <%= link_to 'Logout', logout_path, { class: 'btn btn-lg btn-block btn-outline-secondary', method: :delete, data: { confirm: "Are you sure? You will be logged out and your account won't be verified." } } %>
+        <span class="text-muted">Don't have your phone with you?</span>
+        <%= link_to 'Logout and verify later', logout_path, { method: :delete, data: { confirm: "You will be logged out. You can come back any time to verify your number. Continue?" } } %>
       </p>
     </div>
   </div>
