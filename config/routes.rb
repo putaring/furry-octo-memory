@@ -33,7 +33,10 @@ Rails.application.routes.draw do
   resources :reports, only: [:show, :create]
 
 
-  resources :phone_verifications, only: :create
+  resources :phone_verifications, only: :create do
+    post 'verify', on: :member
+    post 'resend', on: :member
+  end
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update, :edit]

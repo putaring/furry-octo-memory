@@ -51,17 +51,29 @@
           </div>
           <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="card-block">
-              <p class="text-center">
-                <span class="text-muted">SMS sent to</span> <strong id="international-phone-number"></strong>
-                – <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">Edit number</a>. <br>
-                <span class="text-muted">You will receive <strong>4 digit verfication code</strong> in a few minutes. Enter it below to verify your account.</span><br>
+              <p class="text-center text-muted">
+                SMS sent to <strong id="international-phone-number"></strong>
+                – <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">Edit number</a><br>
+              </p>
+              <p class="text-center text-muted">
+                You will receive a <strong>4 digit verfication code</strong> in a few minutes. Enter it below to verify your account.
+              </p>
+              <%= form_tag "/meaningless-shit", method: :post, remote: true, id: "verify-form" do %>
+              <div class="form-group" id="verification-input">
+                <%= text_field_tag "verification_code", nil, { class: 'form-control form-control-lg', required: true, id: "verification_code", placeholder: "4 digit code", autocomplete: :off, maxlength: 4, pattern: "\\d{4}", title: "Verification code is 4 digits" } %>
+                <div class="form-control-feedback" style="display:none;"></div>
+              </div>
+              <%= submit_tag "Verify code", class: "btn btn-block btn-success btn-lg", data: { disable_with: "Verifying…" } %>
+              <% end %>
+
+              <p class="text-center mt-2 text-muted">
+                Didn't receive the code? <%= link_to "Resend code", '#', remote: true, method: :post, id: "resend-link" %>
               </p>
             </div>
           </div>
         </div>
       </div>
-      <p class="pt-4 text-center">
-        <span class="text-muted">Don't have your phone with you?</span>
+      <p class="pt-4 text-center" id="exit-message">
         <%= link_to 'Logout and verify later', logout_path, { method: :delete, data: { confirm: "You will be logged out. You can come back any time to verify your number. Continue?" } } %>
       </p>
     </div>
