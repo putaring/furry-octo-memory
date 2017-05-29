@@ -4,6 +4,7 @@ class PhoneVerificationsController < ApplicationController
   def create
     phone_verification = current_user.phone_verifications.new(phone_verification_params.merge(ip: request.remote_ip))
     if phone_verification.save
+      SendOtpJob.perform_later(phone_verification.id)
       render json: { id: phone_verification.id }, status: :created
     else
       render json: phone_verification.errors.full_messages, status: :unprocessable_entity
@@ -12,6 +13,12 @@ class PhoneVerificationsController < ApplicationController
 
   def resend
     phone_verification = current_user.phone_verifications.find(params[:id])
+    if phone_verification
+      SendOtpJob.perform_later(phone_verification.id)
+      head :ok
+    else
+      head :forbidden
+    end
   end
 
   def verify

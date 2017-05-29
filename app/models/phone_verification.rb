@@ -8,6 +8,11 @@ class PhoneVerification < ActiveRecord::Base
 
   validates :code, presence: true, length: { is: 4 }, numericality: { only_integer: true }
 
+  def send_code
+    response = JSON.parse(Net::HTTP.get URI("#{Rails.application.config.otp_api_url}#{phone_number}/#{code}"))
+    update_attributes(session_id: response["Details"]) if response["Status"].eql?("Success")
+  end
+
   private
 
   def generate_verification_code

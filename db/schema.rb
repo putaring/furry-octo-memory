@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170524170117) do
+ActiveRecord::Schema.define(version: 20170529205657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,14 +64,14 @@ ActiveRecord::Schema.define(version: 20170524170117) do
   add_index "messages", ["sender_id"], name: "index_messages_on_sender_id", using: :btree
 
   create_table "phone_verifications", force: :cascade do |t|
-    t.integer  "user_id",                             null: false
-    t.inet     "ip",                                  null: false
-    t.string   "phone_number", limit: 30,             null: false
+    t.integer  "user_id",                                 null: false
+    t.inet     "ip",                                      null: false
+    t.string   "phone_number", limit: 30,                 null: false
     t.string   "session_id",   limit: 50
-    t.integer  "status",       limit: 2,  default: 0
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "code",         limit: 10,             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "code",         limit: 10,                 null: false
+    t.boolean  "verified",                default: false, null: false
   end
 
   add_index "phone_verifications", ["user_id"], name: "index_phone_verifications_on_user_id", using: :btree
@@ -110,22 +110,23 @@ ActiveRecord::Schema.define(version: 20170524170117) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "gender",           limit: 1,              null: false
-    t.date     "birthdate",                               null: false
-    t.integer  "religion",         limit: 2,              null: false
-    t.string   "language",         limit: 3,              null: false
-    t.string   "country",          limit: 2,              null: false
-    t.string   "username",         limit: 30,             null: false
-    t.string   "email",            limit: 60,             null: false
-    t.string   "password_digest",  limit: 60,             null: false
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.integer  "photo_visibility", limit: 2,  default: 1, null: false
-    t.integer  "height",           limit: 2,              null: false
-    t.integer  "status",           limit: 2,              null: false
+    t.string   "gender",           limit: 1,                  null: false
+    t.date     "birthdate",                                   null: false
+    t.integer  "religion",         limit: 2,                  null: false
+    t.string   "language",         limit: 3,                  null: false
+    t.string   "country",          limit: 2,                  null: false
+    t.string   "username",         limit: 30,                 null: false
+    t.string   "email",            limit: 60,                 null: false
+    t.string   "password_digest",  limit: 60,                 null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "photo_visibility", limit: 2,  default: 1,     null: false
+    t.integer  "height",           limit: 2,                  null: false
+    t.integer  "status",           limit: 2,                  null: false
     t.string   "sect",             limit: 5
-    t.string   "reset_token",                             null: false
-    t.integer  "account_status",   limit: 2,  default: 1, null: false
+    t.string   "reset_token",                                 null: false
+    t.integer  "account_status",   limit: 2,  default: 1,     null: false
+    t.boolean  "verified",                    default: false, null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

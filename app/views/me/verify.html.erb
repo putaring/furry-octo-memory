@@ -67,7 +67,7 @@
               <% end %>
 
               <p class="text-center mt-2 text-muted">
-                Didn't receive the code? <%= link_to "Resend code", '#', remote: true, method: :post, id: "resend-link" %>
+                Didn't receive the code? <%= link_to "Resend code", '#', remote: true, method: :post, id: "resend-link", data: { disable_with: "Resending" } %>
               </p>
             </div>
           </div>
