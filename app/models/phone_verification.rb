@@ -13,6 +13,11 @@ class PhoneVerification < ActiveRecord::Base
     update_attributes(session_id: response["Details"]) if response["Status"].eql?("Success")
   end
 
+  def verify!
+    update_attributes!(verified: true)
+    user.update_attributes!(verified: true)
+  end
+
   private
 
   def generate_verification_code

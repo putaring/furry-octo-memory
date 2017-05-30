@@ -60,7 +60,7 @@ $verifyForm.on('ajax:error', function (e, xhr, status, error) {
 
 }).on('ajax:success', function (e, data, status, xhr) {
   if (xhr.status === 200) {
-    var profileUrl = location.origin + "/users/" + data.id + "?welcome=true";
+    var profileUrl = location.origin + "/users/" + data.user_id + "?welcome=true";
     $('#exit-message').html('All set! Let\'s set up your <a href="' + profileUrl + '">profile</a>.');
 
     $('#collapseTwo').collapse('hide');
@@ -72,4 +72,13 @@ $('#collapseOne').on('show.bs.collapse', function () {
   $('#collapseTwo').collapse('hide');
 }).on('hide.bs.collapse', function () {
   $('#collapseTwo').collapse('show');
+});
+
+
+$("#resend-link").on('ajax:success', function (e, data, status, xhr) {
+  $.snackbar({
+    content: "Resent",
+    style: "snackbar",
+    timeout: 7000
+  });
 });

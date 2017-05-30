@@ -24,7 +24,8 @@ class PhoneVerificationsController < ApplicationController
   def verify
     phone_verification = current_user.phone_verifications.find(params[:id])
     if phone_verification.try(:code).eql?(params[:verification_code].strip)
-      render json: { id: current_user.id }, status: :ok
+      phone_verification.verify!
+      render json: { id: phone_verification.id, user_id: phone_verification.user_id }, status: :ok
     else
       head :forbidden
     end
