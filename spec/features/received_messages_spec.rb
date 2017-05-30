@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Received messages" do
   subject { page }
-  let(:user)                    { create(:user) }
+  let(:user)                    { create(:member) }
   let(:inactive_user)           { create(:inactive_user) }
   let(:conversation)            { create(:conversation, recipient: user) }
   let(:inactive_conversation)   { create(:conversation, recipient: user, sender: inactive_user) }

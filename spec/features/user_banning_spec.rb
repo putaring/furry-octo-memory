@@ -22,9 +22,9 @@ feature 'User banning' do
   end
 
 
-  context "banned user" do
+  context "active user" do
     subject { page }
-    let(:user) { create(:user) }
+    let(:user) { create(:member) }
     background do
       visit login_path
       login(user)

@@ -5,7 +5,7 @@ feature "Report a user" do
   describe "Reporting a user from the profile page" do
     context "Logged out" do
       it "should not give the user an option report the profile" do
-        visit user_path(create(:user))
+        visit user_path(create(:member))
         expect(page).to_not have_content('Report user')
       end
     end
@@ -13,25 +13,25 @@ feature "Report a user" do
     context "Logged in" do
       background do
         visit login_path
-        login(create(:user))
+        login(create(:member))
       end
 
       it "should give the user an option to report the profile" do
-        visit user_path(create(:user))
+        visit user_path(create(:member))
         within('.jumbotron') { expect(page).to have_content('Report user') }
         within('#report-modal') { expect(page).to have_content('Report user') }
       end
 
       it "should allow the user to create a report" do
-        visit user_path(create(:user))
+        visit user_path(create(:member))
         expect { click_button "Report this profile" }.to change(Report, :count).by(1)
       end
     end
   end
 
   describe "Report page" do
-    let(:reporter)  { create(:user) }
-    let(:reported)  { create(:user) }
+    let(:reporter)  { create(:member) }
+    let(:reported)  { create(:member) }
     let(:report)    { create(:report, reporter: reporter, reported: reported) }
 
     context "Logged out" do
@@ -57,7 +57,7 @@ feature "Report a user" do
       context "Logged in as random user" do
         background do
           visit login_path
-          login(create(:user))
+          login(create(:member))
         end
 
         it "should not display the report page" do

@@ -16,7 +16,7 @@ feature "Admin Panel" do
   context "Member" do
     background do
       visit login_path
-      login(create(:user))
+      login(create(:member))
     end
 
     it "should not allow the user to visit the admin page" do

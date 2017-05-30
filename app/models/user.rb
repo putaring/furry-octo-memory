@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
     @_language_expanded ||= LanguageList::LanguageInfo.find(language).name
   end
 
+  def unverified?
+    !verified?
+  end
+
   def like(other_user)
     active_interests.create(liked_id: other_user.id)
   end
