@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  before_action :disallow_inactive_users!, except: [:verify, :activate], unless: :public_pages?
-  before_action :disallow_banned_users!, except: [:verify, :banned], unless: :public_pages?
-  before_action :disallow_unverified_users!, except: [:verify, :banned, :activate], unless: :public_pages?
+  before_action :disallow_inactive_users!, except: [:activate, :reactivate], unless: :public_pages?
+  before_action :disallow_banned_users!, except: :banned, unless: :public_pages?
+  before_action :disallow_unverified_users!, except: :verify, unless: :public_pages?
 
   def authenticate!
     if current_user.nil?
@@ -23,15 +23,15 @@ class ApplicationController < ActionController::Base
   end
 
   def disallow_inactive_users!
-    redirect_to activate_path if logged_in? && current_user.inactive? && request.path != activate_path
+    redirect_to activate_path if logged_in? && current_user.inactive?
   end
 
   def disallow_banned_users!
-    redirect_to banned_path if logged_in? && current_user.banned? && request.path != banned_path
+    redirect_to banned_path if logged_in? && current_user.banned?
   end
 
   def disallow_unverified_users!
-    redirect_to verify_path if logged_in? && current_user.unverified? && request.path != verify_path
+    redirect_to verify_path if logged_in? && current_user.unverified?
   end
 
   def public_pages?

@@ -15,7 +15,7 @@ class PhoneVerification < ActiveRecord::Base
 
   def verify!
     update_attributes!(verified: true)
-    user.update_attributes!(verified: true)
+    user.active!
   end
 
   private

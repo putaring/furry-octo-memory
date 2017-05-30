@@ -29,7 +29,7 @@ RSpec.describe PhoneVerification, type: :model do
     end
 
     it "should flag the user as verified" do
-      expect(phone_verification.user.verified).to be true
+      expect(phone_verification.user.active?).to be true
     end
   end
 

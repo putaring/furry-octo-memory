@@ -34,7 +34,7 @@ feature "Registration" do
 
   describe "Sign up page" do
     context "when logged in as verified user" do
-      given(:verified_user) { create(:verified_user) }
+      given(:verified_user) { create(:member) }
       background do
         visit login_path
         login(verified_user)

@@ -11,32 +11,32 @@ FactoryGirl.define do
     password      { Faker::Internet.password }
   end
 
-  factory :verified_user, parent: :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
-    verified { true }
+  factory :active_user, parent: :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
+    account_status 'active'
   end
 
-  factory :brahmin, parent: :verified_user do
+  factory :brahmin, parent: :active_user do
     religion 'hindu'
     sect 'brh'
   end
 
-  factory :restricted_user, parent: :verified_user do
+  factory :restricted_user, parent: :active_user do
     photo_visibility 'restricted'
   end
 
-  factory :members_only_user, parent: :verified_user do
+  factory :members_only_user, parent: :active_user do
     photo_visibility 'members_only'
   end
 
-  factory :inactive_user, parent: :verified_user do
+  factory :inactive_user, parent: :user do
     account_status 'inactive'
   end
 
-  factory :admin_user, parent: :verified_user do
+  factory :admin_user, parent: :user do
     account_status 'admin'
   end
 
-  factory :banned_user, parent: :verified_user do
+  factory :banned_user, parent: :user do
     account_status 'banned'
   end
 

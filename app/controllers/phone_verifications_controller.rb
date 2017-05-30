@@ -1,6 +1,8 @@
 class PhoneVerificationsController < ApplicationController
   before_action :authenticate!
 
+  before_action :disallow_unverified_users!, except: [:create, :resend, :verify]
+
   def create
     phone_verification = current_user.phone_verifications.new(phone_verification_params.merge(ip: request.remote_ip))
     if phone_verification.save
