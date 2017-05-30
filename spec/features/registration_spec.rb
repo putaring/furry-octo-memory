@@ -33,16 +33,29 @@ feature "Registration" do
   end
 
   describe "Sign up page" do
-    given(:user) { create(:user) }
-    context "when logged in" do
+    context "when logged in as verified user" do
+      given(:verified_user) { create(:member) }
       background do
         visit login_path
-        login(user)
+        login(verified_user)
       end
 
       it "should redirect to user landing page" do
         visit signup_path
-        expect(page).to have_current_path(user_path(user))
+        expect(page).to have_current_path(user_path(verified_user))
+      end
+    end
+
+    context "when logged in as unverified user" do
+      given(:unverified_user) { create(:user) }
+      background do
+        visit login_path
+        login(unverified_user)
+      end
+
+      it "should redirect to user landing page" do
+        visit signup_path
+        expect(page).to have_current_path(verify_path)
       end
     end
 

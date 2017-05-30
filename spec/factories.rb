@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
+  factory :user, aliases: [:unverified_user] do
     gender        { 'f' }
     birthdate     { 21.years.ago }
     height        { 72 }
@@ -11,16 +11,20 @@ FactoryGirl.define do
     password      { Faker::Internet.password }
   end
 
-  factory :brahmin, parent: :user do
+  factory :active_user, parent: :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
+    account_status 'active'
+  end
+
+  factory :brahmin, parent: :active_user do
     religion 'hindu'
     sect 'brh'
   end
 
-  factory :restricted_user, parent: :user do
+  factory :restricted_user, parent: :active_user do
     photo_visibility 'restricted'
   end
 
-  factory :members_only_user, parent: :user do
+  factory :members_only_user, parent: :active_user do
     photo_visibility 'members_only'
   end
 
@@ -75,5 +79,11 @@ FactoryGirl.define do
 
   factory :resolved_report, parent: :report do
     resolved true
+  end
+
+  factory :phone_verification do
+    phone_number  { "+13109009000" }
+    ip            { "127.0.0.1" }
+    user
   end
 end

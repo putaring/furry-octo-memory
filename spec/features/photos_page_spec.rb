@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Photos page' do
-  let(:user) { create(:user) }
+  let(:user) { create(:member) }
   subject { page }
   background do
     visit login_path

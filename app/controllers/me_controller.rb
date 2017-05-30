@@ -3,6 +3,7 @@ class MeController < ApplicationController
   before_action :allow_inactive!, only: [:activate, :reactivate]
   before_action :allow_banned!, only: [:banned]
   before_action :allow_active!, only: [:deactivate]
+  before_action :allow_unverified!, only: [:verify]
 
   def show
   end
@@ -32,6 +33,10 @@ class MeController < ApplicationController
 
   def allow_inactive!
     redirect_to user_path(current_user) unless current_user.inactive?
+  end
+
+  def allow_unverified!
+    redirect_to user_path(current_user) unless current_user.unverified?
   end
 
   def allow_banned!

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "Profile page" do
-  let(:user) { create(:user, gender: 'f', country: 'US', birthdate: 21.years.ago, language: 'eng', religion: "christian") }
+  let(:user) { create(:member, gender: 'f', country: 'US', birthdate: 21.years.ago, language: 'eng', religion: "christian") }
   subject { page }
 
 
@@ -18,7 +18,7 @@ feature "Profile page" do
     end
 
     context "non-empty about me essay" do
-      let(:user) { create(:user) }
+      let(:user) { create(:member) }
       background do
         user.profile.update_attributes(about: 'I am a fox')
         visit user_path(user)
@@ -28,7 +28,7 @@ feature "Profile page" do
     end
 
     context "non-empty occupation essay" do
-      let(:user) { create(:user) }
+      let(:user) { create(:member) }
       background do
         user.profile.update_attributes(occupation: 'I cook goats')
         visit user_path(user)
@@ -39,7 +39,7 @@ feature "Profile page" do
     end
 
     context "non-empty preference essay" do
-      let(:user) { create(:user) }
+      let(:user) { create(:member) }
       background do
         user.profile.update_attributes(preference: 'I like goats')
         visit user_path(user)
@@ -67,7 +67,7 @@ feature "Profile page" do
   context "logged in viewing a new match" do
     background do
       visit login_path
-      login(create(:user))
+      login(create(:member))
       visit user_path(user)
     end
     it { should have_content('Like') }

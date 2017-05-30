@@ -1,0 +1,85 @@
+<% provide(:title, 'Get verified') %>
+
+<style media="screen">
+  .card-header {
+    background-color: #FFF;
+    border-bottom: 0;
+  }
+</style>
+
+<section class="container mb-5">
+  <div class="row">
+    <div class="col-12 col-md-6 offset-md-3 mt-3">
+      <%= image_tag 'smartphone.svg', class: 'img-fluid mx-auto d-block mb-3', width: 60 %>
+      <h1 class="h4 text-center text-muted">One last step</h1>
+      <p class="text-center">
+        <span class="text-muted">Verify your mobile number in </span><strong>2 easy steps</strong>.
+        <span class="text-muted">It helps us ensure that only real people join Spouzz.com</span>
+        </p>
+      <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card card-outline-success">
+          <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+              1. <span class="text-muted">Enter your mobile number</span>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+            <div class="card-block">
+              <p class="text-center text-muted">
+              We'll send an SMS with a verification code.
+              </p>
+              <%= form_for(PhoneVerification.new, remote: true) do |f| %>
+                  <div class="form-group">
+                    <%= select_tag :country, options_for_select(ISO3166::Country.with_indian_population.map { |country| ["#{country.name} (+#{country.country_code})", country.alpha2] }) , { prompt: "Country code", class: 'form-control form-control-lg text-muted', required: true } %>
+                  </div>
+                  <%= f.hidden_field :phone_number %>
+                  <div class="form-group" id="phone-input">
+                    <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, id: "cell_phone", placeholder: "Your mobile number", autocomplete: :off } %>
+                    <div class="form-control-feedback" style="display:none;"></div>
+                  </div>
+                  <%= f.submit "Send verification code", class: "btn btn-success btn-lg btn-block", data: { disable_with: "Sending…" } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card card-outline-success">
+          <div class="card-header" role="tab" id="headingTwo">
+            <h5 class="mb-0">
+              2. <span class="text-muted">Enter verification code</span>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="card-block">
+              <p class="text-center text-muted">
+                SMS sent to <strong id="international-phone-number"></strong>
+                – <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne" aria-expanded="false">Edit number</a><br>
+              </p>
+              <p class="text-center text-muted">
+                You will receive a <strong>4 digit verfication code</strong> in a few minutes. Enter it below to verify your account.
+              </p>
+              <%= form_tag "/meaningless-shit", method: :post, remote: true, id: "verify-form" do %>
+              <div class="form-group" id="verification-input">
+                <%= text_field_tag "verification_code", nil, { class: 'form-control form-control-lg', required: true, id: "verification_code", placeholder: "4 digit code", autocomplete: :off, maxlength: 4, pattern: "\\d{4}", title: "Verification code is 4 digits" } %>
+                <div class="form-control-feedback" style="display:none;"></div>
+              </div>
+              <%= submit_tag "Verify code", class: "btn btn-block btn-success btn-lg", data: { disable_with: "Verifying…" } %>
+              <% end %>
+
+              <p class="text-center mt-2 text-muted">
+                Didn't receive the code? <%= link_to "Resend code", '#', remote: true, method: :post, id: "resend-link", data: { disable_with: "Resending…" } %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="pt-4 text-center" id="exit-message">
+        <%= link_to 'Logout and verify later', logout_path, { method: :delete, data: { confirm: "You will be logged out. You can come back any time to verify your number. Continue?" } } %>
+      </p>
+    </div>
+  </div>
+</section>
+
+<%= content_for(:javascripts) do %>
+<%= javascript_include_tag 'phone-verification' %>
+<% end %>

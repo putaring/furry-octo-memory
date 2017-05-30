@@ -1,6 +1,6 @@
 require 'rails_helper'
 feature "Navbar" do
-  let(:user) { create(:user) }
+  let(:user) { create(:member) }
   context "when logged in" do
 
     background do

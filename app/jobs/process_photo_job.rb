@@ -1,5 +1,5 @@
 class ProcessPhotoJob < ActiveJob::Base
-  queue_as :photo_uploader
+  queue_as :urgent
 
   def perform(photo_id, attributes)
     photo_attributes  = attributes.except(:remote_image_url)

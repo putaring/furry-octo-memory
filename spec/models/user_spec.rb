@@ -46,12 +46,13 @@ RSpec.describe User, type: :model do
     it { should have_many(:passive_bookmarks) }
     it { should have_many(:favorites) }
     it { should have_many(:favoriters) }
+    it { should have_many(:phone_verifications) }
     it { should have_one(:profile) }
   end
 
   describe "likes?(other_user)" do
-    let(:user)        { create(:user) }
-    let(:other_user)  { create(:user) }
+    let(:user)        { create(:member) }
+    let(:other_user)  { create(:member) }
     before { user.like(other_user) }
 
     it "returns true if you like a user" do
@@ -65,8 +66,8 @@ RSpec.describe User, type: :model do
 
 
   describe "bookmarked?(other_user)" do
-    let(:user)        { create(:user) }
-    let(:other_user)  { create(:user) }
+    let(:user)        { create(:member) }
+    let(:other_user)  { create(:member) }
     before { user.favorite(other_user) }
 
     it "returns true if you have bookmarked a user" do
@@ -80,8 +81,8 @@ RSpec.describe User, type: :model do
 
   describe "#favorite(user)" do
     it "should allow the user to favorite another user" do
-      user       = create(:user)
-      other_user = create(:user)
+      user       = create(:member)
+      other_user = create(:member)
       user.favorite(other_user)
       expect(user.favorites.count).to eq(1)
       expect(other_user.favoriters.count).to eq(1)
@@ -90,8 +91,8 @@ RSpec.describe User, type: :model do
 
   describe "#unfavorite(user)" do
     it "should allow the user to unfavorite another user" do
-      user       = create(:user)
-      other_user = create(:user)
+      user       = create(:member)
+      other_user = create(:member)
       create(:bookmark, bookmarker: user, bookmarked: other_user)
       user.unfavorite(other_user)
       expect(user.favorites.count).to eq(0)
@@ -101,8 +102,8 @@ RSpec.describe User, type: :model do
 
   describe "#like(user)" do
     it "should allow the user to like another user" do
-      user       = create(:user)
-      other_user = create(:user)
+      user       = create(:member)
+      other_user = create(:member)
       user.like(other_user)
       expect(user.likes.count).to eq(1)
       expect(other_user.likers.count).to eq(1)
@@ -111,8 +112,8 @@ RSpec.describe User, type: :model do
 
   describe "#unlike(user)" do
     it "should allow the user to unlike a liked user" do
-      user       = create(:user)
-      other_user = create(:user)
+      user       = create(:member)
+      other_user = create(:member)
       create(:interest, liker: user, liked: other_user)
       user.unlike(other_user)
       expect(user.likes.count).to eq(0)
@@ -122,8 +123,8 @@ RSpec.describe User, type: :model do
 
   describe "#decline(user)" do
     it "should remove all interests between the users" do
-      user        = create(:user)
-      other_user  = create(:user)
+      user        = create(:member)
+      other_user  = create(:member)
       create(:interest, liker: other_user, liked: user)
       create(:interest, liked: other_user, liker: user)
       user.decline(other_user)
@@ -134,7 +135,7 @@ RSpec.describe User, type: :model do
 
   describe "#display_thumbnail" do
     it "should return default url if the user has an inactive profile photo" do
-      profile_photo = create(:photo, user: create(:user, gender: 'f'))
+      profile_photo = create(:photo, user: create(:member, gender: 'f'))
       user          = profile_photo.user
 
       expect(user.display_thumbnail(:thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.jpg"))

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'mutual-likes', to: 'likes#mutual'
   get 'activate',     to: 'me#activate'
   get 'banned',       to: 'me#banned'
+  get 'verify',       to: 'me#verify'
   patch 'activate',   to: 'me#reactivate'
   patch 'deactivate', to: 'me#deactivate'
 
@@ -30,6 +31,12 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:index]
   resources :reports, only: [:show, :create]
+
+
+  resources :phone_verifications, only: :create do
+    post 'verify', on: :member
+    post 'resend', on: :member
+  end
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update, :edit]

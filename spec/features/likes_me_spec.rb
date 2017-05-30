@@ -8,8 +8,8 @@ feature 'Likes me' do
   end
 
   context "when logged in" do
-    let(:user)          { create(:user) }
-    let(:liker)         { create(:user) }
+    let(:user)          { create(:member) }
+    let(:liker)         { create(:member) }
     let(:inactive_user) { create(:inactive_user)}
     background do
       visit login_path

@@ -21,11 +21,11 @@ feature "Authentication" do
 
     context "with valid credentials" do
       context "active user" do
-        given(:user) { create(:user) }
-        background { login(user) }
+        given(:member) { create(:member) }
+        background { login(member) }
 
         scenario "should redirect user to the user's homepage" do
-          expect(page).to have_current_path(user_path(user))
+          expect(page).to have_current_path(user_path(member))
         end
       end
 
@@ -41,12 +41,12 @@ feature "Authentication" do
 
   describe "Login page" do
     context "when logged in as active user" do
-      given(:user) { create(:user) }
+      given(:member) { create(:member) }
       it "should redirect user to the user landing page" do
         visit login_path
-        login(user)
+        login(member)
         visit login_path
-        expect(page).to have_current_path(user_path(user))
+        expect(page).to have_current_path(user_path(member))
       end
     end
 

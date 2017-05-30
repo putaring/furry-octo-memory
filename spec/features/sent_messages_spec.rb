@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Sent messages" do
   subject { page }
-  let(:user)                    { create(:user) }
+  let(:user)                    { create(:member) }
   let(:inactive_user)           { create(:inactive_user) }
   let(:conversation)            { create(:conversation, sender: user) }
   let(:inactive_conversation)   { create(:conversation, sender: user, recipient: inactive_user) }

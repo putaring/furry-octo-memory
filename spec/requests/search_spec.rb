@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe "Search", type: :request do
   before do
-    create(:user, gender: 'm', birthdate: 25.years.ago)
-    create(:user, gender: 'f', birthdate: 30.years.ago)
-    create(:user, religion: 'hindu', gender: 'm', birthdate: 35.years.ago)
-    create(:user, religion: 'muslim', gender: 'm', birthdate: 40.years.ago)
-    create(:user, gender: 'm', country: 'US', birthdate: 45.years.ago)
-    create(:user, gender: 'm', country: 'IN', birthdate: 50.years.ago)
-    create(:user, gender: 'm', country: 'AE', birthdate: 55.years.ago)
+    create(:member, gender: 'm', birthdate: 25.years.ago)
+    create(:member, gender: 'f', birthdate: 30.years.ago)
+    create(:member, religion: 'hindu', gender: 'm', birthdate: 35.years.ago)
+    create(:member, religion: 'muslim', gender: 'm', birthdate: 40.years.ago)
+    create(:member, gender: 'm', country: 'US', birthdate: 45.years.ago)
+    create(:member, gender: 'm', country: 'IN', birthdate: 50.years.ago)
+    create(:member, gender: 'm', country: 'AE', birthdate: 55.years.ago)
 
     create(:inactive_user, gender: 'm')
   end
@@ -66,8 +66,8 @@ RSpec.describe "Search", type: :request do
 
     context "status filter" do
       it "returns only status queried for" do
-        unmarried_user = create(:user, status: 'unmarried', gender: 'm')
-        divorced_user  = create(:user, status: 'divorced', gender: 'm')
+        unmarried_user = create(:member, status: 'unmarried', gender: 'm')
+        divorced_user  = create(:member, status: 'divorced', gender: 'm')
         xhr :get, "/search", { status: 'divorced', gender: 'm' }
         data  = JSON.parse(response.body)
         ids   = data.map { |u| u["id"]}

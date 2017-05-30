@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :photos
 
+  has_many :phone_verifications
+
   has_many :reports, foreign_key: "reporter_id", dependent: :destroy
 
   has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
@@ -27,7 +29,7 @@ class User < ActiveRecord::Base
     sikh: 4, buddhist: 5, jain: 6, parsi: 7, jewish: 8, non_religious: 100 }
 
   enum status: { unmarried: 1, divorced: 2, widowed: 3 }
-  enum account_status: { active: 1, inactive: 2, admin: 3, banned: 4 }
+  enum account_status: { unverified: 0, active: 1, inactive: 2, admin: 3, banned: 4 }
 
   enum photo_visibility: { everyone: 1, members_only: 2, restricted: 3 }
 
@@ -92,6 +94,7 @@ class User < ActiveRecord::Base
   def language_expanded
     @_language_expanded ||= LanguageList::LanguageInfo.find(language).name
   end
+
 
   def like(other_user)
     active_interests.create(liked_id: other_user.id)

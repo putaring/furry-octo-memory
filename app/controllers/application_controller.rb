@@ -4,8 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  before_action :disallow_inactive_users!, unless: :allow_inactive_users?
-  before_action :disallow_banned_users!, unless: :allow_banned_users?
+  before_action :disallow_inactive_users!, except: [:activate, :reactivate], unless: :public_pages?
+  before_action :disallow_banned_users!, except: :banned, unless: :public_pages?
+  before_action :disallow_unverified_users!, except: :verify, unless: :public_pages?
 
   def authenticate!
     if current_user.nil?
@@ -22,18 +23,18 @@ class ApplicationController < ActionController::Base
   end
 
   def disallow_inactive_users!
-    redirect_to activate_path if logged_in? && current_user.inactive? && request.path != activate_path
+    redirect_to activate_path if logged_in? && current_user.inactive?
   end
 
   def disallow_banned_users!
-    redirect_to banned_path if logged_in? && current_user.banned? && request.path != banned_path
+    redirect_to banned_path if logged_in? && current_user.banned?
   end
 
-  def allow_inactive_users?
-    params[:controller].eql?("sessions") && params[:action].eql?("destroy")
+  def disallow_unverified_users!
+    redirect_to verify_path if logged_in? && current_user.unverified?
   end
 
-  def allow_banned_users?
+  def public_pages?
     (params[:controller].eql?("sessions") && params[:action].eql?("destroy")) || params[:controller].eql?("static_pages")
   end
 end
