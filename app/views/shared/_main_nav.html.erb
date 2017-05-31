@@ -4,7 +4,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <%= link_to logged_in? ? user_path(current_user) : root_path, { class: logged_in? ? 'navbar-brand non-distracting' : 'navbar-brand' } do %>
-      <%= image_tag 'logo.svg', height: 30, title: "Home", alt: "Home" %> Roozam
+      <%= image_tag 'logo.svg', height: 30, title: "Home", alt: "Home" %> Spouzz
     <% end %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <% if logged_in? %>

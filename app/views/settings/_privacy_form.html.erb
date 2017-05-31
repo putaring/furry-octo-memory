@@ -10,10 +10,10 @@
         <%= f.radio_button :photo_visibility,  privacy_setting, class: 'form-check-input' %>
         <% if privacy_setting.eql?('everyone') %>
         Public
-        <small class="d-block text-muted">People on and off Roozam can see your photos.<span class="text-success">Recommended</span></small>
+        <small class="d-block text-muted">People on and off Spouzz can see your photos.<span class="text-success">Recommended</span></small>
         <% elsif privacy_setting.eql?('members_only') %>
         Members only
-        <small class="d-block text-muted">Registered Roozam users can see your photos.</small>
+        <small class="d-block text-muted">Registered Spouzz users can see your photos.</small>
         <% else %>
         Restricted
         <small class="d-block text-muted">Only people you like can view your photos.</small>

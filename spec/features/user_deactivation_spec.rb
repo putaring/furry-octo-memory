@@ -17,7 +17,7 @@ feature 'User deactivation' do
 
     describe "activate page" do
       background { visit activate_path }
-      it { should have_content("Your profile, photos, conversations, and likes are not visible to other members. Activate your account to connect with others on Roozam.") }
+      it { should have_content("Your profile, photos, conversations, and likes are not visible to other members. Activate your account to connect with others on Spouzz.") }
       scenario "activating the user" do
         expect { click_button 'Activate' }.to change { User.active.count }.by(1)
       end
