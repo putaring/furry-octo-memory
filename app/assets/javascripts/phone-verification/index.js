@@ -30,7 +30,11 @@ $form.find("#country").change(function() {
 });
 
 $form.on('ajax:error', function (e, xhr, status, error) {
-
+  $form.find('#phone-input')
+    .addClass('has-danger')
+    .find(".form-control-feedback")
+    .text("You have exceeded the number of tries. Please contact support to verify your mobile number.")
+    .show();
 }).on('ajax:success', function (e, data, status, xhr) {
   if (xhr.status === 201) {
     $verifyForm.attr('action', '/phone_verifications/' + data.id + '/verify');
@@ -81,4 +85,8 @@ $("#resend-link").on('ajax:success', function (e, data, status, xhr) {
     style: "snackbar",
     timeout: 7000
   });
+}).on('ajax:error', function (e, xhr, status, error) {
+  if (xhr.status === 429) {
+    alert("You have exceeded the number of tries. Please contact support to verify your mobile number.")
+  }
 });

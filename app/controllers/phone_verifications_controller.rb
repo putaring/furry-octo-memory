@@ -2,6 +2,7 @@ class PhoneVerificationsController < ApplicationController
   before_action :authenticate!
 
   before_action :disallow_unverified_users!, except: [:create, :resend, :verify]
+  before_action :check_abuse!, only: [:create, :resend]
 
   def create
     phone_verification = current_user.phone_verifications.new(phone_verification_params.merge(ip: request.remote_ip))
@@ -16,6 +17,7 @@ class PhoneVerificationsController < ApplicationController
   def resend
     phone_verification = current_user.phone_verifications.find(params[:id])
     if phone_verification
+      phone_verification.increment!(:tries)
       SendOtpJob.perform_later(phone_verification.id)
       head :ok
     else
@@ -38,4 +40,7 @@ class PhoneVerificationsController < ApplicationController
     params.require(:phone_verification).permit(:phone_number)
   end
 
+  def check_abuse!
+    head :too_many_requests if current_user.phone_verifications.sum(:tries) >= 5
+  end
 end

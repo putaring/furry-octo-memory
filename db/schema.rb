@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530222044) do
+ActiveRecord::Schema.define(version: 20170531170859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170530222044) do
     t.datetime "updated_at",                              null: false
     t.string   "code",         limit: 10,                 null: false
     t.boolean  "verified",                default: false, null: false
+    t.integer  "tries",        limit: 2,  default: 1,     null: false
   end
 
   add_index "phone_verifications", ["user_id"], name: "index_phone_verifications_on_user_id", using: :btree
