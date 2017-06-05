@@ -12,7 +12,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = current_user.photos.create
+    @photo = current_user.photos.create(ip: request.remote_ip)
 
     if @photo.save
       ProcessPhotoJob.perform_later(@photo.id, photo_params.except(:image))
