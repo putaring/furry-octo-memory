@@ -30,10 +30,18 @@ $form.find("#country").change(function() {
 });
 
 $form.on('ajax:error', function (e, xhr, status, error) {
+  debugger;
+  if (xhr.status === 429) {
+    var errorHtml = "You have exceeded the number of tries. Please contact support to verify your mobile number.";
+  } else if (xhr.status === 422) {
+    var errorHtml = xhr.responseJSON.join('<br>');
+  } else {
+    var errorHtml = "Something went wrong";
+  }
   $form.find('#phone-input')
     .addClass('has-danger')
     .find(".form-control-feedback")
-    .text("You have exceeded the number of tries. Please contact support to verify your mobile number.")
+    .html(errorHtml)
     .show();
 }).on('ajax:success', function (e, data, status, xhr) {
   if (xhr.status === 201) {

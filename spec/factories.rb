@@ -86,4 +86,8 @@ FactoryGirl.define do
     ip            { "127.0.0.1" }
     user
   end
+
+  factory :verified_number, parent: :phone_verification do
+    verified { true }
+  end
 end

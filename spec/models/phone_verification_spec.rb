@@ -16,6 +16,13 @@ RSpec.describe PhoneVerification, type: :model do
     it { should belong_to(:user) }
 
     it { should be_valid }
+
+    it "should not allow a validated number to be validated again" do
+      create(:verified_number, phone_number: "+12134000000")
+      duplicate_number  = build(:phone_verification, phone_number: "+12134000000")
+
+      expect(duplicate_number).to be_invalid
+    end
   end
 
   describe "#verify!" do

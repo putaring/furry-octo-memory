@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531170859) do
+ActiveRecord::Schema.define(version: 20170605194515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,9 +133,18 @@ ActiveRecord::Schema.define(version: 20170531170859) do
   add_index "users", ["reset_token"], name: "index_users_on_reset_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "bookmarks", "users", column: "bookmarked_id"
+  add_foreign_key "bookmarks", "users", column: "bookmarker_id"
+  add_foreign_key "conversations", "users", column: "recipient_id"
+  add_foreign_key "conversations", "users", column: "sender_id"
+  add_foreign_key "interests", "users", column: "liked_id"
+  add_foreign_key "interests", "users", column: "liker_id"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "recipient_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "phone_verifications", "users"
   add_foreign_key "photos", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reports", "users", column: "reported_id"
+  add_foreign_key "reports", "users", column: "reporter_id"
 end
