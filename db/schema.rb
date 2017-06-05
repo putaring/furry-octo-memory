@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170605194515) do
+ActiveRecord::Schema.define(version: 20170605202228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170605194515) do
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.integer  "sender_id",                                    null: false
+    t.inet     "ip",                                           null: false
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
@@ -84,6 +85,7 @@ ActiveRecord::Schema.define(version: 20170605194515) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.integer  "status",     limit: 2, default: 0, null: false
+    t.inet     "ip",                               null: false
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
@@ -127,6 +129,7 @@ ActiveRecord::Schema.define(version: 20170605194515) do
     t.string   "sect",             limit: 5
     t.string   "reset_token",                             null: false
     t.integer  "account_status",   limit: 2,  default: 0, null: false
+    t.inet     "ip",                                      null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

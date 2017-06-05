@@ -9,6 +9,7 @@ FactoryGirl.define do
     country       { Faker::Address.country_code }
     email         { Faker::Internet.email }
     password      { Faker::Internet.password }
+    ip            { "127.0.0.1" }
   end
 
   factory :active_user, parent: :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
@@ -46,7 +47,8 @@ FactoryGirl.define do
   end
 
   factory :message do
-    body { Faker::Lorem.sentence }
+    body  { Faker::Lorem.sentence }
+    ip    { "127.0.0.1" }
     sender
     recipient
     conversation
@@ -64,6 +66,7 @@ FactoryGirl.define do
 
   factory :photo do
     user
+    ip { "127.0.0.1" }
   end
 
   factory :active_photo, parent: :photo do

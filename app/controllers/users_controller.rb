@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_params.merge(ip: request.remote_ip))
     if @user.save
       login(@user)
       UserMailer.welcome_email(@user).deliver_later
