@@ -13,7 +13,7 @@ class PhoneVerification < ActiveRecord::Base
   validate :no_existing_validated_user, on: :create
 
   def send_code
-    response = JSON.parse(Net::HTTP.get URI("#{Rails.application.config.otp_api_url}#{phone_number}/#{code}"))
+    response = JSON.parse(Net::HTTP.get URI("#{Rails.application.config.otp_api_url}#{phone_number}/#{code}/spouzz"))
     update_attributes(session_id: response["Details"]) if response["Status"].eql?("Success")
   end
 
