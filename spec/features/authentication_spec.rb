@@ -59,4 +59,17 @@ feature "Authentication" do
       end
     end
   end
+
+
+  describe "Sticky login" do
+    it "should redirect the user to photos page after they're authenticated" do
+      create(:active_user, email: "active@spouzz.com", password: "activeuser")
+      visit photos_path
+      expect(page).to have_current_path(login_path)
+      fill_in 'session_email',    with: "active@spouzz.com"
+      fill_in 'session_password', with: "activeuser"
+      click_button "Login"
+      expect(page).to have_current_path(photos_path)
+    end
+  end
 end
