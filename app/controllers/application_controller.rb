@@ -8,15 +8,6 @@ class ApplicationController < ActionController::Base
   before_action :disallow_banned_users!, except: :banned, unless: :public_pages?
   before_action :disallow_unverified_users!, except: :verify, unless: :public_pages?
 
-  def authenticate!
-    if current_user.nil?
-      if request.xhr?
-        head :unauthorized, location: login_path
-      else
-        redirect_to login_path
-      end
-    end
-  end
 
   def redirect_if_logged_in!
     redirect_to current_user.admin? ? admin_root_path : user_path(current_user) if logged_in?

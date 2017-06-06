@@ -16,4 +16,25 @@ module SessionsHelper
   def login(user)
     cookies.permanent.signed[:auth_token] = user.id
   end
+
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+
+  def authenticate!
+    if current_user.nil?
+      if request.xhr?
+        head :unauthorized, location: login_path
+      else
+        store_location
+        redirect_to login_path
+      end
+    end
+  end
+
 end
