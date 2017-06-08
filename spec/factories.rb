@@ -16,6 +16,10 @@ FactoryGirl.define do
     account_status 'active'
   end
 
+  factory :user_with_income, parent: :active_user do
+    income { 100000 }
+  end
+
   factory :brahmin, parent: :active_user do
     religion 'hindu'
     sect 'brh'

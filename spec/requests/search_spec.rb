@@ -49,7 +49,7 @@ RSpec.describe "Search", type: :request do
         data        = JSON.parse(response.body)
         countries   = data.map { |u| u["country"]}
         expect(countries).to include('India')
-        expect(countries).to include('United States')
+        expect(countries).to include('United States of America')
         expect(countries).to_not include('United Arab Emirates')
       end
     end

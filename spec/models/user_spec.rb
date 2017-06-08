@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:username).on(:update) }
 
     it { should validate_numericality_of(:height).is_greater_than(24).only_integer }
+    it { should validate_numericality_of(:income).allow_nil }
 
     it { should validate_uniqueness_of(:email).case_insensitive }
     it { should validate_uniqueness_of(:username).case_insensitive }

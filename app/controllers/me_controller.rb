@@ -28,7 +28,7 @@ class MeController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :birthdate, :password, :password_confirmation, :email,
-      :country, :gender, :language, :religion, :height, :status, :sect, :photo_visibility)
+      :country, :gender, :language, :religion, :height, :status, :sect, :photo_visibility, :income)
   end
 
   def allow_inactive!

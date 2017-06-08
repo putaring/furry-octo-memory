@@ -15,15 +15,26 @@
 <% end %>
 
 <dl class="row">
-  <dt class="col-1"><%= image_tag('description.svg') %></dt>
+  <dt class="col-1"><%= image_tag('description.svg', style: "vertical-align:top") %></dt>
   <dd class="col-11"><%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="text-muted">years</span>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span>, <%= @user.status.humanize %></dd>
 
-  <dt class="col-1"><%= image_tag('public.svg') %></dt>
+  <dt class="col-1"><%= image_tag('public.svg', style: "vertical-align:top") %></dt>
   <dd class="col-11">
     <%= @user.religion.humanize %>
     <% if @user.sect_long_form.present? %>
     (<%= @user.sect_long_form %>)
     <% end %>,
     <span class="text-muted">Speaks</span> <%= @user.language_expanded %>, <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
+  </dd>
+  <dt class="col-1"><%= image_tag('work.svg', style: "vertical-align:top") %></dt>
+  <dd class="col-11">
+    <% if @user.income.present? %>
+    <span class="text-muted">Earns</span>
+      <%= content_tag(:abbr, title: @user.iso_country.currency.name, style: "text-decoration: none") do %>
+      <%= Money.from_amount(@user.income, @user.iso_country.currency.iso_code).format(symbol_before_without_space: false) %>
+      <% end %>
+    <% else %>
+
+    <% end %>
   </dd>
 </dl>

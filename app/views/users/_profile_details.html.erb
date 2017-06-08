@@ -42,6 +42,17 @@
   <%= f.select :language, LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }, { prompt: 'Mother tongue' } , { class: 'form-control', required: true } %>
   <small class="text-danger form-text"></small>
 </div>
+<% if logged_in? %>
+<div class="form-group">
+  <%= f.label :income, "What's your income?" %>
+  <div class="input-group">
+    <span class="input-group-addon"><%= current_user.currency_symbol %></span>
+    <%= f.number_field :income , { class: 'form-control', min: 1, step: 1 } %>
+    <span class="input-group-addon">.00</span>
+  </div>
+</div>
+<% end %>
+
 <div class="form-group">
   <%= f.label :country, 'Where do you live?', class: show_label ? '' : "sr-only" %>
   <%= f.select :country, ISO3166::Country.with_indian_population.map { |country| [country.name, country.alpha2] } ,{ prompt: 'Where do you live?' } , { class: 'form-control', required: true } %>
