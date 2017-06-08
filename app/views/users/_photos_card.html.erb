@@ -16,7 +16,7 @@
 
 <dl class="row">
   <dt class="col-1"><%= image_tag('description.svg') %></dt>
-  <dd class="col-11"><%= @user.age %> <span class="text-muted">years old</span>, <%= @user.gender_expanded.humanize %>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span>, <%= @user.status.humanize %></dd>
+  <dd class="col-11"><%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="text-muted">years</span>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span>, <%= @user.status.humanize %></dd>
 
   <dt class="col-1"><%= image_tag('public.svg') %></dt>
   <dd class="col-11">
