@@ -1,9 +1,5 @@
 <% if !@user.has_active_photos? %>
-  <% if is_me?(@user) %>
-    <div class="alert alert-info">
-      <%= link_to "Add a photo now", photos_path, class: "alert-link" %> to greatly increase your chances of being noticed by others.
-    </div>
-  <% end %>
+
 
 <% elsif @user.display_photos_to?(current_user) == false %>
   <div class="alert alert-info">
@@ -17,3 +13,17 @@
   </div>
 <% else %>
 <% end %>
+
+<dl class="row">
+  <dt class="col-1"><%= image_tag('description.svg') %></dt>
+  <dd class="col-11"><%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="text-muted">years</span>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span>, <%= @user.status.humanize %></dd>
+
+  <dt class="col-1"><%= image_tag('public.svg') %></dt>
+  <dd class="col-11">
+    <%= @user.religion.humanize %>
+    <% if @user.sect_long_form.present? %>
+    (<%= @user.sect_long_form %>)
+    <% end %>,
+    <span class="text-muted">Speaks</span> <%= @user.language_expanded %>, <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
+  </dd>
+</dl>

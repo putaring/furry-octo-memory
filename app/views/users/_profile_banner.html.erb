@@ -7,17 +7,7 @@
       </div>
 
       <div class="col-md-5 text-center text-md-left" style="color:#fff;">
-        <p class="h3 no-focus"><%= @user.username %></p>
-        <p class="lead">
-          <%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="no-focus">years,</span> <%= metric_height(@user.height) %>, <%= @user.status.humanize %><br>
-          <%= @user.religion.humanize %>
-          <% if @user.sect_long_form.present? %>
-          (<%= @user.sect_long_form %>)
-          <% end %>
-          <br>
-          <span class="no-focus">Speaks</span> <%= @user.language_expanded %> <br>
-          <span class="no-focus">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %> </span><%= @user.country_name %>
-        </p>
+        <p class="h3"><%= @user.username %></p>
       </div>
 
       <div class="col-md-4">
