@@ -17,7 +17,7 @@ gem 'fog-aws'
 gem 'mini_magick'
 gem 'has_secure_token'
 gem 'faker'
-gem 'resque', "~> 1.27.0"
+gem 'resque', "~> 1.27.0", require: "resque/server"
 gem 'puma'
 gem 'newrelic_rpm'
 gem "rack-timeout"
