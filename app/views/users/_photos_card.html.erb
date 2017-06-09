@@ -26,15 +26,18 @@
     <% end %>,
     <span class="text-muted">Speaks</span> <%= @user.language_expanded %>, <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
   </dd>
-  <dt class="col-1"><%= image_tag('work.svg', style: "vertical-align:top") %></dt>
-  <dd class="col-11">
-    <% if @user.income.present? %>
-    <span class="text-muted">Earns</span>
-      <%= content_tag(:abbr, title: @user.iso_country.currency.name, style: "text-decoration: none") do %>
-      <%= Money.from_amount(@user.income, @user.iso_country.currency.iso_code).format(symbol_before_without_space: false) %>
+  <% if is_me?(@user) || @user.income.present? %>
+    <dt class="col-1"><%= image_tag('work.svg', style: "vertical-align:top") %></dt>
+    <dd class="col-11">
+      <% if @user.income.present? %>
+      <span class="text-muted">Earns</span>
+        <%= content_tag(:abbr, title: @user.iso_country.currency.name, style: "text-decoration: none") do %>
+        <%= Money.from_amount(@user.income, @user.iso_country.currency.iso_code).format(symbol_before_without_space: false) %>
+        <% end %>
+      <% else %>
+        <%= link_to "What's your annual income?", edit_profile_path, data: { toggle: 'modal', target: '#income-modal' } %>
+        <%= render partial: 'users/income_modal' %>
       <% end %>
-    <% else %>
-
-    <% end %>
-  </dd>
+    </dd>
+  <% end %>
 </dl>

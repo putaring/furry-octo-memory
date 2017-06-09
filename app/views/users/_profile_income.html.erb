@@ -1,0 +1,9 @@
+<div class="form-group">
+  <%= f.label :income, "What's your income?" %>
+  <div class="input-group">
+    <span class="input-group-addon"><%= current_user.currency_symbol %></span>
+    <%= f.number_field :income , { class: 'form-control', min: 1, step: 1 } %>
+    <span class="input-group-addon">.00</span>
+  </div>
+  <small class="form-text text-muted">How much do you make in a year?</small>
+</div>
