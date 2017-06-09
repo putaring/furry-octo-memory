@@ -16,15 +16,17 @@
 
 <dl class="row">
   <dt class="col-1"><%= image_tag('description.svg', style: "vertical-align:top") %></dt>
-  <dd class="col-11"><%= @user.gender_expanded.humanize %>, <%= @user.age %> <span class="text-muted">years</span>, <%= metric_height(@user.height) %> <span class="text-muted">tall</span>, <%= @user.status.humanize %></dd>
+  <dd class="col-11"><strong><%= @user.gender_expanded.humanize %></strong>, <strong><%= @user.age %></strong> <span class="text-muted">years</span>, <strong><%= metric_height(@user.height) %></strong> <span class="text-muted">tall</span>, <strong><%= @user.status.humanize %></strong></dd>
 
   <dt class="col-1"><%= image_tag('public.svg', style: "vertical-align:top") %></dt>
   <dd class="col-11">
+    <strong>
     <%= @user.religion.humanize %>
     <% if @user.sect_long_form.present? %>
     (<%= @user.sect_long_form %>)
-    <% end %>,
-    <span class="text-muted">Speaks</span> <%= @user.language_expanded %>, <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <%= @user.country_name %>
+    <% end %>
+  </strong>,
+    <span class="text-muted">Speaks</span> <strong><%= @user.language_expanded %></strong>, <span class="text-muted">Lives in <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span> <strong><%= @user.country_name %></strong>
   </dd>
   <% if is_me?(@user) || @user.income.present? %>
     <dt class="col-1"><%= image_tag('work.svg', style: "vertical-align:top") %></dt>
@@ -32,8 +34,9 @@
       <% if @user.income.present? %>
       <span class="text-muted">Earns</span>
         <%= content_tag(:abbr, title: @user.iso_country.currency.name, style: "text-decoration: none") do %>
-        <%= Money.from_amount(@user.income, @user.iso_country.currency.iso_code).format(symbol_before_without_space: false) %>
+        <strong><%= Money.from_amount(@user.income, @user.iso_country.currency.iso_code).format(symbol_before_without_space: false) %></strong>
         <% end %>
+        <span class="text-muted">a year</span>
       <% else %>
         <%= link_to "What's your annual income?", edit_profile_path, data: { toggle: 'modal', target: '#income-modal' } %>
         <%= render partial: 'users/income_modal' %>

@@ -1,4 +1,4 @@
-<%= image_tag @user.display_picture_for(current_user), { class: 'rounded-circle img-fluid', data: { toggle: @user.display_photos_to?(current_user) ? 'swipebox' : 'no-op' }, style: "border: 5px solid #fff; max-height: 250px;" } %>
+<%= image_tag @user.display_picture_for(current_user), { class: 'rounded-circle img-fluid', data: { toggle: @user.display_photos_to?(current_user) ? 'swipebox' : 'no-op' }, style: "border: 2px solid #fff; max-height: 250px;" } %>
 
 <% if @user.has_active_photos? %>
   <%= content_for :javascripts do %>
