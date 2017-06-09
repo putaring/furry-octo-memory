@@ -10,6 +10,11 @@ $(function() {
         append('Please fix the error(s).').
         append(list).
         show();
+      $.snackbar({
+        content: "Update failed. Please fix the errors and try again.",
+        style: "snackbar",
+        timeout: 5000
+      });
     } else if (xhr.status === 401) {
       window.location = '/login'
     } else if (xhr.status === 403) {
@@ -23,6 +28,7 @@ $(function() {
         append('Something went wrong. Try again.').
         show();
     }
+
   }).on('ajax:success', function () {
     if (location.pathname.match(/\/settings\//) || location.pathname.match(/\/profile\//)) {
       $.snackbar({

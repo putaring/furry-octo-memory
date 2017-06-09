@@ -1,7 +1,11 @@
 <% provide(:title, 'About Us') %>
 <%= render partial: 'shared/main_nav' %>
-
-<div class="jumbotron text-center mb-1" style="background-color: #FFC107 !important">
+<style media="screen">
+  .nav-item img {
+    display: none;
+  }
+</style>
+<div class="jumbotron text-center mb-1" style="background-color: #FFF !important">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -10,7 +14,7 @@
     </div>
   </div>
 </div>
-<div class="jumbotron bg-primary">
+<div class="jumbotron jumbotron-fluid bg-primary mb-0">
   <section class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-7 text-center" style="color:#fff;">

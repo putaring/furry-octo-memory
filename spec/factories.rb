@@ -6,7 +6,7 @@ FactoryGirl.define do
     religion      { User.religions.keys.sample }
     status        { 'unmarried' }
     language      { LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3).sample }
-    country       { Faker::Address.country_code }
+    country       { "IN" }
     email         { Faker::Internet.email }
     password      { Faker::Internet.password }
     ip            { "127.0.0.1" }
@@ -14,6 +14,10 @@ FactoryGirl.define do
 
   factory :active_user, parent: :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
     account_status 'active'
+  end
+
+  factory :user_with_income, parent: :active_user do
+    income { 100000 }
   end
 
   factory :brahmin, parent: :active_user do

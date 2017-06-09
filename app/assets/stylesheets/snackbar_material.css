@@ -15,7 +15,7 @@
   a {
     font-weight: bold;
     text-decoration: none;
-    color: $brand-success;
+    color: $brand-primary;
   }
 }
 .snackbar.snackbar-opened {

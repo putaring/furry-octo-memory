@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   validates :language, presence: true, length: { is: 3 }, inclusion: { in: LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3) }
 
   validates_numericality_of :height, only_integer: true, greater_than: 24
+  validates_numericality_of :income, allow_nil: true
 
   validates_uniqueness_of :email, case_sensitive: false,
     if: ->(u) { u.email_changed? }
@@ -66,6 +67,7 @@ class User < ActiveRecord::Base
 
   before_save { email.downcase! }
   before_save { language.downcase! }
+  before_save { self.income = self.income.try(:ceil) }
 
   def display_picture_for(visitor, thumbnail_type = :thumb)
     display_photos_to?(visitor) ? display_thumbnail(thumbnail_type) : default_thumbnail(thumbnail_type)
@@ -83,12 +85,20 @@ class User < ActiveRecord::Base
     @_profile_photo ||= photos.active.find_by(rank: 1)
   end
 
+  def iso_country
+    @_iso_country ||= ISO3166::Country.find_country_by_alpha2(country)
+  end
+
   def country_name
-    @_country_name ||= ISO3166::Country.find_country_by_alpha2(country).name
+    iso_country.name
   end
 
   def country_alpha3
-    @_country_alpha3 ||= ISO3166::Country.find_country_by_alpha2(country).alpha3
+    iso_country.alpha3
+  end
+
+  def currency_symbol
+    iso_country.currency.symbol || iso_country.currency.code
   end
 
   def language_expanded
