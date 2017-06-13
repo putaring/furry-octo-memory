@@ -33,7 +33,7 @@
     <dd class="col-11">
       <% if @user.income.present? %>
       <span class="text-muted">Earns</span>
-        <%= content_tag(:abbr, title: @user.iso_country.currency.name, style: "text-decoration: none") do %>
+        <%= content_tag(:span, title: @user.iso_country.currency.name, data: { toggle: "tooltip", placement: "bottom" }) do %>
         <strong><%= Money.from_amount(@user.income, @user.iso_country.currency.iso_code).format(symbol_before_without_space: false) %></strong>
         <% end %>
         <span class="text-muted">a year</span>
