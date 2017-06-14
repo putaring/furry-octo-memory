@@ -12,8 +12,8 @@
 </div>
 
 <section class="container mb-5">
-  <div class="row justify-content-center">
     <% if @active_bookmarks.empty? %>
+    <div class="row justify-content-center">
       <div class="col-lg-7">
         <div class="rounded p-5 text-center text-muted" style="border: 2px dashed #ccc">
           <p class="m-lg-5 m-2">
@@ -22,12 +22,14 @@
           </p>
         </div>
       </div>
+    </div>
     <% else %>
+    <div class="row">
       <div class="col-lg-7">
         <% @active_bookmarks.each do |bookmark| %>
           <%= render partial: 'favorites/favorite_card', locals: { time: bookmark.created_at, user: bookmark.bookmarked } %>
         <% end %>
       </div>
+    </div>
     <% end %>
-  </div>
 </section>

@@ -1,14 +1,11 @@
-<div class="card mb-2">
-  <div class="card-block">
-    <div class="media">
-      <%= link_to user_path(user), { style: "text-decoration:none;" } do %>
-        <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle mr-3', width: 120 }) %>
-      <% end %>
-      <div class="media-body">
-        <%= link_to user.username, user_path(user), { class: 'h5' } %><br>
-        <div class="mb-3"><small class="text-muted"><%= time_ago_in_words(time) %> ago</small></div>
-        <%= link_to('Remove from favorites', favorite_user_path(user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'favoriteLink' }) %>
-      </div>
-    </div>
+
+<div class="media mb-4">
+  <%= link_to user_path(user), { style: "text-decoration:none;" } do %>
+    <%= image_tag(user.display_picture_for(current_user), { class: 'rounded mr-3', width: 100 }) %>
+  <% end %>
+  <div class="media-body">
+    <%= link_to user.username, user_path(user), { class: 'h6' } %><br>
+    <div class="mb-2"><small class="text-muted">Favorited <%= time_ago_in_words(time) %> ago</small></div>
+    <%= link_to('Remove', favorite_user_path(user), remote: true, method: :delete, class: 'btn btn-danger', data: { component: 'favoriteLink' }) %>
   </div>
 </div>

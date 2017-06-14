@@ -141,9 +141,16 @@ $('select#religion').change(function (e) {
   }).on('ajax:success', function (e, data, status, xhr) {
     $searchResults.empty();
     var users = $.parseJSON(data);
-    for(var i = 0; i < users.length; i++) {
-      renderUserCard(users[i]);
+    if (users.length === 0) {
+      $searchResults.html('<div class="rounded p-5 text-center text-muted mb-5 mx-2" style="border: 2px dashed #ccc">\
+        <p class="m-lg-5 m-2">We couldn\'t find any matches. We\'re adding more profiles every day. Come back later and try again</p>\
+      </div>');
+    } else {
+      for(var i = 0; i < users.length; i++) {
+        renderUserCard(users[i]);
+      }
     }
+
   });
 
 
@@ -200,7 +207,6 @@ $('select#religion').change(function (e) {
       // multiselect
       $countries.val(searchObject.countries);
     }
-    $searchForm.submit();
   }
 
 })();
