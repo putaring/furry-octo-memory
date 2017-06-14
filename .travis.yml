@@ -2,23 +2,23 @@ cache: bundler
 language: ruby
 rvm: 2.2.3
 services:
-  - postgresql
-  - redis-server
+- postgresql
+- redis-server
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
 script:
 - bundle exec rspec
 - bundle exec rubocop
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
   code_climate:
-    repo_token: f17460fe606b39aa24f434406f831a8b10e383b741c3e57d049327591131d836
+    repo_token: b83ed7a245c8d4bf3019834f0efb9ffca11c9fc64ec99c3f6d7d038a9e5a5a15
 deploy:
   provider: heroku
-  run: "rake db:migrate"
+  run: rake db:migrate
   api_key:
-    secure: ME/7+7NfBtpEn9s7t6RKcUD39/ww13aWxBWH4W/egzqz4DgvYKM+ceSDzoy3QCGopDCEYeAe2UGuBanggLspRebp8S70+GgMPGVelAK2xIJn3hkfQn+zIP9yOX6LgDePsHPc1A8kSPo16jH4QlAKFaBvdpyNWH4UtVziSWuvD2fRJ6ql5xnWTkzHIlRDO5nVtRTwi0U8W7HwRiyHeMQT9IYTCaJa59vkNysTCbrCJB6s/j9GVxwD820CtiNSThTTVe2dE3lRhSdVBtq5XaOmhUGfh/Skhti4I3q27KqdxpWN6FOJtDQnPg8TXgIIUC66GHY3Os7I10QCdft/rZsblXRtjMl1CvBjApKFnJ1JQo8/6MQZEGKqwEVJkYeZScoDIrd5KUuenOhdLBqmi+dx4NmGeYG3LhUlbP7oAd6XaUbVbWonqTu3Sx8USeREsTBgPRnonywkz1UKVHGqNNFGyS2LL5MaGlo49QoRkNr2nWQI+h4uJjOd/ZGFXv9NIwk3SMIxx5BdDWBfaI1D5312/Rw92pRYF+Wub3JBmXIoTgzwLfI+CdP7PPtr6qm4+ai9fz2pMLXygjY7ZU+fMaJtCjseG09Q3Sv+QU+CzpWLVB9sKOSBASBnw6GKLccNaDXKxYDU8BzCTumLL0BxbfvIcTHPW4XwM1ZWWd5S/ElCijc=
+    secure: Km+YYNjYF8rWGIU6c7AIcWlYEhmfzfJRhOitfEEOdGKyV8aqRvoNT2W3xzZbXy7NeGL+ZA2sG9niEN8ABdNwuP2wpWhEZR8myzO0giiVCr3OBEXUTucTJvmHKVBkLOu2N6bb1DyTS5onhndNOoL7rCUdN7fudE+fmgPwPj1XuQMVm2NCG8WE0mmwhpWtn6gp0MgxPriVuH9mkiFp7cBsZRzgweSGXpDXbBBaCElQ/5G2ERMlO1qtHoIgDuLvDdqWR9wxRLA03H6UXAL8b2ONX8a9vu/mgusG+x/en3hK50LQerCw7MNWlBoOkDpZr0hNSof9rXm/hkazULOLJb4ren/1YFxPCgeNjAPVzKK28r8MHnTzcRZNZZnVqErNCcmMGT5X8ngvbHiuvAjYZ9E0mRx/XKqkp7Id+01Y4iRapqFt0ZBOWimwQqXBZTrQlRRxIHLfSotYHLJzoD48QUlECnwk37DKHNht6QLt0ZubTq3CO1EPcFxTVCwkLnwzIFfw4XwkLiX3Mcw/SKSrbVGa86DNL2tjH8EPPaYdoVxORCnA98//s6Vg0gWtLxAcjOJncN/i8GK04MIu6id3BGmys6Jcbf7pfQkQK1PrZdnnijsWNIOGvdl8UOQqpVDJawrxSHzFTHl9KXBxoVDE8KDqFSDpx9oqNnf6l4xO1rcrpVc=
   app: afternoon-thicket-17904
   on:
-    repo: sanjaykamaruddin/joonam
+    repo: putaring/furry-octo-memory
