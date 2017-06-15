@@ -10,14 +10,14 @@
 <section class="container mb-5">
   <div class="row">
     <div class="col-12 col-md-6 offset-md-3 mt-3">
-      <%= image_tag 'smartphone.svg', class: 'img-fluid mx-auto d-block mb-3', width: 60 %>
+      <%= image_tag 'icons/themed/smartphone.svg', class: 'img-fluid mx-auto d-block mb-3', width: 60 %>
       <h1 class="h4 text-center text-muted">One last step</h1>
       <p class="text-center">
         <span class="text-muted">Verify your mobile number in </span><strong>2 easy steps</strong>.
         <span class="text-muted">It helps us ensure that only real people join Spouzz.com</span>
         </p>
       <div id="accordion" role="tablist" aria-multiselectable="true">
-        <div class="card card-outline-success">
+        <div class="card card-outline-secondary">
           <div class="card-header" role="tab" id="headingOne">
             <h5 class="mb-0">
               1. <span class="text-muted">Enter your mobile number</span>
@@ -38,12 +38,12 @@
                     <%= telephone_field nil, :cell_phone, { class: 'form-control form-control-lg', required: true, id: "cell_phone", placeholder: "Your mobile number", autocomplete: :off } %>
                     <div class="form-control-feedback" style="display:none;"></div>
                   </div>
-                  <%= f.submit "Send verification code", class: "btn btn-success btn-lg btn-block", data: { disable_with: "Sending…" } %>
+                  <%= f.submit "Send verification code", class: "btn btn-primary btn-lg btn-block", data: { disable_with: "Sending…" } %>
               <% end %>
             </div>
           </div>
         </div>
-        <div class="card card-outline-success">
+        <div class="card card-outline-secondary">
           <div class="card-header" role="tab" id="headingTwo">
             <h5 class="mb-0">
               2. <span class="text-muted">Enter verification code</span>
