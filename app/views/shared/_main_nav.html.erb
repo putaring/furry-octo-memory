@@ -10,27 +10,23 @@
       <% if logged_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to search_path, { class: 'nav-link non-distracting' } do %>
-              <%= image_tag 'search.svg', height: 30 %>
+            <%= link_to search_path, { class: 'nav-link' } do %>
               Search
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to likes_me_path, { class: 'nav-link non-distracting' } do %>
-            <%= image_tag 'like.svg', height: 30 %>
+            <%= link_to likes_me_path, { class: 'nav-link' } do %>
             Likes
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to messages_path, { class: 'nav-link non-distracting' } do %>
-              <%= image_tag 'message.svg', height: 30 %>
+            <%= link_to messages_path, { class: 'nav-link' } do %>
               Messages
               <%= notification_counter(current_user.received_messages.unread.count) %>
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to favorites_path, { class: 'nav-link non-distracting' } do %>
-              <%= image_tag 'favorites.svg', height: 30 %>
+            <%= link_to favorites_path, { class: 'nav-link' } do %>
               Favorites
             <% end %>
           </li>
