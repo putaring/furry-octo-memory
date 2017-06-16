@@ -5,11 +5,7 @@ class ForgotPasswordController < ApplicationController
     user  = User.find_by(email: email)
     UserMailer.password_email(user).deliver_later if user.present?
 
-    redirect_to check_your_email_path(email: email)
-  end
-
-  def check_email
-    redirect_to forgot_password_path if params[:email].blank?
+    redirect_to check_your_email_path, flash: { notice: email }
   end
 
   def reset_password

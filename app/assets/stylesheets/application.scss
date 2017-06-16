@@ -12,10 +12,9 @@
 @import "swipebox";
 @import "search";
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-weight: bold;
+.navbar-brand {
+  font-family: 'Montserrat', sans-serif;;
 }
-
 
 .scrollable-div {
   height: 100px;

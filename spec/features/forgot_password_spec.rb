@@ -17,7 +17,7 @@ feature "Forgot password" do
     end
 
     scenario "should show reset intructions to user" do
-      expect(page).to have_current_path(check_your_email_path(email: email.downcase.strip))
+      expect(page).to have_current_path(check_your_email_path)
     end
   end
 end
