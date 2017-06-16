@@ -3,7 +3,7 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <%= link_to logged_in? ? user_path(current_user) : root_path, { class: logged_in? ? 'navbar-brand non-distracting' : 'navbar-brand' } do %>
+    <%= link_to logged_in? ? user_path(current_user) : root_path, { class: 'navbar-brand' } do %>
       <%= image_tag 'logo.svg', height: 30, title: "Home", alt: "Home" %> Spouzz
     <% end %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -11,22 +11,26 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <%= link_to search_path, { class: 'nav-link' } do %>
+              <%= image_tag('icons/themed/search.svg', width: 25) %>
               Search
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to likes_me_path, { class: 'nav-link' } do %>
+            <%= image_tag('icons/themed/hearts.svg', width: 25) %>
             Likes
             <% end %>
           </li>
           <li class="nav-item">
             <%= link_to messages_path, { class: 'nav-link' } do %>
+              <%= image_tag('icons/themed/messages.svg', width: 25) %>
               Messages
               <%= notification_counter(current_user.received_messages.unread.count) %>
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to favorites_path, { class: 'nav-link' } do %>
+              <%= link_to favorites_path, { class: 'nav-link' } do %>
+              <%= image_tag('icons/themed/shortlist.svg', width: 25) %>
               Favorites
             <% end %>
           </li>

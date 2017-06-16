@@ -8,46 +8,11 @@
 @import "snackbar";
 @import "messages";
 @import "likes";
+@import "nav";
 @import "snackbar_material";
 @import "swipebox";
 @import "search";
 
-.navbar-brand {
-  font-family: 'Montserrat', sans-serif;;
-}
-
-.scrollable-div {
-  height: 100px;
-  padding-top: 0.1em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 7px;
-  }
-  &::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      background-color: rgba(255,255,255,.5);
-      -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-  }
-}
-
 .essay {
   font-size: 1.13rem;
 }
-
-/*
-.non-distracting {
-  img {
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-  }
-
-  &:hover {
-    img {
-      -webkit-filter: none;
-      filter: none;
-    }
-  }
-}
-*/

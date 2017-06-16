@@ -1,0 +1,25 @@
+.navbar-brand {
+  font-family: 'Montserrat', sans-serif;;
+}
+
+.navbar-light {
+  .nav-link {
+    img {
+      filter: grayscale(100%);
+    }
+    @include hover-focus {
+      img {
+        filter: none;
+      }
+    }
+  }
+
+  .show > .nav-link,
+  .active > .nav-link,
+  .nav-link.show,
+  .nav-link.active {
+    img {
+      filter: none;
+    }
+  }
+}
