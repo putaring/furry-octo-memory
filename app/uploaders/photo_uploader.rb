@@ -9,6 +9,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  process :orient
   process convert: 'jpg'
 
   # Create different versions of your uploaded files:
@@ -24,6 +25,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   version :small_thumb, from_version: :thumb do
     process resize_to_fill: [120, 120]
+  end
+
+  def orient
+    manipulate! do |img|
+      img.auto_orient
+    end
   end
 
   def crop
