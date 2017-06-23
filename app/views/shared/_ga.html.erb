@@ -7,6 +7,7 @@
   ga('create', '<%= ENV['TRACKING_ID'] %>', 'auto');
   <% if current_user.present? %>
   ga('set', 'userId', <%= current_user.id %>);
+  ga('set', 'dimension1', '<%= current_user.id %>');
   <% end %>
   ga('send', 'pageview');
 
