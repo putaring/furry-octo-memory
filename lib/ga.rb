@@ -35,8 +35,7 @@ request = {
     }
    ]
   }
-],
-page_size: 1
+]
 }
 
 require 'googleauth'
@@ -49,8 +48,8 @@ service = Analyticsreporting::AnalyticsReportingService.new
 service.authorization = Google::Auth.get_application_default(Analyticsreporting::AUTH_ANALYTICS_READONLY)
 
 next_page_token = nil
-begin
-  service.batch_get_reports(Google::Apis::AnalyticsreportingV4::GetReportsRequest.new({report_requests: [request.merge(page_token: next_page_token)]}))
+loop do
+  response = service.batch_get_reports(Google::Apis::AnalyticsreportingV4::GetReportsRequest.new({report_requests: [request.merge(page_token: next_page_token)]}))
   report = response.reports.first
   report.data.rows.each do |row|
     obj = {
@@ -61,4 +60,5 @@ begin
     puts obj
   end
   next_page_token = report.next_page_token
-end while next_page_token
+  break if next_page_token.blank?
+end
