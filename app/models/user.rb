@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :photos
 
+  has_one :profile_photo, -> { where(status: Photo.statuses[:active]).order(:rank) }, class_name: "Photo"
+
   has_many :phone_verifications
 
   has_many :reports, foreign_key: "reporter_id", dependent: :destroy
@@ -79,10 +81,6 @@ class User < ActiveRecord::Base
     else
       default_thumbnail(thumbnail_type)
     end
-  end
-
-  def profile_photo
-    @_profile_photo ||= photos.active.find_by(rank: 1)
   end
 
   def iso_country
