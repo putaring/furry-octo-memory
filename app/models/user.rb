@@ -134,7 +134,7 @@ class User < ActiveRecord::Base
   end
 
   def likes?(other_user)
-    likes.find_by(id: other_user.id).present?
+    likes.exists?(other_user.id)
   end
 
   def gender_expanded
@@ -152,10 +152,6 @@ class User < ActiveRecord::Base
   def age
     now = Time.now
     now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
-  end
-
-  def has_active_photos?
-    @_has_visible_photos ||= photos.active.count > 0
   end
 
   def display_photos_to?(visitor)
