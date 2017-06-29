@@ -121,7 +121,7 @@ class User < ActiveRecord::Base
   end
 
   def bookmarked?(other_user)
-    favorites.find_by(id: other_user.id).present?
+    favorites.exists?(other_user.id)
   end
 
   def unfavorite(other_user)
