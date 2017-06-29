@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :photos
 
-  has_one :profile_photo, -> { where(status: Photo.statuses[:active]).order(:rank) }, class_name: "Photo"
+  has_many :active_photos, -> { where(status: Photo.statuses[:active]).order(:rank) }, class_name: "Photo"
 
   has_many :phone_verifications
 
@@ -70,6 +70,10 @@ class User < ActiveRecord::Base
   before_save { email.downcase! }
   before_save { language.downcase! }
   before_save { self.income = self.income.try(:ceil) }
+
+  def profile_photo
+    active_photos.first
+  end
 
   def display_picture_for(visitor, thumbnail_type = :thumb)
     display_photos_to?(visitor) ? display_thumbnail(thumbnail_type) : default_thumbnail(thumbnail_type)

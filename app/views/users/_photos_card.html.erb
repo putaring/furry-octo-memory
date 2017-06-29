@@ -1,4 +1,4 @@
-<% if !@user.has_active_photos? %>
+<% if @user.active_photos.blank? %>
 
 
 <% elsif @user.display_photos_to?(current_user) == false %>
