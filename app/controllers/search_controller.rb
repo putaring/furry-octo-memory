@@ -10,7 +10,7 @@ class SearchController < ApplicationController
   private
 
   def search
-    @users = User.active.includes(:photos)
+    @users = User.active.includes(:profile_photo)
     filter_gender if params[:gender].present?
     filter_status if params[:status].present?
     filter_age
