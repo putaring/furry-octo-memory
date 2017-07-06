@@ -1,16 +1,3 @@
-GIT
-  remote: git://github.com/google/google-api-ruby-client.git
-  revision: e7f64be149bcd028ed7d564ee383cc399b71dedc
-  branch: master
-  specs:
-    google-api-client (0.13.0)
-      addressable (~> 2.5, >= 2.5.1)
-      googleauth (~> 0.5)
-      httpclient (>= 2.8.1, < 3.0)
-      mime-types (~> 3.0)
-      representable (~> 3.0)
-      retriable (>= 2.0, < 4.0)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -140,6 +127,13 @@ GEM
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    google-api-client (0.13.0)
+      addressable (~> 2.5, >= 2.5.1)
+      googleauth (~> 0.5)
+      httpclient (>= 2.8.1, < 3.0)
+      mime-types (~> 3.0)
+      representable (~> 3.0)
+      retriable (>= 2.0, < 4.0)
     googleauth (0.5.1)
       faraday (~> 0.9)
       jwt (~> 1.4)
@@ -380,7 +374,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   fog-aws
-  google-api-client!
+  google-api-client (= 0.13.0)
   guard-rspec
   has_secure_token
   jquery-rails

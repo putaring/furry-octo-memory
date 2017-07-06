@@ -43,7 +43,7 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-gem 'google-api-client', github: 'google/google-api-ruby-client', branch: "master"
+gem 'google-api-client', '0.13.0'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'bullet', group: 'development'
 
