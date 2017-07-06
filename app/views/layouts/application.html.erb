@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
+  <%= render partial: 'shared/gtm' %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title><%= full_title(yield(:title)) %></title>
-  <%= render partial: 'shared/ga' %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Open+Sans:300,400,600" rel="stylesheet">
   <link rel="icon"
@@ -16,6 +16,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= yield :gtm_body %>
 <%= yield %>
 <%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
 <%= javascript_include_tag 'application' %>
