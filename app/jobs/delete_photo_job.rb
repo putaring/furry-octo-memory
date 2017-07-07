@@ -1,5 +1,5 @@
 class DeletePhotoJob < ActiveJob::Base
-  queue_as :photo_deleter
+  queue_as :low
 
   def perform(photo_id)
     Photo.deleted.find(photo_id).try(:destroy)

@@ -1,2 +1,2 @@
 web: bundle exec puma -C config/puma.rb
-worker: env TERM_CHILD=1 QUEUE=urgent,mailers,photo_deleter bundle exec rake resque:work
+worker: bundle exec sidekiq -q critical -q mailers -q low -c 5
