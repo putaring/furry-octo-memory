@@ -1,199 +1,25 @@
 <% provide(:title, 'Browse matches') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid bg-primary py-2" style="color:#fff;">
-  <div class="container">
-    <h1 data-toggle="collapse" href="#search-panel" class="h2" style="cursor: pointer">
-      <a style="color:#fff; text-decoration: none;">Browse matches</a>
-    </h1>
-    <%= form_tag search_path, method: :get, remote: true, format: :json, id: "search-panel", class: "collapse show mt-3", data: { logged_in: logged_in?, liker_ids: logged_in? ? current_user.liker_ids : [] } do %>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <%= label_tag :gender, "What're you looking for?", class: "col-form-label-lg" %>
-          <%= select_tag :gender, options_for_select([["I'm a woman looking for a man", 'm'], ["I'm a man looking a woman", 'f']]), { class: 'form-control' } %>
-        </div>
-
-        <div class="form-group">
-          <%= label_tag :religion, "Religion", class: "col-form-label-lg" %>
-          <%= select_tag :religion, options_for_select(User.religions.map{ |religion, _| [religion.humanize, religion] }), { class: 'form-control', include_blank: "Doesn't matter" } %>
-        </div>
-
-        <div class="form-group" id="caste-search-container" style="display:none">
-          <%= label_tag :sects, "Caste", class: "col-form-label-lg" %>
-          <% if browser.device.mobile? || browser.device.tablet? %>
-
-            <%= select_tag :sects, options_for_select(CASTES.map { |caste| [caste[:name], caste[:code]] }), { class: 'form-control', prompt: "Doesn't matter", multiple: true, disabled: true } %>
-
-          <% else %>
-            <div class="row scrollable-div mb-1">
-              <div class="col-6">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag nil, "", false, class: 'form-check-input', data: { toggle: 'sects' } %>
-                    Doesn't matter
-                  </label>
-                </div>
-                <% CASTES.map { |caste| [caste[:name], caste[:code]] }[0..200].each do |caste| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "sects[]", caste[1], false, class: 'form-check-input', disabled: true %>
-                    <%= caste[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-              <div class="col-6">
-                <% CASTES.map { |caste| [caste[:name], caste[:code]] }[201..-1].each do |caste| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "sects[]", caste[1], false, class: 'form-check-input', disabled: true %>
-                    <%= caste[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-
-
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <%= label_tag :min_age, "Age", class: "col-form-label-lg" %>
-          <div class="row">
-            <div class="col-6">
-              <%= number_field_tag :min_age, nil, { class: 'form-control', placeholder: 'Min', within: 18..100 } %>
-            </div>
-            <div class="col-6">
-              <%= number_field_tag :max_age, nil, { class: 'form-control', placeholder: 'Max', within: 18..100 } %>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <%= label_tag :min_height, "Height", class: "col-form-label-lg" %>
-          <div class="row">
-            <div class="col-6">
-              <%= select_tag :min_height, options_for_select((48..84).map { |height_in_inches| [metric_height(height_in_inches), height_in_inches] }), { class: 'form-control', include_blank: "Min" } %>
-            </div>
-            <div class="col-6">
-              <%= select_tag :max_height, options_for_select((48..84).map { |height_in_inches| [metric_height(height_in_inches), height_in_inches] }), { class: 'form-control', include_blank: "Max" } %>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <%= label_tag :status, "Marital status", class: "col-form-label-lg" %>
-          <%= select_tag :status, options_for_select(User.statuses.map{ |status, _| [status.humanize, status] }), { class: 'form-control', include_blank: "Doesn't matter" } %>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="form-group">
-          <%= label_tag :languages, "Mother tongue", class: "col-form-label-lg" %>
-
-          <% if browser.device.mobile? || browser.device.tablet? %>
-
-            <%= select_tag :languages, options_for_select(LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }), { class: 'form-control', prompt: "Doesn't matter", multiple: true } %>
-
-          <% else %>
-
-            <div class="row scrollable-div mb-1">
-              <div class="col-6">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag nil, "", false, class: 'form-check-input', data: { toggle: 'languages' } %>
-                    Doesn't matter
-                  </label>
-                </div>
-                <% LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }[0..15].each do |language| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "languages[]", language[1], false, class: 'form-check-input' %>
-                    <%= language[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-              <div class="col-6">
-                <% LanguageList::POPULAR_LANGUAGES.map { |l| [l.common_name || l.name, l.iso_639_3] }[16..-1].each do |language| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "languages[]", language[1], false, class: 'form-check-input' %>
-                    <%= language[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-            </div>
-
-          <% end %>
-
-        </div>
-
-        <div class="form-group">
-          <%= label_tag :countries, "Living in", class: "col-form-label-lg" %>
-
-          <% if browser.device.mobile? || browser.device.tablet? %>
-
-            <%= select_tag :countries, options_for_select(ISO3166::Country.with_indian_population.map { |country| [country.name, country.alpha2] }), { class: 'form-control', prompt: "Doesn't matter", multiple: true } %>
-
-          <% else %>
-
-            <div class="row scrollable-div">
-              <div class="col-6">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag nil, "", false, class: 'form-check-input', data: { toggle: 'countries' } %>
-                    Doesn't matter
-                  </label>
-                </div>
-                <% ISO3166::Country.with_indian_population.map { |country| [country.name, country.alpha2] }[0..20].each do |country| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "countries[]", country[1], false, class: 'form-check-input' %>
-                    <%= country[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-              <div class="col-6">
-                <% ISO3166::Country.with_indian_population.map { |country| [country.name, country.alpha2] }[21..-1].each do |country| %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <%= check_box_tag "countries[]", country[1], false, class: 'form-check-input' %>
-                    <%= country[0] %>
-                  </label>
-                </div>
-                <% end %>
-              </div>
-            </div>
-
-          <% end %>
-
-        </div>
-
-      </div>
-
-    </div>
-    <div class="row mt-1">
-      <div class="col-12 text-center">
-        <%= submit_tag "Search", class: 'btn btn-success btn-lg', data: { disable_with: 'Searching…' } %>
-      </div>
-    </div>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'search/search_form' %>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-10 offset-lg-1 col-12">
-      <div class="row justify-content-center" id="search-results">
-        <div class="rounded p-5 text-center text-muted mb-5 mx-2" style="border: 2px dashed #ccc">
-          <p class="m-lg-5 m-2">Enter your preference and click Search to get started.</p>
-        </div>
-      </div>
+        <% if @users.present? %>
+        <div class="row justify-content-center" id="search-results">
+          <%= render partial: 'search/user', collection: @users %>
+          </div>
+          <div class="row justify-content-center">
+            <%= paginate @users, window: 1 %>
+          </div>
+        <% else %>
+        <div class="row justify-content-center" id="search-results">
+          <div class="rounded p-5 text-center text-muted mb-5 mx-2" style="border: 2px dashed #ccc">
+            <p class="m-lg-5 m-2">Enter your preference and click Search to get started.</p>
+          </div>
+          </div>
+        <% end %>
     </div>
   </div>
 </div>
