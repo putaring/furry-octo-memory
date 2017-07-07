@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge(ip: request.remote_ip))
     if @user.save
       login(@user)
-      UserMailer.welcome_email(@user).deliver_later
+      UserMailer.welcome_email(@user.id).deliver_later
       redirect_to verify_path
     else
       render 'new'

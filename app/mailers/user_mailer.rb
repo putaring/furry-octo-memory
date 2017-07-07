@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
   default from: 'sanjayroozam@gmail.com'
 
-  def welcome_email(user)
-    @user = user
-    mail(to: user.email, subject: 'Welcome to Spouzz')
+  def welcome_email(user_id)
+    @user = User.find(user_id)
+    mail(to: @user.email, subject: 'Welcome to Spouzz')
   end
 
   def password_email(user)
