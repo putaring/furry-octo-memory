@@ -22,6 +22,7 @@ gem 'puma'
 gem 'newrelic_rpm'
 gem "rack-timeout"
 gem 'aws-sdk', '~> 2'
+gem 'kaminari'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
