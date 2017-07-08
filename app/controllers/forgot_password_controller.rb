@@ -3,7 +3,7 @@ class ForgotPasswordController < ApplicationController
   def send_instructions
     email = params[:email].downcase.strip
     user  = User.find_by(email: email)
-    UserMailer.password_email(user).deliver_later if user.present?
+    UserMailer.password_email(user.id).deliver_later if user.present?
 
     redirect_to check_your_email_path, flash: { notice: email }
   end
