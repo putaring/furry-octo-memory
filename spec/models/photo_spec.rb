@@ -58,7 +58,7 @@ RSpec.describe Photo, type: :model do
     describe "#process_remote_picture" do
       before do
         photo.process_remote_picture({
-          remote_image_url: "https://pixlr.com/assets/landing/gallery/5-68c0f48120fefc5eb0cff67573d649da.jpg"
+          remote_image_url: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2000px-Google_2015_logo.svg.png"
         })
       end
       it "should be made active" do

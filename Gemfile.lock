@@ -386,6 +386,7 @@ DEPENDENCIES
   mini_magick
   newrelic_rpm
   pg
+  pry
   puma
   rack-timeout
   rails (= 4.2.6)

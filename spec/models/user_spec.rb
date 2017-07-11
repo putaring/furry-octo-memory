@@ -43,6 +43,10 @@ RSpec.describe User, type: :model do
     it { should have_many(:passive_interests) }
     it { should have_many(:likes) }
     it { should have_many(:likers) }
+    it { should have_many(:active_visits) }
+    it { should have_many(:passive_visits) }
+    it { should have_many(:visits) }
+    it { should have_many(:visitors) }
     it { should have_many(:active_bookmarks) }
     it { should have_many(:passive_bookmarks) }
     it { should have_many(:favorites) }

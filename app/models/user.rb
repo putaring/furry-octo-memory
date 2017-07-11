@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
   has_many :likes, through: :active_interests,  source: :liked
   has_many :likers, through: :passive_interests, source: :liker
 
+  has_many :active_visits, class_name: "ProfileVisit", foreign_key: "visitor_id", dependent: :destroy
+  has_many :passive_visits, class_name: "ProfileVisit", foreign_key: "visited_id", dependent: :destroy
+
+  has_many :visits, through: :active_visits, source: :visited
+  has_many :visitors, through: :passive_visits, source: :visitor
+
   has_many :active_bookmarks, class_name: "Bookmark", foreign_key: "bookmarker_id", dependent: :destroy
   has_many :passive_bookmarks, class_name: "Bookmark", foreign_key: "bookmarked_id", dependent: :destroy
 

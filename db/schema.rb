@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608210011) do
+ActiveRecord::Schema.define(version: 20170710211335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,19 @@ ActiveRecord::Schema.define(version: 20170608210011) do
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
+  create_table "profile_visits", force: :cascade do |t|
+    t.integer  "visitor_id", null: false
+    t.integer  "visited_id", null: false
+    t.integer  "visits",     null: false
+    t.date     "date",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "profile_visits", ["visited_id"], name: "index_profile_visits_on_visited_id", using: :btree
+  add_index "profile_visits", ["visitor_id", "visited_id", "date"], name: "index_profile_visits_on_visitor_id_and_visited_id_and_date", unique: true, using: :btree
+  add_index "profile_visits", ["visitor_id"], name: "index_profile_visits_on_visitor_id", using: :btree
+
   create_table "profiles", force: :cascade do |t|
     t.string   "about",      limit: 1500
     t.integer  "user_id",                 null: false
@@ -148,6 +161,8 @@ ActiveRecord::Schema.define(version: 20170608210011) do
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "phone_verifications", "users"
   add_foreign_key "photos", "users"
+  add_foreign_key "profile_visits", "users", column: "visited_id"
+  add_foreign_key "profile_visits", "users", column: "visitor_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "reports", "users", column: "reported_id"
   add_foreign_key "reports", "users", column: "reporter_id"
