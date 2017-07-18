@@ -32,7 +32,7 @@ class VisitorReportingService
       rows.each do |row|
         #LogProfileVisitsJob.perform_later(
         x = {
-          visited_id: row.dimensions.first.to_s,
+          visited_id: row.dimensions.first,
           visitor_id: row.dimensions.second,
           visits: row.metrics.first.values.first,
           date: date
@@ -52,7 +52,7 @@ class VisitorReportingService
      view_id: ENV["GA_VIEW_ID"],
      dimensions: [
       {
-       name: "ga:pagePath"
+       name: "ga:dimension2"
       },
       {
        name: "ga:dimension1"
