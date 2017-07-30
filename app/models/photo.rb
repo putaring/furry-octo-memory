@@ -1,5 +1,7 @@
 class Photo < ActiveRecord::Base
-  attr_accessor :image_x, :image_y, :image_width
+  attr_accessor :image_x, :image_y, :image_width,
+    :final_crop_x, :final_crop_y,
+    :final_image_width, :original_image_width
 
   belongs_to :user
 

@@ -13,7 +13,7 @@
       if (this.tries <= 5) {
         // we only poll 5 times. We dont want to keep polling for the photo
         // in case something went wrong
-        window.setTimeout($.proxy(this.getPhoto, this), 5000);
+        window.setTimeout($.proxy(this.getPhoto, this), 10000);
       }
     },
 
@@ -34,7 +34,7 @@
     updatePhoto: function () {
       var isProfilePhoto = this.photo.rank == 1;
       if (isProfilePhoto) {
-        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.large.url + '">\
+        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.url + '">\
                               <img class="card-img-top img-fluid w-100" src="' + this.photo.image.thumb.url + '" />\
                             </a>\
                             <div class="card-block">\
@@ -44,7 +44,7 @@
                               </p>\
                             </div>';
       } else {
-        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.large.url + '">\
+        var newPhotoHtml = '<a data-toggle="swipebox" href="' + this.photo.image.url + '">\
                               <img class="card-img-top img-fluid w-100" src="' + this.photo.image.thumb.url + '" />\
                             </a>\
                             <div class="card-block">\

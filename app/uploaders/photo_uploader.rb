@@ -10,13 +10,13 @@ class PhotoUploader < CarrierWave::Uploader::Base
   end
 
   process :orient
+  process :set_original_width
+
   process convert: 'jpg'
+  process resize_to_limit: [1500, 1500]
 
-  # Create different versions of your uploaded files:
-
-  version :large do
-    process resize_to_limit: [1500, 1500]
-  end
+  process :set_final_width
+  process :set_final_crop_origin
 
   version :thumb do
     process :crop
@@ -36,7 +36,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def crop
     if model.image_x.present? && model.image_width.present?
       manipulate! do |img|
-        img.crop("#{model.image_width}x#{model.image_width}+#{model.image_x}+#{model.image_y}")
+        puts "Width was #{model.image_width} is #{final_crop_width}"
+        puts "Dimensions was #{[model.image_x, model.image_y]} is #{[model.final_crop_x, model.final_crop_y]}"
+        img.crop("#{final_crop_width}x#{final_crop_width}+#{model.final_crop_x}+#{model.final_crop_y}")
       end
     end
   end
@@ -57,6 +59,27 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  end
+
+  def set_original_width
+    model.original_image_width = ::MiniMagick::Image.open(file.file)[:dimensions][0]
+  end
+
+  def set_final_width
+    model.final_image_width = ::MiniMagick::Image.open(file.file)[:dimensions][0]
+  end
+
+  def final_scale
+    @_final_scale ||= (model.final_image_width.to_f / model.original_image_width.to_f)
+  end
+
+  def final_crop_width
+    @_final_crop_width ||= (model.image_width.to_f * final_scale)
+  end
+
+  def set_final_crop_origin
+    model.final_crop_x  = model.image_x.to_f * final_scale
+    model.final_crop_y  = model.image_y.to_f * final_scale
   end
 
 end
