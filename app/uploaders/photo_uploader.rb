@@ -36,8 +36,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def crop
     if model.image_x.present? && model.image_width.present?
       manipulate! do |img|
-        puts "Width was #{model.image_width} is #{final_crop_width}"
-        puts "Dimensions was #{[model.image_x, model.image_y]} is #{[model.final_crop_x, model.final_crop_y]}"
         img.crop("#{final_crop_width}x#{final_crop_width}+#{model.final_crop_x}+#{model.final_crop_y}")
       end
     end
