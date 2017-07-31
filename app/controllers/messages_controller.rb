@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   end
 
   def sent
-    @messages = current_user.sent_messages.includes(:recipient).reverse_order.to_a.uniq { |m| m.conversation_id }
+    @messages = current_user.sent_messages.joins(:recipient).includes(:recipient).reverse_order.to_a.uniq { |m| m.conversation_id }
   end
 
   def create
