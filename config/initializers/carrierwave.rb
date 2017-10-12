@@ -3,7 +3,7 @@ if Rails.env.test?
     config.enable_processing = false
     config.storage = :file
   end
-else Rails.env.production?
+elsif Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
