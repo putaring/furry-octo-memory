@@ -1,0 +1,3 @@
+pidfile: ./shoryuken.pid
+queues:
+  - default
