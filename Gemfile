@@ -17,7 +17,7 @@ gem 'fog-aws'
 gem 'mini_magick'
 gem 'has_secure_token'
 gem 'faker'
-gem 'sidekiq'
+gem 'shoryuken'
 gem 'puma'
 gem 'newrelic_rpm'
 gem "rack-timeout"
@@ -40,7 +40,6 @@ group :development, :test do
   gem 'factory_girl_rails', require: false
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'guard-rspec', require: false
   gem 'dotenv-rails'
 end
 
