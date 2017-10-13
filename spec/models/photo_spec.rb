@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Photo, type: :model do
 
   context "validations" do
-    it { should validate_presence_of(:rank) }
-    it { should validate_numericality_of(:rank).is_greater_than_or_equal_to(1) }
+    it { is_expected.to validate_presence_of(:rank) }
+    it { is_expected.to validate_numericality_of(:rank).is_greater_than_or_equal_to(1) }
 
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
   end
 
   context "ranking" do

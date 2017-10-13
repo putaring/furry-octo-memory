@@ -2,20 +2,20 @@ require 'rails_helper'
 
 RSpec.describe PhoneVerification, type: :model do
   context "validations" do
-    subject(:phone_verification) { create(:phone_verification) }
+    subject { create(:phone_verification) }
 
-    it { should validate_presence_of(:ip) }
-    it { should validate_presence_of(:code) }
-    it { should validate_presence_of(:user_id) }
-    it { should validate_presence_of(:phone_number) }
+    it { is_expected.to validate_presence_of(:ip) }
+    it { is_expected.to validate_presence_of(:code) }
+    it { is_expected.to validate_presence_of(:user_id) }
+    it { is_expected.to validate_presence_of(:phone_number) }
 
-    it { should validate_length_of(:code).is_equal_to(4) }
+    it { is_expected.to validate_length_of(:code).is_equal_to(4) }
 
-    it { should validate_numericality_of(:code).only_integer }
+    it { is_expected.to validate_numericality_of(:code).only_integer }
 
-    it { should belong_to(:user) }
+    it { is_expected.to belong_to(:user) }
 
-    it { should be_valid }
+    it { is_expected.to be_valid }
 
     it "should not allow a validated number to be validated again" do
       create(:verified_number, phone_number: "+12134000000")
