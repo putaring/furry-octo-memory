@@ -2,57 +2,57 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context 'validations' do
-    subject(:user) { build(:user) }
-    it { should validate_presence_of(:gender) }
-    it { should validate_presence_of(:birthdate) }
-    it { should validate_presence_of(:religion) }
-    it { should validate_presence_of(:language) }
-    it { should validate_presence_of(:country) }
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:status) }
-    it { should validate_presence_of(:username).on(:update) }
+    subject { build(:user) }
+    it { is_expected.to validate_presence_of(:gender) }
+    it { is_expected.to validate_presence_of(:birthdate) }
+    it { is_expected.to validate_presence_of(:religion) }
+    it { is_expected.to validate_presence_of(:language) }
+    it { is_expected.to validate_presence_of(:country) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:status) }
+    it { is_expected.to validate_presence_of(:username).on(:update) }
 
-    it { should validate_numericality_of(:height).is_greater_than(24).only_integer }
-    it { should validate_numericality_of(:income).allow_nil }
+    it { is_expected.to validate_numericality_of(:height).is_greater_than(24).only_integer }
+    it { is_expected.to validate_numericality_of(:income).allow_nil }
 
-    it { should validate_uniqueness_of(:email).case_insensitive }
-    it { should validate_uniqueness_of(:username).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:username).case_insensitive }
 
-    it { should validate_length_of(:username).is_at_least(3).is_at_most(30).on(:update) }
-    it { should validate_length_of(:password).is_at_least(6) }
-    it { should validate_length_of(:language).is_equal_to(3) }
-    it { should validate_length_of(:country).is_equal_to(2) }
+    it { is_expected.to validate_length_of(:username).is_at_least(3).is_at_most(30).on(:update) }
+    it { is_expected.to validate_length_of(:password).is_at_least(6) }
+    it { is_expected.to validate_length_of(:language).is_equal_to(3) }
+    it { is_expected.to validate_length_of(:country).is_equal_to(2) }
 
-    it { should validate_inclusion_of(:gender).in_array(%w(m f)) }
-    #it { should validate_inclusion_of(:sect).in_array(CASTES.collect { |c| c[:code] }).allow_nil }
-    it { should validate_inclusion_of(:language).in_array(LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3)) }
-    it { should validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
+    it { is_expected.to validate_inclusion_of(:gender).in_array(%w(m f)) }
+    #it { is_expected.to validate_inclusion_of(:sect).in_array(CASTES.collect { |c| c[:code] }).allow_nil }
+    it { is_expected.to validate_inclusion_of(:language).in_array(LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3)) }
+    it { is_expected.to validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 
-    it { should allow_values(Faker::Internet.email).for(:email) }
-    it { should allow_value(Faker::Date.between(100.years.ago, 18.years.ago + 1.day)).for(:birthdate) }
+    it { is_expected.to allow_values(Faker::Internet.email).for(:email) }
+    it { is_expected.to allow_value(Faker::Date.between(100.years.ago, 18.years.ago + 1.day)).for(:birthdate) }
 
-    it { should_not allow_values('faker_at_example.com').for(:email) }
-    it { should_not allow_value(Faker::Date.between(18.years.ago + 1.day, Date.today)).for(:birthdate) }
+    it { is_expected.to_not allow_values('faker_at_example.com').for(:email) }
+    it { is_expected.to_not allow_value(Faker::Date.between(18.years.ago + 1.day, Date.today)).for(:birthdate) }
 
-    it { should have_secure_password }
+    it { is_expected.to have_secure_password }
 
-    it { should have_many(:photos) }
-    it { should have_many(:sent_messages) }
-    it { should have_many(:received_messages) }
-    it { should have_many(:active_interests) }
-    it { should have_many(:passive_interests) }
-    it { should have_many(:likes) }
-    it { should have_many(:likers) }
-    it { should have_many(:active_visits) }
-    it { should have_many(:passive_visits) }
-    it { should have_many(:visits) }
-    it { should have_many(:visitors) }
-    it { should have_many(:active_bookmarks) }
-    it { should have_many(:passive_bookmarks) }
-    it { should have_many(:favorites) }
-    it { should have_many(:favoriters) }
-    it { should have_many(:phone_verifications) }
-    it { should have_one(:profile) }
+    it { is_expected.to have_many(:photos) }
+    it { is_expected.to have_many(:sent_messages) }
+    it { is_expected.to have_many(:received_messages) }
+    it { is_expected.to have_many(:active_interests) }
+    it { is_expected.to have_many(:passive_interests) }
+    it { is_expected.to have_many(:likes) }
+    it { is_expected.to have_many(:likers) }
+    it { is_expected.to have_many(:active_visits) }
+    it { is_expected.to have_many(:passive_visits) }
+    it { is_expected.to have_many(:visits) }
+    it { is_expected.to have_many(:visitors) }
+    it { is_expected.to have_many(:active_bookmarks) }
+    it { is_expected.to have_many(:passive_bookmarks) }
+    it { is_expected.to have_many(:favorites) }
+    it { is_expected.to have_many(:favoriters) }
+    it { is_expected.to have_many(:phone_verifications) }
+    it { is_expected.to have_one(:profile) }
   end
 
   describe "likes?(other_user)" do
