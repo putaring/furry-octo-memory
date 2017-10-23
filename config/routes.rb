@@ -75,4 +75,6 @@ Rails.application.routes.draw do
       patch :activate
     end
   end
+
+  mount Shrine.presign_endpoint(:cache) => "/presign"
 end

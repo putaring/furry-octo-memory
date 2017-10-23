@@ -61,3 +61,10 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+require "shrine/storage/memory"
+
+Shrine.storages = {
+  cache: Shrine::Storage::Memory.new,
+  store: Shrine::Storage::Memory.new,
+}

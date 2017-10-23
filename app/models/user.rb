@@ -84,15 +84,15 @@ class User < ActiveRecord::Base
     active_photos.first
   end
 
-  def display_picture_for(visitor, thumbnail_type = :thumb)
-    display_photos_to?(visitor) ? display_thumbnail(thumbnail_type) : default_thumbnail(thumbnail_type)
+  def display_picture_for(visitor)
+    display_photos_to?(visitor) ? display_thumbnail : default_thumbnail
   end
 
-  def display_thumbnail(thumbnail_type = :thumb)
+  def display_thumbnail
     if profile_photo.present?
-      profile_photo.image.url(thumbnail_type)
+      profile_photo.image_url(:thumb)
     else
-      default_thumbnail(thumbnail_type)
+      default_thumbnail
     end
   end
 
@@ -218,13 +218,8 @@ class User < ActiveRecord::Base
     ].sample.downcase.gsub(/\s+/, "")
   end
 
-  def default_thumbnail(thumbnail_type = :thumb)
-    image_path =  if thumbnail_type == :thumb
-                    male? ? "profile_pictures/male.png" : "profile_pictures/female.png"
-                  else
-                    male? ? "profile_pictures/male-small.png" : "profile_pictures/female-small.png"
-                  end
-
+  def default_thumbnail
+    image_path = male? ? "profile_pictures/male.png" : "profile_pictures/female.png"
     ActionController::Base.helpers.asset_url(image_path)
   end
 end

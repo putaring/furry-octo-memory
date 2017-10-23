@@ -1,13 +1,9 @@
 class Photo < ActiveRecord::Base
-  attr_accessor :image_x, :image_y, :image_width,
-    :final_crop_x, :final_crop_y,
-    :final_image_width, :original_image_width
+  include PhotoUploader::Attachment.new(:image)
 
   belongs_to :user
 
   scope :ranked, -> { order(:rank) }
-  scope :visible, -> { where(status: [Photo.statuses[:active], Photo.statuses[:inactive]]) }
-  mount_uploader :image, PhotoUploader
 
   validates_presence_of     :rank
   validates_numericality_of :rank, greater_than_or_equal_to: 1
@@ -22,10 +18,6 @@ class Photo < ActiveRecord::Base
 
   def make_profile_photo
     update_attributes(rank: 1)
-  end
-
-  def process_remote_picture(photo_details)
-    update_attributes(photo_details.merge(status: Photo.statuses[:active]))
   end
 
   private

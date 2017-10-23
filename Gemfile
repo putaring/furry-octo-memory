@@ -12,8 +12,8 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'country_select', '3.0.0'
 gem 'language_list'
 gem 'browser'
-gem 'carrierwave', '~> 1.0'
-gem 'fog-aws'
+gem 'shrine'
+gem 'image_processing'
 gem 'mini_magick'
 gem 'has_secure_token'
 gem 'faker'
@@ -21,7 +21,8 @@ gem 'shoryuken'
 gem 'puma'
 gem 'newrelic_rpm'
 gem "rack-timeout"
-gem 'aws-sdk', '~> 2'
+gem 'aws-sdk-sqs'
+gem "aws-sdk-s3", "~> 1.2"
 gem 'kaminari'
 
 source 'https://rails-assets.org' do
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'shoulda-matchers', '~> 3.1'
   gem 'dotenv-rails'
+  gem 'shrine-memory'
 end
 
 gem 'google-api-client', '0.13.0'

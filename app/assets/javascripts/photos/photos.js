@@ -1,30 +1,24 @@
 (function () {
   var $photoForm          = $('#new_photo'),
       $photoFileInput     = $photoForm.find('#photo_image'),
-      $photoImageX        = $photoForm.find('#photo_image_x'),
-      $photoImageY        = $photoForm.find('#photo_image_y'),
-      $photoImageWidth    = $photoForm.find('#photo_image_width'),
-      $imageUrlField      = $photoForm.find('#photo_remote_image_url'),
       $photoCanvas        = $('#photo-crop-canvas'),
       $photoPreview       = $('#photo-crop-preview'),
       $progressBar        = $('#s3-upload-progress'),
       $modal              = $('#photo-crop-modal'),
       cropWidth           = $photoForm.data('cropWidth'),
       $progressText       = $('#progress-text'),
-      jcropApi            = null;
+      jcropApi            = null,
+      cropDimensions      = {};
 
   $photoFileInput.fileupload({
-    fileInput: $photoFileInput,
-    url: $photoForm.data('url'),
-    type: 'POST',
-    autoUpload: true,
-    formData: $photoForm.data('formData'),
-    paramName: 'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-    dataType:  'XML',  // S3 returns XML if success_action_status is set to 201
-    replaceFileInput: false,
     add: function (e, data) {
       data.context = $('body').on('crop.finished', function () {
-        data.submit();
+        $.getJSON("/presign", function(result) {
+          data.formData  = result.fields;
+          data.url       = result.url;
+          data.paramName = "file";
+          data.submit();
+        });
       });
     },
     progressall: function (e, data) {
@@ -49,8 +43,13 @@
         width: '100%'
       });
       $progressText.text("Hang in there… We're almost done.");
-      var url = data.url + '/' + encodeURI($(data.jqXHR.responseXML).find('Key').text());
-      $imageUrlField.val(url);
+
+      var image = {
+        id: data.formData.key.match(/cache\/(.+)/)[1], // we have to remove the prefix part
+        storage: 'cache',
+        cropDimensions: cropDimensions
+      };
+      $photoForm.find('#cahced-image-data').val(JSON.stringify(image))
       $photoFileInput.val(null);
       $photoForm.submit();
     },
@@ -77,9 +76,11 @@
   });
 
   var setCoordinates = function (coords) {
-    $photoImageX.val(coords.x);
-    $photoImageY.val(coords.y);
-    $photoImageWidth.val(coords.w);
+    cropDimensions = {
+      offsetX: coords.x,
+      offsetY: coords.y,
+      width: coords.w
+    }
 
     $photoPreview.css({
       width: Math.round(150/coords.w * $photoCanvas.width()) + 'px',

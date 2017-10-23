@@ -10,20 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery_ujs
-//= require tether
-//= require bootstrap-sprockets
-//= require about
-//= require conversations
-//= require favorite
-//= require like
-//= require localstorage_support
-//= require messages
-//= require photos
-//= require search
-//= require sessions
-//= require settings
-//= require simple_format
-//= require snackbar.min
-//= require static_pages
-//= require users
+//= require photos/jquery.Jcrop
+//= require photos/jquery.swipebox
+//= require photos/jquery.ui.widget
+//= require photos/jquery.iframe-transport
+//= require photos/jquery.fileupload
+//= require photos/delete_photo
+//= require photos/inactive_photos
+//= require photos/photos

@@ -6,7 +6,7 @@
     <% if logged_in? %>
     $('[data-toggle="swipebox"]').click(function () {
       $.swipebox(
-        <%= @user.active_photos.collect { |p| { href: p.image.url } }.to_json.html_safe %>, {
+        <%= @user.active_photos.collect { |p| { href: p.image_url(:large) } }.to_json.html_safe %>, {
           useCSS : true,
           useSVG : false,
           initialIndexOnArray : 0,
