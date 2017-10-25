@@ -143,23 +143,20 @@ RSpec.describe User, type: :model do
       profile_photo = create(:photo, user: create(:member, gender: 'f'))
       user          = profile_photo.user
 
-      expect(user.display_thumbnail(:thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.png"))
-      expect(user.display_thumbnail(:small_thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female-small.png"))
+      expect(user.display_thumbnail).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.png"))
     end
 
     it "should display the profile thumbnail if the user has a profile picture" do
       profile_photo = create(:active_photo)
       user          = profile_photo.user
 
-      expect(user.display_thumbnail(:thumb)).to eq(profile_photo.image.url(:thumb))
-      expect(user.display_thumbnail(:small_thumb)).to eq(profile_photo.image.url(:small_thumb))
+      expect(user.display_thumbnail).to eq(profile_photo.image_url(:thumb))
     end
 
     it "should return default url if the user has no photo" do
       user = create(:user, gender: 'f')
 
-      expect(user.display_thumbnail(:thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.png"))
-      expect(user.display_thumbnail(:small_thumb)).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female-small.png"))
+      expect(user.display_thumbnail).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.png"))
     end
   end
 

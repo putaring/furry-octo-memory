@@ -1,21 +1,16 @@
-<%= form_for(Photo.new, data: {
-  crop_width: browser.device.mobile? ? 250 : 550,
-  form_data: @s3_direct_post.fields,
-  url: @s3_direct_post.url,
-  host: URI.parse(@s3_direct_post.url).host
+<%= form_for(@photo, data: {
+  crop_width: browser.device.mobile? ? 250 : 550
   }) do |f| %>
 
   <%= f.label :image, { id: 'photo-upload-file', class: 'btn btn-lg btn-success' } do %>
   Add photo
   <% end %>
+  <%= f.hidden_field :image, value: @photo.cached_image_data, id: 'cahced-image-data' %>
   <%= f.file_field :image, { accept: 'image/*', style: "text-indent: -999em; width:1px; position: absolute; height:1px; opacity: 0" }%>
-  <%= f.hidden_field :remote_image_url %>
-  <%= f.hidden_field :image_x %>
-  <%= f.hidden_field :image_y %>
-  <%= f.hidden_field :image_width %>
   <br />
   <%= link_to 'Edit visibility', account_settings_path, data: { toggle: 'modal', target: '#privacy-modal' } %>
 <% end %>
+
 <div class="progress">
   <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" id="s3-upload-progress" role="progressbar" style="width: 0%;display:none"></div>
 </div>
