@@ -1,1 +1,1 @@
-#Shoryuken.sqs_client = Aws::SQS::Client.new
+Shoryuken.active_job_queue_name_prefixing = true
