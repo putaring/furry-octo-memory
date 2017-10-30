@@ -1,4 +1,4 @@
 pidfile: ./shoryuken.pid
 queues:
-  - default
-  - mailers
+  - default.fifo
+  - mailers.fifo

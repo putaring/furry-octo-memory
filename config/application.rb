@@ -20,6 +20,7 @@ module Joonam
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.active_job.queue_name_prefix = Rails.env
     config.active_job.queue_adapter = :shoryuken
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
