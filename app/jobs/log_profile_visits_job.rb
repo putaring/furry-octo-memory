@@ -1,5 +1,5 @@
 class LogProfileVisitsJob < ActiveJob::Base
-  queue_as :default
+  queue_as 'default.fifo'
 
   def perform(visit_details)
     ProfileVisit.where(visitor_id: visit_details[:visitor_id], visited_id: visit_details[:visited_id],
