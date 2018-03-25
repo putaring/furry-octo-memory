@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 
   def index
     @photo  = Photo.new
-    @photos = current_user.photos.ranked
+    @photos = current_user.photos.reverse_order
   end
 
   def show
@@ -12,20 +12,20 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = current_user.photos.build(photo_params)
+    @photo = current_user.photos.build(photo_creation_params)
     if @photo.save
-      redirect_to photos_path, notice: "Your photo will be ready in a moment."
+      redirect_to photos_path, notice: successful_upload_notice
     else
       render 'index'
     end
   end
 
-  def make_profile_photo
-    @photo = current_user.photos.find(params[:id])
-    if @photo && @photo.make_profile_photo
-      redirect_to photos_path, notice: 'Profile photo updated.'
+  def update
+    photo = current_user.photos.find(params[:id])
+    if photo.update_attributes(photo_edit_params)
+      redirect_to photos_path
     else
-      render 'index'
+      redirect_to photos_path, 'Oops. Something went wrong. Try again'
     end
   end
 
@@ -35,18 +35,35 @@ class PhotosController < ApplicationController
     respond_to do |format|
       if @photo && @photo.destroy
         format.html { redirect_to photos_path, notice: 'Deleted.' }
-        format.js { head :no_content }
       else
-        format.html { render 'index' }
-        format.js { head :unprocessable_entity }
+        format.html { redirect_to photos_path, notice: "Couldn't delete photo. Try again." }
       end
     end
   end
 
   private
 
-  def photo_params
-    params.require(:photo).permit(:image).merge(ip: request.remote_ip)
+  def successful_upload_notice
+    photo_count = current_user.photos.count
+    remaining   = 10 - photo_count
+    if  photo_count > 1
+      "Done. You can add #{remaining} more #{'photo'.pluralize(remaining)}."
+    else
+      "All set! Let's add a caption now."
+    end
+  end
+
+  def photo_creation_params
+    params
+      .require(:photo)
+      .permit(:image)
+      .merge(ip: request.remote_ip)
+  end
+
+  def photo_edit_params
+    params
+      .require(:photo)
+      .permit(:caption)
   end
 
 end

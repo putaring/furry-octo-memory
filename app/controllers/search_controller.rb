@@ -20,7 +20,7 @@ class SearchController < ApplicationController
   end
 
   def search
-    @users = User.active.includes(:active_photos).order('id DESC').page params[:page]
+    @users = User.active.order('id DESC').page params[:page]
     filter_gender if params[:gender].present?
     filter_status if params[:status].present?
     filter_age

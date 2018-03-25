@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171013050733) do
+ActiveRecord::Schema.define(version: 20180324230302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ar_internal_metadata", primary_key: "key", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "bookmarker_id", null: false
@@ -79,14 +85,12 @@ ActiveRecord::Schema.define(version: 20171013050733) do
   add_index "phone_verifications", ["user_id"], name: "index_phone_verifications_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
-    t.string   "image"
-    t.integer  "rank",       limit: 2,             null: false
-    t.integer  "user_id",                          null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.integer  "status",     limit: 2, default: 0, null: false
-    t.inet     "ip",                               null: false
+    t.integer  "user_id",                null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.inet     "ip",                     null: false
     t.text     "image_data"
+    t.string   "caption",    limit: 500
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree

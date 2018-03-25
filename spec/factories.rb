@@ -1,36 +1,20 @@
 FactoryGirl.define do
-  factory :user, aliases: [:unverified_user] do
-    gender        { 'f' }
-    birthdate     { 21.years.ago }
-    height        { 72 }
-    religion      { User.religions.keys.sample }
-    status        { 'unmarried' }
-    language      { LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3).sample }
-    country       { "IN" }
-    email         { Faker::Internet.email }
-    password      { Faker::Internet.password }
-    ip            { "127.0.0.1" }
+  factory :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
+    gender          'f'
+    birthdate       21.years.ago
+    height          72
+    religion        User.religions.keys.sample
+    status          'unmarried'
+    language        LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3).sample
+    country         "IN"
+    email           { Faker::Internet.email }
+    password        Faker::Internet.password
+    ip              "127.0.0.1"
+    account_status  'active'
   end
 
-  factory :active_user, parent: :user, aliases: [:member, :sender, :recipient, :liker, :liked, :bookmarker, :bookmarked, :reporter, :reported] do
-    account_status 'active'
-  end
-
-  factory :user_with_income, parent: :active_user do
-    income { 100000 }
-  end
-
-  factory :brahmin, parent: :active_user do
-    religion 'hindu'
-    sect 'brh'
-  end
-
-  factory :restricted_user, parent: :active_user do
-    photo_visibility 'restricted'
-  end
-
-  factory :members_only_user, parent: :active_user do
-    photo_visibility 'members_only'
+  factory :unverified_user, parent: :user do
+    account_status 'unverified'
   end
 
   factory :inactive_user, parent: :user do
@@ -44,6 +28,24 @@ FactoryGirl.define do
   factory :banned_user, parent: :user do
     account_status 'banned'
   end
+
+  factory :restricted_user, parent: :user do
+    photo_visibility 'restricted'
+  end
+
+  factory :members_only_user, parent: :user do
+    photo_visibility 'members_only'
+  end
+
+  factory :user_with_income, parent: :user do
+    income { 100000 }
+  end
+
+  factory :brahmin, parent: :user do
+    religion 'hindu'
+    sect 'brh'
+  end
+
 
   factory :conversation do
     sender
@@ -73,11 +75,6 @@ FactoryGirl.define do
     ip { "127.0.0.1" }
   end
 
-  factory :active_photo, parent: :photo do
-    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'support', 'photos', 'jesus_large.png')) }
-    status 'active'
-  end
-
   factory :report do
     reporter
     reported
@@ -95,6 +92,6 @@ FactoryGirl.define do
   end
 
   factory :verified_number, parent: :phone_verification do
-    verified { true }
+    verified true
   end
 end

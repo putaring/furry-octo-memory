@@ -47,13 +47,13 @@ feature "Registration" do
     end
 
     context "when logged in as unverified user" do
-      given(:unverified_user) { create(:user) }
+      given(:unverified_user) { create(:unverified_user) }
       background do
         visit login_path
         login(unverified_user)
       end
 
-      it "should redirect to user landing page" do
+      it "should redirect to virification page" do
         visit signup_path
         expect(page).to have_current_path(verify_path)
       end

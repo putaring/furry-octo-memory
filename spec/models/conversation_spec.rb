@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Conversation, type: :model do
+  subject(:conversation)  { create(:conversation, sender: sender, recipient: recipient) }
+  let(:sender)            { create(:sender) }
+  let(:recipient)         { create(:recipient) }
 
   context 'validations' do
-    subject { create(:conversation) }
     it { should belong_to(:sender) }
     it { should belong_to(:recipient) }
     it { should have_many(:messages) }
@@ -12,40 +14,34 @@ RSpec.describe Conversation, type: :model do
     it { should validate_uniqueness_of(:sender_id).scoped_to(:recipient_id) }
   end
 
-  let(:sender)        { create(:sender) }
-  let(:recipient)     { create(:recipient) }
-  let(:user)          { create(:user) }
-
-  describe ".between" do
-    it "should return the conversation between sender and recipient" do
-      conversation = create(:conversation, sender: sender, recipient: recipient)
-      expect(Conversation.between(sender.id, recipient.id)).to eq(conversation)
-      expect(Conversation.between(recipient.id, sender.id)).to eq(conversation)
-    end
-
-    it "should return nil if the users have never communicated" do
-      expect(Conversation.between(sender.id, user.id)).to eq(nil)
-    end
+  describe "#other_participant" do
+    it { expect(conversation.other_participant(sender)).to eq(recipient) }
+    it { expect(conversation.other_participant(recipient)).to eq(sender) }
   end
 
-  describe "#other_participant" do
-    it "should return the other participant in the conversation" do
-      conversation = create(:conversation, sender: sender, recipient: recipient)
-      expect(conversation.other_participant(sender)).to eq(recipient)
-      expect(conversation.other_participant(recipient)).to eq(sender)
+  describe ".between" do
+    before  { create(:conversation, sender: sender, recipient: recipient) }
+    context "sender and recipient ids are inputted in that order" do
+      it { expect(Conversation.between(sender.id, recipient.id)).to be_present }
+    end
+    context "when recipient and sender ids are inputted in that order" do
+      it { expect(Conversation.between(recipient.id, sender.id)).to be_present }
+    end
+    context "when querying conversation between users who have never messages each other" do
+      it { expect(Conversation.between(sender.id, create(:user).id)).to be_nil }
     end
   end
 
   describe ".with_participant" do
-    it "should return all the conversation with the participant" do
-      conversation1 = create(:conversation, sender: sender, recipient: recipient)
-      conversation2 = create(:conversation, sender: sender, recipient: user)
-      expect(Conversation.with_participant(sender)).to include(conversation1, conversation2)
+    context "when the user has engaged in conversations" do
+      before  { create(:conversation, sender: sender) }
+      it "should return all the conversation with the participant" do
+        expect(Conversation.with_participant(sender)).to be_present
+      end
     end
 
-    it "should return an empty array if the user has never had a conversation" do
-      expect(Conversation.with_participant(sender)).to be_empty
+    context "when the user has never had a conversation" do
+      it { expect(Conversation.with_participant(create(:user))).to be_empty }
     end
   end
-
 end

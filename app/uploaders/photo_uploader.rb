@@ -5,21 +5,24 @@ class PhotoUploader < Shrine
   plugin :processing
   plugin :versions
   plugin :delete_raw
-  plugin :hooks
-  plugin :determine_mime_type
+  plugin :store_dimensions
 
-  process(:store) do |io, context|
-    crop_dimensions = JSON.parse(context[:record].image_data, object_class: OpenStruct).cropDimensions
-    raw             = convert!(io.download, "jpg") { |cmd| cmd.auto_orient }
-    cropped_image   = crop(raw, crop_dimensions.width, crop_dimensions.width, crop_dimensions.offsetX, crop_dimensions.offsetY)
-    large           = resize_to_limit(cropped_image, 1500, 1500)
-    thumb           = resize_to_fill(cropped_image, 400, 400)
+  def generate_location(io, context)
+    type = context[:record].class.name.underscore
+    name = context[:name]
 
-    { large: large, thumb: thumb }
+    dirname, slash, basename = super.rpartition("/")
+    basename = "#{context[:version]}-#{basename}" if context[:version]
+    original = dirname + slash + basename
+
+    [type, SecureRandom.uuid, name, original].compact.join("/")
   end
 
-  def after_upload(io, context)
-    super
-    context[:record].active!
+  process(:store) do |io, context|
+    raw             = convert!(io.download, 'jpg') { |cmd| cmd.auto_orient }
+    large           = resize_to_limit(raw, 1600, 1600)
+    thumb           = resize_to_limit(raw, 200, 200)
+
+    { large: large, thumb: thumb }
   end
 end

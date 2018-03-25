@@ -24,6 +24,8 @@ gem "rack-timeout"
 gem 'aws-sdk-sqs'
 gem "aws-sdk-s3", "~> 1.2"
 gem 'kaminari'
+gem 'fastimage'
+
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'

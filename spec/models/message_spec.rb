@@ -8,17 +8,21 @@ RSpec.describe Message, type: :model do
   it { should validate_length_of(:body).is_at_most(1000) }
 
   describe ".unread" do
-    it "should return unread messages" do
-      3.times { create(:message, read: false) }
-      2.times { create(:message, read: true) }
-
-      expect(Message.unread.count).to eq(3)
+    before { create(:message, sender: sender, read: false) }
+    context "when messages are from active users" do
+      let(:sender) { create(:sender) }
+      it "should return unread messages" do
+        expect(Message.unread.count).to be_present
+      end
     end
 
-    it "should not return messages from inactive users" do
-      create(:message, sender: create(:inactive_user), body: "First message", read: false)
-      expect(Message.unread.count).to eq(0)
+    context "when messages are from inactive users" do
+      let(:sender) { create(:inactive_user) }
+      it "should not return messages from inactive users" do
+        expect(Message.unread).to be_empty
+      end
     end
+
   end
 
 end

@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :photos
 
-  has_many :active_photos, -> { where(status: Photo.statuses[:active]).order(:rank) }, class_name: "Photo"
-
   has_many :phone_verifications
 
   has_many :reports, foreign_key: "reporter_id", dependent: :destroy
@@ -80,21 +78,6 @@ class User < ActiveRecord::Base
   before_save { language.downcase! }
   before_save { self.income = self.income.try(:ceil) }
 
-  def profile_photo
-    active_photos.first
-  end
-
-  def display_picture_for(visitor)
-    display_photos_to?(visitor) ? display_thumbnail : default_thumbnail
-  end
-
-  def display_thumbnail
-    if profile_photo.present?
-      profile_photo.image_url(:thumb)
-    else
-      default_thumbnail
-    end
-  end
 
   def iso_country
     @_iso_country ||= ISO3166::Country.find_country_by_alpha2(country)
@@ -161,16 +144,6 @@ class User < ActiveRecord::Base
   def age
     now = Time.now
     now.year - birthdate.year - (birthdate.change(year: now.year) > now ? 1 : 0)
-  end
-
-  def display_photos_to?(visitor)
-    @_display_photos_to ||=
-    case photo_visibility
-    when 'everyone' then true
-    when 'members_only' then visitor.present?
-    when 'restricted' then visitor.present? && (visitor.eql?(self) || likes?(visitor))
-    else true
-    end
   end
 
   def sect_long_form

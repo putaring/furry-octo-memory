@@ -1,0 +1,79 @@
+<% provide(:title, 'My photos') %>
+<%= render partial: 'shared/main_nav' %>
+
+<div class="jumbotron jumbotron-fluid mb-0" style="background-color:#E1F5FE">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="jumbotron-heading h2 text-muted">Photos of me</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mb-3" style="border-bottom: 1px solid #f3f3f3;">
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <%= link_to '← Back to profile', user_path(current_user), { class: 'nav-link' } %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="container mb-5">
+
+  <% if flash.notice.present? %>
+    <div class="row">
+      <div class="offset-md-4 col-md-4">
+        <div class="alert alert-info text-center">
+          <%= flash.notice %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-5 push-lg-7 mb-5 pt-1">
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= render partial: 'photos/photo_form' %>
+        </div>
+      </div>
+    </div>
+
+    <% if @photos.empty? %>
+
+      <div class="col-lg-7 pull-lg-5">
+        <div class="rounded p-5 text-center text-muted" style="border: 2px dashed #ccc">
+          <p class="m-lg-5 m-2">Spice up your profile with some photos.</p>
+        </div>
+      </div>
+
+    <% else %>
+
+      <div class="col-lg-7 pull-lg-5 p-1">
+        <div class="row">
+          <% @photos.each do |photo| %>
+            <%= render partial: 'photos/photo', locals: { photo: photo } %>
+          <% end %>
+        </div>
+      </div>
+
+      <%= content_for :javascripts do %>
+      <script>
+      $('[data-toggle="swipebox"]').swipebox({
+        useCSS : true,
+        useSVG : false,
+        removeBarsOnMobile : true,
+      });
+      </script>
+      <% end %>
+
+    <% end %>
+
+  </div>
+</section>
+<%= render partial: 'photos/privacy_modal' %>
