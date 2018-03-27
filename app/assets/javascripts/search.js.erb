@@ -81,7 +81,7 @@ $('select#religion').change(function (e) {
 
   var renderUserCard = function (user) {
     var $cardContainer   = $('<div class="col-md-4 col-sm-6 col-6 user-card-container mb-5"></div>'),
-        $userCard = $('<a href="users/' + user.id + '" class="card user-card"><img class="card-img-top w-100" src="' + pictureForUser(user) + '" /><div class="card-block"><p class="h5 card-title">' + user.username + '</p><p class="card-text"><div>' + user.age + ' • ' + user.religion + '</div><div class="country-name">' + user.country + '</div></p></div></a>');
+        $userCard = $('<a href="users/' + user.id + '" class="card user-card"><img class="card-img-top w-100" src="' + pictureForUser(user) + '" /><div class="card-body"><p class="h5 card-title">' + user.username + '</p><p class="card-text"><div>' + user.age + ' • ' + user.religion + '</div><div class="country-name">' + user.country + '</div></p></div></a>');
     $cardContainer.append($userCard).appendTo($searchResults);
   };
 

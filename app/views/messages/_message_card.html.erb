@@ -1,5 +1,5 @@
 <%=link_to conversation_path(message.conversation_id), { class: 'card message-card mb-3' } do %>
-<div class="card-block">
+<div class="card-body">
   <div class="media">
     <div>
       <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle mr-3', width: 80 })%>

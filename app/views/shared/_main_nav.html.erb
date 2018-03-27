@@ -1,11 +1,11 @@
 <div class="container">
-  <nav class="navbar navbar-light navbar-toggleable-md">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar navbar-expand-lg navbar-light">
     <%= link_to logged_in? ? user_path(current_user) : root_path, { class: 'navbar-brand' } do %>
       <%= image_tag 'logo.svg', height: 30, title: "Home", alt: "Home" %> Spouzz
     <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <% if logged_in? %>
         <ul class="navbar-nav ml-auto">

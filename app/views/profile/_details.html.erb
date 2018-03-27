@@ -1,7 +1,7 @@
 <div class="row mb-5">
   <div class="col-lg-10">
     <div class="card">
-      <div class="card-block">
+      <div class="card-body">
         <%= form_for(current_user, url: me_path, remote: true, data: { user_id: current_user.id }) do |f| %>
         <div class="alert alert-danger edit_errors" style="display:none">
         </div>
