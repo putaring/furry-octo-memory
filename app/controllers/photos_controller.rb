@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
   def update
     photo = current_user.photos.find(params[:id])
     if photo.update_attributes(photo_edit_params)
-      redirect_to photos_path
+      redirect_to photos_path anchor: "photo-image-#{photo.id}"
     else
       redirect_to photos_path, 'Oops. Something went wrong. Try again'
     end

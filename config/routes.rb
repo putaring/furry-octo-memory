@@ -37,6 +37,9 @@ Rails.application.routes.draw do
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update, :edit]
+  resource :avatar, controller: :avatar, only: [:create] do
+    get 'crop', to: 'avatar#crop'
+  end
 
   resource :settings, only: [] do
     get 'account'

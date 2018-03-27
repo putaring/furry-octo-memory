@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_secure_token :reset_token
 
   has_one :profile
+  has_one :avatar
 
   has_many :photos
 
@@ -129,6 +130,16 @@ class User < ActiveRecord::Base
     likes.exists?(other_user.id)
   end
 
+  def display_photos_to?(visitor)
+    @_display_photos_to ||=
+    case photo_visibility
+    when 'everyone' then true
+    when 'members_only' then visitor.present?
+    when 'restricted' then visitor.present? && (visitor.eql?(self) || likes?(visitor))
+    else true
+    end
+  end
+
   def gender_expanded
     male? ? 'man' : 'woman'
   end
@@ -189,10 +200,5 @@ class User < ActiveRecord::Base
       Faker::Color.color_name, Faker::Superhero.name.split.first,
       Faker::Commerce.product_name.split.first
     ].sample.downcase.gsub(/\s+/, "")
-  end
-
-  def default_thumbnail
-    image_path = male? ? "profile_pictures/male.png" : "profile_pictures/female.png"
-    ActionController::Base.helpers.asset_url(image_path)
   end
 end

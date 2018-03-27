@@ -1,8 +1,11 @@
 <% if logged_in? %>
 
   <% if is_me?(@user) %>
-    <%= link_to @user.active_photos.any? ? 'Manage photos' : 'Add a photo', photos_path, class: 'btn btn-lg btn-warning btn-block' %>
-    <%= link_to 'Edit profile', edit_profile_path, class: 'btn btn-lg btn-block btn-outline-secondary' %>
+    <% if @user.avatar.present? %>
+      <%= link_to 'Edit profile', edit_profile_path, class: 'btn btn-lg btn-block btn-outline-secondary' %>
+    <% else %>
+      <%= button_tag 'Add profile photo', class: 'btn btn-lg btn-block btn-warning', data: { component: "avatar-uploader" } %>
+    <% end %>
   <% else %>
     <% if current_user.likes?(@user) %>
       <%= link_to('Unlike', like_user_path(@user), remote: true, method: :delete, class: 'btn btn-lg btn-block btn-warning', data: { component: 'likeButton' }) %>

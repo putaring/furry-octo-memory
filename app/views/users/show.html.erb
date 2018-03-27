@@ -6,6 +6,7 @@
 <%= render partial: 'users/message_modal' if logged_in? %>
 <%= render partial: 'users/report_modal' if logged_in? %>
 <%= render partial: 'users/welcome_modal' if (is_me?(@user) && params[:welcome] == "true") %>
+
 <div class="container">
   <div class="row">
     <div class="col-lg-5 push-lg-7">

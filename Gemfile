@@ -8,7 +8,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.0.0'
 gem 'country_select', '3.0.0'
 gem 'language_list'
 gem 'browser'
@@ -25,16 +25,6 @@ gem 'aws-sdk-sqs'
 gem "aws-sdk-s3", "~> 1.2"
 gem 'kaminari'
 gem 'fastimage'
-
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.3.3'
-end
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'byebug'

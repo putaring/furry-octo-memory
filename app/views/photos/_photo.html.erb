@@ -1,6 +1,6 @@
 <div class="mb-5 pb-5">
   <div class="text-center">
-    <%= image_tag photo.image_url(:large), class: 'rounded img-fluid', alt: photo.caption, title: photo.caption %>
+    <%= image_tag photo.image_url(:large), class: 'rounded img-fluid', id: "photo-image-#{photo.id}" , alt: photo.caption, title: photo.caption %>
   </div>
   <div class="mt-2">
     <%= content_tag :div, id: "photo-meta-container-#{photo.id}" do %>
