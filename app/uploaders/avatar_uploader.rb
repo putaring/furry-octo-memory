@@ -9,10 +9,12 @@ class AvatarUploader < Shrine
   plugin :pretty_location
 
   process(:store) do |io, context|
+    crop_info       = JSON.parse(context[:record].image_data, object_class: OpenStruct).cropInfo
     raw             = convert!(io.download, 'jpg') { |cmd| cmd.auto_orient }
-    large           = resize_to_limit(raw, 1600, 1600)
-    thumb           = resize_to_limit(raw, 200, 200)
+    cropped_image   = crop(raw, crop_info.width, crop_info.width, crop_info.x, crop_info.y)
+    large           = resize_to_fill(cropped_image, 400, 400)
+    small           = resize_to_fill(cropped_image, 200, 200)
 
-    { large: large, thumb: thumb }
+    { large: large, small: small }
   end
 end

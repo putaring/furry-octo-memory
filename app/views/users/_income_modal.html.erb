@@ -6,7 +6,7 @@
         <%= form_for(current_user, url: me_path, remote: true) do |f| %>
           <%= render partial: "users/profile_income", locals: { f: f } %>
           <div class="form-group text-right">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">I'd rather not say</button>
+            <button type="button" class="btn btn-light" data-dismiss="modal">I'd rather not say</button>
             <button type="submit" class="btn btn-primary" data-disable-with="Updating…" >Update</button>
           </div>
         <% end %>

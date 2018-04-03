@@ -1,25 +1,37 @@
 <% provide(:title, 'Join Now') %>
 <section class="container">
-  <div class="row">
-    <div class="col col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 mt-2">
-      <%= link_to root_path, class: 'd-block text-center' do %>
-        <%= image_tag 'logo.svg', width: 48 %>
-      <% end %>
-      <h1 class="h2 text-center my-3">Let's get started</h1>
-        <% if @user.errors.any? %>
-          <div class="alert alert-danger">
-            <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-        <%= render partial: 'signup_form' %>
-      <div class="card text-center mb-5">
+  <%= render partial: 'shared/gray_nav' %>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-7">
+      <div class="card p-lg-3 mb-3">
         <div class="card-body">
-          Already have an account? <%= link_to('Log in', login_path, data: { toggle: 'modal', target: '#login-modal' }) %>
+          <div class="mb-5 text-center">
+            <h1 class="h2 mb-2">Let's get started</h1>
+          </div>
+
+          <div class="row no-gutters justify-content-center">
+            <div class="col-lg-8">
+              <% if @user.errors.any? %>
+                <div class="alert alert-danger">
+                  <ul>
+                  <% @user.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <%= render partial: 'signup_form' %>
+            </div>
+          </div>
         </div>
+      </div>
+
+
+      <div class="text-center mb-5">
+        <small>
+          Already have an account? <%= link_to 'Log in', login_path %>
+        </small>
       </div>
     </div>
   </div>

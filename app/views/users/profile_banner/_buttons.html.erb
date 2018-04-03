@@ -2,7 +2,7 @@
 
   <% if is_me?(@user) %>
     <% if @user.avatar.present? %>
-      <%= link_to 'Edit profile', edit_profile_path, class: 'btn btn-lg btn-block btn-outline-secondary' %>
+      <%= link_to 'Edit profile', edit_profile_path, class: 'btn btn-lg btn-block btn-outline-light' %>
     <% else %>
       <%= button_tag 'Add profile photo', class: 'btn btn-lg btn-block btn-warning', data: { component: "avatar-uploader" } %>
     <% end %>
@@ -15,8 +15,8 @@
 
 
     <div class="btn-group btn-block">
-      <%= link_to('Message', '', { class: 'btn btn-secondary btn-lg btn-block', data: { toggle: 'modal', target: '#message-modal' } }) %>
-      <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= link_to('Message', '', { class: 'btn btn-light btn-lg btn-block', data: { toggle: 'modal', target: '#message-modal' } }) %>
+      <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="sr-only">Toggle Dropdown</span>
       </button>
       <div class="dropdown-menu dropdown-menu-right">

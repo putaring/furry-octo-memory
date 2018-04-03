@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="media">
       <%= link_to user_path(user), { class: 'mb-2', style: "text-decoration:none;" } do %>
-        <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle d-flex mr-3', width: 120 }) %>
+        <%= image_tag(display_picture_for(user), { class: 'rounded-circle d-flex mr-3', width: 120 }) %>
       <% end %>
       <div class="media-body align-self-center">
         <%= link_to user.username, user_path(user), { class: 'h5' } %><br>
@@ -13,7 +13,7 @@
         <% else %>
           <%= link_to('Like back', like_user_path(user), remote: true, method: :post, class: 'btn btn-warning', data: { component: 'likeButton', like_text: 'Like back'}) %>
         <% end %>
-        <%= link_to('Decline', decline_user_path(user), remote: true, method: :delete, class: 'btn btn-secondary', data: { component: 'declineButton', confirm: 'Are you sure you want to decline this request?' }) %>
+        <%= link_to('Decline', decline_user_path(user), remote: true, method: :delete, class: 'btn btn-light', data: { component: 'declineButton', confirm: 'Are you sure you want to decline this request?' }) %>
       </div>
     </div>
   </div>

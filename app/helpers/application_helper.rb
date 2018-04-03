@@ -13,8 +13,9 @@ module ApplicationHelper
   end
 
   def display_footer?
-    !params[:controller].in?(["onboarding"]) &&
-    !(params[:controller] == "me" && params[:action] == "verify")
+    !params[:controller].in?(["sessions", "forgot_password"]) &&
+    !(params[:controller] == "me" && params[:action] == "verify") &&
+    !(params[:controller] == "users" && params[:action] == "new")
   end
 
 end

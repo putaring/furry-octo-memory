@@ -2,7 +2,7 @@
 <div class="card-body">
   <div class="media">
     <div>
-      <%= image_tag(user.display_picture_for(current_user), { class: 'rounded-circle mr-3', width: 80 })%>
+      <%= image_tag(display_picture_for(user), { class: 'rounded-circle mr-3', width: 80 })%>
     </div>
     <div class="media-body">
       <p class="media-heading username h5"><%= user.username %></p>

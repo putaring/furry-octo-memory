@@ -1,11 +1,11 @@
 <%= content_tag :div, class: 'media' do %>
   <div>
     <%= link_to user_path(current_user) do %>
-      <%= image_tag(current_user.display_picture_for(current_user), { class: 'rounded-circle mr-3', width: 70 })%>
+      <%= image_tag(display_picture_for(current_user), { class: 'rounded-circle mr-3', width: 70 })%>
     <% end %>
   </div>
   <div class="media-body">
-      <%= form_for([@conversation.other_participant(current_user), Message.new], { remote: true, data: { form_type: 'conversation-form', user: { id: current_user.id, photo: current_user.display_picture_for(current_user) } } }) do |f| %>
+      <%= form_for([@conversation.other_participant(current_user), Message.new], { remote: true, data: { form_type: 'conversation-form', user: { id: current_user.id, photo: display_picture_for(current_user) } } }) do |f| %>
         <div class="form-group">
           <%= f.text_area :body, { rows: 7, maxlength: 1000, class: 'form-control', placeholder: 'Say something', required: true } %>
         </div>
