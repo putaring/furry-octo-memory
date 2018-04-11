@@ -1,0 +1,29 @@
+<% if @user.occupation.present? %>
+  <div class="card mb-4 border-light">
+    <div class="card-body bg-light">
+      <h5 class="card-title">What I'm doing with my life</h5>
+      <div class="card-text">
+        <%= simple_format(@user.occupation) %>
+        <% if @user.eql?(current_user) %>
+          <%= link_to edit_profile_path, class: 'btn btn-sm btn-outline-success' do %>
+              <i class="icon ion-edit"></i> Edit
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="card text-muted bg-light mb-4" style="border-style: dashed;">
+    <h5 class="card-header border-0 bg-light">What I'm doing with my life</h5>
+    <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 13rem">
+      <p class="card-text text-center">
+        <% if @user.eql?(current_user) %>
+          <i class="icon ion-briefcase h3"></i><br>
+          <%= link_to "What are you working towards right now?", edit_profile_path %>
+        <% else %>
+          <%= @user.male? ? 'He' : 'She' %> hasn't updated this section.<br>
+        <% end %>
+      </p>
+    </div>
+  </div>
+<% end %>

@@ -10,11 +10,8 @@ Rails.application.routes.draw do
   post    'login',    to: 'sessions#create'
   delete  'logout',   to: 'sessions#destroy'
 
-  get 'onboarding', to: 'onboarding#index'
+  resource :likes, only: :show
 
-  get 'likes-me',     to: 'likes#likers'
-  get 'i-like',       to: 'likes#liked'
-  get 'mutual-likes', to: 'likes#mutual'
   get 'activate',     to: 'me#activate'
   get 'banned',       to: 'me#banned'
   get 'verify',       to: 'me#verify'

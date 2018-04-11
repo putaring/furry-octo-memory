@@ -1,0 +1,58 @@
+<% provide(:title, @user.username) %>
+
+
+<%= render partial: 'shared/main_nav' %>
+<%= render partial: 'users/message_modal' if logged_in? %>
+<%= render partial: 'users/welcome_modal' if (is_me?(@user) && params[:welcome] == "true") %>
+
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-md-4">
+
+      <!-- avatar card -->
+      <div class="card">
+        <div class="card-header bg-primary" style="height: 10.5rem; border-bottom: 0;">
+        </div>
+
+        <div class="card-body text-center" style="margin-top: -5rem;">
+          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid', style: "border: 2px solid #fff; width: 9.5rem;" } %>
+
+          <div class="my-3">
+            <h5 class="card-title"><%= @user.username %></h5>
+            <p class="card-text text-secondary">
+              <%= @user.age %>-year-old</span>,
+              <%= metric_height(@user.height) %>. tall,
+              <%= @user.status.humanize.downcase %>
+              <%= @user.gender_expanded %> living in
+              <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %></span><%= @user.country_name %>
+            </p>
+          </div>
+          <a href="#" class="btn btn-outline-secondary">Edit profile</a>
+        </div>
+      </div>
+      <!-- end avatar card -->
+
+    </div>
+    <div class="col-md-8">
+
+      <!-- about me card -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">A few words about me</h5>
+          <p class="card-text">Card columns can also be extended and customized with some additional code. Shown below is an extension of the .card-columns class using the same CSS we use—CSS columns— to generate a set of responsive tiers for changing the number of columns.</p>
+        </div>
+      </div>
+      <!-- end about me card -->
+
+      <!-- occupation card -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">A few words about me</h5>
+          <p class="card-text">Card columns can also be extended and customized with some additional code. Shown below is an extension of the .card-columns class using the same CSS we use—CSS columns— to generate a set of responsive tiers for changing the number of columns.</p>
+        </div>
+      </div>
+      <!-- end occupation card -->
+
+    </div>
+  </div>
+</div>

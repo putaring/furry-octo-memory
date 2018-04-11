@@ -1,34 +1,35 @@
-<% provide(:title, 'Messages') %>
+<% provide(:title, 'Likes') %>
 <%= render partial: 'shared/main_nav' %>
 
 <nav class="bg-primary primary-breadcrumb-container">
   <div class="container">
     <ol class="breadcrumb mb-0">
       <li class="breadcrumb-item"><%= link_to 'My profile', current_user %></li>
-      <li class="breadcrumb-item active">Messages</li>
+      <li class="breadcrumb-item active">Likes</li>
     </ol>
   </div>
 </nav>
 
 <section class="container">
   <div class="row justify-content-center">
-    <% if @messages.any? %>
-    <div class="col col-md-8 col-lg-6">
+    <% if @likes.any? %>
+    <div class="col">
       <div class="card my-5">
-        <div class="list-group list-group-flush">
-          <%= render partial: 'message', collection: @messages %>
+        <div class="card-header font-weight-bold bg-white">
+          People I like
         </div>
+        <ul class="list-group list-group-flush">
+          <%= render partial: 'like', collection: @likes %>
+        </ul>
       </div>
     </div>
     <% else %>
     <div class="col col-md-6 col-lg-5">
       <div class="card text-center my-5">
         <div class="card-body p-5">
-          <i class="icon ion-archive opacity-20 display-4 text-muted"></i>
-          <h1 class="h5">You don't have any messages.</h1>
-          <p>
-            <%= link_to 'Browse profiles', search_path %> to send your first message. It's free.
-          </p>
+          <i class="icon ion-heart opacity-20 display-4 text-muted"></i>
+          <h1 class="h5">You haven't liked anyone yet</h1>
+          <p><%= link_to 'Browse profiles', search_path %> to like people you're interested in.</p>
         </div>
       </div>
     </div>

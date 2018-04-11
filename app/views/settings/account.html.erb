@@ -1,34 +1,35 @@
 <% provide(:title, "Account settings") %>
 
 <%= render partial: 'shared/main_nav' %>
+<nav class="bg-primary primary-breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to 'My profile', current_user %></li>
+      <li class="breadcrumb-item active">Account Settings</li>
+    </ol>
+  </div>
+</nav>
 
-<div class="container my-5">
+<section class="bg-white py-5 mb-3">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="h2">Account Settings</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
   <div class="row">
-    <div class="col-12">
-      <h1 class="text-center text-md-left text-muted h2">Account Settings</h1>
-    </div>
-  </div>
-</div>
-
-<div>
-  <div class="container py-1">
-    <div class="row">
-      <div class="col-12">
-        <%= render partial: 'settings/nav' %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="bg-light">
-  <div class="container mt-1">
-    <div class="row">
-      <div class="col-lg-6 mt-4">
-        <%= render partial: 'settings/email' %>
-        <%= render partial: 'settings/password' %>
-        <%= render partial: 'settings/privacy' %>
-        <%= render partial: 'settings/deactivate' %>
-      </div>
+    <div class="col-lg-6 mt-4">
+      <%= render partial: 'settings/email' %>
+      <hr>
+      <%= render partial: 'settings/password' %>
+      <hr>
+      <%= render partial: 'settings/privacy' %>
+      <hr>
+      <%= render partial: 'settings/deactivate' %>
     </div>
   </div>
 </div>

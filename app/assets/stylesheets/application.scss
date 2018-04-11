@@ -1,5 +1,7 @@
 @import "bootstrap-variables";
 @import "bootstrap";
+@import "animation";
+@import "photo_gallery";
 @import "static_pages";
 @import "onboarding";
 @import "users";
@@ -12,6 +14,30 @@
 @import "swipebox";
 @import "search";
 
-.essay {
-  font-size: 1.13rem;
+body {
+  text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+@include media-breakpoint-down(md) {
+  html {
+    font-size: 0.875rem;
+  }
+}
+
+.primary-breadcrumb-container {
+  .breadcrumb {
+    background: transparent;
+  }
+  .breadcrumb-item {
+    color: $white;
+    a {
+      color: $white;
+      font-weight: 600;
+    }
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: #FFF;
+  }
 }

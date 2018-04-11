@@ -1,14 +1,10 @@
 <div class="row">
-  <div class="col-lg-10">
-    <div class="card">
-      <div class="card-body">
-        <%= form_tag(deactivate_path, method: :patch) do |f| %>
-          <div class="form-group">
-            <%= submit_tag 'Deactivate my profile', { data: { disable_with: 'Deactivating…', confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' } %>
-            <small class="form-text text-muted text-center">Users will not be able to contact you if you deactivate your profile.</small>
-          </div>
-        <% end %>
+  <div class="col">
+    <%= form_tag(deactivate_path, method: :patch) do |f| %>
+      <div class="form-group text-center">
+        <%= submit_tag 'Deactivate my profile', { data: { disable_with: 'Deactivating…', confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' } %>
+        <small class="form-text text-muted text-center">Users will not be able to contact you if you deactivate your profile.</small>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

@@ -3,12 +3,13 @@ class MessagesController < ApplicationController
   before_action :authenticate!
 
   def index
-    @messages = current_user.received_messages.joins(:sender).includes(:sender).reverse_order.to_a.uniq { |m| m.conversation_id }
+    @messages = Conversation
+      .with_participant(current_user)
+      .collect(&:latest_message)
+      .sort_by(&:id)
+      .reverse
   end
 
-  def sent
-    @messages = current_user.sent_messages.joins(:recipient).includes(:recipient).reverse_order.to_a.uniq { |m| m.conversation_id }
-  end
 
   def create
     message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id,

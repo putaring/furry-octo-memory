@@ -1,0 +1,56 @@
+<div class="jumbotron jumbotron-fluid bg-white">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8">
+
+        <div class="media">
+          <div class="mr-3 mr-md-5">
+          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid align-self-center', style: "width: 10.5rem;" } %>
+          <% if @user.eql?(current_user) %>
+            <br>
+            <%= link_to '#', class: 'btn btn-link btn-sm d-flex justify-content-center' do %>
+              <% if @user.avatar.nil? %>
+                <i class="icon ion-plus-round mr-1"></i> Add profile photo
+              <% elsif @user.avatar.image_attacher.cached? %>
+                <i class="icon ion-load-b mr-1 animate-spin"></i> Cropping photo
+              <% else %>
+                <i class="icon ion-edit mr-1"></i> Change photo
+              <% end %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="media-body">
+            <h1 class="mt-0 h2"><%= @user.username %></h1>
+            <p class="text-secondary">
+            <strong><%= @user.age %></strong> years old,
+            <strong><%= metric_height(@user.height) %></strong> tall, <strong class="font-weight-bold"><%= @user.religion.humanize %></strong>
+            <% if @user.sect_long_form.present? %>
+            (<%= @user.sect_long_form %>)
+            <% end %>
+            <%= @user.gender_expanded %>
+            <br>
+            <strong><%= @user.status.humanize %></strong>,
+             Lives in
+            <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %>
+            <strong><%= @user.country_name %></strong>
+            </p>
+            <p>
+              <% if @user.eql?(current_user) %>
+                <%= link_to 'Edit', '#', class: 'btn btn-outline-secondary btn-sm' %>
+              <% else %>
+                <%= link_to '#', class: 'btn btn-primary' do %>
+                <i class="icon ion-checkmark"></i> Like
+                <% end %>
+
+                <%= link_to '#', class: 'btn btn-outline-secondary' do %>
+                <i class="icon ion-paper-airplane"></i> Message
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

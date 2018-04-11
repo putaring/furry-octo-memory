@@ -1,0 +1,14 @@
+<div class="row justify-content-end text-right my-3">
+  <div class="col-auto">
+    <div class="card bg-primary text-white border-0">
+      <div class="card-body p-2">
+        <div>
+          <%= simple_format message.body, class: 'card-text' %>
+        </div>
+        <div class="text-light">
+          <small><%= time_ago_in_words(message.created_at) %> ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

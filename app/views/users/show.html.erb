@@ -2,20 +2,19 @@
 
 
 <%= render partial: 'shared/main_nav' %>
-<%= render partial: 'users/profile_banner' %>
-<%= render partial: 'users/message_modal' if logged_in? %>
-<%= render partial: 'users/report_modal' if logged_in? %>
 <%= render partial: 'users/welcome_modal' if (is_me?(@user) && params[:welcome] == "true") %>
 
+<%= render partial: 'users/banner' %>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-5 order-lg-2">
-      <%= render partial: 'users/photos_card' %>
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-7">
+      <%= render partial: 'users/about' %>
+      <%= render partial: 'users/occupation' %>
+      <%= render partial: 'users/preference' %>
     </div>
-    <div class="col-lg-7 order-lg-1" id="profile-page-essays">
-      <%= render partial: 'users/profile_about' %>
-      <%= render partial: 'users/profile_occupation' %>
-      <%= render partial: 'users/profile_preference' %>
+    <div class="col-12 col-lg-4">
+      <%= render partial: 'users/photos' %>
     </div>
   </div>
+
 </div>

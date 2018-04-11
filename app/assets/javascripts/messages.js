@@ -1,53 +1,38 @@
 // message modal form
 $(function() {
-  var $errorAlert   = $('#message-modal-error'),
-      $messageModal = $('#message-modal'),
-      $messageForm  = $('#message-modal #new_message');
+  var $messageForm  = $('#new_message');
   $messageForm.on('ajax:error', function (e, xhr, status, error) {
     if (xhr.status === 422) {
-      var list = $('<ol class="m-b-0"></ol>');
+      var errorMessage = '';
       for (var i = 0; i < xhr.responseJSON.length; i++) {
-        $('<li>' + xhr.responseJSON[i] + '</li>').appendTo(list)
+        errorMessage = errorMessage + xhr.responseJSON[i] + '\n';
       }
-      $errorAlert.
-        empty().
-        append('Please fix the error(s).').
-        append(list).
-        show();
+      alert(errorMessage);
     } else if (xhr.status === 401) {
       window.location = '/login'
     } else {
-      $errorAlert.
-        empty().
-        append('Something went wrong. Try again.').
-        show();
+      alert('Something went wrong');
     }
   }).on('ajax:success', function () {
-    $messageModal.modal('hide');
-    $.snackbar({
-      content: "Message sent.",
-      style: "snackbar",
-      timeout: 5000
-    });
-
-  }).on('ajax:before', function () {
-    $errorAlert.hide();
-  });
-
-  $messageModal.on('shown.bs.modal', function () {
-    $messageForm.find('textarea').focus();
-  });
-
-  $messageModal.on('hidden.bs.modal', function () {
-    $errorAlert.hide();
+    var message = $messageForm.find('textarea').val();
     $messageForm.find('textarea').val('');
+    $('<div class="row justify-content-end text-right my-3">\
+      <div class="col-auto">\
+        <div class="card bg-primary text-white border-0">\
+          <div class="card-body p-2">\
+            <div>\
+              ' + $.simpleFormat(message) + '\
+            </div>\
+            <div class="text-light">\
+              <small>Just now</small>\
+            </div>\
+          </div>\
+        </div>\
+      </div>\
+    </div>').appendTo('#chat-messages')
+    $('#message-modal').modal('hide');
   });
 });
-
-if (location.search.match(/message_dialog=true/)) {
-  $('#message-modal').modal('show');
-  history.replaceState(null, null, location.pathname)
-}
 
 // message form for conversation
 $(function() {
@@ -65,7 +50,7 @@ $(function() {
       alert('Error code: ' + xhr.status + '. Something went wrong.');
     }
   }).on('ajax:success', function (event, data, status, xhr) {
-    $messageForm.find('textarea').val('');
+
 
     var messageNode = $('<div class="media mb-3">\
       <div>\

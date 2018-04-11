@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
   end
 
   def gender_expanded
-    male? ? 'man' : 'woman'
+    male? ? 'groom' : 'bride'
   end
 
   def male?

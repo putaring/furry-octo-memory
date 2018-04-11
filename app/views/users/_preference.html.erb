@@ -1,0 +1,30 @@
+<% if @user.occupation.present? %>
+  <div class="card mb-4 border-light">
+    <div class="card-body bg-light">
+      <h5 class="card-title">What I'm actually looking for</h5>
+      <div class="card-text">
+        <%= simple_format(@user.preference) %>
+        <% if @user.eql?(current_user) %>
+          <%= link_to edit_profile_path, class: 'btn btn-sm btn-outline-success' do %>
+              <i class="icon ion-edit"></i> Edit
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="card text-muted bg-light mb-4" style="border-style: dashed;">
+    <h5 class="card-header border-0 bg-light">What I'm actually looking for</h5>
+    <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 13rem">
+      <p class="card-text text-center">
+        <% if @user.eql?(current_user) %>
+          <i class="icon ion-person-stalker h3"></i><br>
+          No judgement. We're here to help.<br>
+          <%= link_to "What are you looking for in a partner?", edit_profile_path %>
+        <% else %>
+          Nothing here yet.
+        <% end %>
+      </p>
+    </div>
+  </div>
+<% end %>

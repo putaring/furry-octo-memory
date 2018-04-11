@@ -1,0 +1,12 @@
+<% if @user.photos.any? %>
+<div class="card mb-3 bg-light border-0">
+  <div class="card-header bg-light h5 border-0">Recent photos</div>
+  <div class="card-body">
+    <div class="photo-gallery">
+      <% @user.photos.reverse_order.each do |photo| %>
+        <%= image_tag photo.image_url(:small), class: 'img-fluid d-block mb-2' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

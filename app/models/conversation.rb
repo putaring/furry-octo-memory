@@ -11,6 +11,10 @@ class Conversation < ActiveRecord::Base
     participant.id == sender_id ? recipient : sender
   end
 
+  def latest_message
+    messages.reverse_order.first
+  end
+
   def self.with_participant(participant)
     where('conversations.sender_id = ? OR conversations.recipient_id = ?', participant.id, participant.id)
   end

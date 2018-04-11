@@ -1,5 +1,5 @@
 <div class="modal fade" id="login-modal" tabindex="-1">
-  <div class="modal-dialog modal-sm">
+  <div class="modal-dialog modal-dialog-centered modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <p class="modal-title h5">Log in</p>
@@ -12,9 +12,11 @@
           Invalid email or password.
         </div>
         <%= render partial: 'sessions/login_form', locals: { remote: true } %>
-        <p class="text-center">
-          Don't have an account? <%= link_to('Signup', signup_path) %>
-        </p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <small>
+          Don't have an account yet? <%= link_to('Signup', signup_path) %>
+        </small>
       </div>
     </div>
   </div>
