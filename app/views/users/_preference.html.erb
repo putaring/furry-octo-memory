@@ -19,8 +19,8 @@
       <p class="card-text text-center">
         <% if @user.eql?(current_user) %>
           <i class="icon ion-person-stalker h3"></i><br>
-          No judgement. We're here to help.<br>
-          <%= link_to "What are you looking for in a partner?", edit_profile_path %>
+          <%= link_to "What are you looking for in a partner?", edit_profile_path %><br>
+          No judgement. We're here to help.
         <% else %>
           Nothing here yet.
         <% end %>

@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   post    'login',    to: 'sessions#create'
   delete  'logout',   to: 'sessions#destroy'
 
-  resource :likes, only: :show
+  get 'likes',        to: 'interests#index'
+  get 'likers',       to: 'interests#likers'
+  resources :interests, only: [] do
+    post 'accept', on: :member
+    delete 'decline', on: :member
+  end
 
   get 'activate',     to: 'me#activate'
   get 'banned',       to: 'me#banned'
@@ -34,13 +39,11 @@ Rails.application.routes.draw do
 
   resource :me, controller: :me, only: [:show, :update]
   resource :profile, controller: :profile, only: [:update, :edit]
-  resource :avatar, controller: :avatar, only: [:create] do
+  resource :avatar, controller: :avatar, only: [:create, :show] do
     get 'crop', to: 'avatar#crop'
   end
 
-  resource :settings, only: [] do
-    get 'account'
-  end
+  get 'account', to: 'settings#account'
 
   resources :messages, only: :index do
     get 'sent', on: :collection
@@ -62,6 +65,7 @@ Rails.application.routes.draw do
     delete 'like', to: 'users#unlike', on: :member
     post 'favorite', on: :member
     delete 'favorite', to: 'users#unfavorite', on: :member
+    post 'accept', to: 'users#accept', on: :member
     delete 'decline', to: 'users#decline', on: :member
   end
 

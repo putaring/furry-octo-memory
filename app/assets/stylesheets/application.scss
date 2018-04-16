@@ -10,7 +10,6 @@
 @import "messages";
 @import "likes";
 @import "nav";
-@import "snackbar_material";
 @import "swipebox";
 @import "search";
 
@@ -40,4 +39,12 @@ body {
   .breadcrumb-item + .breadcrumb-item::before {
     color: #FFF;
   }
+}
+
+.btn-pink {
+  @include button-variant($pink, $pink);
+}
+
+.btn-outline-pink {
+  @include button-outline-variant($pink);
 }

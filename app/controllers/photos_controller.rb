@@ -47,9 +47,9 @@ class PhotosController < ApplicationController
     photo_count = current_user.photos.count
     remaining   = 10 - photo_count
     if  photo_count > 1
-      "Done. You can add #{remaining} more #{'photo'.pluralize(remaining)}."
+      "Added."
     else
-      "All set! Let's add a caption now."
+      "All set! Add a caption to give potential matches a little more context."
     end
   end
 

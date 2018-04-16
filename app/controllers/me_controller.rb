@@ -12,7 +12,7 @@ class MeController < ApplicationController
     if current_user.update_attributes(user_params)
       head :no_content
     else
-      render json: current_user.errors.full_messages, status: :unprocessable_entity
+      render 'settings/account'
     end
   end
 

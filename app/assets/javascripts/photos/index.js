@@ -10,5 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require phone-verification/awesome-phonenumber
-//= require phone-verification/verify
+//= require photos/album
+//= require photos/album_uploader
+//= require photos/avatar_uploader
+//= require photos/avatar_loader

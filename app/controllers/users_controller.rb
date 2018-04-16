@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_action :authenticate!, only: [:like, :unlike]
 
   def show
-    @user = User.active.find(params[:id])
+    @user     = User.active.find(params[:id])
+    @photos   = @user.photos.reverse_order.all
   end
 
   def new
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   def like
     @user = User.find(params[:id])
     if (interest = current_user.like(@user))
-      @user.likes?(current_user) ? UserMailer.match_email(interest.id).deliver_later : UserMailer.like_email(interest.id).deliver_later
+      #@user.likes?(current_user) ? UserMailer.match_email(interest.id).deliver_later : UserMailer.like_email(interest.id).deliver_later
       render json: interest, status: :created
     else
       head :unprocessable_entity

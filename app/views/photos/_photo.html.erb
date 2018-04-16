@@ -7,7 +7,7 @@
       <%= content_tag :div, data: { component: "photo-caption-container", photo_id: photo.id }, class: "float-left text-muted", style: "cursor: pointer;" do %>
         <%= photo_caption_for(photo) %>
       <% end %>
-      <div class="float-right"><%= link_to "Delete", photo, method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } %></div>
+      <div class="float-right"><%= link_to "Delete", photo, method: :delete, class: 'text-danger icon ion-trash-a', data: { confirm: 'Are you sure?' } %></div>
     <% end %>
     <%= form_for photo, html: { class: 'd-none' } do |f| %>
       <div class="form-group">

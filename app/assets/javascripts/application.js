@@ -13,10 +13,14 @@
 //= require jquery_ujs
 //= require popper
 //= require bootstrap-sprockets
+//= require snackbar
+//= require nav
 //= require about
 //= require conversations
 //= require favorite
 //= require like
+//= require accept
+//= require decline
 //= require localstorage_support
 //= require messages
 //= require photos
@@ -24,6 +28,5 @@
 //= require sessions
 //= require settings
 //= require simple_format
-//= require snackbar.min
 //= require static_pages
 //= require users

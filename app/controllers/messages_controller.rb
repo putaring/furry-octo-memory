@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     message = @conversation.messages.build(body: params[:message][:body], sender_id: current_user.id,
       recipient_id: @conversation.other_participant(current_user).id, ip: request.remote_ip)
     if message.save
-      UserMailer.message_email(message.id).deliver_later
+      #UserMailer.message_email(message.id).deliver_later
       if request.xhr?
         render json: message, status: :created
       else

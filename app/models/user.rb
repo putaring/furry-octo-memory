@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_secure_token :reset_token
 
   has_one :profile
-  has_one :avatar
+  has_one :avatar, -> { order(id: :desc) }, dependent: :destroy
 
   has_many :photos
 

@@ -1,5 +1,3 @@
-$('#older-messages-btn').click(function (e) {
-  e.preventDefault();
-  $(this).remove();
-  $('.media:hidden').fadeIn(500);
-})
+$("#chat-messages").animate({
+  scrollTop: $('#chat-messages').prop("scrollHeight")
+}, 1000);

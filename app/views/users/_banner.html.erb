@@ -5,14 +5,14 @@
 
         <div class="media">
           <div class="mr-3 mr-md-5">
-          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid align-self-center', style: "width: 10.5rem;" } %>
+          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid align-self-center', style: "width: 10.5rem;", data: { toggle: 'avatar-photo' } } %>
           <% if @user.eql?(current_user) %>
             <br>
-            <%= link_to '#', class: 'btn btn-link btn-sm d-flex justify-content-center' do %>
+            <%= link_to 'javascript:void(0);', class: 'btn btn-link btn-sm d-flex justify-content-center', data: { toggle: 'avatar-uploader' } do %>
               <% if @user.avatar.nil? %>
                 <i class="icon ion-plus-round mr-1"></i> Add profile photo
               <% elsif @user.avatar.image_attacher.cached? %>
-                <i class="icon ion-load-b mr-1 animate-spin"></i> Cropping photo
+                <span data-toggle="avatar-loader"><i class="icon ion-load-b mr-1 animate-spin"></i> Cropping photo&hellip;</span>
               <% else %>
                 <i class="icon ion-edit mr-1"></i> Change photo
               <% end %>
@@ -22,12 +22,11 @@
           <div class="media-body">
             <h1 class="mt-0 h2"><%= @user.username %></h1>
             <p class="text-secondary">
-            <strong><%= @user.age %></strong> years old,
+            <strong><%= @user.age %></strong> year-old <%= @user.gender_expanded %>,
             <strong><%= metric_height(@user.height) %></strong> tall, <strong class="font-weight-bold"><%= @user.religion.humanize %></strong>
             <% if @user.sect_long_form.present? %>
             (<%= @user.sect_long_form %>)
             <% end %>
-            <%= @user.gender_expanded %>
             <br>
             <strong><%= @user.status.humanize %></strong>,
              Lives in
@@ -35,16 +34,25 @@
             <strong><%= @user.country_name %></strong>
             </p>
             <p>
-              <% if @user.eql?(current_user) %>
-                <%= link_to 'Edit', '#', class: 'btn btn-outline-secondary btn-sm' %>
-              <% else %>
-                <%= link_to '#', class: 'btn btn-primary' do %>
-                <i class="icon ion-checkmark"></i> Like
+              <% if logged_in? %>
+
+                <% if @user.eql?(current_user) %>
+                  <%= link_to 'Edit', account_path, class: 'btn btn-outline-secondary btn-sm' %>
+                <% else %>
+                  <% if current_user.likes?(@user) %>
+                    <%= link_to(like_user_path(@user), remote: true, method: :delete, class: 'btn btn-outline-pink', data: { toggle: :like } ) do %>
+                      <i class="icon ion-close"></i> Unlike
+                    <% end %>
+                  <% else %>
+                    <%= link_to('Like', like_user_path(@user), remote: true, method: :post, class: 'btn btn-pink', data: { toggle: :like } ) %>
+                  <% end %>
+
+                  <%= link_to messages_path, class: 'btn btn-outline-secondary', data: { toggle: :modal, target: '#message-modal' } do %>
+                    <i class="icon ion-android-chat"></i> Message
+                  <% end %>
+                  <%= render partial: 'users/message_modal' %>
                 <% end %>
 
-                <%= link_to '#', class: 'btn btn-outline-secondary' do %>
-                <i class="icon ion-paper-airplane"></i> Message
-                <% end %>
               <% end %>
             </p>
           </div>

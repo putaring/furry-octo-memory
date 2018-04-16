@@ -11,23 +11,34 @@
 </nav>
 
 <section class="container">
-  <div class="row justify-content-center">
-    <% if @likes.any? %>
+
+  <div class="row my-3">
     <div class="col">
-      <div class="card my-5">
-        <div class="card-header font-weight-bold bg-white">
-          People I like
-        </div>
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <%= link_to 'I like', likes_path, { class: 'nav-link active' } %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/likers">Likes me</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <% if @active_interests.any? %>
+    <div class="col">
+      <div class="card">
         <ul class="list-group list-group-flush">
-          <%= render partial: 'like', collection: @likes %>
+          <%= render partial: 'active_interest', collection: @active_interests %>
         </ul>
       </div>
     </div>
     <% else %>
     <div class="col col-md-6 col-lg-5">
-      <div class="card text-center my-5">
+      <div class="card text-center">
         <div class="card-body p-5">
-          <i class="icon ion-heart opacity-20 display-4 text-muted"></i>
+          <i class="icon ion-heart display-4 text-muted"></i>
           <h1 class="h5">You haven't liked anyone yet</h1>
           <p><%= link_to 'Browse profiles', search_path %> to like people you're interested in.</p>
         </div>

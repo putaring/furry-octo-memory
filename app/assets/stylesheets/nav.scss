@@ -1,1 +1,5 @@
-
+.navbar.fixed-top {
+  &.box-shadow {
+    box-shadow: 0 1px 3px #bbb;
+  }
+}

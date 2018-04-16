@@ -1,0 +1,49 @@
+<% provide(:title, 'Likes me') %>
+<%= render partial: 'shared/main_nav' %>
+
+<nav class="bg-primary primary-breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to 'My profile', current_user %></li>
+      <li class="breadcrumb-item active">Likes me</li>
+    </ol>
+  </div>
+</nav>
+
+<section class="container">
+
+  <div class="row my-3">
+    <div class="col">
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <%= link_to 'I like', likes_path, { class: 'nav-link' } %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/likers">Likes me</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <% if @passive_interests.any? %>
+    <div class="col">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <%= render partial: 'passive_interest', collection: @passive_interests %>
+        </ul>
+      </div>
+    </div>
+    <% else %>
+    <div class="col col-md-6 col-lg-5">
+      <div class="card text-center">
+        <div class="card-body p-5">
+          <i class="icon ion-heart display-4 text-muted"></i>
+          <h1 class="h5">No likers yet</h1>
+          <p><%= link_to 'Browse profiles', search_path %> to like people you're interested in.</p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</section>

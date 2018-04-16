@@ -1,27 +1,17 @@
-<% provide(:title, 'My photos') %>
+<% provide(:title, 'Photo album') %>
 <%= render partial: 'shared/main_nav' %>
 
-<div class="jumbotron jumbotron-fluid mb-0" style="background-color:#E1F5FE">
+<nav class="bg-primary primary-breadcrumb-container">
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="jumbotron-heading h2 text-muted">My photo album</h1>
-      </div>
-    </div>
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to 'My profile', current_user %></li>
+      <li class="breadcrumb-item active">Photo album</li>
+    </ol>
   </div>
-</div>
-<div class="mb-3" style="border-bottom: 1px solid #f3f3f3;">
-  <div class="container py-3">
-    <div class="row">
-      <div class="col-12">
-        <%= render 'photos/avatar_preview' %>
-      </div>
-    </div>
-  </div>
-</div>
+</nav>
 
 
-<section class="container mb-5">
+<section class="container my-5">
 
   <% if flash.notice.present? %>
     <div class="row">
@@ -33,30 +23,39 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="col-lg-5 order-lg-2 mb-5 pt-1">
-      <div class="row">
-        <div class="col-12 text-center">
-          <%= link_to "Add a photo", '#', class: 'btn btn-lg btn-success', id: 'add-a-photo' %>
-        </div>
-      </div>
-    </div>
-
     <% if @photos.empty? %>
-
-      <div class="col-lg-7 order-lg-1">
-        <div class="rounded p-5 text-center text-muted" style="border: 2px dashed #ccc">
-          <p class="m-lg-5 m-2">Spice up your profile with some photos.</p>
+      <div class="row justify-content-center">
+        <div class="col col-md-6 col-lg-5">
+          <div class="card text-center">
+            <div class="card-body p-5">
+              <i class="icon ion-images display-4 text-muted"></i>
+              <h1 class="h5">Album is empty</h1>
+              <p>Spice up your profile with some photos.</p>
+              <%= link_to 'javascript:void(0)', class: 'btn btn-success', id: 'add-a-photo' do %>
+                <i class="icon ion-camera"></i> Add photo
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
-
     <% else %>
-      <div class="col-lg-7 order-lg-1">
-        <%= render partial: 'photos/photo', collection: @photos %>
+      <div class="row">
+        <div class="col-lg-5 order-lg-2 mb-5 pt-1">
+          <div class="row">
+            <div class="col-12 text-center">
+              <%= link_to 'javascript:void(0)', class: 'btn btn-lg btn-success', id: 'add-a-photo' do %>
+                <i class="icon ion-camera"></i> Add photo
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7 order-lg-1">
+          <%= render partial: 'photos/photo', collection: @photos %>
+        </div>
+        
       </div>
     <% end %>
-
-  </div>
 </section>
 
 <%= form_for@photo do |f| %>
