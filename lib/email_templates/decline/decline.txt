@@ -1,0 +1,9 @@
+{{user}} declined your interest
+
+But there's plenty of fish in the sea.
+
+Copy and paste the following link in your browser to find someone you like.
+{{search_url}}
+
+Cheers,
+The Spouzz Team

@@ -23,6 +23,7 @@ gem 'newrelic_rpm'
 gem "rack-timeout"
 gem 'aws-sdk-sqs'
 gem "aws-sdk-s3", "~> 1.2"
+gem "aws-sdk-ses"
 gem 'kaminari'
 gem 'fastimage'
 

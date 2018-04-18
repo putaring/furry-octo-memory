@@ -42,6 +42,11 @@ $(function() {
 
     }
 
-    $messageModal.modal('hide');
+    if ($messageModal.length > 0) {
+      $messageModal.modal('hide');
+      Snackbar.show({showAction: false, text: 'Sent.'})
+    }
+
+
   });
 });

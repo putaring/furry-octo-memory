@@ -1,0 +1,9 @@
+{{sender}} said:
+
+{{message}}
+
+Copy and paste the following link in your browser to reply.
+{{conversation_url}}
+
+Cheers,
+The Spouzz Team

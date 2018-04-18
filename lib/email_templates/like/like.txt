@@ -1,0 +1,7 @@
+{{liker}} likes you.
+
+Copy and paste the following link in your browser to view their profile.
+{{liker_url}}
+
+Cheers,
+The Spouzz Team

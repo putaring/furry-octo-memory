@@ -1,11 +1,11 @@
 <div class="jumbotron jumbotron-fluid bg-white">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-8">
+      <div class="col-12 col-lg-8">
 
-        <div class="media">
+        <div class="media d-flex align-items-center">
           <div class="mr-3 mr-md-5">
-          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid align-self-center', style: "width: 10.5rem;", data: { toggle: 'avatar-photo' } } %>
+          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid align-self-center', data: { toggle: 'avatar-photo' } } %>
           <% if @user.eql?(current_user) %>
             <br>
             <%= link_to 'javascript:void(0);', class: 'btn btn-link btn-sm d-flex justify-content-center', data: { toggle: 'avatar-uploader' } do %>
@@ -31,7 +31,8 @@
             <strong><%= @user.status.humanize %></strong>,
              Lives in
             <%= @user.country_name.downcase.starts_with?('united') ? 'the': '' %>
-            <strong><%= @user.country_name %></strong>
+            <strong><%= @user.country_name %></strong><br>
+            Speaks <strong><%= @user.language_expanded %></strong>
             </p>
             <p>
               <% if logged_in? %>

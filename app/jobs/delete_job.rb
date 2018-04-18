@@ -1,5 +1,5 @@
 class DeleteJob < ActiveJob::Base
-  queue_as 'default.fifo'
+  queue_as 'low'
   def perform(data)
     Shrine::Attacher.delete(data)
   end

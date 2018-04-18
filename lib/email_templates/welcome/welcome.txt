@@ -1,0 +1,12 @@
+Welcome to Spouzz!
+
+Thanks for signing up. You've joined a vibrant community of Indians just like you who are looking for a partner.
+
+We hope you enjoy this opportunity to take Spouzz for a spin. Feel free to browse profiles, connect with people you like, and send unlimited messages. It's totally free.
+
+If you haven't done so already, please complete your profile by adding some photos and filling out your description.
+
+Login at {{login_url}} to view your profile.
+
+Cheers,
+The Spouzz Team
