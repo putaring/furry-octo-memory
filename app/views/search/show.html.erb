@@ -1,25 +1,32 @@
-<% provide(:title, 'Browse matches') %>
+<% provide(:title, 'Search') %>
 <%= render partial: 'shared/main_nav' %>
 
 <%= render partial: 'search/search_form' %>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1 col-12">
-        <% if @users.present? %>
-        <div class="row justify-content-center" id="search-results">
-          <%= render partial: 'search/user', collection: @users %>
+    <% if @users.present? %>
+      <div class="row justify-content-center" id="search-results">
+        <%= render partial: 'search/user', collection: @users %>
+      </div>
+      <div class="row justify-content-center">
+        <%= paginate @users, window: 1 %>
+      </div>
+    <% else %>
+      <div class="row justify-content-center">
+        <div class="col col-md-6 col-lg-5">
+          <div class="card text-center">
+            <div class="card-body p-5">
+              <i class="icon ion-search display-4 text-muted"></i>
+              <p class="text-secondary">
+                <% if @users.nil? %>
+                  Fill out your preference to browse profiles.
+                <% else %>
+                  We couldn't find anything. Try a broader search.
+                <% end %>
+              </p>
+            </div>
           </div>
-          <div class="row justify-content-center">
-            <%= paginate @users, window: 1 %>
-          </div>
-        <% else %>
-        <div class="row justify-content-center" id="search-results">
-          <div class="rounded p-5 text-center text-muted mb-5 mx-2" style="border: 2px dashed #ccc">
-            <p class="m-lg-5 m-2">Enter your preference and click Search to get started.</p>
-          </div>
-          </div>
-        <% end %>
-    </div>
-  </div>
+        </div>
+      </div>
+    <% end %>
 </div>

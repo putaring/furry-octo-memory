@@ -1,5 +1,5 @@
 <div class="mb-5 pb-5">
-  <div class="text-center">
+  <div>
     <%= image_tag photo.image_url(:large), class: 'rounded img-fluid', id: "photo-image-#{photo.id}" , alt: photo.caption, title: photo.caption %>
   </div>
   <div class="mt-2">
@@ -7,7 +7,7 @@
       <%= content_tag :div, data: { component: "photo-caption-container", photo_id: photo.id }, class: "float-left text-muted", style: "cursor: pointer;" do %>
         <%= photo_caption_for(photo) %>
       <% end %>
-      <div class="float-right"><%= link_to "Delete", photo, method: :delete, class: 'text-danger icon ion-trash-a', data: { confirm: 'Are you sure?' } %></div>
+      <div class="float-right"><%= link_to "Delete", photo, method: :delete, class: 'text-danger', data: { confirm: 'Are you sure?' } %></div>
     <% end %>
     <%= form_for photo, html: { class: 'd-none' } do |f| %>
       <div class="form-group">

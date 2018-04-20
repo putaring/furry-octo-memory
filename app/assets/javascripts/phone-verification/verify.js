@@ -73,7 +73,7 @@ PhoneVerification.prototype = {
   validateNumber: function (e) {
     var pn = new PhoneNumber(this.$phoneNumber.val(), this.$countryCode.val());
     if (pn.isValid() && pn.isMobile()) {
-      this.$phoneInput.val(pn.getNumber());
+      this.$phoneInput.val(pn.getNumber('e164'));
       this.$prettyNumber.html(pn.getNumber("international"));
     } else {
       this.$phoneNumber.addClass('is-invalid');

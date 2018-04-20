@@ -54,6 +54,9 @@
                   <%= render partial: 'users/message_modal' %>
                 <% end %>
 
+              <% else %>
+                <%= link_to 'Sign up', signup_path, class: 'btn btn-success' %>
+                <%= link_to 'Login', login_path, class: 'btn btn-outline-secondary', data: { toggle: :modal, target: '#login-modal' } %>
               <% end %>
             </p>
           </div>

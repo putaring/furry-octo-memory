@@ -4,23 +4,13 @@ class SearchController < ApplicationController
     search if params[:gender].present?
     respond_to do |format|
       format.html
-      format.js {render json: search_response }
     end
   end
 
   private
 
-  def search_response
-    @users.map do |user|
-      {
-        id: user.id, username: user.username, age: user.age, picture: user.display_thumbnail,
-        country: user.country_name, religion: user.religion.humanize, gender: user.gender, visibility: user.photo_visibility
-      }
-    end
-  end
-
   def search
-    @users = User.active.order('id DESC').page params[:page]
+    @users = User.active.reverse_order.page params[:page]
     filter_gender if params[:gender].present?
     filter_status if params[:status].present?
     filter_age

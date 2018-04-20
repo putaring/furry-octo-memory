@@ -13,7 +13,7 @@ class AvatarController < ApplicationController
         url: current_user.avatar.image_url(:large)
       }
     else
-      head :accepted
+      render json: {}, status: :accepted
     end
   end
 

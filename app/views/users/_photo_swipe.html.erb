@@ -86,7 +86,7 @@
     var pswpElement = document.querySelectorAll('.pswp')[0];
     var items = <%= raw photos.to_json %>;
     $('.photo-gallery img').click(function() {
-      var photoIndex = $(this).index();
+      var photoIndex = $(this).index('.photo-gallery img');
       var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, { index: photoIndex, shareEl: false });
       gallery.init();
     });

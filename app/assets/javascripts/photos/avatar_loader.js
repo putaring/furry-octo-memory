@@ -23,9 +23,7 @@ AvatarLoader.prototype = {
   }
 }
 
-$(function() {
-  $('[data-toggle="avatar-loader"]').each(function() {
-    var avatarLoader = new AvatarLoader(this);
-    avatarLoader.loadAvatar();
-  });
-})
+$('[data-toggle="avatar-loader"]').each(function() {
+  var avatarLoader = new AvatarLoader(this);
+  avatarLoader.loadAvatar();
+});

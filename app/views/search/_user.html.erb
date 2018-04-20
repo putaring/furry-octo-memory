@@ -1,12 +1,13 @@
-<div class="col-md-4 col-sm-6 col-6 user-card-container mb-5">
+<div class="col-md-4 col-sm-6 col-6 mb-5">
   <%= link_to user_path(user), class: "card user-card" do %>
-    <%= image_tag(display_picture_for(user), class: "card-img-top w-100") %>
+    <%= image_tag(display_picture_for(user), class: "card-img-top") %>
     <div class="card-body">
-      <p class="h5 card-title"><%= user.username %></p>
-      <p class="card-text"><%= user.age %> • <%= user.religion.humanize %></p>
-      <div class="country-name">
-        <%= user.country_name %>
-      </div>
+      <h5 class="card-title text-truncate text-secondary"><%= user.username %></h5>
+      <div class="card-text text-truncate text-dark"><%= user.age %>, <%= user.religion.humanize %></div>
+      <div class="card-text text-truncate text-dark"><%= user.country_name %></div>
+    </div>
+    <div class="card-footer text-muted text-truncate bg-white">
+      <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
     </div>
   <% end %>
 </div>

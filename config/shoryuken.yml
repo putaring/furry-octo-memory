@@ -1,4 +1,6 @@
 pidfile: ./shoryuken.pid
 queues:
-  - default.fifo
-  - mailers.fifo
+  - critical
+  - important
+  - normal
+  - low
