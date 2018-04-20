@@ -26,7 +26,13 @@ class UsersController < ApplicationController
   def like
     @user = User.find(params[:id])
     if (interest = current_user.like(@user))
-      #@user.likes?(current_user) ? UserMailer.match_email(interest.id).deliver_later : UserMailer.like_email(interest.id).deliver_later
+
+      if @user.likes?(current_user)
+        Ses::AcceptEmailJob.perform_later(interest.id)
+      else
+        Ses::LikeEmailJob.perform_later(interest.id)
+      end
+
       render json: interest, status: :created
     else
       head :unprocessable_entity

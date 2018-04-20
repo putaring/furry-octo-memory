@@ -6,16 +6,11 @@ module Ses
 
     protected
 
-    def self.default_url_options
-      Rails.application.config.action_mailer.default_url_options
-    end
+    attr_accessor :recipient
 
-    def perform(recipient_email)
-
-      self.recipient_email = recipient_email
-
+    def perform
       ses = Aws::SES::Client.new
-      puts ses.send_templated_email(
+      ses.send_templated_email(
         source: 'notifications@spouzz.com',
         destination: {
           to_addresses: to_addresses
@@ -25,12 +20,14 @@ module Ses
       )
     end
 
+    def self.default_url_options
+      Rails.application.config.action_mailer.default_url_options
+    end
+
     private
 
-    attr_accessor :recipient_email
-
     def to_addresses
-      Array(ENV.fetch('MAIL_INTERCEPT_ADDRESS', recipient_email))
+      Array(ENV.fetch('MAIL_INTERCEPT_ADDRESS', recipient.email))
     end
 
   end

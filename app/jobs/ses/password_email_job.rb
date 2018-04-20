@@ -1,5 +1,5 @@
 module Ses
-  class WelcomeEmailJob < Ses::BaseJob
+  class PasswordEmailJob < Ses::BaseJob
     def perform(user_id)
       self.recipient = User.find_by(id: user_id)
       super() if recipient.present?
@@ -8,11 +8,11 @@ module Ses
     private
 
     def template
-      'Welcome'
+      'Password'
     end
 
     def template_data
-      { login_url: login_url }
+      { password_reset_url: reset_password_url(reset_token: recipient.reset_token) }
     end
   end
 end

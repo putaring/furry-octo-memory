@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
+  include AvatarHelper
 
   before_action :disallow_inactive_users!, except: [:activate, :reactivate], unless: :public_pages?
   before_action :disallow_banned_users!, except: :banned, unless: :public_pages?

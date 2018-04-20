@@ -12,6 +12,7 @@ class InterestsController < ApplicationController
   def accept
     liker = current_user.passive_interests.find(params[:id]).liker
     if (interest = current_user.like(liker))
+      Ses::AcceptEmailJob.perform_later(interest.id)
       render json: interest, status: :created
     else
       head :unprocessable_entity
@@ -21,6 +22,7 @@ class InterestsController < ApplicationController
   def decline
     liker = current_user.passive_interests.find(params[:id]).liker
     if current_user.decline(liker)
+      Ses::DeclineEmailJob.perform_later(current_user.id, liker.id)
       head :no_content
     else
       head :unprocessable_entity
