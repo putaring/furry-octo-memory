@@ -1,11 +1,10 @@
 class ForgotPasswordController < ApplicationController
 
   def send_instructions
-    email = params[:email].downcase.strip
-    user  = User.find_by(email: email)
+    user  = User.find_by(email: params[:email].downcase.strip)
     Ses::PasswordEmailJob.perform_later(user.id) if user.present?
 
-    redirect_to check_your_email_path, flash: { notice: email }
+    redirect_to check_your_email_path
   end
 
   def reset_password
