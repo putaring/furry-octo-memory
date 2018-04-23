@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
     if photo.update_attributes(photo_edit_params)
       redirect_to photos_path anchor: "photo-image-#{photo.id}"
     else
-      redirect_to photos_path, 'Oops. Something went wrong. Try again'
+      redirect_to photos_path, notice: 'Oops. Something went wrong. Try again'
     end
   end
 

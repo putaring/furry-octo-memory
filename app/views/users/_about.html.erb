@@ -5,7 +5,7 @@
       <div class="card-text">
         <%= simple_format(@user.about) %>
         <% if @user.eql?(current_user) %>
-          <%= link_to edit_profile_path, class: 'btn btn-sm btn-outline-success' do %>
+          <%= link_to edit_description_path, class: 'btn btn-sm btn-outline-success' do %>
               <i class="icon ion-edit"></i> Edit
           <% end %>
         <% end %>
@@ -19,7 +19,7 @@
       <p class="card-text text-center">
         <% if @user.eql?(current_user) %>
           <i class="icon ion-clipboard h3"></i><br>
-          <%= link_to "How would your family describe you?", edit_profile_path %>
+          <%= link_to "How would your family describe you?", edit_description_path %>
         <% else %>
           <%= @user.male? ? 'He' : 'She' %> hasn't written anything yet.<br>
           Perhaps a thinker, not a talker.

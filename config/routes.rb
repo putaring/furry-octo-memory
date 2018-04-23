@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   resource :search, only: :show, controller: :search
 
+  resource :description,  only: [:edit, :update], controller: :description
+  resource :work,         only: [:edit, :update], controller: :work
+  resource :preference,   only: [:edit, :update], controller: :preference
+
   resources :conversations, only: :show
   resources :photos
 
@@ -38,7 +42,6 @@ Rails.application.routes.draw do
   end
 
   resource :me, controller: :me, only: [:show, :update]
-  resource :profile, controller: :profile, only: [:update, :edit]
   resource :avatar, controller: :avatar, only: [:create, :show] do
     get 'crop', to: 'avatar#crop'
   end

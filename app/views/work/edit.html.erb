@@ -1,0 +1,48 @@
+<% provide(:title, "Edit your description") %>
+<%= render partial: 'shared/main_nav' %>
+
+<nav class="bg-primary primary-breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to 'My profile', current_user %></li>
+      <li class="breadcrumb-item active">Work</li>
+    </ol>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <div class="row">
+    <div class="col-md-6 justify-content-center">
+      <% if @profile.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+          <% @profile.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if flash[:notice].present? %>
+        <div class="alert alert-info">
+          <%= flash.notice %> <%= link_to 'Back to profile', current_user, class: 'alert-link' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <%= form_for(@profile, url: work_path) do |f| %>
+        <div class="form-group">
+          <%= f.label :occupation, "What I'm doing with my life" %>
+          <%= f.text_area :occupation, { class: 'form-control', maxlength: 1450, placeholder: 'Tell them about your job, your latest side project or hobby. What keeps you occupied daily?', rows: 7} %>
+        </div>
+        <div class="form-group">
+          <%= f.submit 'Update', { data: { disable_with: 'Updating…' }, class: 'btn btn-secondary' } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

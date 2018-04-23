@@ -1,8 +1,8 @@
-<div class="col-md-4 col-sm-6 col-6 mb-5">
+<div class="col-6 col-md-4 col-lg-3 mb-5">
   <%= link_to user_path(user), class: "card user-card" do %>
     <%= image_tag(display_picture_for(user), class: "card-img-top") %>
     <div class="card-body">
-      <h5 class="card-title text-truncate text-secondary"><%= user.username %></h5>
+      <p class="card-title text-truncate text-secondary"><%= user.username %></p>
       <div class="card-text text-truncate text-dark"><%= user.age %>, <%= user.religion.humanize %></div>
       <div class="card-text text-truncate text-dark"><%= user.country_name %></div>
     </div>
