@@ -10,7 +10,7 @@ class MeController < ApplicationController
 
   def update
     if current_user.update_attributes(user_params)
-      head :no_content
+      redirect_to account_path, notice: 'Updated.'
     else
       render 'settings/account'
     end
@@ -28,7 +28,7 @@ class MeController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :birthdate, :password, :password_confirmation, :email,
-      :country, :gender, :language, :religion, :height, :status, :sect, :photo_visibility, :income)
+      :country, :gender, :language, :religion, :height, :status, :sect, :photo_visibility)
   end
 
   def allow_inactive!

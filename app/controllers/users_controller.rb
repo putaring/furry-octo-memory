@@ -69,7 +69,7 @@ class UsersController < ApplicationController
   def decline
     @user = User.find(params[:id])
     if current_user.decline(@user)
-      UserMailer.decline_email(@user.id, current_user.id).deliver_later
+      Ses::DeclineEmailJob.perform_later(current_user.id, @user.id)
       head :no_content
     else
       head :unprocessable_entity
@@ -80,6 +80,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:username, :birthdate, :password, :email,
-        :country, :gender, :language, :religion, :height, :status, :sect)
+        :country, :gender, :language, :religion, :height, :status, :sect, :terms)
     end
 end

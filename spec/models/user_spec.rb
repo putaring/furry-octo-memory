@@ -28,6 +28,8 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_inclusion_of(:language).in_array(LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3)) }
     it { is_expected.to validate_inclusion_of(:country).in_array(ISO3166::Data.codes) }
 
+    it { is_expected.to validate_acceptance_of(:terms) }
+
     it { is_expected.to allow_values(Faker::Internet.email).for(:email) }
     it { is_expected.to allow_value(Faker::Date.between(100.years.ago, 18.years.ago + 1.day)).for(:birthdate) }
 

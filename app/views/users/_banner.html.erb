@@ -38,7 +38,7 @@
               <% if logged_in? %>
 
                 <% if @user.eql?(current_user) %>
-                  <%= link_to 'Edit', account_path, class: 'btn btn-outline-secondary btn-sm' %>
+                  <%= link_to 'Edit', edit_details_path, class: 'btn btn-outline-secondary btn-sm' %>
                 <% else %>
                   <% if current_user.likes?(@user) %>
                     <%= link_to(like_user_path(@user), remote: true, method: :delete, class: 'btn btn-outline-pink', data: { toggle: :like } ) do %>

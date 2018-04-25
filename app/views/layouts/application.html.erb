@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
-  <%= render partial: 'shared/gtm' if ENV['GTM_CONTAINER_ID'].present? %>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -18,7 +17,6 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= yield :gtm_body %>
   <%= yield %>
   <%= render partial: 'shared/login_modal' unless (logged_in? || params[:controller] == "sessions") %>
   <link href="https://transloadit.edgly.net/releases/uppy/v0.23.3/dist/uppy.min.css" rel="stylesheet">

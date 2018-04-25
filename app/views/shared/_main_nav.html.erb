@@ -5,8 +5,8 @@
 </style>
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
   <div class="container">
-    <%= link_to logged_in? ? user_path(current_user) : root_path, { class: 'navbar-brand h1 mb-0' } do %>
-    <%= image_tag 'logo.svg', width: 30, height: 30 %>
+    <%= link_to logged_in? ? user_path(current_user) : root_path, { class: 'navbar-brand h1 pb-0 text-hide' } do %>
+    <%= image_tag 'logo.png', height: 20 %>
     Spouzz
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

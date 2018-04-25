@@ -10,7 +10,7 @@ var avatarUploader = Uppy.Core({
 
 avatarUploader.use(Uppy.Dashboard, {
   trigger: '[data-toggle="avatar-uploader"]',
-  note: "Add your picture. You'll be asked to crop it in the next step.",
+  note: "You'll be asked to crop your face in the next step.",
   locale: {
     strings: {
       dropPaste: 'Drop your photo here or'

@@ -7,7 +7,7 @@
           <div class="col">
             <p class="text-left">
               <%=link_to root_path do %>
-                <%= image_tag 'logo.svg', height: 75 %>
+                <%= image_tag 'logo.png', height: 40, class: 'my-3 my-lg-0' %>
               <% end %>
             </p>
             <p class="h1">Let's get started</p>
@@ -24,6 +24,17 @@
         <div class="row justify-content-center">
           <div class="col-12 py-2">
             <p class="h5 text-center mb-3 text-muted">Join now</p>
+
+            <% if @user.errors.any? %>
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                <% @user.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <%= render partial: 'users/signup_form' %>
 
             <div class="my-3 text-center">

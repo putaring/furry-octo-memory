@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
   validates :photo_visibility, inclusion: { in: User.photo_visibilities.keys }
   validates :country, presence: true, length: { is: 2 }, inclusion: { in: ISO3166::Data.codes }
   validates :language, presence: true, length: { is: 3 }, inclusion: { in: LanguageList::POPULAR_LANGUAGES.map(&:iso_639_3) }
+  validates :terms, acceptance: true
 
   validates_numericality_of :height, only_integer: true, greater_than: 24
   validates_numericality_of :income, allow_nil: true

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resource :description,  only: [:edit, :update], controller: :description
   resource :work,         only: [:edit, :update], controller: :work
   resource :preference,   only: [:edit, :update], controller: :preference
+  resource :details,      only: [:edit, :update], controller: :details
 
   resources :conversations, only: :show
   resources :photos
