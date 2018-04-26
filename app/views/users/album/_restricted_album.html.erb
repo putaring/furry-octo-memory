@@ -1,0 +1,13 @@
+<div class="card text-muted bg-light mb-3" style="border-style: dashed;">
+  <h5 class="card-header border-0 bg-light">Photo album</h5>
+  <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 13rem">
+    <p class="card-text text-center">
+      <i class="icon ion-locked h3"></i><br>
+      <% if logged_in? %>
+        Restricted to members <%= @user.male? ? 'he' : 'she' %> likes.
+      <% else %>
+        <%= link_to 'Log in', login_path, data: { toggle: :modal, target: '#login-modal' } %> to view photos.
+      <% end %>
+    </p>
+  </div>
+</div>

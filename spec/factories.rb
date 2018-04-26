@@ -37,15 +37,14 @@ FactoryGirl.define do
     photo_visibility 'members_only'
   end
 
-  factory :user_with_income, parent: :user do
-    income { 100000 }
-  end
-
   factory :brahmin, parent: :user do
     religion 'hindu'
     sect 'brh'
   end
 
+  factory :profile do
+    user
+  end
 
   factory :conversation do
     sender
@@ -71,6 +70,7 @@ FactoryGirl.define do
   end
 
   factory :photo do
+    image { File.open(Rails.root.join('spec/support/photos/faces.jpg')) }
     user
     ip { "127.0.0.1" }
   end

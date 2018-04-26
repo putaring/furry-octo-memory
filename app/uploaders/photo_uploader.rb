@@ -4,7 +4,7 @@ class PhotoUploader < Shrine
   include ImageProcessing::MiniMagick
   plugin :processing
   plugin :versions
-  plugin :delete_raw
+  plugin :delete_raw, storages: [:store]
   plugin :store_dimensions
   plugin :pretty_location
 

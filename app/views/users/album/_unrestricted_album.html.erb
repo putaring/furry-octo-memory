@@ -1,0 +1,25 @@
+<div class="card mb-3 bg-light border-0">
+  <div class="card-header bg-light border-0 d-flex">
+    <span class="h6 text-secondary">
+      <%= link_to_if @user.eql?(current_user), 'Photo album', photos_path %>
+    </span>
+  </div>
+  <div class="card-body py-0 ">
+    <div class="row no-gutters photo-gallery">
+      <% @photos.first(3).each do |photo| %>
+      <div class="col-4">
+        <%= image_tag photo.image_url(:small), class: 'img-fluid d-block mx-auto border border-light' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-footer bg-light border-0 justify-content-between d-flex text-secondary">
+    <small>Showing <%= @photos.first(3).count %> of <%= pluralize(@photos.count, 'photo') %></small>
+    <small>
+      <%= link_to 'javascript:void(0);', id: 'view-all-photos' do %>
+        View all <i class="icon ion-chevron-right"></i>
+      <% end %>
+    </small>
+  </div>
+  <%= render partial: 'users/album/photo_swipe' %>
+</div>

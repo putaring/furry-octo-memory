@@ -1,0 +1,14 @@
+<div class="card text-muted bg-light mb-3" style="border-style: dashed;">
+  <h5 class="card-header border-0 bg-light">Photo album</h5>
+  <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 13rem">
+    <p class="card-text text-center">
+      <% if @user.eql?(current_user) %>
+        <i class="icon ion-images h3"></i><br>
+        Album is empty.<br>
+        <%= link_to "Add photos", photos_path %>
+      <% else %>
+        Album is empty.
+      <% end %>
+    </p>
+  </div>
+</div>
