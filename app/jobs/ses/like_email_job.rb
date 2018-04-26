@@ -1,6 +1,6 @@
 module Ses
   class LikeEmailJob < Ses::BaseJob
-    
+
     def perform(interest_id)
       interest = Interest.find_by(id: interest_id)
       if interest.present?
@@ -21,7 +21,7 @@ module Ses
     def template_data
       {
         liker:              liker.username,
-        liker_avatar_url:   ApplicationController.helpers.liker_avatar_url(liker),
+        liker_avatar_url:   ApplicationController.helpers.avatar_for(liker),
         liker_url:          user_url(liker)
       }
     end

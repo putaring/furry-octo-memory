@@ -1,7 +1,7 @@
 <li class="list-group-item">
   <div class="media align-items-center">
     <%= link_to active_interest.liked do %>
-      <%= image_tag display_picture_for(active_interest.liked), { class: 'rounded-circle img-fluid align-self-center mr-3', style: "width: 4rem;" } %>
+      <%= image_tag display_picture_for(active_interest.liked, current_user), { class: 'rounded-circle img-fluid align-self-center mr-3', style: "width: 4rem;" } %>
     <% end %>
     <div class="media-body">
       <div class="d-flex justify-content-between align-items-center">

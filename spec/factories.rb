@@ -75,6 +75,11 @@ FactoryGirl.define do
     ip { "127.0.0.1" }
   end
 
+  factory :avatar do
+    image { File.open(Rails.root.join('spec/support/photos/faces.jpg')) }
+    user
+  end
+
   factory :report do
     reporter
     reported

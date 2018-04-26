@@ -1,22 +1,32 @@
 require 'rails_helper'
 feature "Navbar" do
-  let(:user) { create(:member) }
-  context "when logged in" do
+  let(:profile) { create(:user) }
+  subject(:navbar) { page.find('.navbar.fixed-top') }
 
-    background do
-      visit login_path
-      login(user)
-      visit user_path(user)
-    end
-    it "should give the user the option of logging out" do
-      within('.navbar') { expect(page).to have_content('Log out') }
-    end
+  background do
+    login_as visitor if visitor.present?
+    visit user_path(profile)
+  end
+
+  context "when logged in" do
+    given(:visitor) { create(:user) }
+    it { should have_link('Spouzz', href: user_path(visitor)) }
+
+    it { should have_link('Browse', href: search_path) }
+
+
+    it { should have_link('My profile', href: user_path(visitor)) }
+    it { should have_link('Messages', href: messages_path) }
+    it { should have_link('Likes', href: likes_path) }
+    it { should have_link('Account settings', href: account_path) }
+    it { should have_link('Log out', href: logout_path) }
   end
 
   context "when logged out" do
-    it "should give the user the option of logging in" do
-      visit user_path(user)
-      within('.navbar') { expect(page).to have_content('Log in') }
-    end
+    given(:visitor) { nil }
+    it { should have_link('Spouzz', href: root_path) }
+
+    it { should have_link('Log in', href: login_path) }
+    it { should have_link('Sign up', href: signup_path) }
   end
 end

@@ -5,7 +5,7 @@
 
         <div class="media d-flex align-items-center">
           <div class="mr-3 mr-md-5">
-          <%= image_tag display_picture_for(@user), { class: 'rounded-circle img-fluid align-self-center', data: { toggle: 'avatar-photo' } } %>
+          <%= image_tag display_picture_for(@user, current_user), { class: 'rounded-circle img-fluid align-self-center', data: { toggle: 'avatar-photo' } } %>
           <% if @user.eql?(current_user) %>
             <br>
             <%= link_to 'javascript:void(0);', class: 'btn btn-link btn-sm d-flex justify-content-center', data: { toggle: 'avatar-uploader' } do %>

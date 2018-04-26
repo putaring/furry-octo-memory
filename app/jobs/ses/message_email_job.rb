@@ -21,7 +21,7 @@ module Ses
     def template_data
       {
         sender:             sender.username,
-        sender_avatar_url:  ApplicationController.helpers.liker_avatar_url(sender),
+        sender_avatar_url:  ApplicationController.helpers.avatar_for(sender),
         conversation_url:   conversation_url(conversation),
         message:            message.body
       }

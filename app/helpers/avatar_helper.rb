@@ -1,27 +1,24 @@
 module AvatarHelper
 
-  def display_picture_for(user)
-    default_avatar = asset_url(user.male? ? 'profile_pictures/male.jpg' : 'profile_pictures/female.jpg')
-    if user.display_photos_to?(current_user)
-      avatar = user.avatar
-      if avatar.present? && avatar.image_attacher.stored?
-        avatar.image_url(:large)
-      else
-        default_avatar
-      end
+  def display_picture_for(user, visitor)
+    if user.display_photos_to?(visitor)
+      avatar_for(user)
     else
-      default_avatar
+      default_avatar_for(user)
     end
   end
 
-  def liker_avatar_url(liker)
-    default_avatar  = asset_url(liker.male? ? 'profile_pictures/male.jpg' : 'profile_pictures/female.jpg')
-    avatar          = liker.avatar
+  def avatar_for(user)
+    avatar = user.avatar
     if avatar.present? && avatar.image_attacher.stored?
       avatar.image_url(:large)
     else
-      default_avatar
+      default_avatar_for(user)
     end
+  end
+
+  def default_avatar_for(user)
+    asset_url user.male? ? 'profile_pictures/male.jpg' : 'profile_pictures/female.jpg'
   end
 
 end

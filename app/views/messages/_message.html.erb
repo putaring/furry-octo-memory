@@ -4,7 +4,7 @@
 %>
 <%= link_to conversation, class: "list-group-item list-group-item-action" do %>
   <div class="media align-items-center">
-    <%= image_tag display_picture_for(recipient), { class: 'rounded-circle img-fluid align-self-center mr-3', style: "width: 4rem;" } %>
+    <%= image_tag display_picture_for(recipient, current_user), { class: 'rounded-circle img-fluid align-self-center mr-3', style: "width: 4rem;" } %>
     <div class="media-body">
       <div class="d-flex justify-content-between align-items-center">
           <h6 class="mb-0"><%= recipient.username %></h6>
