@@ -36,6 +36,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'dotenv-rails'
   gem 'shrine-memory'
+  gem 'selenium-webdriver'
 end
 
 gem 'google-api-client', '0.13.0'
