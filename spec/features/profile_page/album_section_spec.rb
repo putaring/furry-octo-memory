@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.shared_examples "an unrestricted photo album" do
-  it { should have_selector('photo-gallery img', count: 3)
+  it { should have_selector('.photo-gallery img', count: 3) }
   it { should have_text 'Showing 3 of 4 photos' }
-  it { should have_link 'View all'}
+  it { should have_link 'View all' }
 end
 
 RSpec.shared_examples "an empty photo album" do
-  it { should_not have_selector('photo-gallery img')
+  it { should_not have_selector('.photo-gallery img') }
   it { should_not have_text 'Showing 3 of 4 photos' }
-  it { should_not have_link 'View all'}
+  it { should_not have_link 'View all' }
 end
 
 RSpec.shared_examples "a restricted photo album" do
@@ -116,7 +116,6 @@ feature 'Profile album section' do
           it_behaves_like "an unrestricted photo album"
         end
       end
-
     end
   end
 end

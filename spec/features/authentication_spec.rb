@@ -1,75 +1,45 @@
 require 'rails_helper'
 
 feature "Authentication" do
-  describe "Logging in" do
-    background { visit login_path }
+  subject { page }
 
-    context "with invalid credentials" do
-      background do
-        fill_in 'session_email',    with: Faker::Internet.email
-        fill_in 'session_password', with: Faker::Internet.password
-        click_button "Login"
-      end
-      scenario "should not log the user in" do
-        expect(page).to have_current_path(login_path)
-      end
-
-      scenario "should display an error message" do
-        expect(page).to have_content('Invalid email or password.')
-      end
-    end
-
-    context "with valid credentials" do
-      context "active user" do
-        given(:member) { create(:member) }
-        background { login(member) }
-
-        scenario "should redirect user to the user's homepage" do
-          expect(page).to have_current_path(user_path(member))
-        end
-      end
-
-      context "admin user" do
-        background { login(create(:admin_user)) }
-
-        scenario "should redirect user to the admin root" do
-          expect(page).to have_current_path(admin_root_path)
-        end
-      end
-    end
-  end
-
-  describe "Login page" do
-    context "when logged in as active user" do
-      given(:member) { create(:member) }
-      it "should redirect user to the user landing page" do
-        visit login_path
-        login(member)
-        visit login_path
-        expect(page).to have_current_path(user_path(member))
-      end
-    end
-
-    context "when logged in as admin user" do
-      it "should redirect admin user to the admin root page" do
-        visit login_path
-        login(create(:admin_user))
-        visit login_path
-        expect(page).to have_current_path(admin_root_path)
-      end
-    end
-  end
-
-
-  describe "Sticky login" do
-    it "should redirect the user to photos page after they're authenticated" do
-      create(:user, email: "active@spouzz.com", password: "activeuser")
-      visit photos_path
-      expect(page).to have_current_path(login_path)
-      fill_in 'session_email',    with: "active@spouzz.com"
-      fill_in 'session_password', with: "activeuser"
+  context 'when user attempts to login' do
+    background do
+      visit login_path
+      fill_in 'session_email',    with: email
+      fill_in 'session_password', with: password
       click_button "Login"
-      expect(page).to have_current_path(photos_path)
     end
+    context 'with invalid credentials' do
+      let(:email) { Faker::Internet.email }
+      let(:password) { Faker::Internet.password }
+      it { should have_current_path(login_path) }
+      it { should have_text 'Invalid email or password.' }
+    end
+
+    context 'with valid credentials' do
+      let(:email) { user.email }
+      let(:password) { 'password' }
+      context 'and is an admin' do
+        let(:user) { create(:admin_user, password: 'password') }
+        it { should have_current_path(admin_root_path) }
+      end
+
+      context 'and is a member' do
+        let(:user) { create(:user, password: 'password') }
+        it { should have_current_path(user_path(user)) }
+      end
+    end
+  end
+
+  context 'when attempting to access a protected page' do
+    background do
+      visit photos_path
+      fill_in 'session_email',    with: user.email
+      fill_in 'session_password', with: 'password'
+      click_button "Login"
+    end
+    let(:user) { create(:user, password: 'password') }
+    it { should have_current_path photos_path }
   end
 end

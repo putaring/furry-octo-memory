@@ -45,7 +45,6 @@ class PhotosController < ApplicationController
 
   def successful_upload_notice
     photo_count = current_user.photos.count
-    remaining   = 10 - photo_count
     if  photo_count > 1
       "Added."
     else

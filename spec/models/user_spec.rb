@@ -140,27 +140,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#display_thumbnail" do
-    it "should return default url if the user has an inactive profile photo" do
-      profile_photo = create(:photo, user: create(:member, gender: 'f'))
-      user          = profile_photo.user
-
-      expect(user.display_thumbnail).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.png"))
-    end
-
-    it "should display the profile thumbnail if the user has a profile picture" do
-      profile_photo = create(:active_photo)
-      user          = profile_photo.user
-
-      expect(user.display_thumbnail).to eq(profile_photo.image_url(:thumb))
-    end
-
-    it "should return default url if the user has no photo" do
-      user = create(:user, gender: 'f')
-
-      expect(user.display_thumbnail).to eq(ActionController::Base.helpers.asset_path("profile_pictures/female.png"))
-    end
-  end
 
   describe "#display_photos_to?(user)" do
 
@@ -192,30 +171,8 @@ RSpec.describe User, type: :model do
   end
 
   describe "#gender_expanded" do
-    specify { expect(create(:user, gender: 'm').gender_expanded).to eq('man') }
-    specify { expect(create(:user, gender: 'f').gender_expanded).to eq('woman')}
-  end
-
-  describe "#profile_photo" do
-    it "should return nil if the main picture of the user is still being processed" do
-      profile_photo = create(:photo)
-      user          = profile_photo.user
-      create(:photo, user: user)
-
-      expect(user.profile_photo).to be_nil
-    end
-
-    it "should return nthe profile picture of the user if he has an active picture" do
-      profile_photo = create(:active_photo)
-      user          = profile_photo.user
-      create(:photo, user: user)
-
-      expect(user.profile_photo).to eq(profile_photo)
-    end
-
-    it "should return nil when the user doesn't have an uploaded photo" do
-      expect(create(:user).profile_photo).to be_nil
-    end
+    specify { expect(create(:user, gender: 'm').gender_expanded).to eq('groom') }
+    specify { expect(create(:user, gender: 'f').gender_expanded).to eq('bride')}
   end
 
   describe "#age" do
