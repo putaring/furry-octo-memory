@@ -27,6 +27,7 @@ config/secrets.yml
 .env.development
 .env.test
 .env.qa
+.env.production
 
 ## Environment normalization:
 /.bundle
