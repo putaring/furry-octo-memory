@@ -13,7 +13,6 @@
 //= require jquery_ujs
 //= require popper
 //= require bootstrap-sprockets
-//= require snackbar
 //= require nav
 //= require about
 //= require conversations

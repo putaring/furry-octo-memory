@@ -21,9 +21,6 @@ PhoneVerification.prototype = {
     this.$verifyForm.on('ajax:error', $.proxy(this.handleVerificationError, this));
 
     this.$resendLink.on('ajax:error', $.proxy(this.handleOTPError, this));
-    this.$resendLink.on('ajax:success', function (e, data, status, xhr) {
-      $.snackbar({ content: "Resent", style: "snackbar", timeout: 7000 });
-    });
 
     $('#collapseOne').on('show.bs.collapse', function () {
       $('#collapseTwo').collapse('hide');

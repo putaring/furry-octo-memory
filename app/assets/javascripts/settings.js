@@ -10,11 +10,6 @@ $(function() {
         append('Please fix the error(s).').
         append(list).
         show();
-      $.snackbar({
-        content: "Update failed. Please fix the errors and try again.",
-        style: "snackbar",
-        timeout: 5000
-      });
     } else if (xhr.status === 401) {
       window.location = '/login'
     } else if (xhr.status === 403) {
@@ -31,12 +26,6 @@ $(function() {
 
   }).on('ajax:success', function () {
     if (location.pathname.match(/\/settings\//) || location.pathname.match(/\/profile\//)) {
-      $.snackbar({
-        content: "Updated. <a href='/users/" + $(this).data('userId') + "'><strong>GO TO PROFILE</strong></a>",
-        style: "snackbar",
-        htmlAllowed: true,
-        timeout: 5000
-      });
     } else {
       location.href = location.origin + location.pathname;
     }
