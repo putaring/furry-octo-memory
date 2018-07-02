@@ -8,7 +8,10 @@ class ForgotPasswordController < ApplicationController
   end
 
   def reset_password
-    @user = User.find_by(reset_token: params[:reset_token])
+    user_id, expires_at = verifier.verify params[:reset_token]
+    @user = User.find_by(id: user_id) if Time.zone.now < expires_at
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    nil
   end
 
   def change_password
@@ -22,6 +25,10 @@ class ForgotPasswordController < ApplicationController
   end
 
   private
+
+  def verifier
+    ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
+  end
 
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
