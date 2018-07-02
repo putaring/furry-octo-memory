@@ -12,7 +12,12 @@ module Ses
     end
 
     def template_data
-      { password_reset_url: reset_password_url(reset_token: recipient.reset_token) }
+      { password_reset_url: reset_password_url(reset_token: reset_token) }
+    end
+
+    def reset_token
+      verifier = ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
+      verifier.generate([recipient.id, 2.hours.from_now])
     end
   end
 end
