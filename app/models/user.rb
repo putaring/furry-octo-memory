@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   paginates_per 12
 
   has_secure_password
-  has_secure_token :reset_token
 
   has_one :profile
   has_one :avatar, -> { order(id: :desc) }, dependent: :destroy

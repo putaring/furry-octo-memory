@@ -10,14 +10,14 @@ class ForgotPasswordController < ApplicationController
   def reset_password
     user_id, expires_at = verifier.verify params[:reset_token]
     @user = User.find_by(id: user_id) if Time.zone.now < expires_at
-  rescue ActiveSupport::MessageVerifier::InvalidSignature
-    nil
+  rescue ActiveSupport::MessageVerifier::InvalidSignature => e
+    logger.error e.message
   end
 
   def change_password
-    @user = User.find_by(reset_token: params[:reset_token])
+    user_id, expires_at = verifier.verify params[:reset_token]
+    @user = User.find_by(id: user_id) if Time.zone.now < expires_at
     if @user && @user.update_attributes(password_params)
-      @user.regenerate_reset_token
       render 'changed_password'
     else
       render 'reset_password'

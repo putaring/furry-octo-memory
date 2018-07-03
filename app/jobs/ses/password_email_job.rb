@@ -16,8 +16,7 @@ module Ses
     end
 
     def reset_token
-      verifier = ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
-      verifier.generate([recipient.id, 2.hours.from_now])
+      ApplicationController.helpers.reset_token_for(recipient)
     end
   end
 end

@@ -8,4 +8,9 @@ module UsersHelper
   def is_me?(user)
     user.eql?(current_user)
   end
+
+  def reset_token_for(user)
+    verifier = ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
+    verifier.generate([user.id, 2.hours.from_now])
+  end
 end
