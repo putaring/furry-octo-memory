@@ -55,6 +55,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:favoriters) }
     it { is_expected.to have_many(:phone_verifications) }
     it { is_expected.to have_one(:profile) }
+    it { is_expected.to have_one(:email_preference) }
   end
 
   describe "likes?(other_user)" do

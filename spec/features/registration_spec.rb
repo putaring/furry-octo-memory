@@ -46,6 +46,14 @@ feature "Registration" do
           expect(User.count).to eq 1
         end
 
+        it 'should create a default profile for the user' do
+          expect(Profile.count).to eq 1
+        end
+
+        it 'should create default email preference for the user' do
+          expect(EmailPreference.count).to eq 1
+        end
+
         it { should have_current_path(verify_path) }
       end
     end

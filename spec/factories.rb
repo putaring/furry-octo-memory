@@ -46,6 +46,18 @@ FactoryGirl.define do
     user
   end
 
+  factory :email_preference, aliases: [:active_email_account] do
+    user
+  end
+
+  factory :disabled_notifications_account, parent: :email_preference do
+    receive_notifications false
+  end
+
+  factory :permanent_bounce_account, parent: :email_preference do
+    status 'permanent_bounce'
+  end
+
   factory :conversation do
     sender
     recipient

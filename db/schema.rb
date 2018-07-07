@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180702235139) do
+ActiveRecord::Schema.define(version: 20180706204817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20180702235139) do
 
   add_index "conversations", ["recipient_id"], name: "index_conversations_on_recipient_id", using: :btree
   add_index "conversations", ["sender_id"], name: "index_conversations_on_sender_id", using: :btree
+
+  create_table "email_preferences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "status",                default: 0,    null: false
+    t.boolean  "receive_notifications", default: true, null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "email_preferences", ["user_id"], name: "index_email_preferences_on_user_id", using: :btree
 
   create_table "interests", force: :cascade do |t|
     t.integer  "liker_id",                   null: false
@@ -167,6 +177,7 @@ ActiveRecord::Schema.define(version: 20180702235139) do
   add_foreign_key "bookmarks", "users", column: "bookmarker_id"
   add_foreign_key "conversations", "users", column: "recipient_id"
   add_foreign_key "conversations", "users", column: "sender_id"
+  add_foreign_key "email_preferences", "users"
   add_foreign_key "interests", "users", column: "liked_id"
   add_foreign_key "interests", "users", column: "liker_id"
   add_foreign_key "messages", "conversations"

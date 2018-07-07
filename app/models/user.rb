@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
+  has_one :email_preference
   has_one :profile
   has_one :avatar, -> { order(id: :desc) }, dependent: :destroy
 
@@ -71,7 +72,7 @@ class User < ActiveRecord::Base
 
   before_validation :tweak_sect
 
-  before_create :assign_random_username, :set_default_profile
+  before_create :assign_random_username
 
   before_update { username.downcase! }
 
@@ -170,11 +171,6 @@ class User < ActiveRecord::Base
   def old_enough?
     minimum_age = gender.eql?('m') ? 21 : 18
     errors.add(:birthdate, "indicates that you're underage. #{gender.eql?('m') ? 'Men' : 'Women'} must be at least #{minimum_age} years old.") unless birthdate <= minimum_age.years.ago
-  end
-
-  def set_default_profile
-    build_profile
-    true
   end
 
   def assign_random_username

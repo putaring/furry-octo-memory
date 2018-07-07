@@ -11,7 +11,7 @@ module Ses
     def perform
       ses = Aws::SES::Client.new
       ses.send_templated_email(
-        source: 'notifications@spouzz.com',
+        source: ENV.fetch('TRANSACTIONAL_FROM_EMAIL'),
         destination: {
           to_addresses: to_addresses
         },

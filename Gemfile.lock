@@ -283,7 +283,7 @@ GEM
     selenium-webdriver (3.11.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    shoryuken (3.1.12)
+    shoryuken (3.2.3)
       aws-sdk-core (>= 2)
       concurrent-ruby
       thor
@@ -373,7 +373,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
-  shoryuken
+  shoryuken (= 3.2.3)
   shoulda-matchers (~> 3.1)
   shrine
   shrine-memory
