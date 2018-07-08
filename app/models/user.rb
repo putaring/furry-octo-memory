@@ -162,6 +162,7 @@ class User < ActiveRecord::Base
   end
 
   private
+
   def tweak_sect
     self.sect = nil if (self.sect.blank? || (self.religion != 'hindu'))
   end
@@ -195,8 +196,6 @@ class User < ActiveRecord::Base
       Faker::Commerce.product_name.split.first
     ].sample.downcase.gsub(/\s+/, "")
   end
-
-  private
 
   def set_user_profile
     build_profile
