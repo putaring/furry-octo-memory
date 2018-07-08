@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706204817) do
+ActiveRecord::Schema.define(version: 20180707203419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180706204817) do
     t.datetime "updated_at",                           null: false
   end
 
-  add_index "email_preferences", ["user_id"], name: "index_email_preferences_on_user_id", using: :btree
+  add_index "email_preferences", ["user_id"], name: "index_email_preferences_on_user_id", unique: true, using: :btree
 
   create_table "interests", force: :cascade do |t|
     t.integer  "liker_id",                   null: false
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20180706204817) do
     t.string   "preference", limit: 1500
   end
 
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", unique: true, using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.integer  "reporter_id",                              null: false

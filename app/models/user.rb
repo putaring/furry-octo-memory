@@ -68,11 +68,9 @@ class User < ActiveRecord::Base
 
   validate :old_enough?, if: ->(u) { (u.birthdate_changed? || u.gender_changed?) && u.birthdate.present? }
 
-  delegate :about, :occupation, :preference, to: :profile
-
   before_validation :tweak_sect
 
-  before_create :assign_random_username
+  before_create :assign_random_username, :set_user_profile, :set_email_preference
 
   before_update { username.downcase! }
 
@@ -196,5 +194,17 @@ class User < ActiveRecord::Base
       Faker::Color.color_name, Faker::Superhero.name.split.first,
       Faker::Commerce.product_name.split.first
     ].sample.downcase.gsub(/\s+/, "")
+  end
+
+  private
+
+  def set_user_profile
+    build_profile
+    true
+  end
+
+  def set_email_preference
+    build_email_preference
+    true
   end
 end

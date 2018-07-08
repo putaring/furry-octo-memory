@@ -2,11 +2,17 @@ require 'rails_helper'
 
 feature 'Profile description' do
   given(:user) { create(:user) }
+  given(:profile) { user.profile }
+  given(:profile_attributes) { {} }
   subject { page }
 
   describe "Viewing the user's description" do
+    background { profile.update(profile_attributes) }
     context 'as a visitor' do
-      background { visit user_path(user) }
+      background do
+        visit user_path(user)
+      end
+
       it { should have_text 'A few words about me' }
       context "when the user hasn't filled out a description" do
         it { should have_text 'Perhaps a thinker, not a talker.' }
@@ -24,7 +30,7 @@ feature 'Profile description' do
       end
 
       context 'when the user has a filled out description' do
-        given(:user) { create(:profile, about: 'This is my description.').user }
+        given(:profile_attributes) { { about: 'This is my description.' } }
         it { should have_text 'This is my description.' }
         it { should_not have_link('Edit', href: edit_description_path) }
       end
@@ -41,7 +47,7 @@ feature 'Profile description' do
       end
 
       context 'when the user has a filled out description' do
-        given(:user) { create(:profile, about: 'This is my description.').user }
+        given(:profile_attributes) { { about: 'This is my description.' } }
         it { should have_text 'This is my description.' }
         it { should have_link('Edit', href: edit_description_path) }
       end

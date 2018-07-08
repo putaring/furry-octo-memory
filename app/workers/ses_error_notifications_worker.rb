@@ -5,7 +5,7 @@ class SesErrorNotificationsWorker
                     body_parser: :json,
                     auto_delete: false
 
-  def perform(sqs_message, notification)
+  def perform(_, notification)
     Ses::ErrorNotificationProcessor.process(JSON.parse notification['Message'])
   end
 end

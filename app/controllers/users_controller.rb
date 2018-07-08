@@ -15,8 +15,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params.merge(ip: request.remote_ip))
     if @user.save
-      @user.create_profile!
-      @user.create_email_preference!
       login(@user)
       Ses::WelcomeEmailJob.perform_later(@user.id)
       redirect_to verify_path

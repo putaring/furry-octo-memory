@@ -1,9 +1,9 @@
-<% if @user.about.present? %>
+<% if @user.profile.about.present? %>
   <div class="card mb-4 border-light">
     <div class="card-body bg-light">
       <h5 class="card-title">A few words about me</h5>
       <div class="card-text">
-        <%= simple_format(@user.about) %>
+        <%= simple_format(@user.profile.about) %>
         <% if @user.eql?(current_user) %>
           <%= link_to edit_description_path, class: 'btn btn-sm btn-outline-success' do %>
               <i class="icon ion-edit"></i> Edit
