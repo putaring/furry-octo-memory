@@ -1,0 +1,54 @@
+<% provide(:title, "Email settings") %>
+
+<%= render partial: 'shared/main_nav' %>
+<nav class="bg-primary primary-breadcrumb-container">
+  <div class="container">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to 'My profile', current_user %></li>
+      <li class="breadcrumb-item active">Email Settings</li>
+    </ol>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="row my-3">
+    <div class="col">
+      <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+          <%= link_to 'Email settings', email_settings_path, { class: 'nav-link active' } %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Privacy settings', privacy_settings_path, { class: 'nav-link' } %>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 justify-content-center">
+      <% if current_user.errors.any? %>
+        <div class="alert alert-danger">
+          <ul class="mb-0">
+          <% current_user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if flash[:notice].present? %>
+        <div class="alert alert-info">
+          <%= flash.notice %> <%= link_to 'Back to profile', current_user, class: 'alert-link' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <hr>
+      <%= render partial: 'settings/email' %>
+      <hr>
+    </div>
+  </div>
+</div>

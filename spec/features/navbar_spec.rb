@@ -18,7 +18,7 @@ feature "Navbar" do
     it { should have_link('My profile', href: user_path(visitor)) }
     it { should have_link('Messages', href: messages_path) }
     it { should have_link('Likes', href: likes_path) }
-    it { should have_link('Account settings', href: account_path) }
+    it { should have_link('Settings', href: email_settings_path) }
     it { should have_link('Log out', href: logout_path) }
   end
 
