@@ -5,7 +5,7 @@ module Ses
       interest = Interest.find_by(id: interest_id)
       if interest.present?
         self.recipient  = interest.liked
-        self.liked      = interest.liker
+        self.liker      = interest.liker
         super()
       end
     end
