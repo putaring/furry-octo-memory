@@ -14,6 +14,10 @@ module Ses
 
     attr_accessor :message, :conversation, :sender
 
+    def send_email?
+      recipient.email_preference.receive_email_notifications?
+    end
+
     def template
       'Message'
     end

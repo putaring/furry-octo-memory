@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Profile work section' do
-  given(:user) { create(:user) }
+  given(:user) { create(:registered_user) }
   given(:profile) { user.profile }
   given(:profile_attributes) { {} }
   subject { page }
@@ -15,12 +15,12 @@ feature 'Profile work section' do
         it { should_not have_link('What are you working towards right now?', href: edit_work_path) }
 
         context 'and is male' do
-          given(:user) { create(:user, gender: 'm') }
+          given(:user) { create(:registered_user, gender: 'm') }
           it { should have_text "He hasn't updated this section." }
         end
 
         context 'and is female' do
-          given(:user) { create(:user, gender: 'f') }
+          given(:user) { create(:registered_user, gender: 'f') }
           it { should have_text "She hasn't updated this section." }
         end
       end

@@ -7,13 +7,11 @@ $(function() {
         removeClass('btn-pink').
         addClass('btn-outline-pink').
         data('method', 'delete');
-        Snackbar.show({showAction: false, text: "Liked."})
     } else {
       $(this).text('Like').
         addClass('btn-pink').
         removeClass('btn-outline-pink').
         data('method', 'post');
-        Snackbar.show({showAction: false, text: 'Unliked.'})
     }
   }).on('ajax:before', function () {
     $(this).addClass('disabled');

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_one :email_preference
   has_one :profile
-  has_one :avatar, -> { order(id: :desc) }, dependent: :destroy
+  has_one :avatar, dependent: :destroy
 
   has_many :photos
 
@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
 
   has_many :reports, foreign_key: "reporter_id", dependent: :destroy
 
-  has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message'
-  has_many :received_messages, foreign_key: :recipient_id, class_name: 'Message'
+  has_many :sent_messages, foreign_key: :sender_id, class_name: 'Message', dependent: :destroy
+  has_many :received_messages, foreign_key: :recipient_id, class_name: 'Message', dependent: :destroy
 
   has_many :active_interests, class_name: "Interest", foreign_key: "liker_id", dependent: :destroy
   has_many :passive_interests, class_name: "Interest", foreign_key: "liked_id", dependent: :destroy
@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
 
   before_validation :tweak_sect
 
-  before_create :assign_random_username, :set_user_profile, :set_email_preference
+  before_create :assign_random_username
 
   before_update { username.downcase! }
 
@@ -195,15 +195,5 @@ class User < ActiveRecord::Base
       Faker::Color.color_name, Faker::Superhero.name.split.first,
       Faker::Commerce.product_name.split.first
     ].sample.downcase.gsub(/\s+/, "")
-  end
-
-  def set_user_profile
-    build_profile
-    true
-  end
-
-  def set_email_preference
-    build_email_preference
-    true
   end
 end

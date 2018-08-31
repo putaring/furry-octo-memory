@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Avatar upload link' do
-  given(:user) { create(:user) }
+  given(:user) { create(:registered_user) }
   subject(:banner_section) { page.find('.jumbotron') }
 
   context 'as an anonymous user' do
@@ -16,7 +16,7 @@ feature 'Avatar upload link' do
     end
 
     context 'and is a visitor' do
-      let(:visitor) { create(:user) }
+      let(:visitor) { create(:registered_user) }
       it { should_not have_css('[data-toggle="avatar-uploader"]') }
     end
 

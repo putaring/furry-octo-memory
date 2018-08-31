@@ -26,7 +26,7 @@ feature "Authentication" do
       end
 
       context 'and is a member' do
-        let(:user) { create(:user, password: 'password') }
+        let(:user) { create(:registered_user, password: 'password') }
         it { should have_current_path(user_path(user)) }
       end
     end
@@ -39,7 +39,7 @@ feature "Authentication" do
       fill_in 'session_password', with: 'password'
       click_button "Login"
     end
-    let(:user) { create(:user, password: 'password') }
+    let(:user) { create(:registered_user, password: 'password') }
     it { should have_current_path photos_path }
   end
 end

@@ -3,7 +3,6 @@ $(function() {
     alert('Something went wrong. Try again');
   }).on('ajax:success', function(e, data, status, xhr) {
       $(this).parents('p').html('<small class="text-danger"><i class="icon ion-close"></i> Declined</small>');
-      Snackbar.show({showAction: false, text: "Okay. We'll let them know."})
   }).on('ajax:before', function () {
     $(this).addClass('disabled');
   }).on('ajax:complete', function () {

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Profile preference' do
-  given(:user) { create(:user) }
+  given(:user) { create(:registered_user) }
   given(:profile) { user.profile }
   given(:profile_attributes) { {} }
   subject { page }

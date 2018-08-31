@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'ses/error_notification_processor'
 
 RSpec.describe Ses::ErrorNotificationProcessor do
-  let(:email_preference) { create(:user).email_preference }
+  let(:email_preference) { create(:registered_user).email_preference }
   let(:user_email) { email_preference.user.email }
   let(:process_notification) { Ses::ErrorNotificationProcessor.process(notification) }
 
