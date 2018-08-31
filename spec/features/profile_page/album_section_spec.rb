@@ -20,8 +20,8 @@ end
 
 feature 'Profile album section' do
   given(:photo_count) { 0 }
-  given(:user) { create(:user, gender: 'f') }
-  given(:visitor) { create(:user) }
+  given(:user) { create(:registered_user, gender: 'f') }
+  given(:visitor) { create(:registered_user) }
   subject { page }
 
   describe "Previewing the user's photo album" do

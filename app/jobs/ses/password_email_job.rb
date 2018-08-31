@@ -7,6 +7,10 @@ module Ses
 
     private
 
+    def send_email?
+      true
+    end
+
     def template
       'Password'
     end

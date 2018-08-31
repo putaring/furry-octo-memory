@@ -1,6 +1,6 @@
 require 'rails_helper'
 feature "Navbar" do
-  let(:profile) { create(:user) }
+  let(:profile) { create(:registered_user) }
   subject(:navbar) { page.find('.navbar.fixed-top') }
 
   background do
@@ -9,7 +9,7 @@ feature "Navbar" do
   end
 
   context "when logged in" do
-    given(:visitor) { create(:user) }
+    given(:visitor) { create(:registered_user) }
     it { should have_link('Spouzz', href: user_path(visitor)) }
 
     it { should have_link('Browse', href: search_path) }
@@ -18,7 +18,7 @@ feature "Navbar" do
     it { should have_link('My profile', href: user_path(visitor)) }
     it { should have_link('Messages', href: messages_path) }
     it { should have_link('Likes', href: likes_path) }
-    it { should have_link('Account settings', href: account_path) }
+    it { should have_link('Settings', href: email_settings_path) }
     it { should have_link('Log out', href: logout_path) }
   end
 

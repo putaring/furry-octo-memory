@@ -26,7 +26,7 @@ RSpec.describe PhoneVerification, type: :model do
   end
 
   describe "#verify!" do
-    let(:user) { create(:user) }
+    let(:user) { create(:registered_user) }
     let(:phone_verification) { create(:phone_verification, user: user) }
 
     before { phone_verification.verify! }

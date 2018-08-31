@@ -1,11 +1,13 @@
 require 'rails_helper'
 
-
 feature 'Profile preference' do
-  given(:user) { create(:user) }
+  given(:user) { create(:registered_user) }
+  given(:profile) { user.profile }
+  given(:profile_attributes) { {} }
   subject { page }
 
   describe "Viewing the user's preference" do
+    background { profile.update(profile_attributes) }
     context 'as a visitor' do
       background { visit user_path(user) }
       it { should have_text "What I'm actually looking for" }
@@ -15,7 +17,7 @@ feature 'Profile preference' do
       end
 
       context 'when the user has a filled out their preference' do
-        given(:user) { create(:profile, preference: 'This is my preference.').user }
+        given(:profile_attributes) { { preference: 'This is my preference.' } }
         it { should have_text 'This is my preference.' }
         it { should_not have_link('Edit', href: edit_preference_path) }
       end
@@ -33,7 +35,7 @@ feature 'Profile preference' do
       end
 
       context 'when the user has a filled out their preference' do
-        given(:user) { create(:profile, preference: 'This is my preference.').user }
+        given(:profile_attributes) { { preference: 'This is my preference.' } }
         it { should have_text 'This is my preference.' }
         it { should have_link('Edit', href: edit_preference_path) }
       end

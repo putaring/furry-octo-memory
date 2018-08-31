@@ -1,9 +1,9 @@
-<% if @user.preference.present? %>
+<% if @user.profile.preference.present? %>
   <div class="card mb-4 border-light">
     <div class="card-body bg-light">
       <h5 class="card-title">What I'm actually looking for</h5>
       <div class="card-text">
-        <%= simple_format(@user.preference) %>
+        <%= simple_format(@user.profile.preference) %>
         <% if @user.eql?(current_user) %>
           <%= link_to edit_preference_path, class: 'btn btn-sm btn-outline-success' do %>
               <i class="icon ion-edit"></i> Edit

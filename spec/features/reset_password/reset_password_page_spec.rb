@@ -16,7 +16,7 @@ feature "Reset Password Page" do
     let(:verifier) { ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base) }
     let(:expires_at) {  2.hours.from_now }
     let(:user_email) { Faker::Internet.email }
-    let(:user_id) { create(:user, email: user_email).id }
+    let(:user_id) { create(:registered_user, email: user_email).id }
     let(:reset_token) { verifier.generate([user_id, expires_at]) }
     context 'but user does not exists' do
       let(:user_id) { 324 }

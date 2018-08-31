@@ -28,7 +28,7 @@ RSpec.describe Conversation, type: :model do
       it { expect(Conversation.between(recipient.id, sender.id)).to be_present }
     end
     context "when querying conversation between users who have never messages each other" do
-      it { expect(Conversation.between(sender.id, create(:user).id)).to be_nil }
+      it { expect(Conversation.between(sender.id, create(:registered_user).id)).to be_nil }
     end
   end
 
@@ -41,7 +41,7 @@ RSpec.describe Conversation, type: :model do
     end
 
     context "when the user has never had a conversation" do
-      it { expect(Conversation.with_participant(create(:user))).to be_empty }
+      it { expect(Conversation.with_participant(create(:registered_user))).to be_empty }
     end
   end
 end

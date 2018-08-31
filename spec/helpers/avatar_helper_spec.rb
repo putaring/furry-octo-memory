@@ -4,8 +4,8 @@ RSpec.describe AvatarHelper, type: :helper do
 
   let(:gender) { 'f' }
   let(:photo_visibility) { 'everyone' }
-  let(:user) { create(:user, gender: gender, photo_visibility: photo_visibility) }
-  let(:visitor) { create(:user) }
+  let(:user) { create(:registered_user, gender: gender, photo_visibility: photo_visibility) }
+  let(:visitor) { create(:registered_user) }
 
   describe '#default_avatar_for' do
     context 'when the user is male' do
@@ -69,7 +69,7 @@ RSpec.describe AvatarHelper, type: :helper do
         end
 
         context 'when visitor is not a like' do
-          let(:visitor) { create(:user) }
+          let(:visitor) { create(:registered_user) }
           it 'should return the default avatar' do
             expect(display_picture_url).to include 'profile_pictures/male'
           end
@@ -100,7 +100,7 @@ RSpec.describe AvatarHelper, type: :helper do
         end
 
         context 'when visitor is not a like' do
-          let(:visitor) { create(:user) }
+          let(:visitor) { create(:registered_user) }
           it 'should return the uploaded avatar' do
             expect(display_picture_url).to eq user.avatar.image_url(:large)
           end
@@ -131,7 +131,7 @@ RSpec.describe AvatarHelper, type: :helper do
         end
 
         context 'when visitor is not a like' do
-          let(:visitor) { create(:user) }
+          let(:visitor) { create(:registered_user) }
           it 'should return the uploaded avatar' do
             expect(display_picture_url).to eq user.avatar.image_url(:large)
           end

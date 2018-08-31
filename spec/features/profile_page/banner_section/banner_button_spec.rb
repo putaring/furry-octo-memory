@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Banner buttons' do
-  given(:user) { create(:user) }
+  given(:user) { create(:registered_user) }
   subject(:buttons_section) { page.find('.jumbotron') }
 
   context "Viewing the user's profile page" do
@@ -25,7 +25,7 @@ feature 'Banner buttons' do
         end
 
         context 'who has not liked the user' do
-          let(:visitor) { create(:user) }
+          let(:visitor) { create(:registered_user) }
           it { should have_link('Like') }
           it { should have_link('Message') }
         end

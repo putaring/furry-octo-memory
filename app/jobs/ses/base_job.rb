@@ -9,15 +9,19 @@ module Ses
     attr_accessor :recipient
 
     def perform
-      ses = Aws::SES::Client.new
-      ses.send_templated_email(
-        source: 'notifications@spouzz.com',
-        destination: {
-          to_addresses: to_addresses
-        },
-        template: template,
-        template_data: template_data.to_json
-      )
+      if send_email?
+        ses = Aws::SES::Client.new
+        ses.send_templated_email(
+          source: ENV.fetch('TRANSACTIONAL_FROM_EMAIL'),
+          destination: {
+            to_addresses: to_addresses
+          },
+          template: template,
+          template_data: template_data.to_json
+        )
+      else
+        Rails.logger.warn "Did not send #{template} email to #{recipient.email}"
+      end
     end
 
     def self.default_url_options

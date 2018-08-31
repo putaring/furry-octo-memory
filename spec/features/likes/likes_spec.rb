@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Likes' do
-  given(:me)  { create(:user) }
+  given(:me)  { create(:registered_user) }
   subject     { page }
   background  { login_as me }
   context 'when there are no likers' do
@@ -12,8 +12,8 @@ feature 'Likes' do
   end
 
   context 'when I have liked somebody' do
-    given(:match) { create(:user) }
-    given(:liked) { create(:user) }
+    given(:match) { create(:registered_user) }
+    given(:liked) { create(:registered_user) }
 
     background do
       create(:interest, liked: liked, liker: me)

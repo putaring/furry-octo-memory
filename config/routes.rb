@@ -47,7 +47,10 @@ Rails.application.routes.draw do
     get 'crop', to: 'avatar#crop'
   end
 
-  get 'account', to: 'settings#account'
+  resource :settings, only: [:show] do
+    get 'email'
+    get 'privacy'
+  end
 
   resources :messages, only: :index do
     get 'sent', on: :collection

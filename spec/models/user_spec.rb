@@ -55,6 +55,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:favoriters) }
     it { is_expected.to have_many(:phone_verifications) }
     it { is_expected.to have_one(:profile) }
+    it { is_expected.to have_one(:email_preference) }
   end
 
   describe "likes?(other_user)" do
@@ -147,7 +148,7 @@ RSpec.describe User, type: :model do
       let(:user) { create(:restricted_user) }
 
       specify { expect(user.display_photos_to?(nil)).to be false }
-      specify { expect(user.display_photos_to?(create(:user))).to be false }
+      specify { expect(user.display_photos_to?(create(:registered_user))).to be false }
       specify { expect(user.display_photos_to?(user)).to be true }
 
       it "should display photos to liked members" do
@@ -160,30 +161,30 @@ RSpec.describe User, type: :model do
     context "photo visibility is members only" do
       let(:user) { create(:members_only_user) }
       specify { expect(user.display_photos_to?(nil)).to be false }
-      specify { expect(user.display_photos_to?(create(:user))).to be true }
+      specify { expect(user.display_photos_to?(create(:registered_user))).to be true }
     end
 
     context "photo visibility is public" do
-      let(:user) { create(:user) }
+      let(:user) { create(:registered_user) }
       specify { expect(user.display_photos_to?(nil)).to be true }
-      specify { expect(user.display_photos_to?(create(:user))).to be true }
+      specify { expect(user.display_photos_to?(create(:registered_user))).to be true }
     end
   end
 
   describe "#gender_expanded" do
-    specify { expect(create(:user, gender: 'm').gender_expanded).to eq('groom') }
-    specify { expect(create(:user, gender: 'f').gender_expanded).to eq('bride')}
+    specify { expect(create(:registered_user, gender: 'm').gender_expanded).to eq('groom') }
+    specify { expect(create(:registered_user, gender: 'f').gender_expanded).to eq('bride')}
   end
 
   describe "#age" do
     it "should return the age of the user" do
-      expect(create(:user, birthdate: 34.years.ago).age).to eq(34)
+      expect(create(:registered_user, birthdate: 34.years.ago).age).to eq(34)
     end
   end
 
   describe "#male?" do
-    let(:male)    { create(:user, gender: 'm') }
-    let(:female)  { create(:user, gender: 'f') }
+    let(:male)    { create(:registered_user, gender: 'm') }
+    let(:female)  { create(:registered_user, gender: 'f') }
 
     it "should return true for a male user" do
       expect(male.male?).to be true
@@ -195,8 +196,8 @@ RSpec.describe User, type: :model do
   end
 
   describe "#female?" do
-    let(:male)    { create(:user, gender: 'm') }
-    let(:female)  { create(:user, gender: 'f') }
+    let(:male)    { create(:registered_user, gender: 'm') }
+    let(:female)  { create(:registered_user, gender: 'f') }
 
     it "should return true for a female user" do
       expect(female.female?).to be true
@@ -207,16 +208,9 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context "when a user is created" do
-    it "should create a default profile for the user" do
-      user  = create(:user)
-      expect(user.profile).to be_present
-    end
-  end
-
   context 'when email is uppercase' do
     let(:upcase_email)  { Faker::Internet.email.upcase }
-    let(:user)          { create(:user, email: upcase_email) }
+    let(:user)          { create(:registered_user, email: upcase_email) }
     it 'should downcase email before saving to the database' do
       expect(user.email).to eq upcase_email.downcase
     end
@@ -231,7 +225,7 @@ RSpec.describe User, type: :model do
 
   context 'when username is uppercase' do
     let(:upcase_username)   { Faker::Internet.user_name.upcase }
-    let(:user)              { create(:user) }
+    let(:user)              { create(:registered_user) }
     it 'should downcase username before saving to the database' do
       user.update_attributes(username: upcase_username)
       expect(user.reload.username).to eq upcase_username.downcase
@@ -239,7 +233,7 @@ RSpec.describe User, type: :model do
   end
 
   context 'when username is not provided' do
-    let(:user) { create(:user, username: nil) }
+    let(:user) { create(:registered_user, username: nil) }
     it 'should create a username before saving to the database' do
       expect(user.username).to be_present
     end

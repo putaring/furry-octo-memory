@@ -17,7 +17,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'has_secure_token'
 gem 'faker'
-gem 'shoryuken'
+gem 'shoryuken', '3.2.3'
 gem 'puma'
 gem 'newrelic_rpm'
 gem "rack-timeout"

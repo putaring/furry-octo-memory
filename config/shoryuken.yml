@@ -1,6 +1,6 @@
 pidfile: ./shoryuken.pid
+delay: 5
 queues:
   - critical
-  - important
   - normal
-  - low
+  - ses_error_notifications
